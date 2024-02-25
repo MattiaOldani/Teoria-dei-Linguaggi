@@ -61,6 +61,14 @@ Negli anni 50 *Noam Chomsky* studia la generazione dei linguaggi formali e crea 
 - *tipo 2*: grammatiche _context-free_ (libere dal contesto), hanno come modello equivalente gli *automi a pila*
 - *tipo 3*: grammatiche regolari, hanno come modello equivalente gli *automi a stati finiti*
 
+#v(12pt)
+
+#figure(
+    image("assets/gerarchia.svg", width: 50%)
+)
+
+#v(12pt)
+
 == Richiamo sulla notazione delle parole
 
 Andremo ad indicare con le lettere maiuscole dell'alfabeto greco un *alfabeto*, come ad esempio $Sigma$ o $Gamma$

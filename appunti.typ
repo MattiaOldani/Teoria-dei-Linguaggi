@@ -102,6 +102,8 @@ Considerando il linguaggio sull'alfabeto ${(,)}$ delle parole ben bilanciate, pr
 
 == Gerarchia
 
+/* FAREI UNA TABELLA */
+
 Negli anni 50 Noam Chomsky studia la generazione dei linguaggi formali e crea una *gerarchia di grammatiche formali*
 - *tipo 0*: grammatiche che generano tutti i linguaggi, sono senza restrizioni e come modello equivalente hanno le *macchine di Turing*
 - *tipo 1*: grammatiche _context-sensitive_ (dipendenti dal contesto), come modello equivalente hanno le *Linear Bounded Automata*
@@ -204,13 +206,6 @@ Come prima, definiamo l'estensione della funzione di transizione come la funzion
 - $overline(delta)(q, w a) = limits(union.big)_(r in overline(delta)(q,w)) delta(r,a)$
 
 Cambia anche il linguaggio riconosciuto dall'automa: infatti, $L(A)$ diventa ${w in Sigma^* bar.v overline(delta)(q_I, w) sect.big F eq.not emptyset.rev}$
-
-
-
-
-
-
-
 
 == Distinguibilità
 

@@ -88,7 +88,7 @@ Un *linguaggio* $L$ definito su un alfabeto $Sigma$ è un qualunque sottoinsieme
 Vogliamo rappresentare in maniera finita un oggetto infinito come un linguaggio.
 
 Abbiamo a nostra disposizione due modelli molto potenti:
-- *generativo*: date delle regole, si parte da _un certo punto_ e si generano tutte le parole di quel linguaggio con le regole date;
+- *generativo*: date delle regole, si parte da _un certo punto_ e si generano tutte le parole di quel linguaggio con le regole date; parleremo di questi modelli tramite le _grammatiche_;
 - *riconoscitivo*: si usano dei _modelli di calcolo_ che prendono in input una parola e dicono se appartiene o meno al linguaggio.
 
 Considerando il linguaggio sull'alfabeto ${(,)}$ delle parole ben bilanciate, proviamo a dare due modelli:
@@ -104,125 +104,116 @@ Considerando il linguaggio sull'alfabeto ${(,)}$ delle parole ben bilanciate, pr
 
 /* INIZIO LEZIONE 02 */
 
+== Grammatiche
+
+Una *grammatica* è una tupla $(V, Sigma, P, S)$, con:
+- $V$ _insieme finito e non vuoto_ delle *variabili*; queste ultime sono anche dette _simboli non terminali_ e sono usate durante il processo di generazione delle parole del linguaggio;
+- $Sigma$ _insieme finito e non vuoto_ dei *simboli terminali*; questi ultimi appaiono nelle parole generate, a differenza delle variabili che invece non possono essere presenti;
+- $P$ _insieme finito_ delle *regole di produzione*;
+- $S in V$ *simbolo iniziale* o *assioma*, è il punto di partenza della generazione.
+
+=== Regole di produzione
+
+Soffermiamoci sulle regole di produzione: la forma di queste ultime è $alpha arrow.long beta$, con $alpha in (V union Sigma)^+$ e $beta in (V union Sigma)^*$.
+
+Una regola di produzione viene letta come "$italic("se ho ") alpha italic("allora posso sostituirlo con ") beta$".
+
+L'applicazione delle regole di produzione è alla base del *processo di derivazione*: esso è formato infatti da una serie di *passi di derivazione*, che permettono di generare una parola del linguaggio.
+
+Diciamo che $x$ deriva $y$ in un passo, con $x,y in (V union Sigma)^*$, se e solo se $exists (alpha arrow.long beta) in P$ e $exists eta, delta in (V union Sigma)^*$ tali che $x = eta alpha delta$ e $y = eta beta delta$.
+
+Il passo di derivazione lo indichiamo con $x arrow.stroked y$.
+
+La versione estesa afferma che $x$ deriva $y$ in $k gt.eq 0$ passi, e lo indichiamo con $x arrow.stroked^k y$, se e solo se $exists x_0, dots, x_k in (V union Sigma)^*$ tali che $x = x_0$, $x_k = y$ e $x_(i-1) arrow.stroked x_i space.quarter forall i in [1,k]$.
+
+Se non ho indicazioni sul numero di passi $k$ posso scrivere:
+- $x arrow.stroked^* y$ per indicare un numero generico di passi, e questo vale se e solo se $exists k gt.eq 0$ tale che $x arrow.stroked^k y$;
+- $x arrow.stroked^+ y$ per indicare che serve almeno un passo, e questo vale se e solo se $exists k gt 0$ tale che $x arrow.stroked^k y$.
+
+=== Linguaggio generato da una grammatica
+
+Indichiamo con $L(G)$ il linguaggio generato dalla grammatica $G$, ed è l'insieme ${w in Sigma^* bar.v S arrow.stroked^* w}$.
+
+Due grammatiche $G_1, G_2$ sono *equivalenti* se e solo se $L(G_1) = L(G_2)$.
+
+Se consideriamo l'esempio delle parentesi ben bilanciate, possiamo definire una grammatica per questo linguaggio con le seguenti regole di produzione:
+- $S arrow.long epsilon$;
+- $S arrow.long (S)$;
+- $S arrow.long S S$.
+
+Vediamo un esempio più complesso. Siano:
+- $Sigma = {a,b,c}$;
+- $V = {S, B}$;
+- $P = {S arrow.long a B S c bar.v a b c, B a arrow.long a B, B b arrow.long b b}$.
+
+Questa grammatica genera il linguaggio $L(G) = {a^n b^n c^n bar.v n gt.eq 1}$: infatti, il "caso base" genera la stringa _abc_, mentre le iterazioni "maggiori" generano il numero di _a_ e _c_ corretti, con i primi che vengono ordinati prima di inserire anche il numero corretto di _b_.
+
 == Gerarchia
 
-/* FAREI UNA TABELLA */
+Negli anni 50 Noam Chomsky studia la generazione dei linguaggi formali e crea una *gerarchia di grammatiche formali*. La classificazione delle grammatiche viene fatta in base alle regole di produzione che definiscono la grammatica.
 
-Negli anni 50 Noam Chomsky studia la generazione dei linguaggi formali e crea una *gerarchia di grammatiche formali*
-- *tipo 0*: grammatiche che generano tutti i linguaggi, sono senza restrizioni e come modello equivalente hanno le *macchine di Turing*
-- *tipo 1*: grammatiche _context-sensitive_ (dipendenti dal contesto), come modello equivalente hanno le *Linear Bounded Automata*
-- *tipo 2*: grammatiche _context-free_ (libere dal contesto), hanno come modello equivalente gli *automi a pila*
-- *tipo 3*: grammatiche regolari, hanno come modello equivalente gli *automi a stati finiti*
+#align(center)[
+  #table(
+    columns: (31%, 37%, 32%),
+    inset: 10pt,
+    align: horizon,
 
-#v(12pt)
+    [*Grammatica*], [*Regole*], [*Modello riconoscitivo*],
 
-#figure(
-    image("assets/gerarchia.svg", width: 50%)
-)
+    [_Tipo 0_.], [Nessuna restrizione, sono il tipo più generale.], [_Macchine di Turing_.],
+    
+    [_Tipo 1_, dette *context-sensitive* o _dipendenti dal contesto_.], [Se $(alpha arrow.long beta) in P$ allora $|beta| gt.eq |alpha|$, ovvero devo generare parole che non siano più corte di quella di partenza. \ \ Sono dette _dipendenti dal contesto_ perché ogni regola $(alpha arrow.long beta) in P$ può essere riscritta come $alpha_1 A alpha_2 arrow.long alpha_1 B alpha_2$, $space.thin$ dove $alpha_1$ e $alpha_2$ rappresentano il _contesto_.], [_Automi limitati linearmente_.],
+    
+    [_Tipo 2_, dette *context-free* o _libere dal contesto_.], [Le regole in $P$ sono del tipo $alpha arrow.long beta$, con $alpha in V$ e $beta in (V union Sigma)^+$.], [_Automi a pila_.],
+    
+    [_Tipo 3_, dette *grammatiche regolari*], [Le regole in $P$ sono del tipo $A arrow.long a B$ oppure $A arrow.long a$, con $A,B in V$ e $a in Sigma$. \ Vale anche il simmetrico.], [_Automi a stati finiti_.],
+  )
+]
 
-#v(12pt)
-
-#pagebreak()
-
-= Grammatiche di tipo 3
-
-== Automi a stati finiti
-
-Gli *automi a stati finiti* sono un modello riconoscitivo usato per caratterizzare i _linguaggi regolari_
-
-=== Definizione informale
-
-Gli automi a stati finiti sono delle macchine molto semplici: hanno un *controllo a stati finiti* che legge l'input da un *nastro*, formato da una serie di celle, ognuna delle quali contiene un carattere dell'input
-
-Per leggere l'input si utilizza una *testina di lettura*, posizionata inizialmente sulla cella più a sinistra (ovvero sul primo carattere di input), e poi spostata iterazione dopo iterazione da sinistra verso destra
-
-Il controllo a stati finiti, prima della lettura dell'input, è allo *stato iniziale*
-
-Ad ogni iterazione, a partire dallo stato corrente e dal carattere letto dal nastro, ci si muove con la testina a destra sul simbolo successivo e si cambia stato
-
-Quando si arriva alla fine del nastro, in base allo stato corrente dell'automa, quest'ultimo risponde _"si"_, ovvero la parola in input appartiene al linguaggio, oppure _"no"_, ovvero la parola in input non appartiene al linguaggio
+Nella figura successiva vediamo una rappresentazione grafica della gerarchia di Chomsky: notiamo come sia una gerarchia propria, ovvero $ L_3 subset L_2 subset L_1 subset L_0, $ ma questa gerarchia non esaurisce comunque tutti i linguaggi possibili.
 
 #v(12pt)
 
 #figure(
-    image("assets/automa_macchina.svg", width: 50%)
+  image("assets/gerarchia.svg", width: 50%)
 )
 
 #v(12pt)
 
-=== Definizione formale
+Sia $L subset.eq Sigma^*$, allora $L$ è di tipo $i$, con $i in [0,3]$, se e solo se esiste una grammatica $G$ di tipo $i$ tale che $L = L(G)$, ovvero posso generare $L$ a partire dalla grammatica di tipo $i$.
 
-Un automa è una tupla ${Q, Sigma, delta, q_I, F}$, con
-- $Q$ insieme degli stati
-- $Sigma$ alfabeto di input
-- $delta: Q times Sigma arrow.long Q$ funzione di transizione
-- $q_I in Q$ stato iniziale
-- $F subset.eq Q$ insieme degli stati finali
+== Potenza computazionale
 
-La parte dinamica dell'automa è la *funzione di transizione* che, dati lo stato iniziale e un simbolo del linguaggio, calcola lo stato successivo
-
-Possiamo estendere la funzione di transizione affinché utilizzi una parola del linguaggio, ovvero definiamo $overline(delta): Q times Sigma^* arrow.long Q$ tale che
-- $overline(delta)(q, epsilon) = q quad forall q in Q$
-- $overline(delta)(q, w a) = delta(overline(delta)(q,w), a) quad forall q in Q, w in Sigma^*, a in Sigma$
-
-Per semplicità useremo $delta$ al posto di $overline(delta)$ nella notazione
-
-=== Linguaggio
-
-Chiamiamo $L(A) = {w in Sigma^* bar.v delta(q_I, w) in F}$ il *linguaggio riconosciuto dall'automa*, ovvero l'insieme delle parole che applicate alla funzione di transizione, a partire dallo stato iniziale, mi mandano in uno stato finale
-
-=== Rappresentazione grafica
-
-Possiamo vedere un automa come un grafo, dove
-- gli *stati* sono nodi etichettati con il nome dello stato
-- le *transizioni* sono archi orientati ed etichettati con la lettera dell'alfabeto che causa quella transizione
-
-Lo *stato iniziale* è indicato con una freccia entrante nello stato, mentre gli *stati finali* sono nodi doppiamente cerchiati
-
-#v(12pt)
-
-#figure(
-    image("assets/automa_grafo.svg", width: 50%)
-)
-
-#v(12pt)
-
-== Automi a stati finiti non deterministici
-
-Questi particolari automi sono utili nei linguaggi $R_n$ (fatti come esempio a lezione) perché necessitano di molto meno stati ($n-1$) rispetto ad un automa deterministico ($2^n$)
-
-=== Definizione informale
-
-Gli *automi a stati finiti non deterministici* (_NFA_) sono particolari automi che hanno _almeno_ uno stato dal quale escono $2$ o più archi con la stessa lettera
-
-Negli automi *deterministici* (_DFA_) invece da _ogni_ stato esce al più un arco con la stessa lettera
-
-La differenza principale sta nella complessità computazionale: se negli automi deterministici devo controllare se la parola ci porta in uno stato finale, negli automi non deterministici devo controllare se tra _tutti_ i possibili cammini dell'*albero di computazione* ne esiste uno che ci porta in uno stato finale 
-
-Possiamo vedere il non determinismo come _una scommessa che va sempre a buon fine_
-
-=== Definizione formale
-
-Un automa non deterministico differisce da un automa deterministico solo per la funzione di transizione: infatti, quest'ultima diventa $delta: Q times Sigma arrow.long PP(Q)$, ovvero ritorna un elemento dell'*insieme delle parti* di $Q$, quindi un sottoinsieme di stati nei quali possiamo finire applicando un carattere di $Sigma$ allo stato corrente
-
-Come prima, definiamo l'estensione della funzione di transizione come la funzione $overline(delta): Q times Sigma^* arrow.long PP(Q)$ tale che
-- $overline(delta)(q, epsilon) = {q}$
-- $overline(delta)(q, w a) = limits(union.big)_(r in overline(delta)(q,w)) delta(r,a)$
-
-Cambia anche il linguaggio riconosciuto dall'automa: infatti, $L(A)$ diventa ${w in Sigma^* bar.v overline(delta)(q_I, w) sect.big F eq.not emptyset.rev}$
-
-== Distinguibilità
-
-Dato un linguaggio $L subset.eq Sigma^*$, due parole $x,y in Sigma^*$ sono *distinguibili* rispetto ad $L$ se $exists z in Sigma^*$ tale che $(x z in L and y z in.not L) or (x z in.not L and y z in L)$
+Se una grammatica é di tipo 1 allora possiamo costruire una macchina che sia in grado di dire, in tempo finito, se una parola appartiene o meno al linguaggio generato da quella grammatica.
 
 #theorem()[
-  Siano $L subset.eq Sigma^*$ un linguaggio, $X subset.eq Sigma^*$ un insieme di parole tutte distinguibili tra loro rispetto ad $L$ e $A$ un automa DFA per $L$, allora $A$ non può avere meno di $|X|$ stati
+  Una grammatica di tipo 1 è *decidibile*.
 ]<thm>
 
 #proof[
-  \ Per assurdo, sia $X = {x_1, dots, x_k}$ insieme di $k$ parole distinguibili tra loro rispetto ad $L$ e che $A$ abbia meno di $k$ stati \ Partendo dallo stato corrente $q_I$ ho due situazioni
-  - leggendo il carattere $x_i$, con $1 lt.eq i lt.eq k-2$, l'automa finisce nello stato $q_i$
-  - leggendo i caratteri $x_(k-1)$ e $x_k$ l'automa finisce nello stato stato $q_t$, visto che $A$ ha meno di $k$ stati
-  
-  Prendiamo ora una parola $z$ e la applichiamo allo stato $q_t$, che ci porta in uno stato $r$ qualsiasi, ma questo è assurdo: infatti, abbiamo due parole distinguibili ($x_(k-1)$ e $x_k$) che però sono entrambe accettate o entrambe rifiutate, in base allo stato $r$
+  \ Siano $G$ una grammatica di tipo 1 e $w in Sigma^*$, ci chiediamo se $w in L(G)$. \ Sia $h = |w|$, ma allora essendo $G$ di tipo 1 ogni forma sentenziale che compare in $P$ non deve superare la lunghezza $h$, altrimenti potremmo ridurre il numero di caratteri presenti nella forma sentenziale e andare contro la definizione di grammatica di tipo 1. \ \ Sia $T_i = {gamma in (V union Sigma)^(lt.eq n) bar.v S arrow.stroked^(lt.eq i) gamma}$ l'insieme di tutte le parole generate dalla grammatica $G$ che hanno al massimo $n$ caratteri e sono generate in massimo $i$ passi di derivazione. \ Data questa definizione di $T_i$ possiamo affermare che:
+  - $T_0 = {S}$;
+  - $T_i = T_(i-1) union {gamma in (V union Sigma)^(lt.eq n) bar.v exists beta in T_(i-1) text(" tale che ") beta arrow.stroked gamma}.$
+
+  Per come sono costruiti gli insiemi $T_i$ possiamo affermare che $ T_0 subset.eq T_1 subset.eq dots subset.eq (V union Sigma)^(lt.eq n), $ ma quest'ultimo insieme è un insieme _finito_. \ Prima o poi non si potranno più generare delle stringhe, ovvero $exists k$ tale che $T_(k-1) = T_k$. \ Una volta individuato questo valore $k$ basta controllare se $w in T_k$.
 ]<proof>
+
+Questo non vale invece per le grammatiche di tipo 0: infatti, queste sono dette *semidecidibili*, in quanto un sistema riconoscitivo potrebbe non terminare mai l'algoritmo di riconoscimento e finire quindi in un loop infinito.
+
+#theorem()[
+  Una grammatica di tipo 0 è *semidecidibile*.
+]
+
+#proof[
+  \ Siano $G$ una grammatica di tipo 0 e $w in Sigma^*$, ci chiediamo se $w in L(G)$. \ Non essendo $G$ di tipo 1 non abbiamo il vincolo $|beta| gt.eq |alpha|$ nelle regole di produzione. \ \ Sia $U_i = {gamma in (V union Sigma)^* bar.v S arrow.stroked^(lt.eq i) gamma}$ l'insieme di tutte le parole generate dalla grammatica $G$ in massimo $i$ passi di derivazione. \ Data questa definizione di $U_i$ possiamo affermare che:
+  - $U_0 = {S}$;
+  - $U_i = U_(i-1) union {gamma in (V union Sigma)^* bar.v exists beta in U_(i-1) text(" tale che ") beta arrow.stroked gamma}$.
+
+  Per come sono costruiti gli insiemi $U_i$ possiamo affermare che $ U_0 subset.eq U_1 subset.eq dots subset.eq (V union Sigma)^*, $ ma quest'ultimo insieme è un insieme _infinito_. \ Vista questa caratteristica, nessuno garantisce l'esistenza di un $k$ tale che $U_(k-1) = U_k$ e quindi non si ha la certezza di terminare l'algoritmo di riconoscimento.
+]<proof>
+
+Le grammatiche di tipo 0 generano i *linguaggi ricorsivamente enumerabili*: per stabilire se $w in L(G)$ devo _elencare_ con un programma tutte le stringhe del linguaggio e controllare se $w$ compare in esse.
+
+Questa operazione di elencazione in poche parole è la generazione degli insiemi $U_i$, che poi vengono ispezionati per vedere se la parole $w$ è presente o meno.
+
+/* FINE LEZIONE 02 */

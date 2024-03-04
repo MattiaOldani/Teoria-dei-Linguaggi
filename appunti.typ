@@ -27,55 +27,57 @@
 
 // Appunti
 
+/* INIZIO LEZIONE 01 */
+
 = Introduzione
 
 == Storia
 
 Un *linguaggio* è _uno strumento di comunicazione usato da membri di una stessa comunità_, ed è composto da due elementi:
-- *sintassi*: insieme di simboli (o _parole_) che devono essere combinati con una serie di regole
-- *semantica*: associazione frase-significato
+- *sintassi*: insieme di simboli (o _parole_) che devono essere combinati con una serie di regole;
+- *semantica*: associazione frase-significato.
 
-Per i linguaggi naturali è difficile dare delle regole sintattiche: vista questa difficoltà, nel 1956 *Noam Chomsky* introduce il concetto di *grammatiche formali*, che si servono di regole matematiche per la definizione della sintassi di un linguaggio
+Per i linguaggi naturali è difficile dare delle regole sintattiche: vista questa difficoltà, nel 1956 *Noam Chomsky* introduce il concetto di *grammatiche formali*, che si servono di regole matematiche per la definizione della sintassi di un linguaggio.
 
-Il primo utilizzo dei linguaggi risale agli stessi anni con il *compilatore Fortran*, ovvero un traduttore da un linguaggio di alto livello ad uno di basso livello, ovvero il _linguaggio macchina_
+Il primo utilizzo dei linguaggi risale agli stessi anni con il *compilatore Fortran*, ovvero un traduttore da un linguaggio di alto livello ad uno di basso livello, ovvero il _linguaggio macchina_.
 
 == Ripasso
 
-Un *alfabeto* è un insieme _non vuoto_ e _finito_ di simboli, di solito indicato con $Sigma$ o $Gamma$
+Un *alfabeto* è un insieme _non vuoto_ e _finito_ di simboli, di solito indicato con $Sigma$ o $Gamma$.
 
-Una *stringa* (o *parola*) è una sequenza _finita_ di simboli appartenenti a $Sigma$
+Una *stringa* (o *parola*) è una sequenza _finita_ di simboli appartenenti a $Sigma$.
 
 Data una parola $w$, possiamo definire:
-- $|w|$ _numero di caratteri_ di $w$
-- $|w|_a$ _numero di occorrenze_ della lettera $a in Sigma$ in $w$
+- $|w|$ _numero di caratteri_ di $w$;
+- $|w|_a$ _numero di occorrenze_ della lettera $a in Sigma$ in $w$.
 
-Una parola molto importante è la *parola vuota* $epsilon$, che, come dice il nome, ha simboli, ovvero $|epsilon| = 0$
+Una parola molto importante è la *parola vuota* $epsilon$, che, come dice il nome, ha simboli, ovvero $|epsilon| = 0$.
 
-L'insieme di tutte le possibili parole su $Sigma$ è detto $Sigma^*$
+L'insieme di tutte le possibili parole su $Sigma$ è detto $Sigma^*$.
 
-Un'importante operazione sulle parole è la *concatenazione* (o _prodotto_), ovvero se $x,y in Sigma^*$ allora la concatenazione $w$ è la parola $w = x y$
+Un'importante operazione sulle parole è la *concatenazione* (o _prodotto_), ovvero se $x,y in Sigma^*$ allora la concatenazione $w$ è la parola $w = x y$.
 
 Questo operatore di concatenazione:
-- _non è commutativo_, infatti $w_1 = x y eq.not y z = w_2$ in generale
-- _è associativo_, infatti $(x y) z = x (y z)$
+- _non è commutativo_, infatti $w_1 = x y eq.not y z = w_2$ in generale;
+- _è associativo_, infatti $(x y) z = x (y z)$.
 
-La struttura $(Sigma^*, dot, epsilon)$ è un *monoide* libero generato da $Sigma$
+La struttura $(Sigma^*, dot, epsilon)$ è un *monoide* libero generato da $Sigma$.
 
-Vediamo ora alcune proprietà delle parole
-- *prefisso*: $x$ si dice _prefisso_ di $w$ se esiste $y in Sigma^*$ tale che $x y = w$
-  - *prefisso proprio* se $y eq.not epsilon$
-  - *prefisso non banale* se $x eq.not epsilon$
-  - il numero di prefissi è uguale a $|w|+1$
-- *suffisso*: $y$ si dice _suffisso_ di $w$ se esiste $x in Sigma^*$ tale che $x y = w$
-  - *suffisso proprio* se $x eq.not epsilon$
-  - *suffisso non banale* se $y eq.not epsilon$
-  - il numero di suffissi è uguale a $|w|+1$
-- *fattore*: $y$ si dice _fattore_ di $w$ se esistono $x,z in Sigma^*$ tali che $x y z = w$
-  - il numero di fattori è al massimo $frac(|w| dot |w+1|, 2) + 1$
-- *sottosequenza*: $x$ si dice _sottosequenza_ di $w$ se $x$ è ottenuta eliminando $0$ o più caratteri da $w$
-  - un _fattore_ è una sottosequenza ordinata
+Vediamo ora alcune proprietà delle parole:
+- *prefisso*: $x$ si dice _prefisso_ di $w$ se esiste $y in Sigma^*$ tale che $x y = w$;
+  - *prefisso proprio* se $y eq.not epsilon$;
+  - *prefisso non banale* se $x eq.not epsilon$;
+  - il numero di prefissi è uguale a $|w|+1$.
+- *suffisso*: $y$ si dice _suffisso_ di $w$ se esiste $x in Sigma^*$ tale che $x y = w$;
+  - *suffisso proprio* se $x eq.not epsilon$;
+  - *suffisso non banale* se $y eq.not epsilon$;
+  - il numero di suffissi è uguale a $|w|+1$.
+- *fattore*: $y$ si dice _fattore_ di $w$ se esistono $x,z in Sigma^*$ tali che $x y z = w$;
+  - il numero di fattori è al massimo $frac(|w| dot |w+1|, 2) + 1$.
+- *sottosequenza*: $x$ si dice _sottosequenza_ di $w$ se $x$ è ottenuta eliminando $0$ o più caratteri da $w$;
+  - un _fattore_ è una sottosequenza ordinata.
 
-Un *linguaggio* $L$ definito su un alfabeto $Sigma$ è un qualunque sottoinsieme di $Sigma^*$
+Un *linguaggio* $L$ definito su un alfabeto $Sigma$ è un qualunque sottoinsieme di $Sigma^*$.
 
 #pagebreak()
 
@@ -83,22 +85,24 @@ Un *linguaggio* $L$ definito su un alfabeto $Sigma$ è un qualunque sottoinsieme
 
 == Rappresentazione
 
-Vogliamo rappresentare in maniera finita un oggetto infinito come un linguaggio
+Vogliamo rappresentare in maniera finita un oggetto infinito come un linguaggio.
 
-Abbiamo a nostra disposizione due modelli molto potenti
-- *generativo*: date delle regole, si parte da _un certo punto_ e si generano tutte le parole di quel linguaggio con le regole date
-- *riconoscitivo*: si usano dei _modelli di calcolo_ che prendono in input una parola e dicono se appartiene o meno al linguaggio
+Abbiamo a nostra disposizione due modelli molto potenti:
+- *generativo*: date delle regole, si parte da _un certo punto_ e si generano tutte le parole di quel linguaggio con le regole date;
+- *riconoscitivo*: si usano dei _modelli di calcolo_ che prendono in input una parola e dicono se appartiene o meno al linguaggio.
 
-Considerando il linguaggio sull'alfabeto ${(,)}$ delle parole ben bilanciate, proviamo a dare due modelli
-- _generativo_: a partire da una sorgente $S$ devo applicare delle regole per derivate tutte le parole appartenenti a questo linguaggio
-  - la parola vuota $epsilon$ è ben bilanciata
-  - se $x$ è ben bilanciata, allora anche $(x)$ è ben bilanciata
-  - se $x,y$ sono ben bilanciate, allora anche $x y$ sono ben bilanciate
-- _riconoscitivo_: abbiamo una _black-box_ che prende una parola e ci dice se appartiene o meno al linguaggio (in realtà potrebbe non terminare mai la sua esecuzione)
-  - $|x|_\( = |x|_\)$
-  - per ogni prefisso, $|x|_\( gt.eq |x|_\)$
+Considerando il linguaggio sull'alfabeto ${(,)}$ delle parole ben bilanciate, proviamo a dare due modelli:
+- _generativo_: a partire da una sorgente $S$ devo applicare delle regole per derivate tutte le parole appartenenti a questo linguaggio;
+  - la parola vuota $epsilon$ è ben bilanciata;
+  - se $x$ è ben bilanciata, allora anche $(x)$ è ben bilanciata;
+  - se $x,y$ sono ben bilanciate, allora anche $x y$ sono ben bilanciate.
+- _riconoscitivo_: abbiamo una _black-box_ che prende una parola e ci dice se appartiene o meno al linguaggio (in realtà potrebbe non terminare mai la sua esecuzione);
+  - $\#\( space = space \#\)$;
+  - per ogni prefisso, $\#\( space gt.eq space \#\)$.
 
 /* FINE LEZIONE 01 */
+
+/* INIZIO LEZIONE 02 */
 
 == Gerarchia
 

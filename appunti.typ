@@ -175,7 +175,7 @@ Nella figura successiva vediamo una rappresentazione grafica della gerarchia di 
 #v(12pt)
 
 #figure(
-  image("assets/gerarchia.svg", width: 50%)
+  image("assets-teoria/gerarchia.svg", width: 50%)
 )
 
 #v(12pt)
@@ -267,7 +267,7 @@ Quando si arriva alla fine del nastro, in base allo stato corrente dell'automa, 
 #v(12pt)
 
 #figure(
-    image("assets/automa_macchina.svg", width: 50%)
+    image("assets-teoria/automa_macchina.svg", width: 50%)
 )
 
 #v(12pt)
@@ -304,7 +304,7 @@ Lo *stato iniziale* è indicato con una freccia entrante nello stato, mentre gli
 #v(12pt)
 
 #figure(
-    image("assets/automa_grafo.svg", width: 50%)
+    image("assets-teoria/automa_grafo.svg", width: 50%)
 )
 
 #v(12pt)
@@ -338,7 +338,7 @@ Prendiamo l'automa nella pagina precedente e aggiungiamo un cappio in $q_1$ caus
 #v(12pt)
 
 #figure(
-  image("assets/albero-computazione.svg", width: 80%)
+  image("assets-teoria/albero-computazione.svg", width: 80%)
 )
 
 #v(12pt)
@@ -367,7 +367,7 @@ Dato un linguaggio $L subset.eq Sigma^*$, due parole $x,y in Sigma^*$ sono *dist
   \ Supponiamo che l'insieme $X$ sia $X = {x_1, dots, x_k}$ di cardinalità $k$. Definiamo l'automa $A = (Q, Sigma, delta, q_0, F)$ tale che $delta(q_0, x_i) = p_i quad forall i in [1,k].$
 
   #figure(
-    image("assets/dfa-inizio.svg", width: 40%)
+    image("assets-teoria/dfa-inizio.svg", width: 40%)
   )
 
   Per assurdo sia $|Q| < k$, ma allora $exists i,j in [1,k]$ tali che $i eq.not j$ e $delta(q_0, x_i) = p_i = p_j = delta(q_0, x_j)$. Questo vale perché avendo meno stati del numero di elementi da "mappare" almeno due elementi finiscono nello stesso stato.
@@ -375,7 +375,7 @@ Dato un linguaggio $L subset.eq Sigma^*$, due parole $x,y in Sigma^*$ sono *dist
   Ma $x_i$ e $x_j$ sono due parole distinguibili: allora $exists z in Sigma^*$ tale che $x_i z in L and x_j z in.not L$ (o viceversa).
 
   #figure(
-    image("assets/dfa-assurdo.svg", width: 50%)
+    image("assets-teoria/dfa-assurdo.svg", width: 50%)
   )
 
   Ma questo é assurdo: infatti, $x_i$ e $x_j$ sono due parole distinguibili che però finiscono in uno stato che deve essere sia finale che non finale.
@@ -447,7 +447,7 @@ Sono utili nei compilatori quando é possibile definire gli interi positivi senz
 #v(12pt)
 
 #figure(
-  image("assets/segno.svg", width: 50%)
+  image("assets-teoria/segno.svg", width: 50%)
 )
 
 #v(12pt)

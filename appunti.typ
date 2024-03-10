@@ -348,3 +348,116 @@ Nella parte superiore vediamo i passi intermedi della _funzione di transizione_:
 Nella parte inferiore vediamo invece l'_albero di computazione_.
 
 /* FINE LEZIONE 03 */
+
+/* INIZIO LEZIONE 04 */
+
+== Numero di stati
+
+La domanda sorge spontanea: _quale é il minimo numero di stati necessari affinché un DFA per un dato linguaggio L riconosca una parola?_
+
+=== Distinguibilità
+
+Dato un linguaggio $L subset.eq Sigma^*$, due parole $x,y in Sigma^*$ sono *distinguibili* rispetto ad $L$ se $exists z in Sigma^*$ tale che $(x z in L and y z in.not L) or (x z in.not L and y z in L)$.
+
+#theorem()[
+  Siano $L subset.eq Sigma^*$ un linguaggio e $X subset.eq Sigma^*$ tale che ogni coppia di parole in $X$ é distinguibile rispetto ad $L$, allora ogni DFA per $L$ deve avere almeno $|X|$ stati.
+]<thm>
+
+#proof[
+  \ Supponiamo che l'insieme $X$ sia $X = {x_1, dots, x_k}$ di cardinalità $k$. Definiamo l'automa $A = (Q, Sigma, delta, q_0, F)$ tale che $delta(q_0, x_i) = p_i quad forall i in [1,k].$
+
+  #figure(
+    image("assets/dfa-inizio.svg", width: 40%)
+  )
+
+  Per assurdo sia $|Q| < k$, ma allora $exists i,j in [1,k]$ tali che $i eq.not j$ e $delta(q_0, x_i) = p_i = p_j = delta(q_0, x_j)$. Questo vale perché avendo meno stati del numero di elementi da "mappare" almeno due elementi finiscono nello stesso stato.
+
+  Ma $x_i$ e $x_j$ sono due parole distinguibili: allora $exists z in Sigma^*$ tale che $x_i z in L and x_j z in.not L$ (o viceversa).
+
+  #figure(
+    image("assets/dfa-assurdo.svg", width: 50%)
+  )
+
+  Ma questo é assurdo: infatti, $x_i$ e $x_j$ sono due parole distinguibili che però finiscono in uno stato che deve essere sia finale che non finale.
+
+  Allora $|Q| gt.eq k$.
+]<proof>
+
+La costruzione dell'insieme $X$ é molto utile per dimostrare che alcuni linguaggi non possono essere di tipo 3: infatti, se si riesce a costruire un insieme $X$ tale che $|X| = +infinity$ allora si dimostra che un dato linguaggio non é riconoscibile da un DFA.
+
+Vediamo un esempio: sia $L_n = {x in {a,b}^* bar.v "il simbolo di" x "in posizione " n "da destra é una " a}$. Il più semplice DFA utilizza $2^n$ stati, ovvero tutte le possibili finestre di lunghezza $n$, mentre il più semplice NFA utilizza $n+1$ stati.
+
+Come costruiamo un insieme $X$ la cui cardinalità ci faccia da lower-bound?
+
+Sia $X = {a,b}^n = {w in {a,b}^+ bar.v |w| = n}$ e siano $x,y in X$ tali che $x eq.not y$, ma allora $exists i in [1,n]$ tale che $x_i eq.not y_i$, ovvero $ x = x_1 dots & x_i dots x_n \ & eq.not \ y = y_1 dots & y_i dots y_n. $
+
+Per semplicità sia $x_i = a$ e $y_i = b$. Aggiungiamo ora $i-1$ caratteri in coda alle parole, che per semplicità saranno delle $a$. $ x = x_1 dots & a dots x_n a^(i-1) \ y = y_1 dots & b dots y_n a^(i-1). $
+
+I caratteri dopo la posizione $i$ diventano $(n-i) + (i-1) = n-1$, spostando i caratteri $x_i$ e $y_i$ nella posizione $n$-esima da destra, ma per come li avevamo definiti essi sono diversi, quindi le due parole sono distinguibili.
+
+=== Da DFA a NFA
+
+L'*automa di Meyer e Fischer* é un NFA molto importante ideato nel 1971 per dare un lower-bound al numero di stati necessari per rappresentare un DFA a partire da un NFA di $n$ stati.
+
+L'automa viene chiamato $M_n$ ed é formato da:
+- $Q = {0, dots, n-1}$;
+- $Sigma = {a,b}$;
+- $q_0 = 0$;
+- $F = {0}$.
+
+La funzione di transizione é definita come $ delta(i,a) &= {i+1} \ delta(i,b) &= cases(emptyset.rev "se" i eq.not 0, {i,0} "se" 1 lt.eq i lt n) space . $
+
+/* Aggiungi sorgente di MF */
+
+Prima della dimostrazione effettiva vediamo un paio di proprietà molto importanti di questo automa.
+
+Sia $S subset.eq {0, dots, n-1}$, definiamo la parola $ w_s = cases(b "se" S = emptyset.rev, a^i "se" S = {i}, a^(e_k - e_(k-1)) b a^(e_(k-1) - e_(k-2)) b dots b a^(e_2 - e_1) b a^(e_1) "se" S = {e_k, dots, e_1} "insieme ordinato e" k gt.eq 2) space . $
+
+#proposition[
+  $forall S subset.eq {0, dots, n-1} quad delta(0, w_s) = S$.
+]
+
+#proposition[
+  Dati $S,T subset.eq {0, dots, n-1}$, se $S eq.not T$ allora $w_s$ e $w_t$ sono distinguibili.
+]
+
+#proof[
+  \ Sia $x in S \\ T$ numero intero che appartiene a $S$ ma non a $T$. \ Sappiamo che $delta(0, w_s) = S$ per la proprietà precedente e che $x in S$, ma allora $ 0 arrow.long.squiggly^(w_s) x arrow.long.squiggly^(a^(n-x)) 0. $ Sappiamo inoltre che $delta(0, w_t) = T$ per la proprietà precedente e che $x in.not T$. Sia $y in T$, ma allora $ 0 arrow.long.squiggly^(w_t) y arrow.long.squiggly^(a^(n-x)) U. $ L'insieme $U$ non contiene $0$ perché l'unico modo per finire in $0$ é aggiungere un numero di $a$ uguale a $n-y$, ma sappiamo che $n-x eq.not n-y$ per come sono stati definiti $x$ e $y$.
+ \ Ma allora la stringa $a^(n-x)$ distingue $w_s$ e $w_t$.
+]<proof>
+
+Ora possiamo dimostrare il seguente teorema.
+
+#theorem()[
+  Sia $A$ un NFA per $L$ di $n$ stati, allora $A'$ DFA per $L$ ha almeno $2^n$ stati.
+]<thm>
+
+#proof[
+  \ Sia $S subset.eq {0, dots, n-1}$, l'insieme degli stati di $A$. Definisco l'insieme $ X = {w_s bar.v S subset.eq {0, dots, n-1}}. $ Questo insieme ha cardinalità $2^n$: infatti, é formato da tutte le stringhe $w_s$ generate da $S$ sottoinsieme di ${0, dots, n-1}$ di $n$ elementi, ma tutti i possibili sottoinsiemi di un insieme di $n$ elementi sono $2^n$. \ Per la seconda proprietà le stringhe $w_s in X$ sono tutte distinguibili, ma allora per il teorema precedente $A'$ deve avere almeno $2^n$ stati.
+]<proof>
+
+== Estensioni
+
+=== $epsilon$-mosse
+
+Le *$epsilon$-mosse* sono una possibile estensione degli automi a stati finiti che permettono transizioni sulla parola vuota, ovvero permettono di spostarsi da uno stato all'altro senza leggere un carattere dal nastro.
+
+Sono utili nei compilatori quando é possibile definire gli interi positivi senza il segno _più_.
+
+#v(12pt)
+
+#figure(
+  image("assets/segno.svg", width: 50%)
+)
+
+#v(12pt)
+
+Questa estensione non aumenta però la potenza espressiva dell'automa: infatti, ogni sequenza del tipo $ p arrow.long.squiggly^epsilon p' arrow.long^a q' arrow.long.squiggly^epsilon q $ può essere tradotta nella transizione $p arrow.long^a q$.
+
+=== Stati iniziali multipli
+
+L'ultima estensione che vediamo é quella degli *stati iniziali multipli*: al posto di avere un singolo stato iniziale abbiamo un insieme di stati dai quali poter iniziare.
+
+Anche questa estensione non aumenta la potenza espressiva dell'automa: infatti, la funzione di transizione partirà direttamente con un insieme di stati e non da un insieme con un solo stato.
+
+/* FINE LEZIONE 04 */

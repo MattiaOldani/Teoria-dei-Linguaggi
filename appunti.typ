@@ -399,6 +399,14 @@ I caratteri dopo la posizione $i$ diventano $(n-i) + (i-1) = n-1$, spostando i c
 
 L'*automa di Meyer e Fischer* é un NFA molto importante ideato nel 1971 per dare un lower-bound al numero di stati necessari per rappresentare un DFA a partire da un NFA di $n$ stati.
 
+#v(12pt)
+
+#figure(
+  image("assets-teoria/meyer-fischer.svg", width: 60%)
+)
+
+#v(12pt)
+
 L'automa viene chiamato $M_n$ ed é formato da:
 - $Q = {0, dots, n-1}$;
 - $Sigma = {a,b}$;
@@ -406,8 +414,6 @@ L'automa viene chiamato $M_n$ ed é formato da:
 - $F = {0}$.
 
 La funzione di transizione é definita come $ delta(i,a) &= {i+1} \ delta(i,b) &= cases(emptyset.rev "se" i eq.not 0, {i,0} "se" 1 lt.eq i lt n) space . $
-
-/* Aggiungi sorgente di MF */
 
 Prima della dimostrazione effettiva vediamo un paio di proprietà molto importanti di questo automa.
 

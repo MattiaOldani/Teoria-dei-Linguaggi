@@ -307,10 +307,10 @@ Abbiamo quindi dimostrato che $L(G) = {w in {a, b}^* bar.v forall x in {a, b}^* 
 #v(12pt)
 
 #assignment(
-  [Utilizzando il non-determinismo si riesce a costruire un automa con meno stati? Generalizzate l’esercizio a multipli di $2k$, dove $k > 0$ é un intero fissato.]
+  [Utilizzando il non determinismo si riesce a costruire un automa con meno stati? Generalizzate l’esercizio a multipli di $2k$, dove $k > 0$ é un intero fissato.]
 )
 
-Utilizzando il non-determinismo utilizziamo ancora $4$ stati.
+Utilizzando il non determinismo utilizziamo ancora $4$ stati.
 
 #v(12pt)
 
@@ -332,6 +332,135 @@ Generalizzando a multipli di $2k$, con $k > 0$, abbiamo:
 
 #assignment(
   [Costruite un automa a stati finiti che riconosca il linguaggio formato da tutte le stringhe sull’alfabeto ${0, 1}$ che, interpretate come numeri in notazione binaria, rappresentano multipli di $5$.]
+)
+
+Non lo so fare.
+
+#pagebreak()
+
+= Lezione 04
+
+== Esercizio 01
+
+#introduction(
+  [Considerate il linguaggio$ L = {w in {a,b}^* bar.v "il penultimo e il terzultimo simbolo di" w "sono uguali"}. $ ]
+)
+
+#assignment(
+  [Costruite un automa a stati finiti deterministico che accetta $L$.]
+)
+
+#v(12pt)
+
+#figure(
+  image("assets-esercizi/lezione04-01-01.svg", width: 100%)
+)
+
+#v(12pt)
+
+#assignment(
+  [Costruite un automa a stati finiti non deterministico che accetta $L$.]
+)
+
+#v(12pt)
+
+#figure(
+  image("assets-esercizi/lezione04-01-02.svg", width: 80%)
+)
+
+#v(12pt)
+
+#assignment(
+  [Dimostrate che per il linguaggio $L$ tutte le stringhe di lunghezza $3$ sono distinguibili tra loro.]
+)
+
+#v(12pt)
+
+#align(center)[
+  #table(
+    columns: (10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%),
+    inset: 10pt,
+    align: horizon,
+
+    [], [*$a a a$*], [*$a a b$*], [*$a b a$*], [*$a b b$*], [*$b a a$*], [*$b a b$*], [*$b b a$*], [*$b b b$*],
+
+    [*$a a a$*], [-], [$a$], [$epsilon$], [$epsilon$], [$epsilon$], [$epsilon$], [$a$], [$a a$],
+    [*$a a b$*], [-], [-], [$epsilon$], [$epsilon$], [$epsilon$], [$epsilon$], [$b b$], [$b$],
+    [*$a b a$*], [-], [-], [-], [$b$], [$a$], [$a a$], [$epsilon$], [$epsilon$],
+    [*$a b b$*], [-], [-], [-], [-], [$a a$], [$b$], [$epsilon$], [$epsilon$],
+    [*$b a a$*], [-], [-], [-], [-], [-], [$a$], [$epsilon$], [$epsilon$],
+    [*$b a b$*], [-], [-], [-], [-], [-], [-], [$epsilon$], [$epsilon$],
+    [*$b b a$*], [-], [-], [-], [-], [-], [-], [-], [$a$],
+    [*$b b b$*], [-], [-], [-], [-], [-], [-], [-], [-],
+  )
+]
+
+#v(12pt)
+
+#assignment(
+  [Dimostrate che per il linguaggio $L$ la parola vuota é distinguibile da tutte le stringhe di lunghezza $3$.]
+)
+
+#v(12pt)
+
+#align(center)[
+  #table(
+    columns: (10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%),
+    inset: 10pt,
+    align: horizon,
+
+    [], [*$a a a$*], [*$a a b$*], [*$a b a$*], [*$a b b$*], [*$b a a$*], [*$b a b$*], [*$b b a$*], [*$b b b$*],
+
+    [*$epsilon$*], [$epsilon$], [$epsilon$], [$a b$], [$a$], [$a$], [$b a$], [$epsilon$], [$epsilon$],
+  )
+]
+
+#v(12pt)
+
+#assignment(
+  [Utilizzando i risultati precedenti, ricavate un limite inferiore per il numero di stati di ogni automa deterministico che accetta L.]
+)
+
+L'insieme $X = {w in {a,b}^+ bar.v |w| = 3}$ é un insieme di parole tutte distinguibili tra loro rispetto al linguaggio  $L$, come dimostrato nei punti precedenti, quindi ogni DFA per $L$ deve avere almeno $|X|$ stati, ovvero almeno $8$ stati.
+
+== Esercizio 02
+
+#introduction(
+  []
+)
+
+#assignment(
+  [Costruite un insieme di stringhe distinguibili tra loro per ognuno dei seguenti linguaggi: #list([$L_1 = {w in {a,b}^* bar.v \#_a (w) = \#_b (w)}$,], [$L_2 = {a^n b^n bar.v n gt.eq 0}$,], [$L_3 = {w w^R bar.v w in {a,b}^*}$ dove, per ogni stringa $w$, $w^R$ indica la stringa $w$ scritta al contrario.])]
+)
+
+$X_1 = {epsilon, a, b, a b}$.
+
+$X_2$ ha cardinalità infinita.
+
+$X_3$ ha cardinalità infinita.
+
+#assignment(
+  [Per alcuni di questi linguaggi riuscite ad ottenere insiemi di stringhe distinguibili di cardinalità infinita? Cosa significa ciò?]
+)
+
+I linguaggi che hanno insiemi di stringhe distinguibili di cardinalità infinita sono linguaggi non di tipo $3$.
+
+== Esercizio 03
+
+#introduction(
+  [Considerate l’automa di Meyer e Fischer $M_n$ presentato nella Lezione $4$ (caso peggiore della costruzione per sottoinsiemi) e mostrato nella seguente figura:]
+)
+
+#v(12pt)
+
+#figure(
+  image("assets-teoria/meyer-fischer.svg", width: 50%)
+)
+
+#v(12pt)
+
+#assignment(
+  [Descrivete a parole la proprietà che deve soddisfare una stringa per essere accettata da $M_n$. Riuscite a costruire un automa non deterministico, diverso da $M_n$, per lo stesso linguaggio, basandovi su tale proprietà?]
 )
 
 Non lo so fare.

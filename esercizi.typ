@@ -247,3 +247,91 @@ Consideriamo infine $S arrow.long A B | B A$ in due casi:
   - partiamo da $B A$ e facciamo lo stesso discorso, basta invertire l'ordine delle stringhe.
 
 Abbiamo quindi dimostrato che $L(G) = {w in {a, b}^* bar.v forall x in {a, b}^* w eq.not x x}$.
+
+#pagebreak()
+
+= Lezione 03
+
+== Esercizio 01
+
+#introduction(
+  []
+)
+
+#assignment(
+  [Costruite un automa a stati finiti che riconosca il linguaggio formato da tutte le stringhe sull’alfabeto ${a, b}$ nelle quali ogni a é seguita immediatamente da una $b$.]
+)
+
+#v(12pt)
+
+#figure(
+  image("assets-esercizi/lezione03-01.svg", width: 50%)
+)
+
+#v(12pt)
+
+== Esercizio 02
+
+#introduction(
+  []
+)
+
+#assignment(
+  [Costruite un automa a stati finiti che riconosca il linguaggio formato da tutte le stringhe sull’alfabeto ${4, 5}$ che, interpretate come numeri in base $10$, rappresentano numeri interi che _non sono_ divisibili per $3$.]
+)
+
+#v(12pt)
+
+#figure(
+  image("assets-esercizi/lezione03-02.svg", width: 100%)
+)
+
+#v(12pt)
+
+== Esercizio 03
+
+#introduction(
+  []
+)
+
+#assignment(
+  [Costruite un automa a stati finiti deterministico che riconosca il linguaggio formato da tutte le stringhe sull’alfabeto ${0, 1}$ che, interpretate come numeri in notazione binaria, denotano multipli di $4$.]
+)
+
+#v(12pt)
+
+#figure(
+  image("assets-esercizi/lezione03-03-01.svg", width: 60%)
+)
+
+#v(12pt)
+
+#assignment(
+  [Utilizzando il non-determinismo si riesce a costruire un automa con meno stati? Generalizzate l’esercizio a multipli di $2k$, dove $k > 0$ é un intero fissato.]
+)
+
+Utilizzando il non-determinismo utilizziamo ancora $4$ stati.
+
+#v(12pt)
+
+#figure(
+  image("assets-esercizi/lezione03-03-02.svg", width: 70%)
+)
+
+#v(12pt)
+
+Generalizzando a multipli di $2k$, con $k > 0$, abbiamo:
+- per il DFA $2^k$ stati;
+- per il NFA $k+2$ stati.
+
+== Esercizio 04
+
+#introduction(
+  []
+)
+
+#assignment(
+  [Costruite un automa a stati finiti che riconosca il linguaggio formato da tutte le stringhe sull’alfabeto ${0, 1}$ che, interpretate come numeri in notazione binaria, rappresentano multipli di $5$.]
+)
+
+Non lo so fare.

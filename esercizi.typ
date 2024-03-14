@@ -310,7 +310,7 @@ Abbiamo quindi dimostrato che $L(G) = {w in {a, b}^* bar.v forall x in {a, b}^* 
   [Utilizzando il non determinismo si riesce a costruire un automa con meno stati? Generalizzate l’esercizio a multipli di $2k$, dove $k > 0$ é un intero fissato.]
 )
 
-Utilizzando il non determinismo utilizziamo ancora $4$ stati.
+Utilizzando il non determinismo si usano ancora $4$ stati.
 
 #v(12pt)
 
@@ -439,11 +439,10 @@ L'insieme $X = {w in {a,b}^+ bar.v |w| = 3}$ é un insieme di parole tutte disti
   [Costruite un insieme di stringhe distinguibili tra loro per ognuno dei seguenti linguaggi: #list([$L_1 = {w in {a,b}^* bar.v \#_a (w) = \#_b (w)}$,], [$L_2 = {a^n b^n bar.v n gt.eq 0}$,], [$L_3 = {w w^R bar.v w in {a,b}^*}$ dove, per ogni stringa $w$, $w^R$ indica la stringa $w$ scritta al contrario.])]
 )
 
-$X_1 = {epsilon, a, b, a b}$.
-
-$X_2$ ha cardinalità infinita.
-
-$X_3$ ha cardinalità infinita.
+Costruiamo i seguenti insiemi:
+- $X_1 = {a^i bar.v i gt.eq 1}$ di cardinalità infinita;
+- $X_2 = {a^i bar.v i gt.eq 1}$ di cardinalità infinita;
+- $X_3 = {(a b)^i bar.v i gt.eq 1}$ di cardinalità infinita.
 
 #assignment(
   [Per alcuni di questi linguaggi riuscite ad ottenere insiemi di stringhe distinguibili di cardinalità infinita? Cosa significa ciò?]

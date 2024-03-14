@@ -334,7 +334,13 @@ Generalizzando a multipli di $2k$, con $k > 0$, abbiamo:
   [Costruite un automa a stati finiti che riconosca il linguaggio formato da tutte le stringhe sull’alfabeto ${0, 1}$ che, interpretate come numeri in notazione binaria, rappresentano multipli di $5$.]
 )
 
-Non lo so fare.
+#v(12pt)
+
+#figure(
+  image("assets-esercizi/lezione03-04.svg", width: 100%)
+)
+
+#v(12pt)
 
 #pagebreak()
 

@@ -413,11 +413,11 @@ L'automa viene chiamato $M_n$ ed é formato da:
 - $q_0 = 0$;
 - $F = {0}$.
 
-La funzione di transizione é definita come $ delta(i,a) &= {i+1} \ delta(i,b) &= cases(emptyset.rev "se" i eq.not 0, {i,0} "se" 1 lt.eq i lt n) space . $
+La funzione di transizione é definita come $ delta(i,a) &= {i+1} \ delta(i,b) &= cases(emptyset.rev & "se" i eq.not 0, {i,0} quad & "se" 1 lt.eq i lt n) quad . $
 
 Prima della dimostrazione effettiva vediamo un paio di proprietà molto importanti di questo automa.
 
-Sia $S subset.eq {0, dots, n-1}$, definiamo la parola $ w_s = cases(b "se" S = emptyset.rev, a^i "se" S = {i}, a^(e_k - e_(k-1)) b a^(e_(k-1) - e_(k-2)) b dots b a^(e_2 - e_1) b a^(e_1) "se" S = {e_k, dots, e_1} "insieme ordinato e" k gt.eq 2) space . $
+Sia $S subset.eq {0, dots, n-1}$, definiamo la parola $ w_s = cases(b & "se" S = emptyset.rev, a^i & "se" S = {i}, a^(e_k - e_(k-1)) b a^(e_(k-1) - e_(k-2)) b dots b a^(e_2 - e_1) b a^(e_1) quad & "se" S = {e_k, dots, e_1} "insieme ordinato e" k gt.eq 2) quad . $
 
 #proposition[
   $forall S subset.eq {0, dots, n-1} quad delta(0, w_s) = S$.
@@ -467,3 +467,160 @@ L'ultima estensione che vediamo é quella degli *stati iniziali multipli*: al po
 Anche questa estensione non aumenta la potenza espressiva dell'automa: infatti, la funzione di transizione partirà direttamente con un insieme di stati e non da un insieme con un solo stato.
 
 /* FINE LEZIONE 04 */
+
+/* INIZIO LEZIONE 05 */
+
+== Equivalenza tra linguaggi di tipo 3 e automi a stati finiti
+
+Dimostriamo che dato l'automa $A$ per $L$ possiamo costruire una costruire una grammatica $G$ di tipo $3$ tale che $L(A) = L(G)$.
+
+#theorem()[
+  Le grammatiche di tipo $3$ sono equivalenti agli automi a stati finiti.
+]<thm>
+
+#proof[
+  \ [$A arrow.long.double G$] Dato $A = (Q, Sigma, delta, q_0, F)$ DFA per $L$ costruisco la grammatica $G = (V, Sigma, P, S)$ tale che:
+  - $V = Q$;
+  - $Sigma$ rimane uguale;
+  - $S = q_0$.
+  Le regole di produzione in $P$ sono nella forma:
+  - $A arrow.long a B$ se $delta(A,a) = B$, con $A,B in Q$ e $a in Sigma$;
+  - $A arrow.long a$ se $A in F$, con $A in Q$ e $a in Sigma$.
+  Si può dimostrare che $ q_0 arrow.stroked x A arrow.long.double.l.r delta(q_0, x) = A. $
+
+  [$G arrow.long.double A$] Data $G = (V, Sigma, P, S)$ grammatica di tipo $3$ costruisco un DFA $A = (Q, Sigma, delta, q_0, F)$ tale che:
+  - $Q = V union {q_f}$;
+  - $Sigma$ rimane uguale;
+  - $q_0 = S$;
+  - $F = {q_f}$.
+  La funzione di transizione $delta$ é definita nel seguente modo:
+  - se $A arrow.long a B$ allora $B in delta(A, a)$;
+  - se $A arrow.long a$ allora $q_f in delta(A, a)$.
+]<proof>
+
+== Esempi
+
+Vediamo qualche esempio notevole.
+
+=== $L_n$
+
+Sia $L_n = {x in {a,b}^+ bar.v x "contiene due simboli uguali a distanza" n}$.
+
+Con $n = 3$, la stringa $a b a b b a$ appartiene a $L_n$. Costruiamo un NFA per questo linguaggio con $n = 3$.
+
+#v(12pt)
+
+#figure(
+  image("assets-teoria/ln.svg", width: 60%)
+)
+
+#v(12pt)
+
+Questo NFA ha $2n+2$ stati, un DFA quanti stati avrebbe? Cerchiamo di costruire un insieme $X$ di stringhe distinguibili per dare un lower bound al numero di stati.
+
+Sia $X = {a,b}^n$ e siano $x,y in X$ tali che $x eq.not y$, ma allora $exists i in [1,n]$ tale che $x_i eq.not y_i$ rappresenta la prima cifra diversa delle due parole: $ x = x_1 dots & x_i dots x_n \ & eq.not \ y = y_1 dots & y_i dots y_n. $ Le prime $i-1$ cifre sono tutte uguali, allora se prendo la stringa $z = overline(x_1) dots overline(x_(i-1)) a$ ogni stringa in $X$ diventa distinguibile: infatti, prendendo il complemento di ogni cifra evitiamo che le prime $i-1$ cifre _"matchino"_ quelle inserite. Inserendo una $a$ in fondo a $z$ andiamo ad accettare solo $x$ o solo $y$, in base a quale parole ha la cifra $i$-esima uguale ad $a$.
+
+La cardinalità di questo insieme é $2^n$, quindi ogni DFA per $L$ ha almeno $2^n$ stati.
+
+=== $L_n '$
+
+Sia $L_n ' = {x in {a,b}^+ bar.v "ogni coppia di simboli a distanza" n "contiene due simboli uguali"}$.
+
+Notiamo subito come valga la relazione $L_n ' subset L_n$.
+
+Con $n = 3$, la stringa $a b b a b b a$ appartiene a $L_n '$. In poche parole, $x in L$ se e solo se $exists w in {a,b}^n$, $exists y$ prefisso di $w$ e $exists k gt.eq 0$ tali che $x = w^k y$.
+
+Costruiamo un DFA per questo linguaggio con $n = 2$, visto che con $n=3$ il numero di stati esplode, ma di questo ne parleremo dopo.
+
+#v(12pt)
+
+#figure(
+  image("assets-teoria/ln-primo.svg", width: 60%)
+)
+
+#v(12pt)
+
+Il numero di stati di questo DFA é $2^(n-1)-1 + 2^(n+1)$.
+
+Riusciamo a fare meglio con un NFA? La risposta é no: gli NFA _"lavorano male"_ quando si parla di _"ogni"_, mentre _"lavorano bene"_ quando si parla di _"esiste"_.
+
+Questo perché se si parla di _"esiste"_ dobbiamo fare una singola scommessa, mentre se si parla di _"ogni"_ dobbiamo fare molte più scommesse.
+
+== Fooling set
+
+Cerchiamo di fare, come per i DFA con l'insieme $X$ di stringhe distinguibili, un lower bound al numero di stati di un NFA.
+
+=== Definizione
+
+Diamo la definizione di *fooling set*, o _insieme di ingannatori/imbroglioni_.
+
+Sia $L subset.eq Sigma^*$, l'insieme di coppie $P subset.eq Sigma^* times Sigma^* = {(x_i, y_i) bar.v x_i,y_i in Sigma^* and i in [1,n]}$ é un fooling set per $L$ se e solo se:
++ $x_i y_i in L quad forall i in [1,n]$;
++ $x_i y_j in.not L quad forall i.j in [1,n] and i eq.not j$.
+
+Esiste una versione rilassata del fooling set, detta *extended fooling set*, che mantiene la proprietà $1$ ma sostituisce la proprietà $2$ con:
+2. $x_i y_j in.not L or x_j y_i in.not L quad forall i.j in [1,n] and i eq.not j$.
+
+In questo caso, prese due coppie, basta che _almeno un incrocio_ non appartenga a $L$, mentre nel primo caso _entrambi gli incroci_ non appartengono a $L$.
+
+#theorem()[
+  Siano $L subset.eq Sigma^*$ e $P$ extended fooling set per $L$, allora ogni NFA per $L$ ha almeno $|P|$ stati.
+]<thm>
+
+#proof[
+  \ Sia $A = (Q, Sigma, delta, q_0, F)$ NFA per $L$, consideriamo le parole $x_i y_i$ formate dalla concatenazione dei valori contenuti nelle coppie di $P$ e consideriamo i cammini accettanti di queste parole.
+
+  #v(12pt)
+
+  #figure(
+    image("assets-teoria/fooling-inizio.svg", width: 50%)
+  )
+
+  #v(12pt)
+
+  Per assurdo sia $|Q| < n$, ma allora $exists i,j in [1,n]$ tali che $p_i = p_j$.
+
+  #v(12pt)
+
+  #figure(
+    image("assets-teoria/fooling-assurdo.svg", width: 50%)
+  )
+
+  #v(12pt)
+
+  Ma questo é assurdo: infatti, a partire dallo stesso stato $p_i = p_j$ finiamo in due stati entrambi finali, ma essendo $P$ un extended fooling set per la proprietà $2$ almeno una tra le parole $x_i y_j$ e $x_j y_i$ non deve essere accettata.
+
+  Allora abbiamo dimostrato che $|Q| gt.eq n$.
+]<proof>
+
+=== Applicazione a $L_n '$
+
+Cerchiamo di definire un extended fooling set per l'insieme $L_n '$.
+
+Definiamo l'insieme $P = {(x,x) bar.v x in {a,b}^n}$. Questo é un extended fooling set per $L_n '$ perché:
++ $x x in L_n '$;
++ $x y in.not L_n ' or y x in.not L_n '$.
+
+La seconda proprietà vale perché essendo $x eq.not y$ esiste almeno una coppia di caratteri a distanza $n$ che non é uguale.
+
+Ma allora ogni NFA per $L_n '$ ha almeno $|P| = 2^n$ stati.
+
+=== Applicazione a $L_k$
+
+L'ultimo esempio al quale applichiamo il concetto di extended fooling set é il linguaggio $ L_k = {0^i 1^i 2^i bar.v 0 lt.eq i lt.eq k}. $
+
+Vediamo il caso $k = 3$ e creiamo un NFA per questo linguaggio.
+
+#v(12pt)
+
+#figure(
+  image("assets-teoria/lk.svg", width: 100%)
+)
+
+#v(12pt)
+
+Diamo un lower bound al numero di stati di un NFA generico. Definiamo l'insieme $ P = {(0^i 1^(j), 1^(i-j) 2^i) bar.v 0 lt.eq i lt.eq k and 0 lt.eq j lt.eq i}. $
+
+Questo é un extended fooling set per $L_k$, quindi ogni NFA per $L_k$ ha almeno $|P| = (k+1)^2$ stati.
+
+/* FINE LEZIONE 05 */

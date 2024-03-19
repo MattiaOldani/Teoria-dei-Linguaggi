@@ -469,3 +469,123 @@ I linguaggi che hanno insiemi di stringhe distinguibili di cardinalità infinita
 )
 
 Non lo so fare.
+
+#pagebreak()
+
+= Lezione 05
+
+== Esercizio 01
+
+#introduction(
+  [Considerate il linguaggio $ "DOUBLE"_k = {w w bar.v w in {a,b}^k}, $ dove $k > 0$ é un numero intero fissato.]
+)
+
+#assignment(
+  [É abbastanza facile trovare un fooling set di cardinalità $2^k$ per questo linguaggio. Riuscite a trovare un fooling set o un extended fooling set di cardinalità maggiore?]
+)
+
+Considero l'insieme $ P = {(x,x) bar.v x in {a,b}^k}. $
+
+Questo é un extended fooling set per $"DOUBLE"_k$ perché:
++ $x x in "DOUBLE"_k$;
++ $x y in.not "DOUBLE"_k$.
+
+La cardinalità di questo insieme é $2^k$, non penso di riuscire a fare meglio.
+
+== Esercizio 02
+
+#introduction(
+  [Considerate il linguaggio $ "PAL"_k = {w in {a,b}^k bar.v w = w^R}, $ dove $k$ é un intero fissato.]
+)
+
+#assignment(
+  [Qual é l’extended fooling set per $"PAL"_k$ di cardinalità maggiore che riuscite a trovare?]
+)
+
+Considero l'insieme $ P = {(x,x^R) bar.v x in {a,b}^k}. $
+
+Questo é un extended fooling set per $"PAL"_k$ perché:
++ $x x^R in "PAL"_k$;
++ $x y^R in.not "PAL"_k$.
+
+La cardinalità di questo insieme é $2^k$.
+
+== Esercizio 03
+
+#introduction(
+  [Considerate il linguaggio $ K_k = {w bar.v w = x_1 dot.op dots dot.op x_m dot.op x bar.v m > 0, x_1, dots, x_m, x in {a,b}^k, exists i in [1,m] bar.v x_i = x}, $ dov $k$ é un intero fissato. Si può osservare che ogni stringa $w$ di questo linguaggio é la concatenazione di blocchi di lunghezza $k$, in cui l’ultimo blocco coincide con uno dei blocchi precedenti.]
+)
+
+#assignment(
+  [Riuscite a costruire un (extended) fooling set di cardinalità $2^k$ o maggiore per il linguaggio $K_k$?]
+)
+
+Considero l'insieme $ P = {(x^m,x) bar.v x in {a,b}^k and m > 0}. $
+
+Questo é un extended fooling set per $K_k$ perché:
++ $x^m x in K_k$;
++ $x^m y in.not K_k$.
+
+La cardinalità di questo insieme é $2^k$.
+
+#assignment(
+  [Quale é l’informazione principale che un automa non deterministico può scegliere di ricordare nel proprio controllo a stati finiti durante la lettura di una stringa per riuscire a riconoscere $K_k$?]
+)
+
+Un NFA dovrebbe formare prima l'albero di tutte le possibili stringhe di lunghezza $k$, inserendo la scommessa nei nodi ad altezza $k-1$. Questa scommessa fa tornare indietro alla radice, e si "vince" la scommessa quando si finisce nel nodo ad altezza $k$, ovvero la stringa di lunghezza $k$ letta ora é quella che sarà presente anche alla fine. Il numero di stati per questa parte é $2^(k+1) -1$.
+
+Il controllo viene poi fatto con $k 2^k$ stati, dove solo l'ultimo é finale. Vanno aggiunti $(k-1) 2^k$ stati che cancellano gruppi di lunghezza $k$ prima dell'ultimo gruppo.
+
+Il numero totale di stati é quindi $k 2^(k+1) + 2^k - 1$.
+
+#assignment(
+  [Supponete di costruire un automa deterministico per riconoscere $K_k$. Cosa ha necessità di ricordare l’automa nel proprio controllo a stati finiti mentre legge la stringa in input?]
+)
+
+Un DFA deve ricordarsi le sequenze lunghe $k$ che ha trovato nella stringa.
+
+#assignment(
+  [Utilizzando il concetto di distinguibilità, dimostrate che ogni automa deterministico che riconosce $K_k$ deve avere almeno $2^(2^k)$ stati.]
+)
+
+Costruisco l'insieme $ X = {S subset.eq {a,b}^k} = PP({a,b}^k) $ insieme delle parti di ${a,b}^k$.
+
+Questo é un insieme di parole distinguibili tra loro perché $ forall X_1,X_2 in X quad exists x in X_1 - X_2 quad bar.v quad product_(x_1 in X_1) x_1 dot.op x in K_k and product_(x_2 in X_2) x_2 dot.op x in.not K_k. $
+
+La cardinalità di questo insieme é $2^(|X|) = 2^(2^k)$.
+
+== Esercizio 04
+
+#introduction(
+  [Considerate il linguaggio $ J_k = {w bar.v w = x dot.op x_1 dot.op dots dot.op x_m bar.v m > 0, x_1, dots, x_m, x in {a,b}^k, exists i in [1,m] bar.v x_i = x}, $ dove $k$ é un intero fissato. Si può osservare che ogni stringa $w$ di questo linguaggio é la concatenazione di blocchi di lunghezza $k$, in cui il primo blocco coincide con uno dei blocchi successivi; ogni stringa di $J_k$ si ottiene “rovesciando” una stringa del linguaggio $K_n$ dell’esercizio $3$.]
+)
+
+#assignment(
+  [Supponete di costruire automi a stati finiti per $J_k$. Valgono ancora gli stessi limiti inferiori ottenuti per $K_n$ o si riescono a costruire automi più piccoli? Rispondete sia nel caso di automi deterministici sia in quello di automi non deterministici.]
+)
+
+Un DFA deve prima costruire l'albero di altezza $k$ che contiene tutte le possibili stringhe di lunghezza $k$ e poi, dopo ogni foglia, deve costruire un ciclo di $k$ stati che riconosce la sequenza definita dal cammino a quella foglia. Vanno aggiunti $(k-1) 2^k$ stati che cancellino le sequenze lunghe $k$ che non sono uguali alla prima letta.
+
+Il numero totale di stati é $k 2^(k+1) + 2^k - 1$.
+
+Un NFA deve fare la stessa cosa del DFA ma mettendo la scommessa nelle foglie.
+
+Il numero totale di stati é ancora $k 2^(k+1) + 2^k - 1$.
+
+== Esercizio 05
+
+#introduction(
+  []
+)
+
+#assignment(
+  [Ispirandovi all’esercizio $3$, fornite limiti inferiori per il numero di stati degli automi che riconoscono il seguente linguaggio: $ E_k = {w bar.v w = x_1 dot.op dots dot.op x_m bar.v m > 0, x_1, dots, x_m in {a,b}^k, exists i,j in [1,m] bar.v x_i = x_j}, $ dove $k$ é un intero fissato. Considerate sia il caso deterministico che quello non deterministico.]
+)
+
+Un NFA dovrebbe formare prima l'albero di tutte le possibili stringhe di lunghezza $k$, inserendo la scommessa nei nodi ad altezza $k-1$. Questa scommessa fa tornare indietro alla radice, e si "vince" la scommessa quando si finisce nel nodo ad altezza $k$, ovvero la stringa di lunghezza $k$ letta ora é quella che sarà presente successivamente. Il numero di stati per questa parte é $2^(k+1) -1$.
+
+Il controllo viene poi fatto con $k 2^k$ stati, dove solo l'ultimo é finale. Vanno aggiunti $(k-1) 2^k$ stati che cancellano gruppi di lunghezza $k$ che sono sono uguali alla sequenza scelta.
+
+Il numero totale di stati é quindi $k 2^(k+1) + 2^k - 1$.
+
+Un DFA deve ricordarsi le sequenze lunghe $k$ che ha trovato nella stringa. Costruendo l'insieme $X$ dell'esercizio $3$ si può concludere che ogni DFA deve avere almeno $2^(2^k)$ stati.

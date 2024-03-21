@@ -540,7 +540,7 @@ Costruiamo un DFA per questo linguaggio con $n = 2$, visto che con $n=3$ il nume
 
 #v(12pt)
 
-Il numero di stati di questo DFA é $2^(n-1)-1 + 2^(n+1)$.
+Il numero di stati di questo DFA é $2^(n+1)-1 + 2^(n+1)$.
 
 Riusciamo a fare meglio con un NFA? La risposta é no: gli NFA _"lavorano male"_ quando si parla di _"ogni"_, mentre _"lavorano bene"_ quando si parla di _"esiste"_.
 
@@ -624,3 +624,115 @@ Diamo un lower bound al numero di stati di un NFA generico. Definiamo l'insieme 
 Questo é un extended fooling set per $L_k$, quindi ogni NFA per $L_k$ ha almeno $|P| = (k+1)^2$ stati.
 
 /* FINE LEZIONE 05 */
+
+/* INIZIO LEZIONE 06 */
+
+== Espressioni regolari
+
+=== Operazioni insiemistiche
+
+Sia $L subset.eq Sigma^*$ un linguaggio. Essendo un insieme, possiamo utilizzare le classiche operazioni di:
+- intersezione $sect.big$;
+- unione $union.big$;
+- complemento $()^C$.
+
+Altre operazioni importanti sono:
+- *prodotto/concatenazione* di linguaggi: dati $L_1,L_2 subset.eq Sigma^*$ costruisco l'insieme $ L_1 dot.op L_2 = {z bar.v exists x in L_1 and exists y in L_2 bar.v z = x y}. $ Questa operazione _non_ é commutativa ma é associativa.
+- *potenza* di un linguaggio: dato $L subset.eq Sigma^*$ costruisco l'insieme $ L_k = underbracket(L dot.op dots dot.op L, k). $ Notiamo, usando l'induzione, come $ L^k = cases({epsilon} & "se" k = 0, L dot.op L^(k-1) quad & "altrimenti") quad . $
+
+=== Chiusura di Kleene
+
+La *chiusura di Kleene*, o _star_, é definita come $ L^* = union.big_(k gt.eq 0) L^k. $
+
+In poche parole, la chiusura di Kleene rappresenta l'insieme di tutte le stringhe ottenute concatenando le parole di $L$, compresa la parola vuota $epsilon$.
+
+L'insieme $L^*$ é sempre infinito, tranne quando:
+- $L = {epsilon}$, ottenendo $L^* = {epsilon}$;
+- $L = emptyset.rev$, ottenendo $L^* = {epsilon}$ per definizione.
+
+La *chiusura positiva* $L^+$ é definita come $ L^+ = union.big_(k gt.eq 1) L^k. $
+
+Se $epsilon in L$ la differenza tra chiusura e chiusura positiva non esiste, mentre se $epsilon in.not L$ si ottene $L^+ = L^* - {epsilon}$.
+
+Si può dimostrare che $ L^+ = L dot.op L^* = L dot.op union.big_(k gt.eq 0) L^k = union.big_(k gt.eq 0) L^(k+1) = union.big_(k gt.eq 1) L^k. $
+
+=== Definizione di espressione regolare
+
+Le *espressioni regolari* sono un _modello dichiarativo_ per le grammatiche di tipo $3$, ovvero permettono di dichiarare la forma delle stringhe del linguaggio tramite una serie di operazioni.
+
+Introduciamo una serie di coppie, dove il primo elemento rappresenta un'espressione nel mondo delle espressioni regolari e il secondo elemento rappresenta il linguaggio generato da quell'espressione:
+- $emptyset.rev arrow.long$ linguaggio vuoto;
+- $epsilon arrow.long {epsilon}$;
+- $a in Sigma arrow.long {a}$;
+- $E_1 + E_2 arrow.long L(E_1) union L(E_2)$;
+- $E_1 dot.op E_2 arrow.long L(E_1) dot.op L(E_2)$;
+- $E_1^* arrow.long [L(E_1)]^*$.
+
+=== Teorema di Kleene
+
+Vediamo il *teorema fondamentale degli automi a stati finiti* (o _teorema di Kleene_), che afferma la coincidenza tra la classe degli automi a stati finiti con la classe delle espressioni regolari.
+
+#theorem()[
+  La classe di linguaggi accettati da automi a stati finiti é il più piccolo sottoinsieme di $Sigma^*$ che contiene i linguaggi finiti ed é chiusa rispetto alle operazioni di $union, dot.op$ e $*$.
+]<thm>
+
+#proof[
+  \ Dimostriamo che a partire da un automa a stati finiti per $L$ possiamo trovare un'espressione regolare per lo stesso linguaggio $L$.
+
+  Sia $A = (Q, Sigma, delta, q_1, F)$, con $Q = {q_1, dots, q_n}$. Accetto una parola se e solo se esiste un cammino nel grafo di computazione che finisce in uno stato finale.
+
+  Chiamo $R_(i j)^((k))$ le espressioni che iniziano nello stato $q_i$, finiscono nello stato $q_j$ e visitano stati con indice $lt.eq k$: $ q_i arrow.long.squiggly q_(h lt.eq k) arrow.long.squiggly q_j. $
+
+  Definiamo $R_(i j)^((0))$ l'insieme di tutte le lettere che mi portano da $q_i$ a $q_j$, quindi $ R_(i j)^((0)) = {a in Sigma bar.v delta(q_i, a) = q_j}. $
+  
+  Se $i = j$ allora $ R_(i j)^((0)) = {epsilon} union {a in Sigma bar.v delta(q_i, a) = q_i}. $
+
+  Definiamo ora $R_(i j)^((k))$ sapendo tutte le espressioni fino a $R_(i j)^((k-1))$
+
+  Evidenzio tutti i punti del cammino che passano per lo stato $q_k$: $ q_i arrow.long.squiggly_(lt.eq k-1) q_k arrow.long.squiggly_(lt.eq k-1) dots arrow.long.squiggly_(lt.eq k-1) q_k arrow.long.squiggly_(lt.eq k-1) q_j. $
+
+  Ma allora $ R_(i j)^((k)) = R_(i j)^((k-1)) union (R_(i k)^((k-1)) dot.op R_(k k)^((k-1)) dot.op R_(k j)^((k-1))). $
+
+  Il linguaggio $L$ viene definito come $ L = union.big_(q_i in F) "cammini dallo stato" 1 "allo stato" q_i = union.big_(q_i in F) R_(1 i)^((n)). $
+]<proof>
+
+=== Come costruire un'espressione regolare
+
+Vediamo _come costruire un'espressione regolare a partire da un automa a stati finiti_ con un esempio.
+
+#v(12pt)
+
+#figure(
+  image("assets-teoria/regex.svg", width: 50%)
+)
+
+#v(12pt)
+
+Per scrivere un'espressione regolare dobbiamo scrivere un sistema di $n$ equazioni, dove $n = |Q|$. Ogni equazione $E_i$ descrive il linguaggio che l'automa riconoscerebbe se si partisse dallo stato $X_i$. Ogni equazione é una somma di fattori, ognuno formato da un simbolo di $Sigma$ e uno stato in $Q$. La presenza di un fattore del tipo $a X_j$ indica che dallo stato $X_i$ si finisce nello stato $X_j$ leggendo una $a$.
+
+Scriviamo il sistema di equazioni per il DFA disegnato sopra, ricordandoci di aggiungere $epsilon$ in caso l'equazione $E_i$ descriva uno stato finale.
+
+$ cases(X_0 = a X_1 + b X_0, X_1 = a X_2 + b X_0, X_2 = a X_2 + b X_1 + epsilon) quad . $
+
+Risolviamo il sistema, introducendo una regola fondamentale: $ X = a X + B arrow.long X = a^* B. $ Questa ci permette di risolvere ogni sistema di equazioni che definisce un automa a stati finiti.
+
+$ cases(X_0 = a (a X_2 + b X_0) + b X_0, X_2 = a X_2 + b (a X_2 + b X_0) + epsilon) quad . $
+
+Raccogliamo $X_2$ nella seconda equazione e applichiamo la regola fondamentale precedente. $ & cases(X_0 = a a X_2 + (a b + b) X_0, X_2 = (a + b a) X_2 + b b X_0 + epsilon) \ & cases(X_0 = a a X_2 + (a b + b) X_0, X_2 = (a + b a)^* (b b X_0 + epsilon)) quad . $
+
+Sostituiamo $X_2$ dentro $X_0$ e applichiamo ancora la regola fondamentale dopo aver raccolto ogni fattore che contiene $X_0$ nell'equazione. $ X_0 &= a a (a + b a)^* (b b X_0 + epsilon) + (a b + b) X_0 \ X_0 &= a a (a + b a)^* b b X_0 + a a (a + b a)^* + (a b + b) X_0 \ X_0 &= (a a (a + b a)^* b b + a b + b) X_0 + a a (a + b a)^* \ X_0 &= (a a (a + b a)^* b b + a b + b)^* (a a (a + b a)^*). $
+
+== Studio della complessità
+
+#let sc(linguaggio) = $op("sc")(linguaggio)$
+#let nsc(linguaggio) = $op("nsc")(linguaggio)$
+
+Sia $L subset.eq Sigma^*$, la *complessità di stati* di $L$ é il minimo numero di stati di un DFA che accetta $L$. La complessità di stati si indica con $sc(L)$.
+
+In modo analogo, si definisce $nsc(L)$ la *complessità di stati non deterministica* come il minimo numero di stati di un NFA che accetta $L$.
+
+Come sappiamo già, vale la relazione $ sc(L) lt.eq 2^nsc(L). $
+
+In generale, ogni NFA ha almeno $n+1$ stati, dove $n$ é il numero di caratteri della stringa più corta del linguaggio. 
+
+/* FINE LEZIONE 06 */

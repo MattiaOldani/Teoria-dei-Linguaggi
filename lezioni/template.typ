@@ -35,4 +35,4 @@
 /***** DA CANCELLARE PRIMA DI COMMITTARE *****/
 /*********************************************/
 
-= Lezione NN
+= Lezione NN [/]

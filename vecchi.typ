@@ -2,16 +2,19 @@
 
 #import "template.typ": project
 
-#show: project.with(
-  title: "Teoria dei linguaggi"
-)
+#show: project.with(title: "Teoria dei linguaggi")
 
 #import "@preview/lemmify:0.1.5": *
 
 #let (
-  theorem, lemma, corollary,
-  remark, proposition, example,
-  proof, rules: thm-rules
+  theorem,
+  lemma,
+  corollary,
+  remark,
+  proposition,
+  example,
+  proof,
+  rules: thm-rules,
 ) = default-theorems("thm-group", lang: "it")
 
 #show: thm-rules
@@ -20,87 +23,12 @@
   it,
   stroke: green + 1pt,
   inset: 1em,
-  breakable: true
+  breakable: true,
 )
 
 #pagebreak()
 
 // Appunti
-
-/* INIZIO LEZIONE 01 */
-
-= Introduzione
-
-== Storia
-
-Un *linguaggio* è _uno strumento di comunicazione usato da membri di una stessa comunità_, ed è composto da due elementi:
-- *sintassi*: insieme di simboli (o _parole_) che devono essere combinati con una serie di regole;
-- *semantica*: associazione frase-significato.
-
-Per i linguaggi naturali è difficile dare delle regole sintattiche: vista questa difficoltà, nel 1956 *Noam Chomsky* introduce il concetto di *grammatiche formali*, che si servono di regole matematiche per la definizione della sintassi di un linguaggio.
-
-Il primo utilizzo dei linguaggi risale agli stessi anni con il *compilatore Fortran*, ovvero un traduttore da un linguaggio di alto livello ad uno di basso livello, ovvero il _linguaggio macchina_.
-
-== Ripasso
-
-Un *alfabeto* è un insieme _non vuoto_ e _finito_ di simboli, di solito indicato con $Sigma$ o $Gamma$.
-
-Una *stringa* (o *parola*) è una sequenza _finita_ di simboli appartenenti a $Sigma$.
-
-Data una parola $w$, possiamo definire:
-- $|w|$ _numero di caratteri_ di $w$;
-- $|w|_a$ _numero di occorrenze_ della lettera $a in Sigma$ in $w$.
-
-Una parola molto importante è la *parola vuota* $epsilon$, che, come dice il nome, ha simboli, ovvero $|epsilon| = 0$.
-
-L'insieme di tutte le possibili parole su $Sigma$ è detto $Sigma^*$.
-
-Un'importante operazione sulle parole è la *concatenazione* (o _prodotto_), ovvero se $x,y in Sigma^*$ allora la concatenazione $w$ è la parola $w = x y$.
-
-Questo operatore di concatenazione:
-- _non è commutativo_, infatti $w_1 = x y eq.not y z = w_2$ in generale;
-- _è associativo_, infatti $(x y) z = x (y z)$.
-
-La struttura $(Sigma^*, dot, epsilon)$ è un *monoide* libero generato da $Sigma$.
-
-Vediamo ora alcune proprietà delle parole:
-- *prefisso*: $x$ si dice _prefisso_ di $w$ se esiste $y in Sigma^*$ tale che $x y = w$;
-  - *prefisso proprio* se $y eq.not epsilon$;
-  - *prefisso non banale* se $x eq.not epsilon$;
-  - il numero di prefissi è uguale a $|w|+1$.
-- *suffisso*: $y$ si dice _suffisso_ di $w$ se esiste $x in Sigma^*$ tale che $x y = w$;
-  - *suffisso proprio* se $x eq.not epsilon$;
-  - *suffisso non banale* se $y eq.not epsilon$;
-  - il numero di suffissi è uguale a $|w|+1$.
-- *fattore*: $y$ si dice _fattore_ di $w$ se esistono $x,z in Sigma^*$ tali che $x y z = w$;
-  - il numero di fattori è al massimo $frac(|w| dot |w+1|, 2) + 1$.
-- *sottosequenza*: $x$ si dice _sottosequenza_ di $w$ se $x$ è ottenuta eliminando $0$ o più caratteri da $w$;
-  - un _fattore_ è una sottosequenza ordinata.
-
-Un *linguaggio* $L$ definito su un alfabeto $Sigma$ è un qualunque sottoinsieme di $Sigma^*$.
-
-#pagebreak()
-
-= Gerarchia di Chomsky
-
-== Rappresentazione
-
-Vogliamo rappresentare in maniera finita un oggetto infinito come un linguaggio.
-
-Abbiamo a nostra disposizione due modelli molto potenti:
-- *generativo*: date delle regole, si parte da _un certo punto_ e si generano tutte le parole di quel linguaggio con le regole date; parleremo di questi modelli tramite le _grammatiche_;
-- *riconoscitivo*: si usano dei _modelli di calcolo_ che prendono in input una parola e dicono se appartiene o meno al linguaggio.
-
-Considerando il linguaggio sull'alfabeto ${(,)}$ delle parole ben bilanciate, proviamo a dare due modelli:
-- _generativo_: a partire da una sorgente $S$ devo applicare delle regole per derivate tutte le parole appartenenti a questo linguaggio;
-  - la parola vuota $epsilon$ è ben bilanciata;
-  - se $x$ è ben bilanciata, allora anche $(x)$ è ben bilanciata;
-  - se $x,y$ sono ben bilanciate, allora anche $x y$ sono ben bilanciate.
-- _riconoscitivo_: abbiamo una _black-box_ che prende una parola e ci dice se appartiene o meno al linguaggio (in realtà potrebbe non terminare mai la sua esecuzione);
-  - $\#\( space = space \#\)$;
-  - per ogni prefisso, $\#\( space gt.eq space \#\)$.
-
-/* FINE LEZIONE 01 */
 
 /* INIZIO LEZIONE 02 */
 
@@ -157,16 +85,19 @@ Negli anni 50 Noam Chomsky studia la generazione dei linguaggi formali e crea un
     columns: (31%, 37%, 32%),
     inset: 10pt,
     align: horizon,
-
     [*Grammatica*], [*Regole*], [*Modello riconoscitivo*],
-
     [_Tipo 0_.], [Nessuna restrizione, sono il tipo più generale.], [_Macchine di Turing_.],
-    
-    [_Tipo 1_, dette *context-sensitive* o _dipendenti dal contesto_.], [Se $(alpha arrow.long beta) in P$ allora $|beta| gt.eq |alpha|$, ovvero devo generare parole che non siano più corte di quella di partenza. \ \ Sono dette _dipendenti dal contesto_ perché ogni regola $(alpha arrow.long beta) in P$ può essere riscritta come $alpha_1 A alpha_2 arrow.long alpha_1 B alpha_2$, $space.thin$ con $alpha_1, alpha_2 in (V union Sigma)^*$ che rappresentano il _contesto_, $A in V$ e $B in (V union Sigma)^+$.], [_Automi limitati linearmente_.],
-    
-    [_Tipo 2_, dette *context-free* o _libere dal contesto_.], [Le regole in $P$ sono del tipo $alpha arrow.long beta$, con $alpha in V$ e $beta in (V union Sigma)^+$.], [_Automi a pila_.],
-    
-    [_Tipo 3_, dette *grammatiche regolari*], [Le regole in $P$ sono del tipo $A arrow.long a B$ oppure $A arrow.long a$, con $A,B in V$ e $a in Sigma$. \ Vale anche il simmetrico.], [_Automi a stati finiti_.],
+    [_Tipo 1_, dette *context-sensitive* o _dipendenti dal contesto_.],
+    [Se $(alpha arrow.long beta) in P$ allora $|beta| gt.eq |alpha|$, ovvero devo generare parole che non siano più corte di quella di partenza. \ \ Sono dette _dipendenti dal contesto_ perché ogni regola $(alpha arrow.long beta) in P$ può essere riscritta come $alpha_1 A alpha_2 arrow.long alpha_1 B alpha_2$, $space.thin$ con $alpha_1, alpha_2 in (V union Sigma)^*$ che rappresentano il _contesto_, $A in V$ e $B in (V union Sigma)^+$.],
+    [_Automi limitati linearmente_.],
+
+    [_Tipo 2_, dette *context-free* o _libere dal contesto_.],
+    [Le regole in $P$ sono del tipo $alpha arrow.long beta$, con $alpha in V$ e $beta in (V union Sigma)^+$.],
+    [_Automi a pila_.],
+
+    [_Tipo 3_, dette *grammatiche regolari*],
+    [Le regole in $P$ sono del tipo $A arrow.long a B$ oppure $A arrow.long a$, con $A,B in V$ e $a in Sigma$. \ Vale anche il simmetrico.],
+    [_Automi a stati finiti_.],
   )
 ]
 
@@ -174,9 +105,7 @@ Nella figura successiva vediamo una rappresentazione grafica della gerarchia di 
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/gerarchia.svg", width: 50%)
-)
+#figure(image("assets-teoria/gerarchia.svg", width: 50%))
 
 #v(12pt)
 
@@ -266,9 +195,7 @@ Quando si arriva alla fine del nastro, in base allo stato corrente dell'automa, 
 
 #v(12pt)
 
-#figure(
-    image("assets-teoria/automa_macchina.svg", width: 50%)
-)
+#figure(image("assets-teoria/automa_macchina.svg", width: 50%))
 
 #v(12pt)
 
@@ -303,9 +230,7 @@ Lo *stato iniziale* è indicato con una freccia entrante nello stato, mentre gli
 
 #v(12pt)
 
-#figure(
-    image("assets-teoria/automa_grafo.svg", width: 50%)
-)
+#figure(image("assets-teoria/automa_grafo.svg", width: 50%))
 
 #v(12pt)
 
@@ -337,9 +262,7 @@ Prendiamo l'automa nella pagina precedente e aggiungiamo un cappio in $q_1$ caus
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/albero-computazione.svg", width: 80%)
-)
+#figure(image("assets-teoria/albero-computazione.svg", width: 80%))
 
 #v(12pt)
 
@@ -366,17 +289,13 @@ Dato un linguaggio $L subset.eq Sigma^*$, due parole $x,y in Sigma^*$ sono *dist
 #proof[
   \ Supponiamo che l'insieme $X$ sia $X = {x_1, dots, x_k}$ di cardinalità $k$. Definiamo l'automa $A = (Q, Sigma, delta, q_0, F)$ tale che $delta(q_0, x_i) = p_i quad forall i in [1,k].$
 
-  #figure(
-    image("assets-teoria/dfa-inizio.svg", width: 40%)
-  )
+  #figure(image("assets-teoria/dfa-inizio.svg", width: 40%))
 
   Per assurdo sia $|Q| < k$, ma allora $exists i,j in [1,k]$ tali che $i eq.not j$ e $delta(q_0, x_i) = p_i = p_j = delta(q_0, x_j)$. Questo vale perché avendo meno stati del numero di elementi da "mappare" almeno due elementi finiscono nello stesso stato.
 
   Ma $x_i$ e $x_j$ sono due parole distinguibili: allora $exists z in Sigma^*$ tale che $x_i z in L and x_j z in.not L$ (o viceversa).
 
-  #figure(
-    image("assets-teoria/dfa-assurdo.svg", width: 50%)
-  )
+  #figure(image("assets-teoria/dfa-assurdo.svg", width: 50%))
 
   Ma questo é assurdo: infatti, $x_i$ e $x_j$ sono due parole distinguibili che però finiscono in uno stato che deve essere sia finale che non finale.
 
@@ -401,9 +320,7 @@ L'*automa di Meyer e Fischer* é un NFA molto importante ideato nel 1971 per dar
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/meyer-fischer.svg", width: 60%)
-)
+#figure(image("assets-teoria/meyer-fischer.svg", width: 60%))
 
 #v(12pt)
 
@@ -429,7 +346,7 @@ Sia $S subset.eq {0, dots, n-1}$, definiamo la parola $ w_s = cases(b & "se" S =
 
 #proof[
   \ Sia $x in S \\ T$ numero intero che appartiene a $S$ ma non a $T$. \ Sappiamo che $delta(0, w_s) = S$ per la proprietà precedente e che $x in S$, ma allora $ 0 arrow.long.squiggly^(w_s) x arrow.long.squiggly^(a^(n-x)) 0. $ Sappiamo inoltre che $delta(0, w_t) = T$ per la proprietà precedente e che $x in.not T$. Sia $y in T$, ma allora $ 0 arrow.long.squiggly^(w_t) y arrow.long.squiggly^(a^(n-x)) U. $ L'insieme $U$ non contiene $0$ perché l'unico modo per finire in $0$ é aggiungere un numero di $a$ uguale a $n-y$, ma sappiamo che $n-x eq.not n-y$ per come sono stati definiti $x$ e $y$.
- \ Ma allora la stringa $a^(n-x)$ distingue $w_s$ e $w_t$.
+  \ Ma allora la stringa $a^(n-x)$ distingue $w_s$ e $w_t$.
 ]<proof>
 
 Ora possiamo dimostrare il seguente teorema.
@@ -452,9 +369,7 @@ Sono utili nei compilatori quando é possibile definire gli interi positivi senz
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/segno.svg", width: 50%)
-)
+#figure(image("assets-teoria/segno.svg", width: 50%))
 
 #v(12pt)
 
@@ -510,9 +425,7 @@ Con $n = 3$, la stringa $a b a b b a$ appartiene a $L_n$. Costruiamo un NFA per 
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/ln.svg", width: 60%)
-)
+#figure(image("assets-teoria/ln.svg", width: 60%))
 
 #v(12pt)
 
@@ -534,9 +447,7 @@ Costruiamo un DFA per questo linguaggio con $n = 2$, visto che con $n=3$ il nume
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/ln-primo.svg", width: 60%)
-)
+#figure(image("assets-teoria/ln-primo.svg", width: 60%))
 
 #v(12pt)
 
@@ -572,9 +483,7 @@ In questo caso, prese due coppie, basta che _almeno un incrocio_ non appartenga 
 
   #v(12pt)
 
-  #figure(
-    image("assets-teoria/fooling-inizio.svg", width: 50%)
-  )
+  #figure(image("assets-teoria/fooling-inizio.svg", width: 50%))
 
   #v(12pt)
 
@@ -582,9 +491,7 @@ In questo caso, prese due coppie, basta che _almeno un incrocio_ non appartenga 
 
   #v(12pt)
 
-  #figure(
-    image("assets-teoria/fooling-assurdo.svg", width: 50%)
-  )
+  #figure(image("assets-teoria/fooling-assurdo.svg", width: 50%))
 
   #v(12pt)
 
@@ -613,9 +520,7 @@ Vediamo il caso $k = 3$ e creiamo un NFA per questo linguaggio.
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/lk.svg", width: 100%)
-)
+#figure(image("assets-teoria/lk.svg", width: 100%))
 
 #v(12pt)
 
@@ -684,7 +589,7 @@ Vediamo il *teorema fondamentale degli automi a stati finiti* (o _teorema di Kle
   Chiamo $R_(i j)^((k))$ le espressioni che iniziano nello stato $q_i$, finiscono nello stato $q_j$ e visitano stati con indice $lt.eq k$: $ q_i arrow.long.squiggly q_(h lt.eq k) arrow.long.squiggly q_j. $
 
   Definiamo $R_(i j)^((0))$ l'insieme di tutte le lettere che mi portano da $q_i$ a $q_j$, quindi $ R_(i j)^((0)) = {a in Sigma bar.v delta(q_i, a) = q_j}. $
-  
+
   Se $i = j$ allora $ R_(i j)^((0)) = {epsilon} union {a in Sigma bar.v delta(q_i, a) = q_i}. $
 
   Definiamo ora $R_(i j)^((k))$ sapendo tutte le espressioni fino a $R_(i j)^((k-1))$
@@ -702,9 +607,7 @@ Vediamo _come costruire un'espressione regolare a partire da un automa a stati f
 
 #v(12pt)
 
-#figure(
-  image("assets-teoria/regex.svg", width: 50%)
-)
+#figure(image("assets-teoria/regex.svg", width: 50%))
 
 #v(12pt)
 
@@ -733,6 +636,6 @@ In modo analogo, si definisce $nsc(L)$ la *complessità di stati non determinist
 
 Come sappiamo già, vale la relazione $ sc(L) lt.eq 2^nsc(L). $
 
-In generale, ogni NFA ha almeno $n+1$ stati, dove $n$ é il numero di caratteri della stringa più corta del linguaggio. 
+In generale, ogni NFA ha almeno $n+1$ stati, dove $n$ é il numero di caratteri della stringa più corta del linguaggio.
 
 /* FINE LEZIONE 06 */

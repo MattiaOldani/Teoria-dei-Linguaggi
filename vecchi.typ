@@ -30,63 +30,7 @@
 
 // Appunti
 
-/* INIZIO LEZIONE 03 */
-
-#theorem()[
-  Una grammatica di tipo 1 è *decidibile*.
-]<thm>
-
-#proof[
-  \ Siano $G$ una grammatica di tipo 1 e $w in Sigma^*$, ci chiediamo se $w in L(G)$. \ Sia $h = |w|$, ma allora essendo $G$ di tipo 1 ogni forma sentenziale che compare in $P$ non deve superare la lunghezza $h$, altrimenti potremmo ridurre il numero di caratteri presenti nella forma sentenziale e andare contro la definizione di grammatica di tipo 1. \ \ Sia $T_i = {gamma in (V union Sigma)^(lt.eq n) bar.v S arrow.stroked^(lt.eq i) gamma}$ l'insieme di tutte le parole generate dalla grammatica $G$ che hanno al massimo $n$ caratteri e sono generate in massimo $i$ passi di derivazione. \ Data questa definizione di $T_i$ possiamo affermare che:
-  - $T_0 = {S}$;
-  - $T_i = T_(i-1) union {gamma in (V union Sigma)^(lt.eq n) bar.v exists beta in T_(i-1) text(" tale che ") beta arrow.stroked gamma}.$
-
-  Per come sono costruiti gli insiemi $T_i$ possiamo affermare che $ T_0 subset.eq T_1 subset.eq dots subset.eq (V union Sigma)^(lt.eq n), $ ma quest'ultimo insieme è un insieme _finito_. \ Prima o poi non si potranno più generare delle stringhe, ovvero $exists k$ tale che $T_(k-1) = T_k$. \ Una volta individuato questo valore $k$ basta controllare se $w in T_k$.
-]<proof>
-
-Questo non vale invece per le grammatiche di tipo 0: infatti, queste sono dette *semidecidibili*, in quanto un sistema riconoscitivo potrebbe non terminare mai l'algoritmo di riconoscimento e finire quindi in un loop infinito.
-
-#theorem()[
-  Una grammatica di tipo 0 è *semidecidibile*.
-]
-
-#proof[
-  \ Siano $G$ una grammatica di tipo 0 e $w in Sigma^*$, ci chiediamo se $w in L(G)$. \ Non essendo $G$ di tipo 1 non abbiamo il vincolo $|beta| gt.eq |alpha|$ nelle regole di produzione. \ \ Sia $U_i = {gamma in (V union Sigma)^* bar.v S arrow.stroked^(lt.eq i) gamma}$ l'insieme di tutte le parole generate dalla grammatica $G$ in massimo $i$ passi di derivazione. \ Data questa definizione di $U_i$ possiamo affermare che:
-  - $U_0 = {S}$;
-  - $U_i = U_(i-1) union {gamma in (V union Sigma)^* bar.v exists beta in U_(i-1) text(" tale che ") beta arrow.stroked gamma}$.
-
-  Per come sono costruiti gli insiemi $U_i$ possiamo affermare che $ U_0 subset.eq U_1 subset.eq dots subset.eq (V union Sigma)^*, $ ma quest'ultimo insieme è un insieme _infinito_. \ Vista questa caratteristica, nessuno garantisce l'esistenza di un $k$ tale che $U_(k-1) = U_k$ e quindi non si ha la certezza di terminare l'algoritmo di riconoscimento.
-]<proof>
-
-Le grammatiche di tipo 0 generano i *linguaggi ricorsivamente enumerabili*: per stabilire se $w in L(G)$ devo _elencare_ con un programma tutte le stringhe del linguaggio e controllare se $w$ compare in esse.
-
-Questa operazione di elencazione in poche parole è la generazione degli insiemi $U_i$, che poi vengono ispezionati per vedere se la parole $w$ è presente o meno.
-
-== Estensione con la parola vuota
-
-La parola vuota é molto "noiosa" perché la sua presenza in una regola di derivazione del tipo $alpha arrow.long epsilon$ esclude la grammatica dai tipi superiori allo 0.
-
-Inserire la parola vuota nel linguaggio generato da una grammatica non é un'operazione critica: infatti, essa non modifica la cardinalità del linguaggio. Voglio quindi costruire l'insieme $L' = L(G) union {epsilon}$. Per far ciò dobbiamo aggiungere la regola di produzione $S arrow.long epsilon$, ma dobbiamo garantire di più: infatti, se in $P$ é presente anche una regola del tipo $A arrow.long alpha_1 S alpha_2$ riesco a generare più parole di quelle che riesco effettivamente a generare senza la parola vuota.
-
-In poche parole, _la variabile che genera la parola vuota non deve essere presente nella parte destra delle regole di produzione_.
-
-La nuova grammatica $G' = (V', Sigma, P', S')$ é formata da:
-- $V'$ insieme delle variabili, definito come $S union {S'}$;
-- $Sigma$ insieme dei simboli terminali;
-- $P'$ insieme delle regole di produzione;
-- $S' in V'$ assioma.
-
-Vengono aggiunte due regole di produzione:
-- $S' arrow.long epsilon$ per generare la parola vuota;
-- $S' arrow.long S$ per collegare il comportamento di $G'$ a $G$.
-
-Con queste due nuove regole riesco a generare il linguaggio $L(G)$, grazie alla regola $S' arrow.long S$, unito alla parola vuota, grazie alla regola $S' arrow.long epsilon$.
-
-Questo tipo di costruzione vale per tutte le grammatiche di tipo 1. Per le grammatiche di tipo 2 é più facile: basta rilassare il vincolo $beta in (V union Sigma)^+$ in $beta in (V union Sigma)^*$. Infine, per le grammatiche di tipo 3 basta aggiungere la regola di produzione $A arrow.long epsilon$.
-
-Le regole di produzione nella forma $alpha arrow.long epsilon$ sono dette *$epsilon$-produzioni*.
-
-#pagebreak()
+/* INIZIO LEZIONE 04 */
 
 = Linguaggi di tipo 3
 
@@ -182,10 +126,6 @@ Prendiamo l'automa nella pagina precedente e aggiungiamo un cappio in $q_1$ caus
 Nella parte superiore vediamo i passi intermedi della _funzione di transizione_: all'inizio é un insieme che contiene solo lo stato iniziale, poi mano a mano l'insieme viene modificato con gli insiemi nei quali si é "allo stesso momento".
 
 Nella parte inferiore vediamo invece l'_albero di computazione_.
-
-/* FINE LEZIONE 03 */
-
-/* INIZIO LEZIONE 04 */
 
 == Numero di stati
 

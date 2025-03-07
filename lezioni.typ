@@ -15,4 +15,7 @@
 #include "lezioni/lezione02.typ"
 #pagebreak()
 
+#include "lezioni/esercizi01_02.typ"
+#pagebreak()
+
 #include "lezioni/lezione03.typ"

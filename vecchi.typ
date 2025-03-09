@@ -30,102 +30,7 @@
 
 // Appunti
 
-/* INIZIO LEZIONE 04 */
-
-= Linguaggi di tipo 3
-
-== Automi a stati finiti (deterministici)
-
-Gli *automi a stati finiti* sono un modello riconoscitivo usato per caratterizzare i _linguaggi regolari_.
-
-=== Definizione informale
-
-Gli automi a stati finiti sono delle macchine molto semplici: hanno un *controllo a stati finiti* che legge l'input da un *nastro* _read-only_, formato da una serie di celle, ognuna delle quali contiene un carattere dell'input.
-
-Per leggere l'input si utilizza una *testina di lettura*, posizionata inizialmente sulla cella più a sinistra (ovvero sul primo carattere di input), e poi spostata iterazione dopo iterazione da sinistra verso destra. Gli automi che studieremo per ora sono *one-way*, ovvero la lettura avviene _solo_ da sinistra verso destra.
-
-Il controllo a stati finiti, prima della lettura dell'input, è allo *stato iniziale*.
-
-Ad ogni iterazione, a partire dallo stato corrente e dal carattere letto dal nastro, ci si muove con la testina a destra sul simbolo successivo e si cambia stato.
-
-Quando si arriva alla fine del nastro, in base allo stato corrente dell'automa, quest'ultimo risponde _"si"_, ovvero la parola in input appartiene al linguaggio, oppure _"no"_, ovvero la parola in input non appartiene al linguaggio.
-
-#v(12pt)
-
-#figure(image("assets-teoria/automa_macchina.svg", width: 50%))
-
-#v(12pt)
-
-=== Definizione formale
-
-Un automa è una tupla ${Q, Sigma, delta, q_0, F}$, con:
-- $Q$ insieme _finito e non vuoto_ degli stati;
-- $Sigma$ insieme _finito e non vuoto_ dell'alfabeto di input;
-- $delta: Q times Sigma arrow.long Q$ funzione di transizione, il programma della macchina;
-- $q_0 in Q$ stato iniziale;
-- $F subset.eq Q$ insieme _finito e non vuoto_ degli stati finali.
-
-La parte dinamica dell'automa è la *funzione di transizione* che, dati lo stato iniziale e un simbolo del linguaggio, calcola lo stato successivo.
-
-Possiamo estendere la funzione di transizione affinché utilizzi una parola del linguaggio. Per induzione sulla lunghezza delle parole definiamo $delta^*: Q times Sigma^* arrow.long Q$ la funzione tale che:
-- $delta^*(q, epsilon) = q quad forall q in Q$;
-- $delta^*(q, x a) = delta(delta^*(q,x), a) quad forall q in Q, x in Sigma^*, a in Sigma$.
-
-Per semplicità useremo $delta$ al posto di $delta^*$ perché sui singoli caratteri $delta$ e $delta^*$ hanno lo stesso comportamento.
-
-=== Linguaggio
-
-Chiamiamo $L(A) = {w in Sigma^* bar.v delta(q_0, w) in F}$ il *linguaggio riconosciuto dall'automa*, ovvero l'insieme delle parole che applicate alla funzione di transizione, a partire dallo stato iniziale, mi mandano in uno stato finale.
-
-=== Rappresentazione grafica
-
-Possiamo vedere un automa come un grafo, dove:
-- i vertici sono gli *stati*;
-- gli archi sono le *transizioni*; gli archi sono orientati ed etichettati con la lettera dell'alfabeto che causa quella transizione.
-
-Lo *stato iniziale* è indicato con una freccia entrante nello stato, mentre gli *stati finali* sono nodi doppiamente cerchiati.
-
-#v(12pt)
-
-#figure(image("assets-teoria/automa_grafo.svg", width: 50%))
-
-#v(12pt)
-
-== Automi a stati finiti non deterministici
-
-=== Definizione informale
-
-Gli *automi a stati finiti non deterministici* (_NFA_) sono automi che hanno _almeno_ uno stato dal quale escono $2$ o più archi con la stessa lettera. Negli automi *deterministici* (_DFA_), invece, da _ogni_ stato esce al più un arco con la stessa lettera.
-
-La differenza principale sta nella complessità computazionale: se negli automi deterministici devo controllare se la parola ci porta in uno stato finale, negli automi non deterministici devo controllare se tra _tutti_ i possibili cammini dell'*albero di computazione* ne esiste uno che ci porta in uno stato finale.
-
-Possiamo vedere il non determinismo come _una scommessa che va sempre a buon fine_.
-
-=== Definizione formale
-
-Un automa non deterministico differisce da un automa deterministico solo per la funzione di transizione: infatti, quest'ultima diventa $delta: Q times Sigma arrow.long 2^Q$. Il valore ritornato é un elemento dell'*insieme delle parti* di $Q$, cioè un sottoinsieme di stati nei quali possiamo finire applicando un carattere di $Sigma$ allo stato corrente.
-
-Come prima, definiamo l'estensione della funzione di transizione per induzione sulla lunghezza delle parole come la funzione $overline(delta): Q times Sigma^* arrow.long 2^Q$ tale che:
-- $delta^*(q, epsilon) = {q}$;
-- $delta^*(q, x a) = limits(union.big)_(p in delta^*(q,x)) delta(p,a)$.
-
-Il linguaggio riconosciuto dall'automa diventa $L(A) = {w in Sigma^* bar.v overline(delta)(q_0, w) sect.big F eq.not emptyset.rev}$.
-
-=== Albero di computazione
-
-L'*albero di computazione* é una rappresentazione grafica di tutti i cammini percorsi dall'automa non deterministico quando deve dire se una parola appartiene o meno al linguaggio. Il singolo cammino é detto *computazione*.
-
-Prendiamo l'automa nella pagina precedente e aggiungiamo un cappio in $q_1$ causato dalla lettura del carattere $b$. Ci chiediamo se la parola $w = a b a b b$ viene riconosciuta o meno dall'automa.
-
-#v(12pt)
-
-#figure(image("assets-teoria/albero-computazione.svg", width: 80%))
-
-#v(12pt)
-
-Nella parte superiore vediamo i passi intermedi della _funzione di transizione_: all'inizio é un insieme che contiene solo lo stato iniziale, poi mano a mano l'insieme viene modificato con gli insiemi nei quali si é "allo stesso momento".
-
-Nella parte inferiore vediamo invece l'_albero di computazione_.
+/* INIZIO LEZIONE 05 */
 
 == Numero di stati
 
@@ -233,10 +138,6 @@ Questa estensione non aumenta però la potenza espressiva dell'automa: infatti, 
 L'ultima estensione che vediamo é quella degli *stati iniziali multipli*: al posto di avere un singolo stato iniziale abbiamo un insieme di stati dai quali poter iniziare.
 
 Anche questa estensione non aumenta la potenza espressiva dell'automa: infatti, la funzione di transizione partirà direttamente con un insieme di stati e non da un insieme con un solo stato.
-
-/* FINE LEZIONE 04 */
-
-/* INIZIO LEZIONE 05 */
 
 == Equivalenza tra linguaggi di tipo 3 e automi a stati finiti
 

@@ -17,6 +17,8 @@
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
+#import "@preview/cetz:0.3.3"
+
 
 // Lezione
 

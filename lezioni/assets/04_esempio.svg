@@ -7,7 +7,7 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 104.9)">
         <title>%3</title>
-        <polygon fill="white" stroke="transparent" points="-4,4 -4,-104.9 291.29,-104.9 291.29,4 -4,4" />
+        <polygon fill="none" stroke="transparent" points="-4,4 -4,-104.9 291.29,-104.9 291.29,4 -4,4" />
         <!-- Initial -->
         <g id="node1" class="node">
             <title>Initial</title>
@@ -16,7 +16,7 @@
         <!-- s0 -->
         <g id="node2" class="node">
             <title>s0</title>
-            <ellipse fill="none" stroke="black" cx="62.05" cy="-41.45" rx="21.4" ry="21.4" />
+            <ellipse fill="white" stroke="black" cx="62.05" cy="-41.45" rx="21.4" ry="21.4" />
             <text text-anchor="middle" x="62.05" y="-37.75" font-family="Times,serif" font-size="14.00">s0</text>
         </g>
         <!-- Initial&#45;&gt;s0 -->
@@ -36,7 +36,7 @@
         <!-- s1 -->
         <g id="node3" class="node">
             <title>s1</title>
-            <ellipse fill="none" stroke="black" cx="159.94" cy="-79.45" rx="21.4" ry="21.4" />
+            <ellipse fill="white" stroke="black" cx="159.94" cy="-79.45" rx="21.4" ry="21.4" />
             <text text-anchor="middle" x="159.94" y="-75.75" font-family="Times,serif" font-size="14.00">s1</text>
         </g>
         <!-- s0&#45;&gt;s1 -->
@@ -58,8 +58,8 @@
         <!-- s2 -->
         <g id="node4" class="node">
             <title>s2</title>
+            <ellipse fill="white" stroke="black" cx="261.84" cy="-25.45" rx="25.4" ry="25.4" />
             <ellipse fill="none" stroke="black" cx="261.84" cy="-25.45" rx="21.4" ry="21.4" />
-            <ellipse fill="none" stroke="black" cx="261.84" cy="-25.45" rx="25.4" ry="25.4" />
             <text text-anchor="middle" x="261.84" y="-21.75" font-family="Times,serif" font-size="14.00">s2</text>
         </g>
         <!-- s1&#45;&gt;s2 -->

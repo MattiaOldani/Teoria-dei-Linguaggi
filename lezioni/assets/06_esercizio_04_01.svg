@@ -7,7 +7,7 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="graph0" class="graph" transform="scale(0.72 0.72) rotate(0) translate(4 794.9)">
         <title>%3</title>
-        <polygon fill="white" stroke="transparent" points="-4,4 -4,-794.9 534.78,-794.9 534.78,4 -4,4" />
+        <polygon fill="none" stroke="transparent" points="-4,4 -4,-794.9 534.78,-794.9 534.78,4 -4,4" />
         <!-- Initial -->
         <g id="node1" class="node">
             <title>Initial</title>
@@ -16,7 +16,7 @@
         <!-- start -->
         <g id="node20" class="node">
             <title>start</title>
-            <ellipse fill="none" stroke="black" cx="73.75" cy="-351.6" rx="33.29" ry="33.29" />
+            <ellipse fill="white" stroke="black" cx="73.75" cy="-351.6" rx="33.29" ry="33.29" />
             <text text-anchor="middle" x="73.75" y="-347.9" font-family="Times,serif" font-size="14.00">start</text>
         </g>
         <!-- Initial&#45;&gt;start -->
@@ -28,13 +28,13 @@
         <!-- a -->
         <g id="node2" class="node">
             <title>a</title>
-            <ellipse fill="none" stroke="black" cx="179.89" cy="-446.6" rx="18" ry="18" />
+            <ellipse fill="white" stroke="black" cx="179.89" cy="-446.6" rx="18" ry="18" />
             <text text-anchor="middle" x="179.89" y="-442.9" font-family="Times,serif" font-size="14.00">a</text>
         </g>
         <!-- aa -->
         <g id="node3" class="node">
             <title>aa</title>
-            <ellipse fill="none" stroke="black" cx="275.64" cy="-617.6" rx="21.4" ry="21.4" />
+            <ellipse fill="white" stroke="black" cx="275.64" cy="-617.6" rx="21.4" ry="21.4" />
             <text text-anchor="middle" x="275.64" y="-613.9" font-family="Times,serif" font-size="14.00">aa</text>
         </g>
         <!-- a&#45;&gt;aa -->
@@ -47,7 +47,7 @@
         <!-- ab -->
         <g id="node7" class="node">
             <title>ab</title>
-            <ellipse fill="none" stroke="black" cx="275.64" cy="-446.6" rx="22.2" ry="22.2" />
+            <ellipse fill="white" stroke="black" cx="275.64" cy="-446.6" rx="22.2" ry="22.2" />
             <text text-anchor="middle" x="275.64" y="-442.9" font-family="Times,serif" font-size="14.00">ab</text>
         </g>
         <!-- a&#45;&gt;ab -->
@@ -60,7 +60,7 @@
         <!-- aa1 -->
         <g id="node4" class="node">
             <title>aa1</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-693.6" rx="27.1" ry="27.1" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-693.6" rx="27.1" ry="27.1" />
             <text text-anchor="middle" x="381.99" y="-689.9" font-family="Times,serif" font-size="14.00">aa1</text>
         </g>
         <!-- aa&#45;&gt;aa1 -->
@@ -74,7 +74,7 @@
         <!-- aaT -->
         <g id="node6" class="node">
             <title>aaT</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-598.6" rx="27.1" ry="27.1" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-598.6" rx="27.1" ry="27.1" />
             <text text-anchor="middle" x="381.99" y="-594.9" font-family="Times,serif" font-size="14.00">aaT</text>
         </g>
         <!-- aa&#45;&gt;aaT -->
@@ -95,8 +95,8 @@
         <!-- aa2 -->
         <g id="node5" class="node">
             <title>aa2</title>
+            <ellipse fill="white" stroke="black" cx="498.18" cy="-693.6" rx="31.1" ry="31.1" />
             <ellipse fill="none" stroke="black" cx="498.18" cy="-693.6" rx="27.12" ry="27.12" />
-            <ellipse fill="none" stroke="black" cx="498.18" cy="-693.6" rx="31.1" ry="31.1" />
             <text text-anchor="middle" x="498.18" y="-689.9" font-family="Times,serif" font-size="14.00">aa2</text>
         </g>
         <!-- aa1&#45;&gt;aa2 -->
@@ -141,7 +141,7 @@
         <!-- ab1 -->
         <g id="node8" class="node">
             <title>ab1</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-503.6" rx="27.9" ry="27.9" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-503.6" rx="27.9" ry="27.9" />
             <text text-anchor="middle" x="381.99" y="-499.9" font-family="Times,serif" font-size="14.00">ab1</text>
         </g>
         <!-- ab&#45;&gt;ab1 -->
@@ -155,7 +155,7 @@
         <!-- abT -->
         <g id="node10" class="node">
             <title>abT</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-408.6" rx="27.9" ry="27.9" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-408.6" rx="27.9" ry="27.9" />
             <text text-anchor="middle" x="381.99" y="-404.9" font-family="Times,serif" font-size="14.00">abT</text>
         </g>
         <!-- ab&#45;&gt;abT -->
@@ -175,8 +175,8 @@
         <!-- ab2 -->
         <g id="node9" class="node">
             <title>ab2</title>
+            <ellipse fill="white" stroke="black" cx="498.18" cy="-503.6" rx="31.9" ry="31.9" />
             <ellipse fill="none" stroke="black" cx="498.18" cy="-503.6" rx="27.9" ry="27.9" />
-            <ellipse fill="none" stroke="black" cx="498.18" cy="-503.6" rx="31.9" ry="31.9" />
             <text text-anchor="middle" x="498.18" y="-499.9" font-family="Times,serif" font-size="14.00">ab2</text>
         </g>
         <!-- ab1&#45;&gt;ab2 -->
@@ -221,13 +221,13 @@
         <!-- b -->
         <g id="node11" class="node">
             <title>b</title>
-            <ellipse fill="none" stroke="black" cx="179.89" cy="-256.6" rx="18" ry="18" />
+            <ellipse fill="white" stroke="black" cx="179.89" cy="-256.6" rx="18" ry="18" />
             <text text-anchor="middle" x="179.89" y="-252.9" font-family="Times,serif" font-size="14.00">b</text>
         </g>
         <!-- ba -->
         <g id="node12" class="node">
             <title>ba</title>
-            <ellipse fill="none" stroke="black" cx="275.64" cy="-256.6" rx="22.2" ry="22.2" />
+            <ellipse fill="white" stroke="black" cx="275.64" cy="-256.6" rx="22.2" ry="22.2" />
             <text text-anchor="middle" x="275.64" y="-252.9" font-family="Times,serif" font-size="14.00">ba</text>
         </g>
         <!-- b&#45;&gt;ba -->
@@ -240,7 +240,7 @@
         <!-- bb -->
         <g id="node16" class="node">
             <title>bb</title>
-            <ellipse fill="none" stroke="black" cx="275.64" cy="-85.6" rx="23" ry="23" />
+            <ellipse fill="white" stroke="black" cx="275.64" cy="-85.6" rx="23" ry="23" />
             <text text-anchor="middle" x="275.64" y="-81.9" font-family="Times,serif" font-size="14.00">bb</text>
         </g>
         <!-- b&#45;&gt;bb -->
@@ -253,7 +253,7 @@
         <!-- ba1 -->
         <g id="node13" class="node">
             <title>ba1</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-313.6" rx="27.9" ry="27.9" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-313.6" rx="27.9" ry="27.9" />
             <text text-anchor="middle" x="381.99" y="-309.9" font-family="Times,serif" font-size="14.00">ba1</text>
         </g>
         <!-- ba&#45;&gt;ba1 -->
@@ -267,7 +267,7 @@
         <!-- baT -->
         <g id="node15" class="node">
             <title>baT</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-218.6" rx="27.9" ry="27.9" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-218.6" rx="27.9" ry="27.9" />
             <text text-anchor="middle" x="381.99" y="-214.9" font-family="Times,serif" font-size="14.00">baT</text>
         </g>
         <!-- ba&#45;&gt;baT -->
@@ -287,8 +287,8 @@
         <!-- ba2 -->
         <g id="node14" class="node">
             <title>ba2</title>
+            <ellipse fill="white" stroke="black" cx="498.18" cy="-313.6" rx="31.9" ry="31.9" />
             <ellipse fill="none" stroke="black" cx="498.18" cy="-313.6" rx="27.9" ry="27.9" />
-            <ellipse fill="none" stroke="black" cx="498.18" cy="-313.6" rx="31.9" ry="31.9" />
             <text text-anchor="middle" x="498.18" y="-309.9" font-family="Times,serif" font-size="14.00">ba2</text>
         </g>
         <!-- ba1&#45;&gt;ba2 -->
@@ -333,7 +333,7 @@
         <!-- bb1 -->
         <g id="node17" class="node">
             <title>bb1</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-123.6" rx="28.7" ry="28.7" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-123.6" rx="28.7" ry="28.7" />
             <text text-anchor="middle" x="381.99" y="-119.9" font-family="Times,serif" font-size="14.00">bb1</text>
         </g>
         <!-- bb&#45;&gt;bb1 -->
@@ -347,7 +347,7 @@
         <!-- bbT -->
         <g id="node19" class="node">
             <title>bbT</title>
-            <ellipse fill="none" stroke="black" cx="381.99" cy="-28.6" rx="28.7" ry="28.7" />
+            <ellipse fill="white" stroke="black" cx="381.99" cy="-28.6" rx="28.7" ry="28.7" />
             <text text-anchor="middle" x="381.99" y="-24.9" font-family="Times,serif" font-size="14.00">bbT</text>
         </g>
         <!-- bb&#45;&gt;bbT -->
@@ -368,8 +368,8 @@
         <!-- bb2 -->
         <g id="node18" class="node">
             <title>bb2</title>
+            <ellipse fill="white" stroke="black" cx="498.18" cy="-123.6" rx="32.7" ry="32.7" />
             <ellipse fill="none" stroke="black" cx="498.18" cy="-123.6" rx="28.68" ry="28.68" />
-            <ellipse fill="none" stroke="black" cx="498.18" cy="-123.6" rx="32.7" ry="32.7" />
             <text text-anchor="middle" x="498.18" y="-119.9" font-family="Times,serif" font-size="14.00">bb2</text>
         </g>
         <!-- bb1&#45;&gt;bb2 -->

@@ -7,7 +7,7 @@
     xmlns:xlink="http://www.w3.org/1999/xlink">
     <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 252.5)">
         <title>%3</title>
-        <polygon fill="white" stroke="transparent" points="-4,4 -4,-252.5 399.58,-252.5 399.58,4 -4,4" />
+        <polygon fill="none" stroke="transparent" points="-4,4 -4,-252.5 399.58,-252.5 399.58,4 -4,4" />
         <!-- Initial -->
         <g id="node1" class="node">
             <title>Initial</title>
@@ -16,7 +16,7 @@
         <!-- q0 -->
         <g id="node2" class="node">
             <title>q0</title>
-            <ellipse fill="none" stroke="black" cx="63.35" cy="-88.75" rx="23" ry="23" />
+            <ellipse fill="white" stroke="black" cx="63.35" cy="-88.75" rx="23" ry="23" />
             <text text-anchor="middle" x="63.35" y="-85.05" font-family="Times,serif" font-size="14.00">q0</text>
         </g>
         <!-- Initial&#45;&gt;q0 -->
@@ -28,7 +28,7 @@
         <!-- q1 -->
         <g id="node3" class="node">
             <title>q1</title>
-            <ellipse fill="none" stroke="black" cx="163.84" cy="-88.75" rx="23" ry="23" />
+            <ellipse fill="white" stroke="black" cx="163.84" cy="-88.75" rx="23" ry="23" />
             <text text-anchor="middle" x="163.84" y="-85.05" font-family="Times,serif" font-size="14.00">q1</text>
         </g>
         <!-- q0&#45;&gt;q1 -->
@@ -49,7 +49,7 @@
         <!-- q2 -->
         <g id="node4" class="node">
             <title>q2</title>
-            <ellipse fill="none" stroke="black" cx="264.34" cy="-88.75" rx="23" ry="23" />
+            <ellipse fill="white" stroke="black" cx="264.34" cy="-88.75" rx="23" ry="23" />
             <text text-anchor="middle" x="264.34" y="-85.05" font-family="Times,serif" font-size="14.00">q2</text>
         </g>
         <!-- q1&#45;&gt;q2 -->
@@ -70,8 +70,8 @@
         <!-- qF -->
         <g id="node5" class="node">
             <title>qF</title>
+            <ellipse fill="white" stroke="black" cx="368.84" cy="-155.75" rx="27" ry="27" />
             <ellipse fill="none" stroke="black" cx="368.84" cy="-155.75" rx="22.96" ry="22.96" />
-            <ellipse fill="none" stroke="black" cx="368.84" cy="-155.75" rx="27" ry="27" />
             <text text-anchor="middle" x="368.84" y="-152.05" font-family="Times,serif" font-size="14.00">qF</text>
         </g>
         <!-- q2&#45;&gt;qF -->
@@ -84,7 +84,7 @@
         <!-- qT -->
         <g id="node6" class="node">
             <title>qT</title>
-            <ellipse fill="none" stroke="black" cx="368.84" cy="-22.75" rx="23" ry="23" />
+            <ellipse fill="white" stroke="black" cx="368.84" cy="-22.75" rx="23" ry="23" />
             <text text-anchor="middle" x="368.84" y="-19.05" font-family="Times,serif" font-size="14.00">qT</text>
         </g>
         <!-- q2&#45;&gt;qT -->

@@ -40,3 +40,6 @@
 #pagebreak()
 
 #include "lezioni/esercizi07.typ"
+#pagebreak()
+
+#include "lezioni/lezione08.typ"

@@ -28,3 +28,21 @@
   )
   $nscop(#x)$
 }
+
+// Lezione 10
+
+#let gh(x) = {
+  let ghop = math.class(
+    "unary",
+    $"gh"$,
+  )
+  $ghop(#x)$
+}
+
+#let shuffle(l1, l2) = {
+  let shuffleop = math.class(
+    "unary",
+    $"shuffle"$,
+  )
+  $shuffleop(#l1, #l2)$
+}

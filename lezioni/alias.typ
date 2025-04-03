@@ -80,3 +80,13 @@
   )
   $perfectshuffleop(#l1, #l2)$
 }
+
+// Lezione 11
+
+#let sub(x) = {
+  let subop = math.class(
+    "unary",
+    $"sub"$,
+  )
+  $subop(#x)$
+}

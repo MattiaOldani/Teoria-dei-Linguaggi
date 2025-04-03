@@ -52,3 +52,6 @@
 #pagebreak()
 
 #include "lezioni/esercizi08_09_10.typ"
+#pagebreak()
+
+#include "lezioni/lezione11.typ"

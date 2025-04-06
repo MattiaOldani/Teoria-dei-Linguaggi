@@ -9,7 +9,7 @@
 
 // Appunti
 
-/* INIZIO LEZIONE 11 */
+/* INIZIO LEZIONE 13 */
 
 = Equivalenza tra linguaggi di tipo 3 e automi a stati finiti
 
@@ -41,4 +41,4 @@ Vediamo il *teorema fondamentale degli automi a stati finiti* (o _teorema di Kle
   Il linguaggio $L$ viene definito come $ L = union.big_(q_i in F) "cammini dallo stato" 1 "allo stato" q_i = union.big_(q_i in F) R_(1 i)^((n)). #qedhere $
 ]
 
-/* FINE LEZIONE 11 */
+/* FINE LEZIONE 13 */

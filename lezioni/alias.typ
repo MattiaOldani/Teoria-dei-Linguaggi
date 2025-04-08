@@ -90,3 +90,7 @@
   )
   $subop(#x)$
 }
+
+// Esercizi 11
+
+#let pal = $"PAL"$

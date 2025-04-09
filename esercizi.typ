@@ -1,47 +1,33 @@
-// Setup
+// Titolo e indice
 
-#import "template.typ": project
+#import "template.typ": *
 
-#show: project.with(title: "Esercizi di teoria dei linguaggi")
+#show: project.with(title: "Esercizi TdL")
 
-#let medium-blue = rgb("#4DA6FF")
-#let light-blue = rgb("#9FFFFF")
+#pagebreak()
 
-#let introduction(body) = block(
-  fill: medium-blue,
-  width: 100%,
-  inset: 8pt,
-  radius: 4pt,
-  body,
-)
 
-#let assignment(body) = block(
-  fill: light-blue,
-  width: 100%,
-  inset: 8pt,
-  radius: 4pt,
-  body,
-)
+// Lezioni
 
-// Esercizi
+#include "esercizi/esercizi01_02.typ"
+#pagebreak()
 
-= Lezione 03
+#include "esercizi/esercizi03_04_05.typ"
+#pagebreak()
 
-#assignment([Dimostrate che per il linguaggio $L$ tutte le stringhe di lunghezza $3$ sono distinguibili tra loro.])
+#include "esercizi/esercizi06.typ"
+#pagebreak()
 
-#align(center)[
-  #table(
-    columns: (10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%, 10%),
-    inset: 10pt,
-    align: horizon,
-    [], [*$a a a$*], [*$a a b$*], [*$a b a$*], [*$a b b$*], [*$b a a$*], [*$b a b$*], [*$b b a$*], [*$b b b$*],
-    [*$a a a$*], [-], [$a$], [$epsilon$], [$epsilon$], [$epsilon$], [$epsilon$], [$a$], [$a a$],
-    [*$a a b$*], [-], [-], [$epsilon$], [$epsilon$], [$epsilon$], [$epsilon$], [$b b$], [$b$],
-    [*$a b a$*], [-], [-], [-], [$b$], [$a$], [$a a$], [$epsilon$], [$epsilon$],
-    [*$a b b$*], [-], [-], [-], [-], [$a a$], [$b$], [$epsilon$], [$epsilon$],
-    [*$b a a$*], [-], [-], [-], [-], [-], [$a$], [$epsilon$], [$epsilon$],
-    [*$b a b$*], [-], [-], [-], [-], [-], [-], [$epsilon$], [$epsilon$],
-    [*$b b a$*], [-], [-], [-], [-], [-], [-], [-], [$a$],
-    [*$b b b$*], [-], [-], [-], [-], [-], [-], [-], [-],
-  )
-]
+#include "esercizi/esercizi07.typ"
+#pagebreak()
+
+#include "esercizi/esercizi08_09_10.typ"
+#pagebreak()
+
+#include "esercizi/esercizi11.typ"
+// #pagebreak()
+
+// #include "esercizi/esercizi12.typ"
+// #pagebreak()
+
+// #include "esercizi/lezione13.typ"

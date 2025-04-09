@@ -15,9 +15,6 @@
 #include "lezioni/lezione02.typ"
 #pagebreak()
 
-#include "lezioni/esercizi01_02.typ"
-#pagebreak()
-
 #include "lezioni/lezione03.typ"
 #pagebreak()
 
@@ -27,19 +24,10 @@
 #include "lezioni/lezione05.typ"
 #pagebreak()
 
-#include "lezioni/esercizi03_04_05.typ"
-#pagebreak()
-
 #include "lezioni/lezione06.typ"
 #pagebreak()
 
-#include "lezioni/esercizi06.typ"
-#pagebreak()
-
 #include "lezioni/lezione07.typ"
-#pagebreak()
-
-#include "lezioni/esercizi07.typ"
 #pagebreak()
 
 #include "lezioni/lezione08.typ"
@@ -51,19 +39,10 @@
 #include "lezioni/lezione10.typ"
 #pagebreak()
 
-#include "lezioni/esercizi08_09_10.typ"
-#pagebreak()
-
 #include "lezioni/lezione11.typ"
-#pagebreak()
-
-#include "lezioni/esercizi11.typ"
 #pagebreak()
 
 #include "lezioni/lezione12.typ"
 #pagebreak()
-
-// #include "lezioni/esercizi12.typ"
-// #pagebreak()
 
 #include "lezioni/lezione13.typ"

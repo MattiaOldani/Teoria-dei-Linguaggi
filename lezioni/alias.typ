@@ -47,40 +47,6 @@
   $shuffleop(#l1, #l2)$
 }
 
-// Esercizi 08, 09 e 10
-
-#let pref(l) = {
-  let prefop = math.class(
-    "unary",
-    $"Pref"$,
-  )
-  $prefop(#l)$
-}
-
-#let suff(l) = {
-  let suffop = math.class(
-    "unary",
-    $"Suff"$,
-  )
-  $suffop(#l)$
-}
-
-#let fact(l) = {
-  let factop = math.class(
-    "unary",
-    $"Fact"$,
-  )
-  $factop(#l)$
-}
-
-#let perfectShuffle(l1, l2) = {
-  let perfectshuffleop = math.class(
-    "unary",
-    $"perfectShuffle"$,
-  )
-  $perfectshuffleop(#l1, #l2)$
-}
-
 // Lezione 11
 
 #let sub(x) = {
@@ -90,10 +56,6 @@
   )
   $subop(#x)$
 }
-
-// Esercizi 11
-
-#let pal = $"PAL"$
 
 // Lezione 13
 

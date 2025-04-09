@@ -94,3 +94,8 @@
 // Esercizi 11
 
 #let pal = $"PAL"$
+
+// Lezione 13
+
+#let lmarker = $triangle.filled.r$
+#let rmarker = $triangle.filled.l$

@@ -1,0 +1,643 @@
+<svg class="typst-doc" viewBox="0 0 203.9212598425197 165.0708661417323" width="203.9212598425197pt"
+    height="165.0708661417323pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:h5="http://www.w3.org/1999/xhtml">
+    <path class="typst-shape" fill="none" fill-rule="nonzero"
+        d="M 0 0 L 0 165.07086 L 203.92126 165.07086 L 203.92126 0 Z " />
+    <g>
+        <g transform="translate(5.669291338582677 5.669291338582677)">
+            <g class="typst-group">
+                <g>
+                    <g transform="translate(0 0)">
+                        <g class="typst-group">
+                            <g>
+                                <g transform="translate(11.999999999999995 24)">
+                                    <path class="typst-shape" fill="none" stroke="#aaaaaa" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        stroke-dashoffset="0" stroke-dasharray="3 3"
+                                        d="M 0 0 C 0 0 0.0000000000000031470889 129.73228 0.0000000000000031470889 129.73228 " />
+                                </g>
+                                <g transform="translate(37.511811023622045 24)">
+                                    <path class="typst-shape" fill="none" stroke="#aaaaaa" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        stroke-dashoffset="0" stroke-dasharray="3 3"
+                                        d="M 0 0 C 0 0 0 129.73228 0 129.73228 " />
+                                </g>
+                                <g transform="translate(63.02362204724409 24)">
+                                    <path class="typst-shape" fill="none" stroke="#aaaaaa" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        stroke-dashoffset="0" stroke-dasharray="3 3"
+                                        d="M 0.0000000000000125883555 0 C 0.0000000000000125883555 0 0 129.73228 0 129.73228 " />
+                                </g>
+                                <g transform="translate(88.53543307086613 24)">
+                                    <path class="typst-shape" fill="none" stroke="#aaaaaa" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        stroke-dashoffset="0" stroke-dasharray="3 3"
+                                        d="M 0 0 C 0 0 0 129.73228 0 129.73228 " />
+                                </g>
+                                <g transform="translate(114.04724409448816 24)">
+                                    <path class="typst-shape" fill="none" stroke="#aaaaaa" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        stroke-dashoffset="0" stroke-dasharray="3 3"
+                                        d="M 0 0 C 0 0 0.000000000000025176711 129.73228 0.000000000000025176711 129.73228 " />
+                                </g>
+                                <g transform="translate(139.55905511811022 24)">
+                                    <path class="typst-shape" fill="none" stroke="#aaaaaa" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        stroke-dashoffset="0" stroke-dasharray="3 3"
+                                        d="M 0 0 C 0 0 0 129.73228 0 129.73228 " />
+                                </g>
+                                <g transform="translate(165.0708661417323 23.999999999999993)">
+                                    <path class="typst-shape" fill="none" stroke="#aaaaaa" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        stroke-dashoffset="0" stroke-dasharray="3 3"
+                                        d="M 0 0 C 0 0 0 129.73228 0 129.73228 " />
+                                </g>
+                                <g transform="translate(39.43388559860685 39.63629646937227)">
+                                    <path class="typst-shape" fill="none" stroke="#2ecc40" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 1.2440698 C 0 1.2440698 0.021667661 1.2500886 0.021667661 1.2500886 C 0.021667661 1.2500886 0.021667661 1.2500886 0.021667661 1.2500886 C 0.39787307 1.0603926 1.4537542 -0.41149214 2.2789001 0.111912616 C 2.2789001 0.111912616 2.2789001 0.111912616 2.2789001 0.111912616 C 3.1040463 0.6353174 3.7711926 4.0568085 4.972544 4.390517 C 4.972544 4.390517 4.972544 4.390517 4.972544 4.390517 C 6.1738954 4.724226 8.285658 1.7804563 9.487009 2.114165 C 9.487009 2.114165 9.487009 2.114165 9.487009 2.114165 C 10.68836 2.4478738 10.979301 6.0590606 12.180653 6.3927693 C 12.180653 6.3927693 12.180653 6.3927693 12.180653 6.3927693 C 13.382005 6.726478 15.493767 3.782709 16.695118 4.1164174 C 16.695118 4.1164174 16.695118 4.1164174 16.695118 4.1164174 C 17.89647 4.450126 18.563616 7.8716173 19.388762 8.395022 C 19.388762 8.395022 19.388762 8.395022 19.388762 8.395022 C 20.213907 8.9184265 21.269789 7.446542 21.645994 7.256846 C 21.645994 7.256846 21.645994 7.256846 21.645994 7.256846 C 21.645994 7.256846 21.667662 7.2628646 21.667662 7.2628646 " />
+                                </g>
+                                <g transform="translate(39.43388559860685 40.88036629707583)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 21.667662 6.018795 21.667662 6.018795 " />
+                                </g>
+                                <g transform="translate(11.999999999999996 47.70776467801769)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 49.045826 0 C 49.045826 0 0 6.81192 0 6.81192 " />
+                                </g>
+                                <g transform="translate(11.999999999999996 54.51968503937008)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 25.51181 7.086614 25.51181 7.086614 " />
+                                </g>
+                                <g transform="translate(11.999999999999996 61.60629921259842)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 25.51181 0 C 25.51181 0 0 7.086614 0 7.086614 " />
+                                </g>
+                                <g transform="translate(11.999999999999996 68.69291338582677)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 74.55029 6.902805 74.55029 6.902805 " />
+                                </g>
+                                <g transform="translate(64.35768008187313 48.556889144720984)">
+                                    <path class="typst-shape" fill="none" stroke="#2ecc40" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0.3584684 C 0 0.3584684 0.022843694 0.3838503 0.022843694 0.3838503 C 0.022843694 0.3838503 0.022843694 0.3838503 0.022843694 0.3838503 C 0.39186075 0.37013307 1.9726851 -0.4158126 2.236946 0.30154684 C 2.236946 0.30154684 2.236946 0.30154684 2.236946 0.30154684 C 2.5012069 1.0189062 0.97513133 3.9843647 1.6084093 4.688007 C 1.6084093 4.688007 1.6084093 4.688007 1.6084093 4.688007 C 2.2416873 5.3916492 5.403336 3.819758 6.036614 4.5234003 C 6.036614 4.5234003 6.036614 4.5234003 6.036614 4.5234003 C 6.669892 5.227042 4.7747993 8.206218 5.4080772 8.909861 C 5.4080772 8.909861 5.4080772 8.909861 5.4080772 8.909861 C 6.041355 9.6135025 9.203004 8.041611 9.836282 8.745254 C 9.836282 8.745254 9.836282 8.745254 9.836282 8.745254 C 10.46956 9.448895 8.574468 12.428071 9.207746 13.131714 C 9.207746 13.131714 9.207746 13.131714 9.207746 13.131714 C 9.841023 13.835356 13.002672 12.263464 13.63595 12.967107 C 13.63595 12.967107 13.63595 12.967107 13.63595 12.967107 C 14.269228 13.670749 12.374135 16.649925 13.007413 17.353567 C 13.007413 17.353567 13.007413 17.353567 13.007413 17.353567 C 13.640691 18.057209 16.80234 16.485317 17.435617 17.18896 C 17.435617 17.18896 17.435617 17.18896 17.435617 17.18896 C 18.068895 17.892603 16.173803 20.871778 16.807081 21.57542 C 16.807081 21.57542 16.807081 21.57542 16.807081 21.57542 C 17.44036 22.279062 20.602007 20.70717 21.235285 21.410812 C 21.235285 21.410812 21.235285 21.410812 21.235285 21.410812 C 21.868563 22.114456 20.342487 25.079914 20.606749 25.797274 C 20.606749 25.797274 20.606749 25.797274 20.606749 25.797274 C 20.87101 26.514633 22.451834 25.728687 22.82085 25.71497 C 22.82085 25.71497 22.82085 25.71497 22.82085 25.71497 C 22.82085 25.71497 22.843695 25.740353 22.843695 25.740353 " />
+                                </g>
+                                <g transform="translate(63.02362204724409 76.3134371632175)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 23.589737 0 C 23.589737 0 0 6.5527043 0 6.5527043 " />
+                                </g>
+                                <g transform="translate(63.02362204724409 82.86614173228347)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 25.51181 7.086614 25.51181 7.086614 " />
+                                </g>
+                                <g transform="translate(37.511811023622045 89.95275590551181)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 51.02362 0 C 51.02362 0 0 7.086614 0 7.086614 " />
+                                </g>
+                                <g transform="translate(37.511811023622045 97.03937007874016)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 74.55029 6.902805 74.55029 6.902805 " />
+                                </g>
+                                <g transform="translate(89.86949110549526 76.90334583763445)">
+                                    <path class="typst-shape" fill="none" stroke="#2ecc40" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0.3584684 C 0 0.3584684 0.022843694 0.3838503 0.022843694 0.3838503 C 0.022843694 0.3838503 0.022843694 0.3838503 0.022843694 0.3838503 C 0.39186075 0.37013307 1.9726851 -0.4158126 2.236946 0.30154684 C 2.236946 0.30154684 2.236946 0.30154684 2.236946 0.30154684 C 2.5012069 1.0189062 0.97513133 3.9843647 1.6084093 4.688007 C 1.6084093 4.688007 1.6084093 4.688007 1.6084093 4.688007 C 2.2416873 5.3916492 5.403336 3.819758 6.036614 4.5234003 C 6.036614 4.5234003 6.036614 4.5234003 6.036614 4.5234003 C 6.669892 5.227042 4.7747993 8.206218 5.4080772 8.909861 C 5.4080772 8.909861 5.4080772 8.909861 5.4080772 8.909861 C 6.041355 9.6135025 9.203004 8.041611 9.836282 8.745254 C 9.836282 8.745254 9.836282 8.745254 9.836282 8.745254 C 10.46956 9.448895 8.574468 12.428071 9.207746 13.131714 C 9.207746 13.131714 9.207746 13.131714 9.207746 13.131714 C 9.841023 13.835356 13.002672 12.263464 13.63595 12.967107 C 13.63595 12.967107 13.63595 12.967107 13.63595 12.967107 C 14.269228 13.670749 12.374135 16.649925 13.007413 17.353567 C 13.007413 17.353567 13.007413 17.353567 13.007413 17.353567 C 13.640691 18.057209 16.80234 16.485317 17.435617 17.18896 C 17.435617 17.18896 17.435617 17.18896 17.435617 17.18896 C 18.068895 17.892603 16.173803 20.871778 16.807081 21.57542 C 16.807081 21.57542 16.807081 21.57542 16.807081 21.57542 C 17.44036 22.279062 20.602007 20.70717 21.235285 21.410812 C 21.235285 21.410812 21.235285 21.410812 21.235285 21.410812 C 21.868563 22.114456 20.342487 25.079914 20.606749 25.797274 C 20.606749 25.797274 20.606749 25.797274 20.606749 25.797274 C 20.87101 26.514633 22.451834 25.728687 22.82085 25.71497 C 22.82085 25.71497 22.82085 25.71497 22.82085 25.71497 C 22.82085 25.71497 22.843695 25.740353 22.843695 25.740353 " />
+                                </g>
+                                <g transform="translate(11.999999999999996 104.26409784561056)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 100.05841 0 C 100.05841 0 0 6.9485006 0 6.9485006 " />
+                                </g>
+                                <g transform="translate(11.999999999999996 111.21259842519684)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 76.53543 7.086614 76.53543 7.086614 " />
+                                </g>
+                                <g transform="translate(37.511811023622045 118.29921259842521)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 51.02362 0 C 51.02362 0 0 7.086614 0 7.086614 " />
+                                </g>
+                                <g transform="translate(37.511811023622045 125.38582677165356)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 100.05841 6.9485006 100.05841 6.9485006 " />
+                                </g>
+                                <g transform="translate(115.38130212911534 105.24980253054574)">
+                                    <path class="typst-shape" fill="none" stroke="#2ecc40" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0.3584684 C 0 0.3584684 0.022843694 0.3838503 0.022843694 0.3838503 C 0.022843694 0.3838503 0.022843694 0.3838503 0.022843694 0.3838503 C 0.39186075 0.37013307 1.9726851 -0.4158126 2.236946 0.30154684 C 2.236946 0.30154684 2.236946 0.30154684 2.236946 0.30154684 C 2.5012069 1.0189062 0.97513133 3.9843647 1.6084093 4.688007 C 1.6084093 4.688007 1.6084093 4.688007 1.6084093 4.688007 C 2.2416873 5.3916492 5.403336 3.819758 6.036614 4.5234003 C 6.036614 4.5234003 6.036614 4.5234003 6.036614 4.5234003 C 6.669892 5.227042 4.7747993 8.206218 5.4080772 8.909861 C 5.4080772 8.909861 5.4080772 8.909861 5.4080772 8.909861 C 6.041355 9.6135025 9.203004 8.041611 9.836282 8.745254 C 9.836282 8.745254 9.836282 8.745254 9.836282 8.745254 C 10.46956 9.448895 8.574468 12.428071 9.207746 13.131714 C 9.207746 13.131714 9.207746 13.131714 9.207746 13.131714 C 9.841023 13.835356 13.002672 12.263464 13.63595 12.967107 C 13.63595 12.967107 13.63595 12.967107 13.63595 12.967107 C 14.269228 13.670749 12.374135 16.649925 13.007413 17.353567 C 13.007413 17.353567 13.007413 17.353567 13.007413 17.353567 C 13.640691 18.057209 16.80234 16.485317 17.435617 17.18896 C 17.435617 17.18896 17.435617 17.18896 17.435617 17.18896 C 18.068895 17.892603 16.173803 20.871778 16.807081 21.57542 C 16.807081 21.57542 16.807081 21.57542 16.807081 21.57542 C 17.44036 22.279062 20.602007 20.70717 21.235285 21.410812 C 21.235285 21.410812 21.235285 21.410812 21.235285 21.410812 C 21.868563 22.114456 20.342487 25.079914 20.606749 25.797274 C 20.606749 25.797274 20.606749 25.797274 20.606749 25.797274 C 20.87101 26.514633 22.451834 25.728687 22.82085 25.71497 C 22.82085 25.71497 22.82085 25.71497 22.82085 25.71497 C 22.82085 25.71497 22.843695 25.740353 22.843695 25.740353 " />
+                                </g>
+                                <g transform="translate(88.53543307086613 132.7471347567575)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 49.045826 0 C 49.045826 0 0 6.81192 0 6.81192 " />
+                                </g>
+                                <g transform="translate(88.53543307086613 139.55905511811022)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 74.55029 6.902805 74.55029 6.902805 " />
+                                </g>
+                                <g transform="translate(141.3040886365561 132.5524996133957)">
+                                    <path class="typst-shape" fill="none" stroke="#2ecc40" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0.8894044 C 0 0.8894044 0.022021744 0.9016387 0.022021744 0.9016387 C 0.022021744 0.9016387 0.022021744 0.9016387 0.022021744 0.9016387 C 0.38861868 0.78103185 1.6724628 -0.4513523 2.2216034 0.17799762 C 2.2216034 0.17799762 2.2216034 0.17799762 2.2216034 0.17799762 C 2.770744 0.80734754 2.4011276 4.168995 3.3168652 4.677738 C 3.3168652 4.677738 3.3168652 4.677738 3.3168652 4.677738 C 4.2326026 5.1864815 6.800291 2.721713 7.7160287 3.230456 C 7.7160287 3.230456 7.7160287 3.230456 7.7160287 3.230456 C 8.631766 3.7391992 7.8955526 7.2214537 8.811291 7.7301965 C 8.811291 7.7301965 8.811291 7.7301965 8.811291 7.7301965 C 9.727028 8.238939 12.294716 5.7741714 13.210454 6.2829146 C 13.210454 6.2829146 13.210454 6.2829146 13.210454 6.2829146 C 14.126191 6.7916574 13.389978 10.273911 14.305716 10.782655 C 14.305716 10.782655 14.305716 10.782655 14.305716 10.782655 C 15.221453 11.291398 17.78914 8.82663 18.704878 9.335373 C 18.704878 9.335373 18.704878 9.335373 18.704878 9.335373 C 19.620617 9.844116 19.251 13.205764 19.80014 13.835114 C 19.80014 13.835114 19.80014 13.835114 19.80014 13.835114 C 20.349281 14.464463 21.633125 13.2320795 21.999722 13.111472 C 21.999722 13.111472 21.999722 13.111472 21.999722 13.111472 C 21.999722 13.111472 22.021744 13.123707 22.021744 13.123707 " />
+                                </g>
+                                <g transform="translate(167.0708661417358 144.91314089125575)">
+                                    <path class="typst-shape" fill="none" stroke="#2ecc40" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 1.7325284 C 0 1.7325284 0.021511812 1.7325284 0.021511812 1.7325284 C 0.021511812 1.7325284 0.021511812 1.7325284 0.021511812 1.7325284 C 0.31968942 1.4490638 0.9160446 -0.25172356 1.8105774 0.031740997 C 1.8105774 0.031740997 1.8105774 0.031740997 1.8105774 0.031740997 C 2.7051103 0.31520557 4.195998 3.4333158 5.3887086 3.4333158 C 5.3887086 3.4333158 5.3887086 3.4333158 5.3887086 3.4333158 C 6.581419 3.4333158 7.7741294 0.031740997 8.96684 0.031740997 C 8.96684 0.031740997 8.96684 0.031740997 8.96684 0.031740997 C 10.159551 0.031740997 11.352261 3.4333158 12.544971 3.4333158 C 12.544971 3.4333158 12.544971 3.4333158 12.544971 3.4333158 C 13.737681 3.4333158 14.930392 0.031740997 16.123102 0.031740997 C 16.123102 0.031740997 16.123102 0.031740997 16.123102 0.031740997 C 17.315813 0.031740997 18.806702 3.1498513 19.701233 3.4333158 C 19.701233 3.4333158 19.701233 3.4333158 19.701233 3.4333158 C 20.595766 3.7167804 21.192122 2.0159929 21.4903 1.7325284 C 21.4903 1.7325284 21.4903 1.7325284 21.4903 1.7325284 C 21.4903 1.7325284 21.51181 1.7325284 21.51181 1.7325284 " />
+                                </g>
+                                <g transform="translate(167.0708661417358 146.64566929133858)">
+                                    <path class="typst-shape" fill="none" stroke="#000000" stroke-width="0.528"
+                                        stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 21.51181 0 21.51181 0 " />
+                                </g>
+                                <g transform="translate(0 0)">
+                                    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 0 24 0 24 C 0 24 24 24 24 24 C 24 24 24 0 24 0 C 24 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(5.999999999949999 6)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 12 0 12 0 C 12 0 12 12 12 12 C 12 12 0 12 0 12 C 0 12 0 12 0 12 C 0 12 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(5.999999905511808 5.999999905511811)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 0)">
+                                                            <g class="typst-group">
+                                                                <g>
+                                                                    <g
+                                                                        transform="translate(1.28100000005 9.756499999999999)">
+                                                                        <g class="typst-text" transform="scale(1, -1)">
+                                                                            <use xlink:href="#g1475520FDC9CF333997681DB11FA2A3B"
+                                                                                x="0" fill="#000000"
+                                                                                fill-rule="nonzero" />
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(25.511811023622045 0)">
+                                    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 0 24 0 24 C 0 24 24 24 24 24 C 24 24 24 0 24 0 C 24 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(31.511811023572044 6)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 12 0 12 0 C 12 0 12 12 12 12 C 12 12 0 12 0 12 C 0 12 0 12 0 12 C 0 12 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(31.51181092913386 5.999999905511811)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 0)">
+                                                            <g class="typst-group">
+                                                                <g>
+                                                                    <g
+                                                                        transform="translate(4.10250000005 9.756499999999999)">
+                                                                        <g class="typst-text" transform="scale(1, -1)">
+                                                                            <use xlink:href="#gFB7E35327F891062FA334282ADEA5775"
+                                                                                x="0" fill="#000000"
+                                                                                fill-rule="nonzero" />
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(51.02362204724409 0)">
+                                    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 0 24 0 24 C 0 24 24 24 24 24 C 24 24 24 0 24 0 C 24 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(57.023622047194095 6)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 12 0 12 0 C 12 0 12 12 12 12 C 12 12 0 12 0 12 C 0 12 0 12 0 12 C 0 12 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(57.0236219527559 5.999999905511811)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 0)">
+                                                            <g class="typst-group">
+                                                                <g>
+                                                                    <g
+                                                                        transform="translate(2.70000000005 9.756499999999999)">
+                                                                        <g class="typst-text" transform="scale(1, -1)">
+                                                                            <use xlink:href="#g353B16739F5A297C3C56838A314DB62"
+                                                                                x="0" fill="#000000"
+                                                                                fill-rule="nonzero" />
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(76.53543307086615 0)">
+                                    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 0 24 0 24 C 0 24 24 24 24 24 C 24 24 24 0 24 0 C 24 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(82.53543307081614 6)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 12 0 12 0 C 12 0 12 12 12 12 C 12 12 0 12 0 12 C 0 12 0 12 0 12 C 0 12 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(82.53543297637793 5.999999905511811)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 0)">
+                                                            <g class="typst-group">
+                                                                <g>
+                                                                    <g
+                                                                        transform="translate(3.1510000000499994 9.756499999999999)">
+                                                                        <g class="typst-text" transform="scale(1, -1)">
+                                                                            <use xlink:href="#g33C5BA8EE1755AE983DFEDB3531AC"
+                                                                                x="0" fill="#000000"
+                                                                                fill-rule="nonzero" />
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(102.04724409448819 0)">
+                                    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 0 24 0 24 C 0 24 24 24 24 24 C 24 24 24 0 24 0 C 24 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(108.0472440944382 6)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 12 0 12 0 C 12 0 12 12 12 12 C 12 12 0 12 0 12 C 0 12 0 12 0 12 C 0 12 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(108.04724399999999 5.999999905511811)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 0)">
+                                                            <g class="typst-group">
+                                                                <g>
+                                                                    <g
+                                                                        transform="translate(2.85400000005 9.756499999999999)">
+                                                                        <g class="typst-text" transform="scale(1, -1)">
+                                                                            <use xlink:href="#gEC45ADDD356C6F62DB6D656BB254A159"
+                                                                                x="0" fill="#000000"
+                                                                                fill-rule="nonzero" />
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(127.55905511811024 0)">
+                                    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 0 24 0 24 C 0 24 24 24 24 24 C 24 24 24 0 24 0 C 24 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(133.55905511806026 6)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 12 0 12 0 C 12 0 12 12 12 12 C 12 12 0 12 0 12 C 0 12 0 12 0 12 C 0 12 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(133.55905502362205 5.999999905511811)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 0)">
+                                                            <g class="typst-group">
+                                                                <g>
+                                                                    <g
+                                                                        transform="translate(4.01450000005 9.756499999999999)">
+                                                                        <g class="typst-text" transform="scale(1, -1)">
+                                                                            <use xlink:href="#gFC4E0E1C750B99C3615CE05EE7715FD6"
+                                                                                x="0" fill="#000000"
+                                                                                fill-rule="nonzero" />
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(153.07086614173227 0)">
+                                    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 0 0 C 0 0 0 24 0 24 C 0 24 24 24 24 24 C 24 24 24 0 24 0 C 24 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(159.07086614168227 6)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 12 0 12 0 C 12 0 12 12 12 12 C 12 12 0 12 0 12 C 0 12 0 12 0 12 C 0 12 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(159.0708660472441 5.999999905511811)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 0)">
+                                                            <g class="typst-group">
+                                                                <g>
+                                                                    <g
+                                                                        transform="translate(1.28100000005 9.756499999999999)">
+                                                                        <g class="typst-text" transform="scale(1, -1)">
+                                                                            <use xlink:href="#g2DEEB2978817D82B02FD683697D7A383"
+                                                                                x="0" fill="#000000"
+                                                                                fill-rule="nonzero" />
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(35.511811023622045 38.346456692913385)">
+                                    <path class="typst-shape" fill="#2ecc40" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 2 0 C 0.896432 0 0 0.896432 0 2 C 0 2 0 2 0 2 C 0 3.103568 0.896432 4 2 4 C 2 4 2 4 2 4 C 3.103568 4 4 3.103568 4 2 C 4 2 4 2 4 2 C 4 0.896432 3.103568 0 2 0 C 2 0 2 0 2 0 Z " />
+                                </g>
+                                <g transform="translate(37.511811023622045 40.346456692913385)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(37.511811023622045 40.346456692913385)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 8)">
+                                                            <g class="typst-group">
+                                                                <g />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(61.023622047244096 45.43307086614173)">
+                                    <path class="typst-shape" fill="#2ecc40" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 2 0 C 0.896432 0 0 0.896432 0 2 C 0 2 0 2 0 2 C 0 3.103568 0.896432 4 2 4 C 2 4 2 4 2 4 C 3.103568 4 4 3.103568 4 2 C 4 2 4 2 4 2 C 4 0.896432 3.103568 0 2 0 C 2 0 2 0 2 0 Z " />
+                                </g>
+                                <g transform="translate(63.02362204724409 47.43307086614173)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(63.02362204724409 47.43307086614173)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 8)">
+                                                            <g class="typst-group">
+                                                                <g />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(86.53543307086616 73.77952755905511)">
+                                    <path class="typst-shape" fill="#2ecc40" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 2 0 C 0.896432 0 0 0.896432 0 2 C 0 2 0 2 0 2 C 0 3.103568 0.896432 4 2 4 C 2 4 2 4 2 4 C 3.103568 4 4 3.103568 4 2 C 4 2 4 2 4 2 C 4 0.896432 3.103568 0 2 0 C 2 0 2 0 2 0 Z " />
+                                </g>
+                                <g transform="translate(88.53543307086613 75.77952755905511)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(88.53543307086613 75.77952755905511)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 8)">
+                                                            <g class="typst-group">
+                                                                <g />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(112.04724409448819 102.1259842519685)">
+                                    <path class="typst-shape" fill="#2ecc40" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 2 0 C 0.896432 0 0 0.896432 0 2 C 0 2 0 2 0 2 C 0 3.103568 0.896432 4 2 4 C 2 4 2 4 2 4 C 3.103568 4 4 3.103568 4 2 C 4 2 4 2 4 2 C 4 0.896432 3.103568 0 2 0 C 2 0 2 0 2 0 Z " />
+                                </g>
+                                <g transform="translate(114.04724409448819 104.1259842519685)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(114.04724409448819 104.1259842519685)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 8)">
+                                                            <g class="typst-group">
+                                                                <g />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(137.55905511811022 130.4724409448819)">
+                                    <path class="typst-shape" fill="#2ecc40" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 2 0 C 0.896432 0 0 0.896432 0 2 C 0 2 0 2 0 2 C 0 3.103568 0.896432 4 2 4 C 2 4 2 4 2 4 C 3.103568 4 4 3.103568 4 2 C 4 2 4 2 4 2 C 4 0.896432 3.103568 0 2 0 C 2 0 2 0 2 0 Z " />
+                                </g>
+                                <g transform="translate(139.55905511811022 132.4724409448819)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(139.55905511811022 132.4724409448819)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 8)">
+                                                            <g class="typst-group">
+                                                                <g />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(163.0708661417323 144.64566929133858)">
+                                    <path class="typst-shape" fill="#2ecc40" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 2 0 C 0.896432 0 0 0.896432 0 2 C 0 2 0 2 0 2 C 0 3.103568 0.896432 4 2 4 C 2 4 2 4 2 4 C 3.103568 4 4 3.103568 4 2 C 4 2 4 2 4 2 C 4 0.896432 3.103568 0 2 0 C 2 0 2 0 2 0 Z " />
+                                </g>
+                                <g transform="translate(165.0708661417323 146.64566929133858)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(165.0708661417323 146.64566929133858)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 8)">
+                                                            <g class="typst-group">
+                                                                <g />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                                <g transform="translate(188.58267716535434 144.64566929133858)">
+                                    <path class="typst-shape" fill="#2ecc40" fill-rule="nonzero" stroke="#000000"
+                                        stroke-width="1.1" stroke-linecap="butt" stroke-linejoin="miter"
+                                        stroke-miterlimit="4"
+                                        d="M 2 0 C 0.896432 0 0 0.896432 0 2 C 0 2 0 2 0 2 C 0 3.103568 0.896432 4 2 4 C 2 4 2 4 2 4 C 3.103568 4 4 3.103568 4 2 C 4 2 4 2 4 2 C 4 0.896432 3.103568 0 2 0 C 2 0 2 0 2 0 Z " />
+                                </g>
+                                <g transform="translate(190.58267716535434 146.64566929133858)">
+                                    <path class="typst-shape" fill="none"
+                                        d="M 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 C 0 0 0 0 0 0 Z " />
+                                </g>
+                                <g transform="translate(190.58267716535434 146.64566929133858)">
+                                    <g class="typst-group">
+                                        <g>
+                                            <g transform="translate(0 0)">
+                                                <g class="typst-group">
+                                                    <g>
+                                                        <g transform="translate(0 8)">
+                                                            <g class="typst-group">
+                                                                <g />
+                                                            </g>
+                                                        </g>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+    <defs id="glyph">
+        <symbol id="g1475520FDC9CF333997681DB11FA2A3B" overflow="visible">
+            <path
+                d="M 8.69 2.53 C 8.778 2.585 8.822 2.651 8.822 2.75 C 8.822 2.849 8.778 2.915 8.69 2.97 L 1.012 7.414 C 0.979 7.447 0.935 7.458 0.88 7.458 C 0.704 7.458 0.616 7.37 0.616 7.194 L 0.616 -1.694 C 0.616 -1.87 0.704 -1.958 0.88 -1.958 C 0.924 -1.958 0.968 -1.947 1.012 -1.914 Z " />
+        </symbol>
+        <symbol id="gFB7E35327F891062FA334282ADEA5775" overflow="visible">
+            <path
+                d="M 3.124 6.831 C 3.124 7.128 2.981 7.271 2.684 7.271 C 2.376 7.271 2.068 6.963 2.068 6.6549997 C 2.068 6.358 2.222 6.215 2.519 6.215 C 2.827 6.215 3.124 6.523 3.124 6.831 Z M 2.849 1.518 C 2.6069999 0.649 2.2549999 0.20899999 1.804 0.20899999 C 1.661 0.20899999 1.584 0.308 1.584 0.517 C 1.584 0.704 1.903 1.65 2.552 3.366 C 2.6399999 3.619 2.684 3.817 2.684 3.96 C 2.684 4.499 2.31 4.895 1.771 4.895 C 1.298 4.895 0.924 4.62 0.649 4.059 C 0.429 3.608 0.319 3.3109999 0.319 3.168 C 0.319 3.069 0.374 3.025 0.495 3.025 C 0.638 3.025 0.65999997 3.091 0.704 3.245 C 0.957 4.125 1.298 4.565 1.738 4.565 C 1.881 4.565 1.958 4.466 1.958 4.257 C 1.958 4.103 1.925 3.927 1.848 3.718 C 1.595 3.025 1.331 2.288 1.111 1.705 C 0.946 1.265 0.858 0.968 0.858 0.814 C 0.858 0.275 1.254 -0.121 1.782 -0.121 C 2.2549999 -0.121 2.629 0.154 2.904 0.704 C 3.113 1.133 3.223 1.43 3.223 1.595 C 3.223 1.694 3.168 1.749 3.047 1.749 C 3.014 1.749 2.849 1.65 2.849 1.518 Z " />
+        </symbol>
+        <symbol id="g353B16739F5A297C3C56838A314DB62" overflow="visible">
+            <path
+                d="M 5.907 1.507 C 5.654 0.638 5.291 0.198 4.84 0.198 C 4.697 0.198 4.62 0.308 4.62 0.517 C 4.62 0.671 4.686 0.924 4.818 1.265 C 5.258 2.464 5.478 3.256 5.478 3.6629999 C 5.478 4.433 4.961 4.862 4.191 4.862 C 3.542 4.862 2.981 4.576 2.53 3.993 C 2.442 4.4769998 2.057 4.862 1.496 4.862 C 0.88 4.862 0.638 4.29 0.484 3.795 C 0.374 3.443 0.319 3.234 0.319 3.157 C 0.319 3.058 0.374 3.003 0.495 3.003 C 0.55 3.003 0.583 3.014 0.616 3.036 C 0.671 3.135 0.704 3.212 0.715 3.289 C 0.913 4.125 1.166 4.5429997 1.4629999 4.5429997 C 1.661 4.5429997 1.76 4.389 1.76 4.081 C 1.76 3.938 1.705 3.641 1.584 3.19 L 0.957 0.693 C 0.924 0.55 0.858 0.264 0.858 0.20899999 C 0.858 -0.011 0.979 -0.121 1.221 -0.121 C 1.43 -0.121 1.584 -0.011 1.661 0.20899999 C 1.683 0.264 1.749 0.539 1.87 1.012 L 2.101 1.9909999 L 2.431 3.245 C 2.552 3.498 2.739 3.751 2.97 4.015 C 3.289 4.367 3.685 4.5429997 4.158 4.5429997 C 4.521 4.5429997 4.697 4.301 4.697 3.828 C 4.697 3.41 4.466 2.574 3.993 1.3199999 C 3.916 1.122 3.883 0.957 3.883 0.814 C 3.883 0.275 4.29 -0.121 4.818 -0.121 C 5.302 -0.121 5.687 0.154 5.962 0.704 C 6.171 1.144 6.281 1.441 6.281 1.584 C 6.281 1.683 6.226 1.738 6.105 1.738 C 6.072 1.738 5.907 1.6389999 5.907 1.507 Z " />
+        </symbol>
+        <symbol id="g33C5BA8EE1755AE983DFEDB3531AC" overflow="visible">
+            <path
+                d="M 3.905 4.862 C 3.421 4.862 2.9589999 4.609 2.508 4.103 C 2.387 4.609 2.046 4.862 1.507 4.862 C 1.056 4.862 0.726 4.499 0.495 3.784 C 0.385 3.421 0.32999998 3.212 0.32999998 3.146 C 0.32999998 3.047 0.385 2.992 0.506 2.992 C 0.561 2.992 0.594 3.003 0.627 3.025 C 0.682 3.124 0.715 3.201 0.726 3.2779999 C 0.924 4.114 1.177 4.532 1.474 4.532 C 1.6719999 4.532 1.771 4.378 1.771 4.081 C 1.771 3.916 1.749 3.729 1.694 3.531 L 0.484 -1.298 C 0.385 -1.661 0.374 -1.705 -0.055 -1.705 C -0.253 -1.705 -0.352 -1.793 -0.352 -1.958 C -0.352 -2.079 -0.286 -2.134 -0.16499999 -2.134 C 0 -2.134 0.572 -2.101 0.737 -2.101 C 0.946 -2.101 1.606 -2.134 1.8149999 -2.134 C 1.98 -2.134 2.057 -2.046 2.057 -1.87 C 2.057 -1.76 1.958 -1.705 1.749 -1.705 C 1.551 -1.705 1.254 -1.716 1.254 -1.584 C 1.254 -1.441 1.705 0.286 1.749 0.473 C 1.969 0.066 2.299 -0.143 2.739 -0.143 C 3.454 -0.143 4.081 0.22 4.631 0.957 C 5.137 1.628 5.39 2.343 5.39 3.08 C 5.39 4.037 4.818 4.862 3.905 4.862 Z M 3.872 4.532 C 4.301 4.532 4.521 4.202 4.521 3.553 C 4.521 3.256 4.455 2.86 4.334 2.365 C 4.081 1.408 3.762 0.781 3.377 0.462 C 3.146 0.275 2.937 0.176 2.728 0.176 C 2.409 0.176 2.189 0.319 2.068 0.616 C 1.969 0.847 1.914 1.012 1.914 1.1 L 2.475 3.399 C 2.53 3.641 2.728 3.894 3.036 4.147 C 3.3439999 4.4 3.619 4.532 3.872 4.532 Z " />
+        </symbol>
+        <symbol id="gEC45ADDD356C6F62DB6D656BB254A159" overflow="visible">
+            <path
+                d="M 5.973 1.584 C 5.973 1.683 5.9179997 1.738 5.797 1.738 C 5.698 1.738 5.643 1.661 5.61 1.507 C 5.555 1.298 5.5 1.089 5.423 0.88 C 5.2799997 0.429 5.082 0.198 4.84 0.198 C 4.642 0.198 4.5429997 0.352 4.5429997 0.65999997 C 4.5429997 0.847 4.62 1.221 4.763 1.771 L 5.06 2.937 C 5.159 3.333 5.2469997 3.608 5.313 3.949 L 5.379 4.246 C 5.401 4.323 5.412 4.378 5.412 4.411 C 5.412 4.631 5.291 4.741 5.049 4.741 C 4.807 4.741 4.653 4.609 4.587 4.334 L 3.773 1.078 C 3.762 1.045 3.718 0.968 3.6299999 0.83599997 C 3.454 0.55 3.025 0.198 2.585 0.198 C 2.167 0.198 1.958 0.484 1.958 1.045 C 1.958 1.496 2.156 2.222 2.541 3.234 C 2.662 3.564 2.728 3.795 2.728 3.927 C 2.728 4.4769998 2.343 4.862 1.793 4.862 C 1.298 4.862 0.913 4.587 0.638 4.037 C 0.429 3.608 0.319 3.3109999 0.319 3.157 C 0.319 3.058 0.374 3.003 0.495 3.003 C 0.638 3.003 0.65999997 3.069 0.704 3.223 C 0.957 4.103 1.309 4.5429997 1.76 4.5429997 C 1.914 4.5429997 1.9909999 4.433 1.9909999 4.224 C 1.9909999 4.059 1.925 3.828 1.804 3.509 C 1.386 2.398 1.177 1.628 1.177 1.221 C 1.177 0.374 1.705 -0.121 2.552 -0.121 C 3.025 -0.121 3.454 0.099 3.817 0.55 C 3.971 0.099 4.301 -0.121 4.807 -0.121 C 5.566 -0.121 5.797 0.77 5.973 1.584 Z " />
+        </symbol>
+        <symbol id="gFC4E0E1C750B99C3615CE05EE7715FD6" overflow="visible">
+            <path
+                d="M 3.6299999 4.609 C 3.6299999 4.708 3.52 4.763 3.289 4.763 L 2.398 4.763 C 2.684 5.907 2.827 6.501 2.827 6.545 C 2.827 6.776 2.706 6.886 2.475 6.886 C 2.222 6.886 2.068 6.743 2.002 6.457 L 1.595 4.763 L 0.616 4.763 C 0.374 4.763 0.253 4.752 0.253 4.521 C 0.253 4.4 0.363 4.345 0.594 4.345 L 1.485 4.345 C 0.946 2.2 0.682 1.067 0.682 0.924 C 0.682 0.308 1.1 -0.121 1.716 -0.121 C 2.134 -0.121 2.497 0.066 2.816 0.451 C 3.08 0.77 3.267 1.078 3.388 1.375 C 3.432 1.496 3.454 1.562 3.454 1.595 C 3.454 1.694 3.399 1.749 3.289 1.749 C 3.201 1.749 3.135 1.694 3.091 1.573 C 2.717 0.65999997 2.266 0.20899999 1.727 0.20899999 C 1.54 0.20899999 1.441 0.363 1.441 0.65999997 C 1.441 0.825 1.4629999 1.001 1.507 1.177 L 2.288 4.345 L 3.267 4.345 C 3.553 4.345 3.6299999 4.367 3.6299999 4.609 Z " />
+        </symbol>
+        <symbol id="g2DEEB2978817D82B02FD683697D7A383" overflow="visible">
+            <path
+                d="M 8.558 -1.958 C 8.734 -1.958 8.822 -1.87 8.822 -1.694 L 8.822 7.194 C 8.822 7.37 8.734 7.458 8.558 7.458 C 8.503 7.458 8.459 7.447 8.426 7.414 L 0.748 2.97 C 0.65999997 2.915 0.616 2.849 0.616 2.75 C 0.616 2.651 0.65999997 2.585 0.748 2.53 L 8.426 -1.914 C 8.459 -1.947 8.503 -1.958 8.558 -1.958 Z " />
+        </symbol>
+    </defs>
+</svg>

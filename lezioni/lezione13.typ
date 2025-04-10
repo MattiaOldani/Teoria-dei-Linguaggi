@@ -64,9 +64,10 @@ Tra tutte queste varianti, fissiamoci sugli *automi two-way*, ovvero quelli che 
 
   Per fare ciò, ci serve sapere dove finisce il nastro: vedremo come fare tra poco.
 
-  Il numero di stati nel two-way è circa di $2n$:
+  Il numero di stati nel two-way è $3n$:
   - $n$ stati di $A$ che usiamo per leggere $x$;
-  - $n$ stati che tengono traccia dello stato nel quale siamo arrivati con $x$ e che ci permettono di ritornare all'inizio della stringa.
+  - $n$ stati che tengono traccia dello stato nel quale siamo arrivati con $x$ e che ci permettono di ritornare all'inizio della stringa;
+  - $n$ stati che fanno ripartire la computazione dallo stato nel quale siamo arrivati con $x$ e controllano se finiamo in uno stato finale.
 ]
 
 Abbiamo sollevato poco fa il problema: come facciamo a capire dove finisce il nastro? Andiamo a inserire dei *marcatori*, uno a sinistra e uno a destra, che delimitano la stringa. Se per caso arriviamo su un marcatore non possiamo andare oltre: possiamo solo rientrare sul nastro. In realtà, vedremo che in un particolare caso usciremo dai bordi.

@@ -61,3 +61,15 @@
 
 #let lmarker = $triangle.filled.r$
 #let rmarker = $triangle.filled.l$
+
+// Lezione 14
+
+#let NL = $"NL"$
+
+#let PF(x) = {
+  let pfop = math.class(
+    "unary",
+    $"PF"$,
+  )
+  $pfop(#x)$
+}

@@ -25,9 +25,12 @@
 #pagebreak()
 
 #include "esercizi/esercizi11.typ"
+#pagebreak()
+
+#include "esercizi/esercizi12.typ"
 // #pagebreak()
 
-// #include "esercizi/esercizi12.typ"
+// #include "esercizi/esercizi13.typ"
 // #pagebreak()
 
-// #include "esercizi/lezione13.typ"
+// #include "esercizi/esercizi14.typ"

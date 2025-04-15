@@ -60,3 +60,21 @@
 // Esercizi 11
 
 #let pal = $"PAL"$
+
+// Esercizi 12
+
+#let cycle(l) = {
+  let cycleop = math.class(
+    "unary",
+    $"cycle"$,
+  )
+  $cycleop(#l)$
+}
+
+#let lroot(l) = {
+  let lrootop = math.class(
+    "unary",
+    $"root"$,
+  )
+  $lrootop(#l)$
+}

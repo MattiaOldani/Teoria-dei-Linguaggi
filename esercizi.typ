@@ -28,9 +28,9 @@
 #pagebreak()
 
 #include "esercizi/esercizi12.typ"
-// #pagebreak()
+#pagebreak()
 
-// #include "esercizi/esercizi13.typ"
+#include "esercizi/esercizi13.typ"
 // #pagebreak()
 
 // #include "esercizi/esercizi14.typ"

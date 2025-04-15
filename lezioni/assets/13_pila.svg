@@ -1,7 +1,7 @@
 <svg class="typst-doc" viewBox="0 0 162.8976377952756 180.42880093572063" width="162.8976377952756pt"
     height="180.42880093572063pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
     xmlns:h5="http://www.w3.org/1999/xhtml">
-    <path class="typst-shape" fill="#ffffff" fill-rule="nonzero"
+    <path class="typst-shape" fill="none" fill-rule="nonzero"
         d="M 0 0 L 0 180.4288 L 162.89764 180.4288 L 162.89764 0 Z " />
     <g>
         <g transform="translate(5.669291338582677 5.669291338582677)">
@@ -30,28 +30,28 @@
                                         d="M 0 16.346457 C 0 16.346457 0 0 0 0 " />
                                 </g>
                                 <g transform="translate(12.264 2.602029282177321)">
-                                    <path class="typst-shape" fill="none" stroke="#ffee80" stroke-width="0.528"
+                                    <path class="typst-shape" fill="none" stroke="#ffdc00" stroke-width="0.528"
                                         stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
                                         stroke-dashoffset="0" stroke-dasharray="3 3"
                                         d="M 0 0 C 0 0 101.51924 0 101.51924 0 " />
                                 </g>
                                 <g transform="translate(12.263999622047246 2.602029282177321)">
-                                    <path class="typst-shape" fill="none" stroke="#ffee80" stroke-width="0.528"
+                                    <path class="typst-shape" fill="none" stroke="#ffdc00" stroke-width="0.528"
                                         stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
                                         d="M 0 0 C 1.0645385 0.48963296 1.8338406 1.455048 2.0734575 2.6020293 " />
                                 </g>
                                 <g transform="translate(12.263999622047246 0)">
-                                    <path class="typst-shape" fill="none" stroke="#ffee80" stroke-width="0.528"
+                                    <path class="typst-shape" fill="none" stroke="#ffdc00" stroke-width="0.528"
                                         stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
                                         d="M 0 2.6020293 C 1.0645385 2.1123962 1.8338406 1.1469814 2.0734575 0 " />
                                 </g>
                                 <g transform="translate(111.70978665382664 2.602029282177321)">
-                                    <path class="typst-shape" fill="none" stroke="#ffee80" stroke-width="0.528"
+                                    <path class="typst-shape" fill="none" stroke="#ffdc00" stroke-width="0.528"
                                         stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
                                         d="M 2.0734575 0 C 1.0089191 0.48963296 0.23961689 1.455048 0 2.6020293 " />
                                 </g>
                                 <g transform="translate(111.70978665382664 0)">
-                                    <path class="typst-shape" fill="none" stroke="#ffee80" stroke-width="0.528"
+                                    <path class="typst-shape" fill="none" stroke="#ffdc00" stroke-width="0.528"
                                         stroke-linecap="round" stroke-linejoin="miter" stroke-miterlimit="4"
                                         d="M 2.0734575 2.6020293 C 1.0089191 2.1123962 0.23961689 1.1469814 0 0 " />
                                 </g>

@@ -21,7 +21,7 @@ dpda = DPDA(
     initial_state="",
     initial_stack_symbol="",
     final_states={""},
-    # empty_stack, final_states, both
+    # empty_stack, final_state, both
     acceptance_mode="",
 )
 
@@ -47,7 +47,7 @@ npda = NPDA(
     initial_state="",
     initial_stack_symbol="",
     final_states={""},
-    # empty_stack, final_states, both
+    # empty_stack, final_state, both
     acceptance_mode="",
 )
 

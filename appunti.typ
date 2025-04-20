@@ -13,4 +13,9 @@
 // #pagebreak()
 
 
-// ...
+// Gerarchia di Chomsky
+
+#parte("Gerarchia di Chomsky")
+#pagebreak()
+
+#include "capitoli/gerarchia/01_ripasso.typ"

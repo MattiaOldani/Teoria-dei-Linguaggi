@@ -37,3 +37,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/03_numero_stati.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/04_automi_g3.typ"

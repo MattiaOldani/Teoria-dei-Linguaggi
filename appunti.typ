@@ -10,7 +10,7 @@
 // Introduzione
 
 #include "capitoli/00_introduzione.typ"
-// #pagebreak()
+#pagebreak()
 
 
 // Gerarchia di Chomsky
@@ -22,3 +22,12 @@
 #pagebreak()
 
 #include "capitoli/gerarchia/02_gerarchia.typ"
+#pagebreak()
+
+
+// Linguaggi regolari
+
+#parte("Linguaggi regolari")
+#pagebreak()
+
+#include "capitoli/tipo3/01_dfa.typ"

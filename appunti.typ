@@ -19,3 +19,6 @@
 #pagebreak()
 
 #include "capitoli/gerarchia/01_ripasso.typ"
+#pagebreak()
+
+#include "capitoli/gerarchia/02_gerarchia.typ"

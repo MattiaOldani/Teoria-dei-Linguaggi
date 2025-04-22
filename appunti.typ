@@ -34,3 +34,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/02_nfa.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/03_numero_stati.typ"

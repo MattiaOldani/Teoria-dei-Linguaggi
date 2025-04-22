@@ -31,3 +31,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/01_dfa.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/02_nfa.typ"

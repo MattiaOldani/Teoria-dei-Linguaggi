@@ -24,65 +24,6 @@
 
 = Lezione 08 [21/03]
 
-== Altre forme di non determinismo
-
-Nell'ambito degli automi non deterministici avevamo visto delle forme di non determinismo sulle transizioni e sulla scelta dello stato iniziale. Entrambe queste rappresentazioni non rendevano più potenti gli automi: tramite *costruzione per sottoinsiemi* riuscivamo a costruire un DFA analogo con un numero di stati con gap esponenziale.
-
-Un'altra forma di non determinismo che possiamo avere è l'uso delle $epsilon$*-produzioni*: sono transizioni di stato etichettate dalla $epsilon$ che permettono di spostarsi da uno stato all'altro senza leggere un carattere della stringa da riconoscere.
-
-Che applicazioni può avere una forma del genere? Nei *compilatori* questo approccio è comodissimo per riconoscere dei numeri che possono essere indicati con o senza segno.
-
-#example()[
-  Se $Sigma = {0, dots, 9, +, -}$ definiamo un numero come una sequenza non vuota di cifre, con un segno iniziale opzionale.
-
-  #figure(image("assets/08_segno.svg"))
-
-  La epsilon mossa indica una opzionalità: potremmo leggere il prossimo carattere stando nello stato $q_0$ oppure nello stato $q_s$.
-]
-
-Questa soluzione aumenta la potenza dell'automa? *NO*: ogni sequenza nella forma $ p arrow.long.squiggly^epsilon p' arrow.long^a q' arrow.long.squiggly^epsilon q $ può essere tradotta nella transizione $ p arrow.long^a q . $
-
-#example()[
-  Andiamo a rimuovere la $epsilon$-transizione usando le sequenze appena descritte.
-
-  #figure(image("assets/08_segno_no_epsilon.svg"))
-
-  Una soluzione analoga rimuove le $epsilon$-transizioni inserendo degli stati iniziali multipli, ma questo mantiene ancora la forma di non determinismo dell'automa e non migliora la potenza, visto che basta trasformare l'NFA in un DFA con la costruzione per sottoinsiemi e come stato iniziale si avranno più di due elementi.
-
-  #figure(image("assets/08_segno_no_epsilon_sim.svg"))
-]
-
-#example()[
-  Ci vengono dati tre automi, che riconoscono sequenze di $a$, $b$ e $c$ arbitrarie.
-
-  #grid(
-    columns: (33%, 33%, 33%),
-    align: center + horizon,
-    inset: 10pt,
-    [#figure(image("assets/08_sequenza_a.svg"))],
-    [#figure(image("assets/08_sequenza_b.svg"))],
-    [#figure(image("assets/08_sequenza_c.svg"))],
-  )
-
-  Vogliamo costruire un automa che utilizzi le $epsilon$-transizioni usando questi tre moduli per riconoscere il linguaggio $ L = {a^n b^m c^h bar.v m,n,h gt.eq 0} . $
-
-  #figure(image("assets/08_sequenza_arbitrarie.svg"))
-
-  Come lo rendiamo deterministico? Sicuramente non andiamo ad utilizzare gli stati iniziali multipli, che qui ci starebbero molto bene, ma appunto vogliamo un comportamento deterministico.
-
-  #figure(image("assets/08_sequenza_arbitrarie_DFA.svg"))
-
-  Siamo nel deterministico, ma l'automa di prima è molto più leggibile di questo.
-]
-
-#example()[
-  Riprendiamo il linguaggio $L_n$ delle stringhe con l'$n$-esimo carattere da destra uguale ad una $a$. Avevamo visto un NFA sulle transizioni, vediamone uno non deterministico sulle $epsilon$-transizioni fissando il valore a $n = 3$.
-
-  #figure(image("assets/08_ln_epsilon.svg"))
-
-  La scommessa qua l'abbiamo messa nel primo stato, che cerca di indovinare se sia arrivato o meno al terzultimo carattere. Il numero di stati, per $L_n$ generico, è $n+2$.
-]
-
 == Relazione tra i linguaggi e le grammatiche di tipo 3
 
 Nella lezione precedente abbiamo _"dato per buono"_ il fatto che le grammatiche di tipo $3$ sono equivalenti agli automi a stati finiti.

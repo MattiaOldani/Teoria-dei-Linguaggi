@@ -73,3 +73,7 @@
   )
   $pfop(#x)$
 }
+
+// Lezione 15
+
+#let FNG = $"FNG"$

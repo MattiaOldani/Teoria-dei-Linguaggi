@@ -40,3 +40,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/04_automi_g3.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/05_automa_minimo.typ"

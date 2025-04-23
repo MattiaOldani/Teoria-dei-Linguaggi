@@ -1,26 +1,31 @@
 // Setup
 
-#import "alias.typ": *
+#import "../alias.typ": *
 
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
 
-// Lezione
+// Capitolo
 
-= Lezione 07 [19/03]
+= Automa minimo
+
+Negli scorsi capitoli abbiamo visto dei metodi che limitavano il numero di stati di DFA e NFA per un certo linguaggio. In questo capitolo vediamo invece un criterio che lavora direttamente sugli automi e non sui linguaggi.
+
+// Prima: ho linguaggio, limite
+// Ora: ho automa, limite
 
 == Introduzione matematica
 
-Abbiamo visto due criteri che limitavano il numero di stati di DFA e NFA per un certo linguaggio. Oggi vediamo un criterio che lavora direttamente sugli automi e non sui linguaggi.
+#definition([Relazione binaria])[
+  Sia $S$ un insieme. Una *relazione binaria* sull'insieme $S$ è definita come l'insieme $ R subset.eq S times S . $
+]
 
-Sia $S$ un insieme, una *relazione binaria* sull'insieme $S$ è definita come l'insieme $ R subset.eq S times S . $
-
-Come notazione useremo $rel(x,R,y)$ oppure $(x,y) in R$, molto di più la prima che la seconda.
+Come notazione useremo $ rel(x,R,y) $ oppure $(x,y) in R$, molto di più la prima che la seconda.
 
 Ci interessiamo ad un tipo molto particolare di relazioni.
 
-#definition()[
+#definition([Relazione di equivalenza])[
   La relazione $R$ è una *relazione di equivalenza* se e solo se $R$ è:
   - *riflessiva*, ovvero $forall x in S quad rel(x, R, x)$;
   - *simmetrica*, ovvero $forall x,y in S quad rel(x, R, y) arrow.long.double rel(y, R, x)$;
@@ -42,7 +47,7 @@ Se $R$ è una relazione di equivalenza, l'*indice* di $R$ è il numero di classi
   L'indice di questa relazione è quindi $3$.
 ]
 
-#definition()[
+#definition([Relazione invariante a destra])[
   Sia $dot$ un'operazione sull'insieme $S$. La relazione $R$ è *invariante a destra* rispetto a $dot$ se presi due elementi nella relazione $R$, e applicando $dot$ con uno stesso elemento, otteniamo ancora due elementi in relazione, ovvero $ rel(x, R, y) arrow.long.double forall z in S quad rel((x dot z), R, (y dot z)) . $
 ]
 
@@ -56,12 +61,12 @@ Se $R$ è una relazione di equivalenza, l'*indice* di $R$ è il numero di classi
 
 Ora vediamo una definizione che va contro la semantica italiana.
 
-#definition()[
+#definition([Raffinamento])[
   Sia $S$ un insieme e siano $R_1, R_2 subset.eq S times S$ due relazioni di equivalenza su $S$.
 
   Diciamo che $R_1$ è un *raffinamento* di $R_2$ se e solo se:
-  + ogni classe di equivalenza di $R_1$ è contenuta in una classe di equivalenza di $R_2$ OPPURE
-  + ogni classe di $R_2$ è l'unione di alcune classi di $R_1$ OPPURE
+  + ogni classe di equivalenza di $R_1$ è contenuta in una classe di equivalenza di $R_2$ *OPPURE*
+  + ogni classe di $R_2$ è l'unione di alcune classi di $R_1$ *OPPURE*
   + vale $ forall x,y in S quad (x,y) in R_1 arrow.long.double (x,y) in R_2 . $
 ]
 
@@ -91,11 +96,9 @@ Perché non rispecchia molto la semantica italiana? Perché un raffinamento di s
   Anche in questo caso, possiamo dire che $R''$ è un raffinamento di $R$: infatti, la classe $[0]_R$ la possiamo scrivere come $ [0]_R'' union [3]_R'' , $ la classe $[1]_R$ la possiamo scrivere come $ [1]_R'' union [4]_R'' $ mentre la classe $[2]_R$ la possiamo scrivere come $ [2]_R'' union [5]_R'' . $
 ]
 
-== Automa minimo
+== Relazione $R_M$
 
-=== Relazione $R_M$
-
-Sia $M = (Q, Sigma, delta, q_0, F)$ un DFA. Definiamo la relazione $ R_M subset.eq Sigma^* times Sigma^* $ tale che $ rel(x, R_M, y) sse delta(q_0, x) = delta(q_0, y) . $ In poche parole, due stringhe sono in relazione se e solo se vanno a finire nello stesso stato.
+Sia $M = (Q, Sigma, delta, q_0, F)$ un DFA. Definiamo la relazione $ R_M subset.eq Sigma^* times Sigma^* $ tale che $ rel(x, R_M, y) sse delta(q_0, x) = delta(q_0, y) . $ In poche parole, due stringhe sono in relazione se e solo se vanno a finire *nello stesso stato*.
 
 #lemma()[
   La relazione $R_M$ è una relazione di equivalenza.
@@ -134,7 +137,7 @@ Abbiamo appena dimostrato che $L(M)$ è l'*unione* di alcune classi di equivalen
 #example()[
   Dato il seguente automa deterministico, determinare le classi di equivalenza della relazione $R_M$ appena studiata.
 
-  #figure(image("assets/07_esempio_da_ridurre.svg"))
+  #figure(image("assets/05_esempio_da_ridurre.svg"))
 
   Abbiamo $4$ classi di equivalenza, che sono tutte le varie combinazioni di $a$ e $b$ pari/dispari.
 
@@ -145,7 +148,7 @@ Abbiamo appena dimostrato che $L(M)$ è l'*unione* di alcune classi di equivalen
   Vedremo dopo come migliorare questo automa.
 ]
 
-=== Relazione $R_L$
+== Relazione $R_L$
 
 Dato un linguaggio $L subset.eq Sigma^*$, ad esso ci associamo una relazione $ R_L subset.eq Sigma^* times Sigma^* $ tale che $ rel(x, R_L, y) sse forall z in Sigma^* quad (x z in L sse y z in L) $
 
@@ -176,7 +179,7 @@ In poche parole, se a due elementi in relazione attacco una stringa $z$ qualsias
 #lemma-proof()[
   Dobbiamo dimostrare che $ rel(x, R_L, y) arrow.long.double forall w in Sigma^* quad rel((x w), R_L, (y w)) . $
 
-  Se $(rel(x, R_L, y))$ allora $ forall z in Sigma^* quad (x z in L sse y z in L) . $
+  Se $(rel(x, R_L, y))$ allora $ forall w in Sigma^* quad (x w in L sse y w in L) . $
 
   Prendiamo ora una qualsiasi stringa $z in Sigma^*$ e aggiungiamola alle due stringhe, ottenendo $x w z$ e $y w z$. Se chiamiamo $z' = w z$, con un semplice renaming quello che otteniamo è comunque una stringa di $Sigma^*$ che mantiene la relazione $R_L$, ma effettivamente abbiamo aggiunto qualcosa, la stringa $z$, quindi abbiamo dimostrato che $R_L$ è invariante a destra.
 ]
@@ -199,11 +202,13 @@ Se confrontiamo gli ultimi due esempi fatti, notiamo che essi descrivono lo stes
 
 Ma allora $R_M$ è un *raffinamento* di $R_L$. Questa cosa vale solo per questo esempio? *NO*.
 
+== Teorema di Myhill-Nerode
+
 #theorem([Teorema di Myhill-Nerode])[
   Sia $L subset.eq Sigma^*$ un linguaggio.
 
   Le seguenti affermazioni sono equivalenti:
-  + $L$ è accettato da un DFA, ovvero $L$ è regolare (_lo dobbiamo ancora dimostrare_);
+  + $L$ è accettato da un DFA, ovvero $L$ è regolare;
   + $L$ è l'unione di alcune classi di equivalenza di una relazione $E$ invariante a destra di indice finito;
   + la relazione $R_L$ associata a $L$ ha indice finito.
 ]
@@ -251,6 +256,8 @@ Queste relazioni che abbiamo visto fin'ora sono dette *relazioni di Nerode*.
 
 Visto che abbiamo dimostrato questo teorema, possiamo porre $E$ uguale a $R_M$: otteniamo $ indice(R_L) lt.eq indice(R_M) $ se $L$ è una tipo $3$, altrimenti partiamo a $infinity$ con le classi di equivalenza di $R_L$.
 
+== Automa minimo
+
 Finiamo con le nozioni di automa minimo.
 
 Con *automa minimo* intendiamo il DFA per $L$ con il minimo numero di stati.
@@ -265,21 +272,23 @@ L'automa minimo $M'$ è ottenuto grazie alla relazione $R_L$.
 
 Per calcolare l'automa minimo abbiamo algoritmi per farlo in modo efficiente, che cercano le stringhe non distinguibili per abbassare il numero di stati. Se troviamo delle stringhe distinguibili siamo arrivati all'automa minimo.
 
-=== E gli NFA?
+== Applicazioni agli NFA
 
 Cosa succede se applichiamo tutte questi concetti sugli NFA?
 
-Ad esempio, costruiamo un po' di automi non deterministici per stringhe che finiscono in $b$.
+#example()[
+  Costruiamo un po' di automi non deterministici per stringhe che finiscono in $b$.
 
-#grid(
-  align: center + horizon,
-  columns: (50%, 50%),
-  inset: 10pt,
-  [#figure(image("assets/07_01.svg"))], [#figure(image("assets/07_02.svg"))],
-  [#figure(image("assets/07_03.svg"))], [#figure(image("assets/07_04.svg"))],
-)
+  #grid(
+    align: center + horizon,
+    columns: (50%, 50%),
+    inset: 10pt,
+    [#figure(image("assets/05_01.svg"))], [#figure(image("assets/05_02.svg"))],
+    [#figure(image("assets/05_03.svg"))], [#figure(image("assets/05_04.svg"))],
+  )
+]
 
-Ovviamente non possiamo andare sotto i $2$ stati, almeno un carattere lo dobbiamo leggere, quindi tutti questi sono *automi minimi* ma *non sono unici*.
+Ovviamente non possiamo andare sotto i $2$ stati perché almeno un carattere lo dobbiamo leggere, quindi tutti questi sono *automi minimi* ma *non sono unici*.
 
 Inoltre, per i DFA abbiamo algoritmi polinomiali ben studiati negli anni $'60$, per gli NFA non abbiamo algoritmi efficienti perché esso è un problema difficile, estremamente difficile, che è ben oltre gli _NP_-completi, ovvero è un problema _PSPACE_-completo
 

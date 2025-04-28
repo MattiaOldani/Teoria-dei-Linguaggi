@@ -43,3 +43,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/05_automa_minimo.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/06_operazioni.typ"

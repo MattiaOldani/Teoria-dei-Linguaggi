@@ -46,3 +46,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/06_operazioni.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/07_regex.typ"

@@ -52,3 +52,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/08_operazioni_esotiche.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/09_pumping_lemma.typ"

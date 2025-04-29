@@ -1,30 +1,14 @@
 // Setup
 
-#import "alias.typ": *
-
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
+#import "../alias.typ": *
 
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
-#import "@preview/cetz:0.3.3"
 
+// Capitolo
 
-// Lezione
-
-= Lezione 11 [02/04]
-
-== Pumping Lemma
+= Pumping Lemma
 
 Come facciamo a dimostrare che un linguaggio non è regolare? Che tecniche abbiamo?
 
@@ -51,6 +35,8 @@ Un altro modo per dimostrare la non regolarità è far vedere che il linguaggio 
 
   Visto che il linguaggio risultante non è regolare, non lo è nemmeno $L$.
 ]
+
+== Definizione
 
 L'ultimo metodo che abbiamo a disposizione è il *pumping lemma per i linguaggi regolari*.
 
@@ -83,6 +69,8 @@ Questa è una *condizione necessaria*: se faccio vedere se un linguaggio viola q
 
   Infine, per assunzione la lunghezza della stringa è $abs(z) = m gt.eq N$. Quando arriviamo all'$N$-esimo carattere abbiamo visto $N+1$ stati, ovvero sono già passato in uno stato ripetuto, quindi $abs(u v) lt.eq N$ perché la ripetizione deve avvenire prima dell'inizio dell'ultima parte della stringa.
 ]
+
+== Applicazioni
 
 Vediamo come utilizzare il pumping lemma per dimostrare la non regolarità. Generalmente, faremo delle dimostrazioni per assurdo: assumendo la regolarità faremo vedere che esiste una stringa tale che ogni sua scomposizione possibile fa cadere almeno uno dei punti del pumping lemma.
 

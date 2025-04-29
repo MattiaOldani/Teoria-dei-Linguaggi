@@ -34,3 +34,19 @@
   )
   $ghop(#x)$
 }
+
+#let shuffle(l1, l2) = {
+  let shuffleop = math.class(
+    "unary",
+    $"shuffle"$,
+  )
+  $shuffleop(#l1, #l2)$
+}
+
+#let sub(x) = {
+  let subop = math.class(
+    "unary",
+    $"sub"$,
+  )
+  $subop(#x)$
+}

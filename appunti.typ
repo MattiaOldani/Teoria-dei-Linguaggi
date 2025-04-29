@@ -55,3 +55,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/09_pumping_lemma.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/10_problemi_decisione.typ"

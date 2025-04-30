@@ -77,3 +77,15 @@
 // Lezione 15
 
 #let FNG = $"FNG"$
+
+// Lezione 16
+
+#let push(x) = {
+  let pushop = math.class(
+    "unary",
+    $"push"$,
+  )
+  $pushop(#x)$
+}
+
+#let pop = "pop"

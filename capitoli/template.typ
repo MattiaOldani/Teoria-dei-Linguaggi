@@ -19,6 +19,11 @@
 
 #import "@preview/cetz:0.3.4"
 
+#import "@local/syntree:0.2.1": syntree
+
+#import "@preview/lilaq:0.1.0" as lq
+#import "@preview/tiptoe:0.3.0" as tp
+
 
 // Capitolo
 

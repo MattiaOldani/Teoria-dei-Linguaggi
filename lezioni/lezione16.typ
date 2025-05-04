@@ -165,8 +165,8 @@ In generale, possiamo sostituire a $Z_0$ un qualsiasi carattere che inseriamo su
       lq.line((0, 1), (12, 1), stroke: (paint: blue, dash: "dashed")),
       lq.plot((1, 11), (1, 1), stroke: none, mark: "o"),
 
-      lq.place(1, -0.3)[$p$],
-      lq.place(11, -0.3)[$q$],
+      lq.place(1, -0.3)[$q$],
+      lq.place(11, -0.3)[$p$],
     )
   ],
   [
@@ -194,9 +194,9 @@ In generale, possiamo sostituire a $Z_0$ un qualsiasi carattere che inseriamo su
       lq.line((0, 1), (12, 1), stroke: (paint: blue, dash: "dashed")),
       lq.plot((1, 5, 11), (1, 1, 1), stroke: none, mark: "o"),
 
-      lq.place(1, -0.3)[$p$],
+      lq.place(1, -0.3)[$q$],
       lq.place(5, -0.3)[$r$],
-      lq.place(11, -0.3)[$q$],
+      lq.place(11, -0.3)[$p$],
     )
   ],
 )
@@ -243,10 +243,10 @@ Supponiamo di essere nel caso in cui, dopo aver caricato $A$ sulla pila, torniam
     lq.line((1, -1.5), (11, -1.5), tip: tp.straight, toe: tp.straight),
     lq.place(6, -1)[$w$],
 
-    lq.place(1, -0.3)[$p$],
-    lq.place(11, -0.3)[$q$],
-    lq.place(2, -0.3)[$p'$],
-    lq.place(10, -0.3)[$q'$],
+    lq.place(1, -0.3)[$q$],
+    lq.place(11, -0.3)[$p$],
+    lq.place(2, -0.3)[$q'$],
+    lq.place(10, -0.3)[$p'$],
   )
 ]
 
@@ -292,8 +292,8 @@ L'ultimo caso che ci manca è quando abbiamo almeno una configurazione intermedi
     lq.place(8, -1)[$w''$],
     lq.place(6, -2)[$w$],
 
-    lq.place(1, -0.3)[$p$],
-    lq.place(11, -0.3)[$q$],
+    lq.place(1, -0.3)[$q$],
+    lq.place(11, -0.3)[$p$],
     lq.place(5, -0.3)[$r$],
   )
 ]

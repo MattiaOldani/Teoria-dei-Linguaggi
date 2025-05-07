@@ -24,6 +24,8 @@
 #import "@preview/lilaq:0.1.0" as lq
 #import "@preview/tiptoe:0.3.0" as tp
 
+#import "@preview/fletcher:0.5.5": diagram, node, edge
+
 
 // Capitolo
 

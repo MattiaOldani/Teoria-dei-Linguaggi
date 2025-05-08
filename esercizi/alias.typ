@@ -78,3 +78,8 @@
   )
   $lrootop(#l)$
 }
+
+// Esercizi 17
+
+#let palstar = $pal"STAR"$
+#let qpalstar = $"Quasi"palstar$

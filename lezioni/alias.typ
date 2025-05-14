@@ -89,3 +89,8 @@
 }
 
 #let pop = "pop"
+
+// Lezione 19
+
+#let CFL = "CFL"
+#let DCFL = "DCFL"

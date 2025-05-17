@@ -7,7 +7,7 @@
 
 #import "@preview/cetz:0.3.4"
 
-#import "@local/syntree:0.2.1": syntree
+#import "@preview/syntree:0.2.1": syntree
 
 // Lezione
 

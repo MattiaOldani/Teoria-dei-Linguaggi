@@ -17,7 +17,7 @@
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
-#import "@local/syntree:0.2.1": syntree
+#import "@preview/syntree:0.2.1": syntree
 
 #import "@preview/lilaq:0.1.0" as lq
 #import "@preview/tiptoe:0.3.0" as tp

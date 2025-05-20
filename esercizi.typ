@@ -46,3 +46,6 @@
 #pagebreak()
 
 #include "esercizi/esercizi18.typ"
+#pagebreak()
+
+#include "esercizi/esercizi19_20.typ"

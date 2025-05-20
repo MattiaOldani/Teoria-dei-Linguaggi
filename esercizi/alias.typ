@@ -83,3 +83,7 @@
 
 #let palstar = $pal"STAR"$
 #let qpalstar = $"Quasi"palstar$
+
+// Esercizi 19 e 20
+
+#let CFL = "CFL"

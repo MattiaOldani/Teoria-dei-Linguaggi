@@ -94,3 +94,15 @@
 
 #let CFL = "CFL"
 #let DCFL = "DCFL"
+
+// Lezione 21
+
+#let PAL = "PAL"
+
+#let LR(k) = {
+  let LRop = math.class(
+    "unary",
+    $"LR"$,
+  )
+  $LRop(#k)$
+}

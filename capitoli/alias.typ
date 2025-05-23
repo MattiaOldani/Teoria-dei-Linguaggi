@@ -50,3 +50,8 @@
   )
   $subop(#x)$
 }
+
+#let lmarker = $triangle.filled.r$
+#let rmarker = $triangle.filled.l$
+
+#let NL = $"NL"$

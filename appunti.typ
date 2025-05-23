@@ -58,3 +58,6 @@
 #pagebreak()
 
 #include "capitoli/tipo3/10_problemi_decisione.typ"
+#pagebreak()
+
+#include "capitoli/tipo3/11_automi_two_way.typ"

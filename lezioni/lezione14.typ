@@ -10,64 +10,6 @@
 
 = Lezione 14 [11/04]
 
-== Simulazione
-
-La scorsa lezione abbiamo visto gli automi two-way e abbiamo dimostrato che hanno la stessa potenza computazionale degli automi a stati finiti. Avevamo visto la trasformazione da $2$DFA a $1$DFA, ma la stessa trasformazione può essere fatta per il passaggio da $2$NFA a $1$NFA.
-
-Ma quanto costano queste trasformazioni?
-
-// CHIEDI, VEDI FOTO
-Nel caso partissimo da un $2$DFA e volessimo arrivare in un $1$DFA, il costo il termini di stati è $ lt.eq dots , $ mentre cambiando il punto di partenza con un $2$NFA il salto diventa ancora peggiore: $ lt.eq 2^n 2^n^2 = 2^(n^2 + n) . $ Ma questo ce lo potevamo aspettare: abbiamo guà un salto esponenziale da NFA a DFA, quindi ciao.
-
-Ci sono due simulazioni che sono però molto particolari e importanti.
-
-=== Problema di Sakoda & Sipser
-
-La prima trasformazione che vediamo è quella da $2$NFA a $2$DFA: qua non possiamo usare la costruzione per sottoinsiemi perché ad un certo punto potrei avere il non determinismo su una mossa che però mi sposta la testina su due caratteri diversi della stringa, e questo non è possibile. Ci serve quindi una trasformazione alternativa, ma ci arriviamo dopo.
-
-La seconda trasformazione è quella da $1$NFA a $2$DFA: questa trasformazione cerca di capire se, dando il two-way ad un automa deterministico, esso è capace di simulare il non determinismo.
-
-Vediamo un paio di esempi.
-
-#example()[
-  Definiamo $ L_n = (a+b)^* a (a+b)^(n-1) $ il classicissimo linguaggio dell'$n$-esimo carattere da destra pari ad una $a$.
-
-  Sappiamo che:
-  - esiste un $1$NFA di $n + 1$ stati;
-  - esiste un $1$DFA di $2^n$ stati.
-
-  Abbiamo visto un automa two-way per questo linguaggio, che usa poco più di $n$ stati, quindi in questo caso riusciamo a togliere il non determinismo a basso costo.
-]
-
-#example()[
-  Definiamo $ K_n = (a+b)^* a (a+b)^(n-1) a (a + b)^* $ il solito linguaggio con due $a$ a distanza $n$.
-
-  Avevamo visto che un $1$NFA per questo linguaggio usava $n + 2$ stati, quindi una quantità lineare in $n$. Per un $2$DFA abbiamo visto che esiste anche qui una soluzione lineare in $n$, quindi anche qui eliminiamo il non determinismo a basso costo.
-]
-
-Abbiamo visto due esempi che sembrano dare buone notizie, ma riusciamo a dimostrare che si riesce sempre a fare un $2$DFA di $n$ stati partendo da un $1$NFA di $n$ stati? Purtroppo, nessuno ci è mai riuscito.
-
-Questi problemi sono i *problemi di Sakoda & Sipser*, ideati nel $1978$ e che riguardano il costo della simulazioni di automi non deterministici one-way e two-way per mezzo di automi two-way deterministici, ovvero si chiedono se il movimento two-way aiuta nell'eliminazione del non determinismo.
-
-Cosa sappiamo su questi problemi? Diamo qualche *upper* e *lower bound*.
-
-Per il problema da $1$NFA a $2$DFA, si sfrutta la *costruzione per sottoinsiemi* per ottenere un $1$DFA, che è anche un $2$DFA che non torna mai indietro, ottenendo quindi un numero di stati $ lt.eq 2^n . $ Un lower bound per questo problema invece è $ gt.eq n^2 . $
-
-Per il problema da $2$NFA a $2$DFA, si fa un passaggio intermedio all'$1$NFA e poi al $1$DFA, che come prima è anche $2$DFA, quindi gli stati sono $ lt.eq 2^(n^2 + n) . $
-
-Il lower bound, invece, è lo stesso del problema precedente.
-
-Ci sono casi particolari che hanno delle dimostrazioni precise:
-- se utilizziamo dei $2$DFA sweeping il costo per la trasformazione è *esponenziale*, ma questo non risolve il problema perché (????) ci sono automi non sweeping che per diventarlo hanno un salto esponenziale (????);
-- se $Sigma = {a}$:
-  // spazio logaritmo deterministico
-  - se facciamo la trasformazione da $2$NFA a $2$DFA l'upper bound è $ e^(O(log^2(n))) , $ ovvero una funzione super polinomiale ma meno di una esponenziale. Inoltre, se si dimostra che esiste un lower bound super polinomiale, allora abbiamo dimostrato che $ L = NL (????) ; $
-  - se facciamo la trasformazione da $1$NFA a $2$DFA l'upper bound diventa esattamente $n^2$, quindi la trasformazione fatta è ottimale.
-
-Dei ricercatori hanno troviamo degli *automi completi* per questi problemi, ovvero degli automi che permettono lo studio dei problemi solo su questi pochi automi scelti per poi far _"arrivare"_ tutte le conseguenze a tutti gli altri automi. Scritto malissimo, sono tipo gli NP-completi.
-
-Per ora, la *congettura* che circola tra la gente è che i costi siano *esponenziali nel caso peggiore*.
-
 == Automi a pila
 
 Lasciamo finalmente stare gli automi a stati finiti per passare ad una nuova classe di riconoscitori: gli *automi a pila*. Essi sono praticamente degli automi a stati finiti con testina di lettura one-way ai quali viene aggiunta una *memoria infinita con restrizioni di accesso*, ovvero l'accesso avviene solo sulla cima della memoria, con politica LIFO.
@@ -205,7 +147,7 @@ Con il termine *non determinismo* non intendiamo le $epsilon$-mosse da sole, que
 
 #definition([Determinismo])[
   Sia $M$ un PDA. Allora $M$ è *deterministico* se:
-  + ogni volta che ho una $epsilon$-mossa da un certo stato e con un certo simbolo sulla pila, non ho mosse che leggono simboli dal nastro a partire dallo stesso stato e con lo stesso simbolo sulla pila, ovvero $ forall q in Q quad forall A in Gamma quad delta(q, epsilon, A) eq.not emptyset.rev arrow.long.double forall a in Sigma quad delta(q,a,A) = emptyset.rev ; $
+  + ogni volta che ho una $epsilon$-mossa da un certo stato e con un certo simbolo sulla pila, non ho mosse che leggono simboli dal nastro a partire dallo stesso stato e con lo stesso simbolo sulla pila, ovvero $ forall q in Q quad forall A in Gamma quad delta(q, epsilon, A) eq.not emptyset.rev arrow.long.double forall a in Sigma quad delta(q, a, A) = emptyset.rev ; $
   + come nel caso classico, considero un carattere, o anche $epsilon$, allora a parità di stato corrente e simbolo sulla pila, ho al massimo una transizione possibile, ovvero $ forall q in Q quad forall A in Gamma quad forall sigma in Sigma union {epsilon} quad abs(delta(q, sigma, A)) lt.eq 1 . $
 ]
 

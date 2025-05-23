@@ -106,3 +106,24 @@
   )
   $LRop(#k)$
 }
+
+#let LBA = "LBA"
+#let CS = "CS"
+
+#let NSPACE(n) = {
+  let NSPACEop = math.class(
+    "unary",
+    $"NSPACE"$,
+  )
+  $NSPACEop(#n)$
+}
+
+#let DLBA = "DLBA"
+
+#let DSPACE(n) = {
+  let DSPACEop = math.class(
+    "unary",
+    $"PSPACE"$,
+  )
+  $DSPACEop(#n)$
+}

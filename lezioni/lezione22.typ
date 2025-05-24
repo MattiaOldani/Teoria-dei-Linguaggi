@@ -199,28 +199,6 @@ Come vediamo, questo modello è *molto potente*, talmente potente che nessuno sa
 
 Inoltre, non si conosce la relazione che si ha con i linguaggi di tipo $1$, che vediamo tra poco, ovvero non sappiamo se $ 2"DPDA" =^? "CS" . $
 
-== Linguaggi di tipo 1
-
-=== Proprietà di chiusura per i CS
-
-Per finire con i *CSL* vediamo le *proprietà di chiusura* di questa classe di linguaggi.
-
-#table(
-  columns: (28%, 36%, 36%),
-  align: center + horizon,
-  inset: 10pt,
-  [], [*DLBA*], [*LBA*],
-  [*Unione*],
-  [#emoji.checkmark.box \ Non deterministicamente faccio partire i due automi in parallelo e controllo che almeno uno accetti],
-  [#emoji.checkmark.box \ Faccio partire il automa mantenendo l'input sul nastro, se la macchina dice NO faccio partire il secondo e controllo],
-
-  [*Intersezione*], [#emoji.checkmark.box \ Uguale a sopra], [#emoji.checkmark.box \ Uguale a sopra],
-  [*Complemento*],
-  // Controlla
-  [#emoji.checkmark.box #emoji.crossmark \ Abbiamo problemi con i loop infiniti, che però possiamo rimuovere con un *contatore*, che ci permette di capire se stiamo visitando sempre la stessa configurazione],
-  [#emoji.checkmark.box \ Risultato sorprendente perché è rimasto aperto per molti anni, ma è stato risolto nell'$86$/$87$],
-)
-
 == Problemi di decisione dei CFL
 
 Per finire questa lezione infinita, torniamo indietro ai linguaggi CFL e vediamo qualche *problema di decisione*. Per ora vedremo i problemi a cui sappiamo rispondere con quello che sappiamo, questo perché dei problemi di decisione richiedono conoscenze delle *macchine di Turing*, che per ora non abbiamo.

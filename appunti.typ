@@ -79,3 +79,6 @@
 #pagebreak()
 
 #include "capitoli/tipo1/02_equivalenza.typ"
+#pagebreak()
+
+#include "capitoli/tipo1/03_operazioni.typ"

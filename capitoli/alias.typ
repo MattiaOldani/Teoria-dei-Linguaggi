@@ -55,3 +55,24 @@
 #let rmarker = $triangle.filled.l$
 
 #let NL = $"NL"$
+
+#let LBA = "LBA"
+#let CS = "CS"
+
+#let NSPACE(n) = {
+  let NSPACEop = math.class(
+    "unary",
+    $"NSPACE"$,
+  )
+  $NSPACEop(#n)$
+}
+
+#let DLBA = "DLBA"
+
+#let DSPACE(n) = {
+  let DSPACEop = math.class(
+    "unary",
+    $"PSPACE"$,
+  )
+  $DSPACEop(#n)$
+}

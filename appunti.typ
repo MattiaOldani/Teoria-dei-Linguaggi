@@ -61,3 +61,18 @@
 #pagebreak()
 
 #include "capitoli/tipo3/11_automi_two_way.typ"
+#pagebreak()
+
+
+// Linguaggi context-free
+
+#parte("Linguaggi context-free")
+#pagebreak()
+
+
+// Linguaggi context-sensitive
+
+#parte("Linguaggi context-sensitive")
+#pagebreak()
+
+#include "capitoli/tipo1/01_automi_limitati_linearmente.typ"

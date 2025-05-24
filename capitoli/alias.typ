@@ -94,3 +94,5 @@
 }
 
 #let pop = "pop"
+
+#let FNG = $"FNG"$

@@ -75,6 +75,9 @@
 #include "capitoli/tipo2/02_equivalenza.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/03_forme_normali.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

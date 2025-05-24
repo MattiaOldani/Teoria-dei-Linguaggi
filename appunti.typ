@@ -72,6 +72,9 @@
 #include "capitoli/tipo2/01_automi_a_pila.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/02_equivalenza.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

@@ -84,3 +84,13 @@
   )
   $pfop(#x)$
 }
+
+#let push(x) = {
+  let pushop = math.class(
+    "unary",
+    $"push"$,
+  )
+  $pushop(#x)$
+}
+
+#let pop = "pop"

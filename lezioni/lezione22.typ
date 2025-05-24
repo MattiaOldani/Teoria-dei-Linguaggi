@@ -201,30 +201,6 @@ Inoltre, non si conosce la relazione che si ha con i linguaggi di tipo $1$, che 
 
 == Linguaggi di tipo 1
 
-=== Equivalenza tra grammatiche di tipo $1$ e LBA
-
-#theorem()[
-  Le grammatiche di tipo $1$ sono equivalenti agli automi limitati linearmente.
-]
-
-#theorem-proof()[
-  Vediamo entrambe le trasformazioni.
-
-  [*Grammatica $arrow.long$ LBA*]
-
-  Le grammatiche di tipo $1$ erano grammatiche $G = (V, Sigma, P, S)$ con produzioni $ alpha arrow.long beta quad "tali che" quad abs(alpha) lt.eq abs(beta) . $ In poche parole, le grammatiche hanno produzioni non decrescenti, e questo ci aiutava con la decidibilità delle grammatiche di tipo $1$, e quindi anche delle tipo $2$ e tipo $3$.
-
-  Qua dobbiamo fare il contrario del processo di produzione: se ho in input una stringa $w$ devo costruire un LBA per capire se $ S arrow.stroked^* w . $
-
-  Questo lo facciamo costruendo un LBA che sul nastro scrive le forme sentenziali, ovvero se sul nastro troviamo un certo $beta$ allora lo sostituiamo con un certo $alpha$ e qualche marcatore per fare da tappo. Ovviamente, il processo è non deterministico, e inoltre non ci fa strabordare perché sappiamo che $alpha$ non sorpassa $beta$.
-
-  [*LBA $arrow.long$ grammatica*]
-
-  Si può costruire una grammatica data la descrizione di un LBA, fidiamoci.
-]
-
-Sappiamo quindi che le due rappresentazioni sono equivalenti, ma non sappiamo la relazione che esiste tra *determinismo* e *non determinismo*.
-
 === Proprietà di chiusura per i CS
 
 Per finire con i *CSL* vediamo le *proprietà di chiusura* di questa classe di linguaggi.

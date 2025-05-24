@@ -76,3 +76,6 @@
 #pagebreak()
 
 #include "capitoli/tipo1/01_automi_limitati_linearmente.typ"
+#pagebreak()
+
+#include "capitoli/tipo1/02_equivalenza.typ"

@@ -9,9 +9,6 @@
 
 // Lezioni
 
-#include "lezioni/lezione14.typ"
-#pagebreak()
-
 #include "lezioni/lezione15.typ"
 #pagebreak()
 

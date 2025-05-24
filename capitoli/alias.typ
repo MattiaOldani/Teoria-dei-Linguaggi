@@ -76,3 +76,11 @@
   )
   $DSPACEop(#n)$
 }
+
+#let PF(x) = {
+  let pfop = math.class(
+    "unary",
+    $"PF"$,
+  )
+  $pfop(#x)$
+}

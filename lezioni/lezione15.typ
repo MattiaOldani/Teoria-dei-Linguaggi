@@ -12,32 +12,6 @@
 
 = Lezione 15 [23/04]
 
-Vediamo degli esempi di qualche linguaggio che possiamo riconoscere con degli automi a pila.
-
-== Esempi
-
-#example()[
-  Definiamo il linguaggio $ L = {w hash w^R bar.v w in {a,b}^*} . $
-
-  Un automa a pila per questo linguaggio memorizza $w$ sulla pila, legge $hash$ e poi verifica che la stringa $w^R$ sia presente sulla pila.
-
-  Possiamo usare due stati:
-  - $q_0$ lo usiamo per copiare $w$ sulla pila;
-  - $q_1$ lo usiamo per confrontare il carattere sulla pila con quello sul nastro.
-
-  In questo caso ci viene naturale accettare per pila vuota. Inoltre, otteniamo un automa deterministico, detto anche *DPDA*.
-]
-
-Un linguaggio riconosciuto da automi a pila deterministici DPDA fa parte dell'insieme dei *linguaggi context-free deterministici*, detti anche *DCFL*.
-
-#example()[
-  Definiamo ora il linguaggio $ L' = {w w^R bar.v w in {a,b}^*} $ insieme delle stringhe palindrome di lunghezza pari.
-
-  In questo caso non riusciamo a farlo con un DPDA (difficile da dimostrare, lo faremo avanti) perché dobbiamo scommettere di essere arrivati a metà della stringa da riconoscere, quindi dobbiamo usare del *non determinismo*.
-]
-
-Analogamente, un linguaggio riconosciuto da automi a pila non deterministici, detti anche *NPDA* o solo *PDA*, da parte dell'insieme dei *linguaggi context-free*, detti anche *CFL*.
-
 == Equivalenza tra grammatiche di tipo 2 e automi a pila
 
 Facciamo un breve ripasso sulle grammatiche di tipo $2$ e poi andiamo a vedere l'equivalenza tra le grammatiche di tipo $2$ e gli automi a pila.

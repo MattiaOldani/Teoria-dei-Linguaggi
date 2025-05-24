@@ -1,24 +1,43 @@
 // Setup
 
-#import "alias.typ": *
+#import "../alias.typ": *
+
+#import "@preview/lovelace:0.3.0": pseudocode-list
+
+#let settings = (
+  line-numbering: "1:",
+  stroke: 1pt + blue,
+  hooks: 0.2em,
+  booktabs: true,
+  booktabs-stroke: 2pt + blue,
+)
+
+#let pseudocode-list = pseudocode-list.with(..settings)
 
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
+#import "@preview/cetz:0.3.4"
 
-// Lezione
+#import "@preview/syntree:0.2.1": syntree
 
-= Lezione 14 [11/04]
+#import "@preview/lilaq:0.1.0" as lq
+#import "@preview/tiptoe:0.3.0" as tp
 
-== Automi a pila
+#import "@preview/fletcher:0.5.5": diagram, node, edge
 
-Lasciamo finalmente stare gli automi a stati finiti per passare ad una nuova classe di riconoscitori: gli *automi a pila*. Essi sono praticamente degli automi a stati finiti con testina di lettura one-way ai quali viene aggiunta una *memoria infinita con restrizioni di accesso*, ovvero l'accesso avviene solo sulla cima della memoria, con politica LIFO.
 
-#figure(image("assets/14_pda.svg", width: 50%))
+// Capitolo
+
+= Automi a pila
+
+Lasciamo finalmente stare gli automi a stati finiti per passare ad una nuova classe di riconoscitori: gli *automi a pila*. Questi praticamente sono degli automi a stati finiti con testina di lettura one-way ai quali viene aggiunta una *memoria infinita con restrizioni di accesso*, ovvero l'accesso avviene solo sulla cima della memoria, con politica LIFO.
+
+#figure(image("assets/01_pda.svg", width: 50%))
 
 Come vediamo, la parte degli automi a stati finiti ce l'abbiamo ancora, ma ora abbiamo una *memoria esterna*, che nell'immagine è sulla destra, che possiamo utilizzare con una politica di accesso LIFO. Per via di questa politica, questi automi sono anche detti *automi pushdown*, o *PDA*, perché quando inserisci qualcosa lo fai a spingere giù.
 
-=== Versione non deterministica
+== Definizione
 
 Vediamo subito la definizione formale *non deterministica* dei PDA.
 
@@ -40,7 +59,7 @@ Facciamo qualche esempio. Come convenzione useremo le *maiuscole* per i simboli 
 #example()[
   Facciamo che la funzione di transizione sia definita in questo modo: $ delta(q, a, A) = {(q_1, epsilon), (q_2, B C C)} . $
 
-  #figure(image("assets/14_primo_esempio.svg", width: 50%))
+  #figure(image("assets/01_primo_esempio.svg", width: 50%))
 
   Con $alpha$ nel disegno si intende una stringa in $Gamma^*$ perché oltre ad $A$ potremmo avere altro.
 
@@ -54,7 +73,7 @@ Facciamo qualche esempio. Come convenzione useremo le *maiuscole* per i simboli 
     columns: (50%, 50%),
     align: center + horizon,
     inset: 10pt,
-    [#figure(image("assets/14_primo_esempio_r1.svg"))], [#figure(image("assets/14_primo_esempio_r2.svg"))],
+    [#figure(image("assets/01_primo_esempio_r1.svg"))], [#figure(image("assets/01_primo_esempio_r2.svg"))],
   )
 
   Per convenzione, quando inseriamo una stringa sulla pila, l'inserimento avviene da destra verso sinistra. In poche parole, se inseriamo la stringa $X in Gamma^*$ nella pila, se la togliessimo noi leggeremmo, in ordine, esattamente $X$. In altre parole ancora, quando leggiamo una stringa da inserire è come se la stessimo leggendo dall'alto verso il basso.
@@ -63,7 +82,7 @@ Facciamo qualche esempio. Come convenzione useremo le *maiuscole* per i simboli 
 
   Ora abbiamo tre scelte a disposizione. Le $epsilon$-mosse possiamo vederle come delle *mosse interne*, che avvengono senza leggere l'input, e che ci permettono di spostarci negli stati modificando eventualmente la pila.
 
-  #figure(image("assets/14_primo_esempio_r3.svg", width: 50%))
+  #figure(image("assets/01_primo_esempio_r3.svg", width: 50%))
 ]
 
 Una *configurazione* è una fotografia dell'automa in un dato istante di tempo, e ci dice quali sono le informazioni rilevanti per il futuro per definire al meglio la macchina, ovvero:
@@ -79,7 +98,7 @@ Una *computazione* è una serie di mosse che partono da una configurazione inizi
 
 Come con i passi di derivazione, una computazione che usa una sola mossa si indica con $ C' tack.long C'' . $ Se invece una computazione impiega $k$ passi, si indica con $ C' tack.long^k C'' . $ Infine, per indicare una computazione con un numero generico di passi, maggiori o uguali a zero, si usa $ C' tack.long^* C'' . $
 
-=== Accettazione
+== Accettazione
 
 Abbiamo parlato di arrivare in una configurazione accettante, ma quando *accettiamo*? Dobbiamo capire da dove partire e dove arrivare.
 
@@ -141,7 +160,7 @@ Vediamo ora qualche esempio.
   Introduciamo uno stato $q_I$ finale che diventa anche iniziale al posto di $q_0$, quindi ora $ F = {q_I, q_f} . $ Se inseriamo sul nastro la stringa vuota allora noi accettiamo, perché siamo in uo stato finale e non abbiamo altri simboli da leggere. Per passare poi al vecchio automa mettiamo una regola $ delta(q_I, a, Z_0) = {(q_0, A Z_0)} . $
 ]
 
-=== Determinismo VS non determinismo
+== Determinismo VS non determinismo
 
 Con il termine *non determinismo* non intendiamo le $epsilon$-mosse da sole, quelle le possiamo avere, ma intendiamo un mix tra mosse che leggono e mosse che non leggono.
 
@@ -153,7 +172,7 @@ Con il termine *non determinismo* non intendiamo le $epsilon$-mosse da sole, que
 
 A differenza del caso classico, il determinismo e il non determinismo non sono ugualmente potenti: un automa a pila non deterministico è *più potente* di un automa a pila deterministico, che riconosce una sottoclasse di linguaggi diversa dai linguaggi di tipo $2$, che sono riconosciuti dai PDA non deterministici.
 
-=== Trasformazioni
+== Trasformazioni
 
 Avevamo parlato dell'*equivalenza* dell'accettazione per stati finali e per pila vuota: infatti, esistono due trasformazioni che permettono di passare da un automa all'altro, mantenendo il linguaggio di partenza riconosciuto inalterato. L'equivalenza infatti ci diceva che, partendo da un automa $M$ che riconosce per stati finali, abbiamo una trasformazione che ci dà $M'$ che riconosce per pila vuota che riconosce lo stesso linguaggio di $M$, e viceversa.
 
@@ -174,3 +193,29 @@ Avevamo parlato dell'*equivalenza* dell'accettazione per stati finali e per pila
   - ogni volta che leggiamo $X$ sulla cima della pila vuol dire che $M$ ha svuotato la pila, quindi devo andare nello stato finale, ovvero $ forall q in Q quad delta'(q, epsilon, X) = {(q_f, epsilon)} ; $ ovviamente, se andiamo in questo stato a metà stringa ci blocchiamo, altrimenti se ci andiamo alla fine è tutto ok.
 
   A differenza di prima, se partiamo da un automa *deterministico*, quello che otteniamo è ancora un automa *deterministico*.
+
+== Esempi
+
+Vediamo degli esempi di qualche linguaggio che possiamo riconoscere con degli automi a pila.
+
+#example()[
+  Definiamo il linguaggio $ L = {w hash w^R bar.v w in {a,b}^*} . $
+
+  Un automa a pila per questo linguaggio memorizza $w$ sulla pila, legge $hash$ e poi verifica che la stringa $w^R$ sia presente sulla pila.
+
+  Possiamo usare due stati:
+  - $q_0$ lo usiamo per copiare $w$ sulla pila;
+  - $q_1$ lo usiamo per confrontare il carattere sulla pila con quello sul nastro.
+
+  In questo caso ci viene naturale accettare per pila vuota. Inoltre, otteniamo un automa deterministico, detto anche *DPDA*.
+]
+
+Un linguaggio riconosciuto da automi a pila deterministici DPDA fa parte dell'insieme dei *linguaggi context-free deterministici*, detti anche *DCFL*.
+
+#example()[
+  Definiamo ora il linguaggio $ L' = {w w^R bar.v w in {a,b}^*} $ insieme delle stringhe palindrome di lunghezza pari.
+
+  In questo caso non riusciamo a farlo con un DPDA (difficile da dimostrare, lo faremo avanti) perché dobbiamo scommettere di essere arrivati a metà della stringa da riconoscere, quindi dobbiamo usare del *non determinismo*.
+]
+
+Analogamente, un linguaggio riconosciuto da automi a pila non deterministici, detti anche *NPDA* o solo *PDA*, da parte dell'insieme dei *linguaggi context-free*, detti anche *CFL*.

@@ -69,6 +69,9 @@
 #parte("Linguaggi context-free")
 #pagebreak()
 
+#include "capitoli/tipo2/01_automi_a_pila.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

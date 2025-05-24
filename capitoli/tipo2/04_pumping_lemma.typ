@@ -1,6 +1,6 @@
 // Setup
 
-#import "alias.typ": *
+#import "../alias.typ": *
 
 #import "@preview/lovelace:0.3.0": pseudocode-list
 
@@ -27,11 +27,26 @@
 #import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
-// Lezione
+// Capitolo
 
-= Lezione 17 [07/05]
+/*********************************************/
+/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
+/*********************************************/
+#set heading(numbering: "1.")
 
-Prima di iniziare con il topic di questa lezione facciamo qualche *esempio*.
+#show outline.entry.where(level: 1): it => {
+  v(12pt, weak: true)
+  strong(it)
+}
+
+#outline(indent: auto)
+/*********************************************/
+/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
+/*********************************************/
+
+= Pumping lemma
+
+Prima di iniziare con il topic di questo capitolo facciamo qualche *esempio*.
 
 #example()[
   Definiamo il linguaggio $ L = {a^n b^n c^m bar.v n,m gt.eq 0} . $
@@ -255,21 +270,21 @@ Se nel *PL3* ripetevamo la parte centrale dicendo che questa non poteva essere v
 
   Di questi $k + 2$ nodi, l'ultimo che visitiamo è il terminale presente nella stringa $z$, quindi stiamo visitando $k + 1$ variabili. Avendo a disposizione $k$ variabili, vuol dire che visitiamo una variabile almeno due volte. Sia $A$ questa variabile che viene ripetuta.
 
-  #figure(image("assets/17_albero_ripetizione.svg", width: 85%))
+  #figure(image("assets/02_albero_ripetizione.svg", width: 85%))
 
   Nella figura precedente abbiamo indicato con due pallini la variabile $A$ che viene ripetuta durante il cammino dal fondo verso la radice. Ora iniziamo la divisione in fattori.
 
   Consideriamo solo l'albero che parto dalla $A$ più sotto: esso genera un fattore di $z$, che chiamiamo $w$, ovvero $A arrow.stroked^* w$.
 
-  #figure(image("assets/17_albero_w.svg", width: 85%))
+  #figure(image("assets/02_albero_w.svg", width: 85%))
 
   Consideriamo ora l'albero che parte dalla $A$ più sopra: esso genera un altro fattore di $z$, che contiene quello precedente più due fattori esterni, che chiamiamo $v$ e $x$, ovvero $A arrow.stroked^* v w x$.
 
-  #figure(image("assets/17_albero_vx.svg", width: 85%))
+  #figure(image("assets/02_albero_vx.svg", width: 85%))
 
   Infine, prendiamo i due fattori esterni, che chiamiamo $u$ e $y$, trovando quindi la derivazione completa di $z$ come $ S arrow.stroked^* u v w x y . $
 
-  #figure(image("assets/17_albero_uy.svg", width: 85%))
+  #figure(image("assets/02_albero_uy.svg", width: 85%))
 
   Abbiamo quindi mostrato che esiste la decomposizione.
 
@@ -383,4 +398,4 @@ Infine, vediamo un esempio di una struttura non a blocchi.
   Ma questo è un assurdo, quindi $L$ non è CFL.
 ]
 
-Una cosa molto interessante è che questo linguaggio lo potevamo dimostrare anche con il pumping lemma per i linguaggi regolari: infatti, nei linguaggi unari i CFL sono uguali ai linguaggi regolari.
+Una cosa molto interessante è che questo linguaggio lo potevamo dimostrare anche con il pumping lemma per i linguaggi regolari: infatti, nei linguaggi unari i CFL sono *uguali* ai linguaggi regolari.

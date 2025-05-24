@@ -78,6 +78,9 @@
 #include "capitoli/tipo2/03_forme_normali.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/04_pumping_lemma.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

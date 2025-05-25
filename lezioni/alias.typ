@@ -107,6 +107,8 @@
   $LRop(#k)$
 }
 
+// Lezione 22
+
 #let LBA = "LBA"
 #let CS = "CS"
 

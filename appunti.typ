@@ -81,6 +81,9 @@
 #include "capitoli/tipo2/04_pumping_lemma.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/05_lemma_di_ogden.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

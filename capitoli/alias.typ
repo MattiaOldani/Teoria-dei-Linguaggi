@@ -99,3 +99,5 @@
 
 #let CFL = "CFL"
 #let DCFL = "DCFL"
+
+#let PAL = "PAL"

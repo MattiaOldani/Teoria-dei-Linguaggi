@@ -90,6 +90,9 @@
 #include "capitoli/tipo2/07_operazioni.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/08_CFL_vs_DCFL.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

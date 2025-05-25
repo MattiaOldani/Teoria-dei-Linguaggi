@@ -84,6 +84,9 @@
 #include "capitoli/tipo2/05_lemma_di_ogden.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/06_ambiguita.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

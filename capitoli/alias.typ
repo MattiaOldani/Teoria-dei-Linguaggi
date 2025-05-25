@@ -96,3 +96,6 @@
 #let pop = "pop"
 
 #let FNG = $"FNG"$
+
+#let CFL = "CFL"
+#let DCFL = "DCFL"

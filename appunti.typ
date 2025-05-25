@@ -99,6 +99,9 @@
 #include "capitoli/tipo2/10_alfabeti_unari.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/11_automi_two_way.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

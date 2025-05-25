@@ -96,6 +96,9 @@
 #include "capitoli/tipo2/09_risultati_matti.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/10_alfabeti_unari.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

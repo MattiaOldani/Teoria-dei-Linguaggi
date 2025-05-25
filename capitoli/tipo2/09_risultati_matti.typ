@@ -1,6 +1,18 @@
 // Setup
 
-#import "alias.typ": *
+#import "../alias.typ": *
+
+#import "@preview/lovelace:0.3.0": pseudocode-list
+
+#let settings = (
+  line-numbering: "1:",
+  stroke: 1pt + blue,
+  hooks: 0.2em,
+  booktabs: true,
+  booktabs-stroke: 2pt + blue,
+)
+
+#let pseudocode-list = pseudocode-list.with(..settings)
 
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
@@ -12,10 +24,12 @@
 #import "@preview/lilaq:0.1.0" as lq
 #import "@preview/tiptoe:0.3.0" as tp
 
+#import "@preview/fletcher:0.5.5": diagram, node, edge
 
-// Lezione
 
-= Lezione 21 [21/05]
+// Capitolo
+
+= Risultati particolari
 
 == Ricorsione
 
@@ -129,7 +143,7 @@ Questo è un *teorema di rappresentazione* ed è fuori di testa: scegliamo un in
 
 Se non abbiamo a disposizione un riconoscitore per $L$, ma conosciamo tutto ciò che serve per costruirlo con il @teorema-bellissimo, ovvero conosciamo il morfismo $h$, il linguaggio di Dyck $D_k$ e il linguaggio regolare $R$, possiamo *costruire un riconoscitore* per $L$.
 
-#figure(image("assets/21_macchina.svg", width: 90%))
+#figure(image("assets/09_macchina.svg", width: 90%))
 
 Come vediamo, prima passiamo per il *morfismo inverso* $h^(-1)$, che viene anche detto *trasduttore*, ed è *non deterministico* perché il morfismo non è per forza iniettivo. Poi, l'input del trasduttore viene passato a due macchine:
 - un *automa a pila* per $D_k$;

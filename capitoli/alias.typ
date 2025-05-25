@@ -101,3 +101,11 @@
 #let DCFL = "DCFL"
 
 #let PAL = "PAL"
+
+#let LR(k) = {
+  let LRop = math.class(
+    "unary",
+    $"LR"$,
+  )
+  $LRop(#k)$
+}

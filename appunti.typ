@@ -87,6 +87,9 @@
 #include "capitoli/tipo2/06_ambiguita.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/07_operazioni.typ"
+#pagebreak()
+
 
 // Linguaggi context-sensitive
 

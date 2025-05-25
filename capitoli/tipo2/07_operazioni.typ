@@ -1,23 +1,39 @@
 // Setup
 
-#import "alias.typ": *
+#import "../alias.typ": *
+
+#import "@preview/lovelace:0.3.0": pseudocode-list
+
+#let settings = (
+  line-numbering: "1:",
+  stroke: 1pt + blue,
+  hooks: 0.2em,
+  booktabs: true,
+  booktabs-stroke: 2pt + blue,
+)
+
+#let pseudocode-list = pseudocode-list.with(..settings)
 
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
+
+#import "@preview/cetz:0.3.4"
 
 #import "@preview/syntree:0.2.1": syntree
 
 #import "@preview/lilaq:0.1.0" as lq
 #import "@preview/tiptoe:0.3.0" as tp
 
+#import "@preview/fletcher:0.5.5": diagram, node, edge
 
-// Lezione
 
-= Lezione 20 [16/05]
+// Capitolo
 
-Oggi vediamo le *proprietà di chiusura* dei linguaggi CFL e DCFL.
+= Operazioni tra linguaggi
 
-Introduciamo subito due linguaggi che ci serviranno durante la lezione.
+In questo capitolo discutiamo le *proprietà di chiusura* dei linguaggi CFL e DCFL.
+
+Introduciamo subito due linguaggi che ci serviranno per fare dei controesempi.
 
 #definition([Linguaggi comodi])[
   Definiamo il *linguaggio* $ L' = {a^i b^j c^k bar.v i = j} $ e il *linguaggio* $ L'' = {a^i b^j c^k bar.v j = k} $ entrambi DCFL, molto facile da dimostrare.
@@ -36,7 +52,7 @@ Due linguaggi CFL possono essere "uniti" in uno solo con l'operazione di *unione
 Siano $ G' = (V', Sigma, P', S') quad bar.v quad G'' = (V'', Sigma, P'', S'') $ due grammatiche CF. Creiamo la grammatica $ G = (V, Sigma, P, S) $ formata da:
 - $V$ insieme delle *variabili* formato dall'unione dei due insiemi, ovvero $ V = V' union V'' ; $
 - $S$ nuovo *assioma*, dal quale decideremo quale strada prendere nella derivazione delle stringhe di questo nuovo linguaggio;
-- $P$ insieme delle regole di produzione, che manteniamo tutte ma alle quali ne aggiungiamo due per fare da ponte, ovvero $ P = P' union P'' union {(S arrow.long S' bar.v S''} . $
+- $P$ insieme delle regole di produzione, che manteniamo tutte ma alle quali ne aggiungiamo due per fare da ponte, ovvero $ P = P' union P'' union {S arrow.long S' bar.v S''} . $
 
 ==== DCFL
 
@@ -335,7 +351,7 @@ Definiamo quindi $M'$ formato da:
   columns: (40%, 30%, 30%),
   align: center + horizon,
   inset: 10pt,
-  [], [*CFL*], [*DCFL*],
+  [*Operazione*], [*CFL*], [*DCFL*],
   [*Unione*], [#emoji.checkmark.box], [#emoji.crossmark],
   [*Intersezione*], [#emoji.crossmark], [#emoji.crossmark],
   [*Intersezione con un regolare*], [#emoji.checkmark.box], [#emoji.checkmark.box],
@@ -401,7 +417,13 @@ Sfigati come sono, i DCFL non sono chiusi nemmeno per la star di Kleene.
   columns: (40%, 30%, 30%),
   align: center + horizon,
   inset: 10pt,
-  [], [*CFL*], [*DCFL*],
+  [*Operazioni*], [*CFL*], [*DCFL*],
   [*Prodotto*], [#emoji.checkmark.box], [#emoji.crossmark],
   [*Star*], [#emoji.checkmark.box], [#emoji.crossmark],
 )
+
+== Considerazioni
+
+Come vediamo, siamo messi molto male rispetto ai linguaggi regolari, dove praticamente tutte le operazioni permettevano la chiusura dei linguaggi regolari.
+
+In questo caso, i CFL ancora ancora si salvano, però perdono il *complemento*, e questo sarà molto fastidioso in futuro. I DCFL non diciamo niente, visto che tolta l'intersezione con i regolari, che non è una vera e propria operazione interna, hanno solo una proprietà di chiusura.

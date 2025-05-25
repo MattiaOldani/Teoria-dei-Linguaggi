@@ -17,23 +17,6 @@
 
 = Lezione 21 [21/05]
 
-== Riassunto chiusura operazioni
-
-#table(
-  columns: (33%, 33%, 33%),
-  align: center + horizon,
-  inset: 10pt,
-  [], [*CFL*], [*DCFL*],
-  [*Unione*], [#emoji.checkmark.box], [#emoji.crossmark],
-  [*Intersezione*], [#emoji.crossmark], [#emoji.crossmark],
-  [*Intersezione con regolare*], [#emoji.checkmark.box], [#emoji.checkmark.box],
-  [*Complemento*], [#emoji.crossmark], [#emoji.checkmark.box],
-  [*Prodotto*], [#emoji.checkmark.box], [#emoji.crossmark],
-  [*Star*], [#emoji.checkmark.box], [#emoji.crossmark],
-)
-
-Come vediamo, i DCFL, tolta l'intersezione con regolari che non è proprio un'operazione interna, ha poche proprietà di chiusura. Molto molto male.
-
 == CFL vs DCFL
 
 Per i CFL avevamo due criteri molto potenti per dire la *NON* appartenenza di un linguaggio $L$ generico a questa classe. Abbiamo delle tecniche anche per i DCFL? *SI*, menomale.

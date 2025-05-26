@@ -87,3 +87,8 @@
 // Esercizi 19 e 20
 
 #let CFL = "CFL"
+
+// Esercizi 21 e 22
+
+#let lmarker = $triangle.filled.r$
+#let rmarker = $triangle.filled.l$

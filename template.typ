@@ -1,6 +1,7 @@
 #let project(title: "", body) = {
   set document(title: title)
 
+  // set text(font: "EB Garamond", lang: "it")
   set text(font: "New Computer Modern Math", lang: "it")
 
   set par(justify: true)
@@ -59,6 +60,7 @@
 
   let chapters-and-headings = figure.where(kind: "parte", outlined: true).or(heading.where(outlined: true))
 
+  // outline(indent: 2em, target: chapters-and-headings, depth: 1)
   outline(indent: 2em, target: chapters-and-headings)
 
   show link: underline

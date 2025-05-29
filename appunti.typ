@@ -105,6 +105,7 @@
 #include "capitoli/tipo2/12_problemi_di_decisione.typ"
 #pagebreak()
 
+
 // Linguaggi context-sensitive
 
 #parte("Linguaggi context-sensitive")
@@ -117,3 +118,12 @@
 #pagebreak()
 
 #include "capitoli/tipo1/03_operazioni.typ"
+#pagebreak()
+
+
+// Linguaggi non regolari
+
+#parte("Linguaggi senza restrizioni")
+#pagebreak()
+
+#include "capitoli/tipo0/01_macchine_turing.typ"

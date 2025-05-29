@@ -109,3 +109,5 @@
   )
   $LRop(#k)$
 }
+
+#let blank = $bitcoin$

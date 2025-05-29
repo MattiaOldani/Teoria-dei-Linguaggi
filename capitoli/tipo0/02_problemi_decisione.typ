@@ -1,20 +1,43 @@
 // Setup
 
-#import "alias.typ": *
+#import "../alias.typ": *
+
+#import "@preview/lovelace:0.3.0": pseudocode-list
+
+#let settings = (
+  line-numbering: "1:",
+  stroke: 1pt + blue,
+  hooks: 0.2em,
+  booktabs: true,
+  booktabs-stroke: 2pt + blue,
+)
+
+#let pseudocode-list = pseudocode-list.with(..settings)
 
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
 #import "@preview/cetz:0.3.4"
 
+#import "@preview/syntree:0.2.1": syntree
 
-// Lezione
+#import "@preview/lilaq:0.1.0" as lq
+#import "@preview/tiptoe:0.3.0" as tp
 
-= Lezione 23 [28/05]
+#import "@preview/fletcher:0.5.5": diagram, node, edge
 
-== Linguaggi utili
 
-Come vediamo, quando passiamo da una configurazione alla successiva, l'area in cui facciamo i cambiamenti è ristretta: di solito quello che cambia è il simbolo sulla testina, con uno spostamento opzionale di quest'ultima. Questo ci servirà per riconoscere dei linguaggi molto particolari che sono *basati sulle configurazioni*.
+// Capitolo
+
+= Problemi di decisione
+
+Abbiamo visto che la computazione di una MdT è un susseguirsi di *configurazioni*, che racchiudono l'input, lo stato corrente della macchina e anche la posizione della testina, implicitamente usando una divisione della stringa di input.
+
+Quando però passiamo da una configurazione alla successiva, l'area in cui facciamo i cambiamenti è ristretta: di solito quello che cambia è il simbolo sulla testina, con uno spostamento opzionale di quest'ultima.
+
+== Definizioni preliminari
+
+Quanto detto fin'ora ci servirà per riconoscere dei linguaggi molto particolari che sono *basati sulle configurazioni* di una MdT generica.
 
 Definiamo un nuovo alfabeto $ Upsilon = Gamma union Q union {hash} bar.v hash in.not Gamma union Q . $
 
@@ -58,7 +81,7 @@ Come possiamo riconoscere questo linguaggio? Vediamo le singole condizioni:
 
 Quindi sicuramente serve almeno un *LBA* per riconoscere questo linguaggio.
 
-Come possiamo fare? Proviamo a *scomporre* l'ultima condizione in due parti:
+Come possiamo fare? Proviamo a *scomporre* l'ultima condizione in due parti
 - condizione $d'$ che definisce la consecutività di due configurazioni ove la seconda ha un *indice pari* nella sequenza, ovvero $ forall i "pari" quad alpha_(i-1) tack alpha_i ; $
 - condizione $d''$ che fa lo stesso ma lo fa per tutti gli *indici dispari*, ovvero $ forall i "dispari" quad alpha_(i-1) tack alpha_i . $
 
@@ -100,7 +123,7 @@ Con l'intersezione di due DCFL non ci è andata molto bene, quindi ora proviamo 
 
 Per riconoscere questo linguaggio potremmo costruire un riconoscitore $A$ non deterministico che all'inizio usa una $epsilon$-mossa per far partire in parallelo i due *DPDA* e vedere se almeno uno dei due riconosce la stringa che viene data in input.
 
-#figure(image("assets/23_riconoscitore_xi.svg", width: 75%))
+#figure(image("assets/02_riconoscitore_xi.svg", width: 75%))
 
 I due linguaggi $L'$ e $L''$ sono *DCFL*, quindi hanno una sola computazione accettante, ma con $A$ potremmo invece avere *ambiguità* perché abbiamo inserito due $epsilon$-mosse e quindi riconoscere la stringa in due modi diversi.
 

@@ -8,5 +8,3 @@
 
 
 // Lezioni
-
-#include "lezioni/lezione23.typ"

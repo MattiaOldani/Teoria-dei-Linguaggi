@@ -111,3 +111,11 @@
 }
 
 #let blank = $bitcoin$
+
+#let valid(M) = {
+  let validop = math.class(
+    "unary",
+    $"valid"$,
+  )
+  $validop(#M)$
+}

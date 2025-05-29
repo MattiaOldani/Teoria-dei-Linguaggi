@@ -127,3 +127,6 @@
 #pagebreak()
 
 #include "capitoli/tipo0/01_macchine_turing.typ"
+#pagebreak()
+
+#include "capitoli/tipo0/02_problemi_decisione.typ"

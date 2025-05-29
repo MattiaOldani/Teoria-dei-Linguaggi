@@ -129,3 +129,15 @@
   )
   $DSPACEop(#n)$
 }
+
+// Lezione 23
+
+#let blank = $#sym.bitcoin$
+
+#let valid(M) = {
+  let validop = math.class(
+    "unary",
+    $"valid"$,
+  )
+  $validop(#M)$
+}

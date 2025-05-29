@@ -52,7 +52,7 @@ Con *semi-decidibilità* di un linguaggio $L$ di tipo $0$ intendiamo che:
   - può fermarsi e non accettare;
   - può entrare in *loop infinito*.
 
-#figure(image("assets/23_riconoscitore.svg", width: 75%))
+#figure(image("assets/23_riconoscitore_MdT.svg", width: 75%))
 
 Le macchine di Turing sono un modello in grado di calcolare tutte le *funzioni calcolabili* da un computer. Queste funzioni sono dette *funzioni ricorsive*, ma con "ricorsive" non intendiamo le funzioni che chiamano sé stesse.
 
@@ -365,7 +365,7 @@ Con l'intersezione di due DCFL non ci è andata molto bene, quindi ora proviamo 
 
 Per riconoscere questo linguaggio potremmo costruire un riconoscitore $A$ non deterministico che all'inizio usa una $epsilon$-mossa per far partire in parallelo i due *DPDA* e vedere se almeno uno dei due riconosce la stringa che viene data in input.
 
-#figure(image("assets/23_riconoscitore.svg", width: 75%))
+#figure(image("assets/23_riconoscitore_xi.svg", width: 75%))
 
 I due linguaggi $L'$ e $L''$ sono *DCFL*, quindi hanno una sola computazione accettante, ma con $A$ potremmo invece avere *ambiguità* perché abbiamo inserito due $epsilon$-mosse e quindi riconoscere la stringa in due modi diversi.
 

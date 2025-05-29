@@ -1,26 +1,22 @@
 // Setup
 
-#import "alias.typ": *
+#import "../alias.typ": *
 
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
 
-// Lezione
+// Capitolo
 
-= Lezione 22 [23/05]
+= Problemi di decisione
 
-In questa lezione parleremo di troppe cose: toccheremo tutta la gerarchia di Chomsky, esclusi i linguaggi di tipo $0$, considerando alfabeti particolari e macchine riconoscitrici diverse dal solito. Andremo poi avanti anche con le grammatiche di tipo $2$.
+Vediamo in questo capitolo qualche *problema di decisione*. Per ora vedremo i problemi a cui sappiamo rispondere con quello che sappiamo, questo perché alcuni dei problemi di decisione richiedono conoscenze delle *macchine di Turing*, che vedremo nell'ultima parte delle dispense.
 
-== Problemi di decisione dei CFL
-
-Per finire questa lezione infinita, torniamo indietro ai linguaggi CFL e vediamo qualche *problema di decisione*. Per ora vedremo i problemi a cui sappiamo rispondere con quello che sappiamo, questo perché dei problemi di decisione richiedono conoscenze delle *macchine di Turing*, che per ora non abbiamo.
-
-=== Appartenenza
+== Appartenenza
 
 Dato $L$ un CFL e una stringa $x in Sigma^*$, ci chiediamo se $x in L$.
 
-Questo è molto facile: sappiamo che i CFL sono *decidibili* perché lo avevamo mostrato per i linguaggi di tipo $1$. Come complessità come siamo messi?
+Questo è molto facile: sappiamo che i CFL sono *decidibili* perché lo avevamo mostrato per i linguaggi di tipo $1$. Come *complessità* come siamo messi?
 
 Sia $n = abs(x)$. Esistono algoritmi semplici che permettono di decidere in tempo $ T(n) = O(n^3) . $
 
@@ -30,7 +26,7 @@ L'algoritmo di Strassen in realtà poi è stato superato da altri algoritmi ben 
 
 Una domanda aperta si chiede se riusciamo ad abbassare questo bound al livello quadratico, e questo sarebbe molto comodo: infatti, negli algoritmi di parsing avere degli algoritmi quadratici è apprezzabile, e infatti spesso di considerano sottoclassi per avvicinarsi a complessità lineari.
 
-=== Linguaggio vuoto e infinito
+== Linguaggio vuoto e infinito
 
 Sia $L$ un CFL, ci chiediamo se $L eq.not emptyset.rev$ oppure se $abs(L) = infinity$.
 
@@ -46,10 +42,14 @@ Gli algoritmi per verificare la non vuotezza o l'infinità non sono molto effici
 
 Si possono implementare delle tecniche che lavorano sul *grafo delle produzioni*, ma sono molto avanzate e (penso) difficili da utilizzare.
 
-=== Universalità
+== Universalità
 
 Dato $L$ un CFL, vogliamo sapere se $L = Sigma^*$, ovvero vogliamo sapere se siamo in grado di generare tutte le stringhe su un certo alfabeto.
 
 Nei linguaggi regolari passavamo per il complemento per vedere se il linguaggio era vuoto, ma nei CFL *non abbiamo il complemento*, quindi non lo possiamo utilizzare.
 
 Infatti, questo problema *non si può decidere*: non esistono algoritmi che stabiliscono se un PDA riesce a riconoscere tutte le stringhe, o se una grammatica riesce a generare tutte le stringhe.
+
+== Altri problemi
+
+Per vedere altri problemi di decisione sui CFL guardate il capitolo sui *problemi di decisione delle macchine di Turing*.

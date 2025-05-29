@@ -102,6 +102,8 @@
 #include "capitoli/tipo2/11_automi_two_way.typ"
 #pagebreak()
 
+#include "capitoli/tipo2/12_problemi_di_decisione.typ"
+#pagebreak()
 
 // Linguaggi context-sensitive
 

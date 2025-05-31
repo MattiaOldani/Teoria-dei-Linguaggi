@@ -112,10 +112,17 @@
 
 #let blank = $bitcoin$
 
-#let valid(M) = {
+#let valid(M, w: none) = {
   let validop = math.class(
     "unary",
     $"valid"$,
   )
-  $validop(#M)$
+
+  if w == none {
+    $validop(#M)$
+  } else {
+    $validop(#M, #w)$
+  }
 }
+
+#let Reg = "Reg"

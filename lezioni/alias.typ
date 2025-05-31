@@ -134,10 +134,19 @@
 
 #let blank = $#sym.bitcoin$
 
-#let valid(M) = {
+#let valid(M, w: none) = {
   let validop = math.class(
     "unary",
     $"valid"$,
   )
-  $validop(#M)$
+
+  if w == none {
+    $validop(#M)$
+  } else {
+    $validop(#M, #w)$
+  }
 }
+
+// Lezione 24
+
+#let Reg = "Reg"

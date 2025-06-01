@@ -1,8 +1,7 @@
 #let project(title: "", body) = {
   set document(title: title)
 
-  // set text(font: "EB Garamond", lang: "it")
-  set text(font: "New Computer Modern Math", lang: "it")
+  set text(font: "New Computer Modern", lang: "it")
 
   set par(justify: true)
 

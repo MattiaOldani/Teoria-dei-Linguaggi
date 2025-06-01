@@ -7,12 +7,12 @@
 
 = Introduzione
 
-In questo corso studieremo dei *sistemi formali* che descrivono dei linguaggi: ci chiederemo cosa sono in grado di fare, ovvero cosa sono in grado di descrivere in termini di *linguaggi*.
+In queste dispense vengono presentati i *sistemi formali* che descrivono i linguaggi: ci chiederemo cosa sono in grado di fare, ovvero cosa *descrivono* in termini di *linguaggi*.
 
 Ci occuperemo anche delle *risorse utilizzate*, come il *numero di mosse* eseguite da una macchina che deve riconoscere un linguaggio, oppure il *numero di stati* che sono necessari per descrivere una macchina a stati finiti, oppure ancora lo *spazio utilizzato* da una macchina di Turing.
 
 Un *linguaggio* è _"uno strumento di comunicazione usato da membri di una stessa comunità"_, ed è composto da due elementi:
-- *sintassi*: insieme di simboli (o parole) che devono essere combinati con una serie di regole;
+- *sintassi*: insieme di simboli (_o parole_) che devono essere combinati con una serie di regole;
 - *semantica*: associazione frase-significato.
 
 Per i linguaggi naturali è difficile dare delle regole sintattiche: vista questa difficoltà, nel $1956$ *Noam Chomsky* introduce il concetto di *grammatiche formali*, che si servono di regole matematiche per la definizione della sintassi di un linguaggio.

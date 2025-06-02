@@ -63,6 +63,7 @@
   outline(indent: 2em, target: chapters-and-headings)
 
   show link: underline
+  show ref: underline
 
   body
 }

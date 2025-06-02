@@ -10,8 +10,8 @@
 
 // Capitolo
 
-// Potrei spezzarlo in due capitoli
 = Numero minimo di stati
+<capitolo03-tipo3>
 
 == Distinguibilità
 
@@ -53,7 +53,7 @@ In poche parole, riesco a trovare una stringa $z in Sigma^*$ tale che, se attacc
   #set math.mat(delim: none)
 
   $
-    mat(,epsilon,a,b,a b; epsilon,-,b,b,b; a,b,-,a b,a b; b,b,a b,-,epsilon; a b,b,a b,epsilon, -; augment: #(vline: (1,2,3,4), hline: (1,2,3,4))) .
+    mat(, epsilon, a, b, a b; epsilon, -, b, b, b; a, b, -, a b, a b; b, b, a b, -, epsilon; a b, b, a b, epsilon, -; augment: #(vline: (1, 2, 3, 4), hline: (1, 2, 3, 4))) .
   $
 
   È comodo usare una stringa per ogni stato dell'automa.

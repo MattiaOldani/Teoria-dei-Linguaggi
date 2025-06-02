@@ -8,23 +8,33 @@
 
 = Breve ripasso
 
-Prima di addentrarci nello studio della gerarchia di Chomsky facciamo un breve ripasso delle basi che ci serviranno durante lo studio dei linguaggi formali.
+Prima di addentrarci nello studio della gerarchia di Chomsky facciamo un breve *ripasso* delle basi che ci serviranno durante lo studio dei linguaggi formali.
+
+Partiamo proprio dalle basi, quindi prima di tutto diamo la definizione di *alfabeto*.
 
 #definition([Alfabeto])[
   Un *alfabeto* è un *insieme non vuoto* e *finito* di *simboli*, di solito indicato con le lettere greche maiuscole $ Sigma quad bar.v quad Gamma . $
 ]
 
+Dato un alfabeto, sopra di esso ci possiamo costruire delle *stringhe* con varie proprietà.
+
 #definition([Stringa])[
-  Una *stringa*, o *parola*, è una *sequenza finita* di simboli appartenenti all'alfabeto $Sigma$. Viene indicata con la lettera $x$ e la possiamo scrivere come $ x = a_1 dots a_n quad bar.v quad a_i in Sigma . $
+  Una *stringa*, o *parola*, è una *sequenza finita* di simboli appartenenti all'alfabeto $Sigma$. Viene indicata con la lettera $x$ e la possiamo scrivere come $ x = a_1 dots a_n bar.v a_i in Sigma . $
 ]
 
-Data una stringa $x$, indichiamo il *numero di caratteri* di $x$ con la notazione $ abs(x) $ e il *numero di occorrenze di un carattere* di $Sigma$ in $x$ con la notazione $ abs(x)_a quad bar.v quad a in Sigma . $
+#definition([Lunghezza di una stringa])[
+  Data una stringa $x$, indichiamo con $ abs(x) $ la sua *lunghezza*, ovvero il *numero di caratteri* contenuti in $x$.
+]
+
+#definition([Numero di occorrenze])[
+  Data una stringa $x$ e un carattere $a$, indichiamo con $ abs(x)_a space "oppure" space hash_a (x) $ il *numero di occorrenze* del carattere $a$ in $x$.
+]
 
 Una stringa/parola molto importante è la *parola vuota*, che possiamo indicare in vari modi: $ epsilon quad bar.v quad lambda quad bar.v quad Lambda . $ Come dice il nome, questa parola non ha simboli, ovvero è l'unica parole tale che $ abs(epsilon) = 0 . $
 
-L'insieme di tutte le possibili parole che possiamo formare usando l'alfabeto $Sigma$ si indica con $Sigma^*$. Questo insieme, ovviamente, è un *insieme infinito*.
+Dato un alfabeto $Sigma$, l'insieme di tutte le possibili parole che possiamo formare si indica con $Sigma^*$. Questo insieme, ovviamente, è un *insieme infinito*, visto che possiamo concatenare infinite volte i caratteri presenti nell'alfabeto dato.
 
-Con le parole possiamo definire una serie di operazioni, ma la più importante tra tutte è la *concatenazione*, o *prodotto*. Date due stringhe $ x,y in Sigma^* quad bar.v quad x = x_1 dots x_n and y = y_1 dots y_m $ allora la concatenazione di $x$ e $y$ è la stringa $ w = x dot y = x_1 dots x_n y_1 dots y_m . $
+Con le parole possiamo definire una serie di *operazioni*, ma la più importante è la *concatenazione*, o *prodotto*. Date due stringhe $ x,y in Sigma^* bar.v x = x_1 dots x_n and y = y_1 dots y_m $ allora la concatenazione di $x$ e $y$ è la stringa $ w = x dot y = x_1 dots x_n y_1 dots y_m . $
 
 L'operazione di concatenazione *non è commutativa* ma è *associativa*, quindi la struttura $ (Sigma^*, dot, epsilon) $ è un *monoide libero* generato da $Sigma$.
 
@@ -70,4 +80,4 @@ Per finire veramente, diamo forse la definizione più importante, quella di *lin
   Un *linguaggio* $L$, definito su un alfabeto $Sigma$, è un qualunque sottoinsieme di $Sigma^*$, ovvero $ L subset.eq Sigma^* . $
 ]
 
-Ora che abbiamo fatto un ripasso siamo pronti per vedere la gerarchia di Chomsky, per poi addentrarci nello studio di alcune classi di questa gerarchia.
+Ora che abbiamo fatto un ripasso siamo pronti per vedere la gerarchia di Chomsky nella sua interezza.

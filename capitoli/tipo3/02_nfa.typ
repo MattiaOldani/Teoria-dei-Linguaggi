@@ -11,6 +11,7 @@
 // Capitolo
 
 = Automi a stati finiti non deterministici
+<capitolo02-tipo3>
 
 L'automa proposto nell'esempio @esempio-terzultimo-a del capitolo precedente ci ha richiesto $2^n$ stati. Abbiamo poi detto che con la nozione di *distinguibilità* dimostreremo che non ci sono DFA con meno stati di quello che abbiamo costruito. Ma se invece utilizzassimo degli *automi non deterministici*?
 

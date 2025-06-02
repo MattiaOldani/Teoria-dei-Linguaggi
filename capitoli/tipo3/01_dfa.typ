@@ -9,6 +9,7 @@
 // Capitolo
 
 = Automi a stati finiti deterministici
+<capitolo01-tipo3>
 
 Nel contesto delle grammatiche di tipo $3$ andiamo ad utilizzare le *macchine a stati finiti* per stabilire se, data una stringa $x$, essa appartiene o meno ad un dato linguaggio. Le macchine a stati finiti da ora le chiameremo anche *FSM* (_Finite State Machine_) o, nel caso delle macchine deterministiche, *DFA* (_Deterministic Finite Automata_).
 

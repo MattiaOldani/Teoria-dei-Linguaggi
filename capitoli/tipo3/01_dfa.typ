@@ -93,6 +93,6 @@ Lo stato trappola è *opzionale*: per semplicità, quando un automa *non è comp
   Costruiamo un automa deterministico per $L$. Qua l'idea è ricordarsi una finestra di $3$ simboli e grazie a questa vediamo se il primo carattere che definisce lo stato è una $a$.
 
   #figure(image("assets/01/terzultimo_a.svg"))
-]
+]<esempio-terzultimo-a>
 
 Ci servono per forza $8$ stati o possiamo fare meglio? Abbiamo trovato la strada migliore? Quando introdurremo il concetto di *distinguibilità* nel @capitolo03-tipo3[Capitolo] vedremo che questo è l'automa migliore che possiamo costruire per questo linguaggio.

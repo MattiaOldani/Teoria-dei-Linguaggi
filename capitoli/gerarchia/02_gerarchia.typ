@@ -12,7 +12,7 @@
 
 = Gerarchia di Chomsky
 
-Vogliamo cercare di rappresentare in maniera *finita* un oggetto potenzialmente *infinito*, come ad esempio un linguaggio. Per fare ciò, abbiamo a nostra disposizione due modelli potenti:
+Vogliamo cercare di rappresentare in maniera *finita* un oggetto potenzialmente *infinito*, come ad esempio un *linguaggio*. Per fare ciò, abbiamo a nostra disposizione due modelli potenti:
 - il *modello generativo* fornisce delle regole che, applicate da un certo punto di partenza, generano tutte le parole di un linguaggio;
 - il *modello riconoscitivo* utilizza un modello di calcolo che prende in input una parola e ci dice se appartiene o meno al linguaggio.
 
@@ -24,9 +24,9 @@ Vogliamo cercare di rappresentare in maniera *finita* un oggetto potenzialmente 
   - se $x$ è ben bilanciata, allora anche $(x)$ è ben bilanciata;
   - se $x$ e $y$ sono ben bilanciate, allora anche $x y$ è ben bilanciata.
 
-  Un *modello riconoscitivo* per questo linguaggio è una black-box che, presa una parola, ci dice se essa appartiene o meno al linguaggio. In realtà questa macchina non potrebbe terminare mai, ma ne parleremo più in fondo in questo capitolo. Una macchina per questo linguaggio deve verificare i seguenti fatti:
-  - il numero di parentesi aperte è uguale al numero di parentesi chiuse, quindi $ hash_(\() (x) = hash_(\)) (x) ; $
-  - considerato ogni prefisso, il numero di parentesi aperte non deve superare il numero di parentesi chiuse, quindi $ forall y in Sigma^* bar.v x = y z quad hash_(\() (y) lt.eq hash_(\)) (y) . $
+  Un *modello riconoscitivo* per questo linguaggio è una black-box che, presa una parola, ci dice se essa appartiene o meno al linguaggio. In realtà questa macchina potrebbe *non terminare* mai, ma ne parleremo più in fondo in questo capitolo. Una macchina per questo linguaggio deve verificare i seguenti fatti:
+  - il numero di parentesi aperte è uguale al numero di parentesi chiuse, quindi $ hash_("(") (x) = hash_(")") (x) ; $
+  - considerato ogni prefisso, il numero di parentesi aperte non deve superare il numero di parentesi chiuse, quindi $ forall y in Sigma^* bar.v x = y z quad hash_("(") (y) lt.eq hash_(")") (y) . $
 ]
 
 == Grammatiche
@@ -43,7 +43,7 @@ Le *grammatiche* sono un modello generativo molto potente: vediamo come sono def
 
 Soffermiamoci brevemente sulle *regole di produzione*: esse sono nella forma $ alpha arrow.long beta bar.v alpha in (V union Sigma)^+ and beta in (V union Sigma)^* . $ La notazione $()^+$ è praticamente l'insieme $()^*$ senza la parola vuota.
 
-Una regola di produzione viene letta come _"se ho $alpha$ allora posso sostituirlo con $beta$"_.
+Una *regola di produzione* viene letta come _"se ho $alpha$ allora posso sostituirlo con $beta$"_.
 
 L'applicazione delle regole di produzione è alla base del *processo di derivazione*: esso è formato infatti da una serie di *passi di derivazione*, che permettono di generare una parola del linguaggio.
 
@@ -98,7 +98,7 @@ Vediamo qualche grammatica come esempio.
     [$S arrow.long a B bar.v b A$], [$A arrow.long a bar.v a S bar.v b A A$], [$B arrow.long b bar.v b S bar.v a B B$],
   )
 
-  Questa grammatica genera il linguaggio $ L(G) = {w in Sigma^* bar.v hash_a (w) = hash_b (w)} . $ Infatti, ogni forma sentenziale $w$ che generiamo è tale che $ hash_({a,A})(w) = hash_({b,B})(w) $ e questa relazione viene poi mantenuta trasformando tutte le $A$ e $B$ nei relativi simboli terminali.
+  Questa grammatica genera il linguaggio $ L(G) = {w in Sigma^* bar.v hash_a (w) = hash_b (w)} . $ Infatti, ogni forma sentenziale $w$ che generiamo è tale che $ hash_({a,A})(w) = hash_({b,B})(w) $ e questa relazione viene poi mantenuta trasformando tutte le $A$ e le $B$ nei relativi simboli terminali $a$ e $b$.
 ]
 
 #example()[
@@ -132,13 +132,13 @@ Negli anni $'50$ *Noam Chomsky* studia la generazione dei linguaggi formali e cr
 // Trova una formattazione migliore di questa tabella
 #align(center)[
   #table(
-    columns: (33%, 33%, 33%),
+    columns: (31%, 38%, 31%),
     inset: 10pt,
     align: horizon,
     [*Grammatica*], [*Regole*], [*Modello riconoscitivo*],
-    [*Tipo 0*], [Nessuna restrizione, sono il tipo più generale], [*Macchine di Turing*],
+    [*Tipo 0*], [Nessuna restrizione], [*Macchine di Turing*],
     [*Tipo 1*, dette *context-sensitive* (o dipendenti dal contesto)],
-    [Se $(alpha arrow.long beta) in P$ allora $abs(beta) gt.eq abs(alpha)$, ovvero devo generare parole che *non sono più corte* di quella di partenza \ \ Sono dette *dipendenti dal contesto* perché ogni regola $(A arrow.long B) in P$ può essere riscritta come $alpha_1 A alpha_2 arrow.long alpha_1 B alpha_2$, con $alpha_1, alpha_2 in (V union Sigma)^*$ che rappresentano il *contesto*, $A in V$ e $B in (V union Sigma)^+$],
+    [Se $(alpha arrow.long beta) in P$ allora $ abs(alpha) lt.eq abs(beta), $ ovvero devo generare parole che *non sono più corte* di quella di partenza \ \ Sono dette *dipendenti dal contesto* perché ogni regola $(A arrow.long B) in P$ può essere riscritta come $ alpha_1 A alpha_2 arrow.long alpha_1 B alpha_2, $ con $alpha_1, alpha_2 in (V union Sigma)^*$ che rappresentano il *contesto*, $A in V$ e $B in (V union Sigma)^+$],
     [*Automi limitati linearmente*],
 
     [*Tipo 2*, dette *context-free* (o libere dal contesto)],
@@ -153,7 +153,7 @@ Negli anni $'50$ *Noam Chomsky* studia la generazione dei linguaggi formali e cr
 
 La gerarchia che ha definito Chomsky è *propria*, ovvero: $ L_3 subset L_2 subset L_1 subset L_0. $
 
-Come vedremo a fine di questo capitolo, questa gerarchia *non esaurisce* tutti i linguaggi possibili: esistono infatti linguaggi che non sono descrivibili in maniera finita con le grammatiche.
+Come vedremo alla fine di questo capitolo, questa gerarchia *non esaurisce* tutti i linguaggi possibili: esistono infatti linguaggi che non sono descrivibili in maniera finita con le grammatiche.
 
 #v(12pt)
 
@@ -181,10 +181,10 @@ Come vedremo a fine di questo capitolo, questa gerarchia *non esaurisce* tutti i
 
 // TODO: riformulare
 La gerarchia data considera dei *modelli deterministici*, ma come cambia considerando invece dei *modelli non deterministici*? Sappiamo che:
-- le grammatiche di tipo $3$ hanno la stessa potenza computazionale, pagando un costo in termini di descrizione;
-- le grammatiche di tipo $2$ hanno il modello deterministico strettamente più potente;
-- le grammatiche di tipo $1$ sono abbastanza complicate, quindi non lo vedremo;
-- le grammatiche di tipo $0$, come quelle regolari, hanno la stessa potenza computazionale.
+- le grammatiche di tipo $3$ mantengono la stessa potenza computazionale, pagando un costo in termini di descrizione, quindi in *numero di stati*;
+- le grammatiche di tipo $2$ hanno il modello non deterministico strettamente più potente;
+- le grammatiche di tipo $1$ sono abbastanza complicate;
+- le grammatiche di tipo $0$, come quelle regolari, mantengono la stessa potenza computazionale.
 
 Il non determinismo comunque è una nozione del *riconoscitore* che sto usando:
 - nel determinismo il riconoscitore può fare una scelta alla volta;
@@ -224,7 +224,9 @@ Con *ricorsività* non intendiamo le procedure ricorsive, ma si intende una proc
   Ma allora $G$ è decidibile.
 ]
 
-Ci rendiamo conto che questa soluzione è *altamente inefficiente*: infatti, in tempo polinomiale non riusciamo a fare questo nelle tipo $1$, ma è una soluzione che ci garantisce la decidibilità, quindi sium.
+Ci rendiamo conto che questa soluzione è *altamente inefficiente*: infatti, in tempo polinomiale non riusciamo a fare questo nelle tipo $1$, ma è una soluzione che ci garantisce la decidibilità.
+
+In che situazione si trovano invece i linguaggi di tipo $0$?
 
 #theorem([Semi-decidibilità dei linguaggi di tipo $0$])[I linguaggi di tipo $0$ sono *ricorsivamente enumerabili*.]
 
@@ -239,40 +241,38 @@ Ci rendiamo conto che questa soluzione è *altamente inefficiente*: infatti, in 
 
   Se $i = 0$ non eseguo nessuna derivazione, quindi $ U_0 = {S} . $
 
-  Supponiamo di aver calcolato $U_(i-1)$. Vogliamo calcolare $ U_i = U_(i-1) union {gamma in (V union Sigma)^* bar.v exists beta in U_(i-1) : beta arrow.stroked gamma} . $
+  Supponiamo di aver calcolato $U_(i-1)$. Vogliamo calcolare $ U_i = U_(i-1) union {gamma in (V union Sigma)^* bar.v exists beta in U_(i-1) bar.v beta arrow.stroked gamma} . $
 
   Noi partendo da $U_0$ calcoliamo tutti i vari insiemi ottenendo una serie di $U_i$. Per come abbiamo definito gli insiemi, sappiamo che $ U_0 subset.eq U_1 subset.eq U_2 subset.eq dots subset.eq (V union Sigma)^* . $
 
   A differenza di prima, la grandezza dell'insieme $(V union Sigma)^*$ è infinita, quindi non ho più l'obbligo di stopparmi ad un certo punto per esaurimento delle stringhe generabili.
 
-  Come rispondiamo a $w in L(G)$? Iniziamo a costruire i vari insiemi $U_i$ e ogni volta che termino la costruzione mi chiedo se $w in U_i$:
-  - se questo è vero allora rispondo *SI*;
-  - in caso contrario vado avanti con la costruzione.
-  frac(4 pi, lambda)
-  Vista la cardinalità infinita dell'insieme che fa da container, potrei andare avanti all'infinito (_a meno di ottenere due insiemi consecutivi identici, in tale caso rispondo NO_).
+  Come rispondiamo a $w in L(G)$? Iniziamo a costruire i vari insiemi $U_i$ e ogni volta che termino la costruzione mi chiedo se $w in U_i$: se questo è vero allora rispondo *SI*, in caso contrario vado avanti con la costruzione.
+
+  Vista la cardinalità infinita dell'insieme che fa da container, potrei andare avanti all'infinito (_a meno di ottenere due insiemi consecutivi identici, in tale caso rispondo *NO*_).
 
   Ma allora $G$ è semi-decidibile.
 ]
 
-Usiamo la dicitura *ricorsivamente enumerabile* perché ogni volta che costruisco un insieme $U_i$ posso prendere le stringe $w in Sigma^*$ appena generate ed elencarle, quindi enumerarle una per una.
+Usiamo la dicitura *ricorsivamente enumerabile* perché ogni volta che costruisco un insieme $U_i$ posso prendere le stringe $w in Sigma^*$ appena generate ed elencarle, quindi *enumerarle* una per una.
 
 == Introduzione della parola vuota
 
-Introduciamo il *problema della parola vuota*. Dalle grammatiche di tipo $1$ a salire abbiamo il vincolo di non poter scendere di lunghezza con le derivazioni, quindi diciamo che la parola vuota $epsilon$ non la vedremo mai come lato destro di una derivazione. Eppure, ogni tanto la parola vuota dovrebbe appartenere al linguaggio generato da una grammatica. Come possiamo risolvere questo problema, senza far decadere l'intera gerarchia?
+Introduciamo il *problema della parola vuota*. Dalle grammatiche di tipo $1$ a salire abbiamo il vincolo di non poter scendere di lunghezza con le derivazioni, quindi diciamo che la parola vuota $epsilon$ non la vedremo mai come lato destro di una derivazione. Eppure, ogni tanto la parola vuota dovrebbe appartenere al linguaggio generato da una grammatica. Come possiamo risolvere questo problema, senza far crollare l'intera gerarchia?
 
 Una possibile soluzione è *spezzare le regole di produzione*.
 
 Partiamo da una grammatica $G = (V, Sigma, P, S)$ di tipo $1$ e definiamo una nuova grammatica $ G' = (V', Sigma, P', S') $ tale che $L(G) = L(G')$. Vediamo le componenti di questa grammatica:
 - l'*insieme delle variabili* contiene un nuovo elemento, il *nuovo assioma* $S'$, ovvero $ V' = V union {S'} ; $
-- l'*insieme delle produzioni* mantiene le regole vecchie ma aggiunge due nuove regole, ovvero $ P' = P union {S' arrow.long epsilon} union {S' arrow.long S} $ dove:
+- l'*insieme delle produzioni* mantiene le regole vecchie ma ne aggiunge due nuove, ovvero $ P' = P union {S' arrow.long epsilon} union {S' arrow.long S} $ dove:
   - la prima regola permette di generare la parola vuota $epsilon$;
   - la seconda regola permette di far partire la computazione della vecchia grammatica;
 - l'*assioma* $S'$ ci permette la generazione della parola vuota ma dobbiamo garantire che non appaia mai nel lato destro delle produzioni.
 
-Con questi accorgimenti ora riusciamo a generare anche la parola vuota: infatti, questo lo possiamo fare all'inizio partendo da $S'$. Se non ci interessa la parola vuota facciamo partire, sempre da $S'$, la computazione della vecchia grammatica.
+Con questi accorgimenti ora riusciamo a generare anche la *parola vuota*: infatti, questo lo possiamo fare all'inizio partendo da $S'$. Se non ci interessa la parola vuota facciamo partire, sempre da $S'$, la computazione della vecchia grammatica.
 
 Come cambia la gerarchia considerando anche la parola vuota? Abbiamo che:
-- le grammatiche di tipo $1$ mantengono la clausola $abs(beta) gt.eq abs(alpha)$ ma è possibile ottenere $epsilon$ da $S'$ purché $S'$ non appaia mai nel lato destro delle produzioni;
+- le grammatiche di tipo $1$ mantengono la clausola $abs(alpha) lt.eq abs(beta)$ ma è possibile ottenere $epsilon$ da $S'$ purché $S'$ non appaia mai nel lato destro delle produzioni;
 - le grammatiche di tipo $2$ modificano la notazione $()^+$ in $()^*$ nel lato destro delle produzioni senza isolare in modo specifico $epsilon$ perché questo non crea problemi;
 - le grammatiche di tipo $3$ seguono le precedenti.
 
@@ -286,7 +286,7 @@ Vediamo infine dei linguaggi che non possiamo esprimere tramite *grammatiche fin
   Sono più i numeri pari o i numeri dispari? Sono più i numeri pari o i numeri interi? Sono più le coppie di numeri naturali o i naturali stessi?
 ]
 
-Per rispondere a queste domande si usa la definizione di *cardinalità*, e tutti questi insiemi che abbiamo ce l'hanno uguale. Anzi, diciamo di più: tutti questi insiemi sono grandi quanto i naturali, perché esistono funzioni biettive tra questi insiemi e l'insieme $NN$.
+Per rispondere a queste domande si usa la definizione di *cardinalità*, e tutti questi insiemi che abbiamo citato ce l'hanno uguale. Anzi, diciamo di più: tutti questi insiemi sono grandi quanto i naturali, perché esistono funzioni biettive tra questi insiemi e l'insieme $NN$.
 
 #example()[
   Sono più i sottoinsiemi di naturali o i naturali stessi?
@@ -308,13 +308,13 @@ In questo caso, sono di più i sottoinsiemi, che hanno la *cardinalità del cont
   Abbiamo ottenuto un assurdo, ma allora $NN tilde.not 2^NN$.
 ]
 
+Siamo quasi pronti per l'ultima dimostrazione di questo capitolo.
+
 #example()[
   Sono più le stringhe o i numeri naturali?
 ]
 
-Questo è facile: basta trasformare ogni stringa in un numero naturale con una qualche codifica a nostra scelta.
-
-Ora che abbiamo a disposizione queste nozioni possiamo dimostrare il seguente teorema.
+Questi insiemi hanno la stessa cardinalità perché possiamo trasformare ogni stringa data in un numero naturale usando una qualche codifica. Con questa nozione e tutte quelle precedenti siamo pronti per dimostrare un teorema molto importante.
 
 #theorem()[
   Esistono linguaggi che non sono descrivibili da grammatiche finite.
@@ -323,15 +323,15 @@ Ora che abbiamo a disposizione queste nozioni possiamo dimostrare il seguente te
 #theorem-proof()[
   Prendiamo una grammatica $G = (V, Sigma, P, S)$.
 
-  Per descriverla devo dire come sono formati i vari campi della tupla. Cosa uso per descriverla? Sto usando dei simboli come lettere, numeri, parentesi, eccetera, quindi la grammatica è una descrizione che possiamo fare sotto forma di stringa. Visto quello che abbiamo da poco dimostrato, ogni grammatica la possiamo descrivere come stringa, e quindi come un numero intero. Siano $G_i$ tutte queste grammatiche, che sono appunto listabili.
+  Per descriverla devo dire come sono formati i vari campi della tupla. Cosa uso per descriverla? Sto usando dei simboli come lettere, numeri, parentesi, eccetera, quindi la grammatica è una descrizione che possiamo fare sotto forma di stringa. Visto quello che abbiamo da poco "dimostrato", ogni grammatica la possiamo descrivere come una stringa, e quindi come un numero intero. Siano $G_i$ tutte queste grammatiche, che sono appunto listabili.
 
-  Consideriamo ora, per ogni grammatica $G_i$, l'insieme $L(G_i)$ delle parole generate dalla grammatica $G_i$, ovvero il linguaggio generato da $G_i$. Mettiamo dentro $L$ tutti questi linguaggi.
+  Consideriamo ora per ogni grammatica $G_i$ l'insieme $L(G_i)$ delle parole generate dalla grammatica $G_i$, ovvero il linguaggio generato da $G_i$. Mettiamo dentro $L$ tutti questi linguaggi.
 
-  Per assurdo, siano tutti questi linguaggi listabili, ovvero $NN tilde 2^L$.
+  Per assurdo, siano tutti questi linguaggi listabili, ovvero $NN tilde L$.
 
   Come prima, creiamo una tabella $M$ indicizzata sulle righe dai linguaggi $L(G_i)$ e indicizzata sulle colonne dalle stringhe $x_i$ che possiamo però considerare come naturali. La matrice $M$ ha sulla riga $i$-esima la funzione caratteristica di $L(G_i)$, ovvero $ M[i,j] = cases(1 & "se" x_j in L(G_i), 0 quad & "se" x_j in.not L(G_i)) . $ In poche parole, abbiamo $1$ nella cella $M[i,j]$ se e solo se la stringa $x_j$ viene generata da $G_i$.
 
   Costruiamo ora l'insieme $ "LG" = {x_i in NN bar.v x_i in.not L(G_i)} , $ ovvero l'insieme di tutte le stringhe $x_i$ che non sono generate dalla grammatica $G_i$ con lo stesso indice $i$. Come prima, questo insieme non è presente in $L$ perché differisce da ogni insieme presente in almeno una posizione, ovvero quello sulla diagonale.
 
-  Siamo ad un assurdo, ma allora $NN tilde.not 2^L$.
+  Siamo ad un assurdo, ma allora $NN tilde.not L$.
 ]

@@ -29,21 +29,6 @@
 
 // Capitolo
 
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-#set heading(numbering: "1.")
-
-#show outline.entry.where(level: 1): it => {
-  v(12pt, weak: true)
-  strong(it)
-}
-
-#outline(indent: auto)
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-
 = Equivalenza tra CFL e grammatiche di tipo $2$
 
 Facciamo un breve ripasso sulle grammatiche di tipo $2$ e poi andiamo a vedere l'equivalenza tra le grammatiche di tipo $2$ e gli automi a pila.

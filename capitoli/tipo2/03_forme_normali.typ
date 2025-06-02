@@ -29,21 +29,6 @@
 
 // Capitolo
 
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-#set heading(numbering: "1.")
-
-#show outline.entry.where(level: 1): it => {
-  v(12pt, weak: true)
-  strong(it)
-}
-
-#outline(indent: auto)
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-
 = Forme normali per le grammatiche di tipo $2$
 
 Nello scorso capitolo abbiamo visto una forma normale per i PDA per facilitare una dimostrazione già di suo molto pesante. Ora vediamo delle *forme normali* per le grammatiche di tipo $2$.

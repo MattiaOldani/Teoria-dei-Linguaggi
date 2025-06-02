@@ -8,7 +8,7 @@
 
 // Capitolo
 
-= Equivalenza tra linguaggi di tipo 3 ed automi a stati finiti
+= Equivalenza tra linguaggi di tipo 3 e automi a stati finiti
 
 In questo capitolo mostreremo l'*equivalenza* tra le grammatiche di tipo $3$ e gli automi a stati finiti.
 
@@ -26,7 +26,7 @@ Per fare ciò dobbiamo definire le variabili, l'assioma e le produzioni. Definia
 #example()[
   Sia $Sigma = {4,5}$. Ci viene fornito un automa che, date le stringhe sull'alfabeto $Sigma$ interpretate come numeri decimali, una volta divise per $3$ ci danno $1$ come resto.
 
-  #figure(image("assets/04_resto_uno.svg"))
+  #figure(image("assets/04/resto_uno.svg"))
 
   Costruiamo una grammatica $G$ di tipo $3$ analoga a questo automa. Sia quindi $G$ tale che:
   - variabili $V = {r_0, r_1, r_2}$;
@@ -46,8 +46,8 @@ In maniera analoga, data la grammatica $G$ di tipo $3$ creiamo un automa $A$ tal
 - *stato iniziale* $q_0 = S$;
 - *stati finali* $F = {q_F}$;
 - *transizioni* della funzione di transizione derivano dalle regole di produzione, ovvero:
-  - per ogni produzione $(A arrow.long a B) in P$ essa ci dice che dallo stato $A$ leggendo una $a$ andiamo a finire in $B$, ovvero $delta(A,a) = B$;
-  - per ogni produzione $(A arrow.long a) in P$ essa ci dice che possiamo finire la derivazione, cioè che andiamo da $A$ in uno stato finale tramite $a$, ovvero $delta(A,a) = q_F$.
+  - per ogni produzione $(A arrow.long a B) in P$ essa ci dice che dallo stato $A$ leggendo una $a$ andiamo a finire in $B$, ovvero $delta(A, a) = B$;
+  - per ogni produzione $(A arrow.long a) in P$ essa ci dice che possiamo finire la derivazione, cioè che andiamo da $A$ in uno stato finale tramite $a$, ovvero $delta(A, a) = q_F$.
 
   Per essere più precisi, definiamo i passi della funzione di transizione come $ delta(A, a) = {B bar.v (A arrow.long a B) in P} union {q_F "se" (A arrow.long a) in P} $
 
@@ -72,7 +72,7 @@ In maniera analoga, data la grammatica $G$ di tipo $3$ creiamo un automa $A$ tal
     - $delta(r_2, 4) = {r_0}$;
     - $delta(r_2, 5) = {r_1, r_f}$.
 
-  #figure(image("assets/04_resto_uno_peggiore.svg"))
+  #figure(image("assets/04/resto_uno_peggiore.svg"))
 
   Notiamo come l'automa ottenuto sia non deterministico e, soprattutto, non è l'automa minimo che avevamo invece nell'esempio precedente.
 ]
@@ -91,11 +91,11 @@ Queste grammatiche sono dette *grammatiche lineari a destra*, ma nonostante ques
 #example()[
   Dato l'automa in figura, andare a scrivere l'automa regolare corrispondente.
 
-  #figure(image("assets/04_lineare_destra.svg"))
+  #figure(image("assets/04/lineare_destra.svg"))
 
   Nella grammatica avremmo una serie di regole che seguono la forma delle grammatiche regolari per generare la stringa $x$, ovvero:
 
-  #figure(image("assets/04_non_lineare_destra.svg"))
+  #figure(image("assets/04/lineare_destra_a_regolare.svg"))
 
   Abbiamo quindi sostituito la stringa $x = a_1 dots a_n$ con una serie di stati intermedi.
 ]

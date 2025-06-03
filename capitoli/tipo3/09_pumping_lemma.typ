@@ -19,15 +19,15 @@ Prima di tutto abbiamo il *criterio di distinguibilità*: se troviamo un insieme
 
   Gli automi a stati finiti *non sanno contare*, quindi non posso contare quante $a$ ci sono nella stringa e poi verificare lo stesso numero di $b$.
 
-  Definiamo l'insieme $X = {a^n bar.v n gt.eq 0}$. Esso è formato da stringhe distinguibili tra loro: infatti, dati $a^i$ e $a^j$ per distinguere utilizzo $z = b^i$.
+  Definiamo l'insieme $ X = {a^n bar.v n gt.eq 0} . $ Esso è formato da stringhe distinguibili tra loro: infatti, date due stringhe $x = a^i$ e $y = a^j$, per distinguerle utilizziamo la stringa $z = b^i$.
 ]
 
-Un altro modo per dimostrare la non regolarità è far vedere che il linguaggio dato fa saltare qualche proprietà di chiusura.
+Un altro modo per dimostrare la non regolarità è far vedere che il linguaggio dato fa saltare qualche *proprietà di chiusura*.
 
 #example()[
-  Definiamo il linguaggio $ L = {w in {a,b}^* bar.v hash_a (w) = hash_b (w)} $ che palesemente non è regolare perché non posso contare, ma come lo dimostro?
+  Definiamo il linguaggio $ L = {w in {a,b}^* bar.v hash_a (w) = hash_b (w)} $ che palesemente non è regolare perché non posso contare, ma come lo dimostriamo?
 
-  Con la *distinguibilità* posso usare lo stesso insieme $X$ di prima, ma facciamo finta di non saperlo fare.
+  Con la *distinguibilità* possiamo usare lo stesso insieme $X$ di prima, ma facciamo finta di non saperlo fare.
 
   Sappiamo che i linguaggi regolari sono chiusi rispetto all'operazione di intersezione. Prendiamo quindi un linguaggio regolare e facciamo l'intersezione con $L$, ad esempio facciamo $ L inter a^* b^* . $
 
@@ -48,9 +48,9 @@ L'ultimo metodo che abbiamo a disposizione è il *pumping lemma per i linguaggi 
 ]
 
 Un po' strano: il succo di questo lemma è che se prendiamo delle stringhe lunghe prima o poi qualcosa si deve ripetere. Infatti, i tre punti ci dicono questo:
-+ il primo punto ci dice che la parte che contiene la parte ripetuta è all'inizio e non è troppo lontana;
-+ il secondo punto ci dice che effettivamente viene ripetuto qualcosa;
-+ il terzo punto ci dice che possiamo ripetere all'infinito la parte centrale senza uscire dal linguaggio, appunto pumping, pompare.
++ il primo ci dice che la parte che contiene la ripetizione è all'inizio e non è troppo lontana;
++ il secondo ci dice che effettivamente viene ripetuto qualcosa;
++ il terzo ci dice che possiamo ripetere all'infinito la parte centrale senza uscire dal linguaggio, ovvero possiamo fare *pumping*, pompare.
 
 In poche parole, la scomposizione di $z$ avviene nei punti di ripetizione: $u$ è la parte prima della ripetizione, $v$ è la parte che viene ripetuta e $w$ è la parte dopo la ripetizione.
 

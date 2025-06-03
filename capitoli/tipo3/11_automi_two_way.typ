@@ -2,29 +2,8 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
-
-#import "@preview/cetz:0.3.4"
-
-#import "@preview/syntree:0.2.1": syntree
-
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
@@ -53,7 +32,7 @@ Passiamo ora ad alcune varianti un po' più di hardcore, con alcune che cambiano
 
 Parlando di *modelli di calcolo*, come possiamo *rappresentare* un automa a stati finiti? Questa macchina è molto semplice: abbiamo un *nastro* che contiene l'input, esaminato da una *testina in sola lettura* che, spostandosi *one-way* da sinistra verso destra, permette ad un *controllo a stati finiti* di capire se la stringa in input deve essere accettata o meno.
 
-#figure(image("assets/11_dfa.svg", width: 50%))
+#figure(image("assets/11/dfa.svg", width: 50%))
 
 La classe di linguaggi che riconosce un automa a stati finiti è la classe dei *linguaggi regolari*.
 
@@ -63,7 +42,7 @@ Modifichiamo ora questo modello, toccando un po' tutti gli aspetti possibili.
 
 Se permettiamo all'automa di spostarsi da sinistra verso destra ma anche viceversa, andiamo ad ottenere gli *automi two-way*, che in base alla possibilità di leggere e basta o leggere e scrivere e in base alla lunghezza del nastro saranno in grado di riconoscere diverse classi di linguaggi.
 
-#figure(image("assets/11_2dfa.svg", width: 50%))
+#figure(image("assets/11/2dfa.svg", width: 50%))
 
 === Read-only VS read-write
 
@@ -74,11 +53,11 @@ Consideriamo quindi un automa two-way che però mantiene la read-only del nastro
 Rendiamo ora la testina capace di poter scrivere sul nastro che abbiamo a disposizione. Ora, in base a come è fatto il nastro abbiamo due situazioni:
 - se rendiamo il nastro illimitato oltre la porzione occupata dall'input, andiamo ad riconoscere i linguaggi di tipo $0$, ovvero otteniamo una *macchina di Turing*:
 
-#figure(image("assets/11_mdt.svg", width: 50%))
+#figure(image("assets/11/mdt.svg", width: 50%))
 
 - se invece lasciamo il nastro grande quando l'input andiamo a riconoscere i linguaggi di tipo $1$, ovvero otteniamo un *automa limitato linearmente*. Quest'ultima cosa vale perché nelle grammatiche di tipo $1$ le regole di produzione non decrescono mai, e un automa limitato linearmente per capire se deve accettare cerca di costruire una derivazione al contrario, accorciando mano a mano la stringa arrivando all'assioma $S$:
 
-#figure(image("assets/11_all.svg", width: 50%))
+#figure(image("assets/11/all.svg", width: 50%))
 
 === Memoria esterna
 
@@ -86,11 +65,11 @@ L'ultima modifica che possiamo pensare per queste macchine è l'aggiunta di una 
 
 Dato un automa one-way con nastro read-only, se aggiungiamo un secondo nastro in read-write che funga da memoria esterna, otteniamo le due situazioni che abbiamo visto per gli automi two-way con possibilità di scrivere sul nastro di input.
 
-#figure(image("assets/11_memoria_esterna.svg", width: 50%))
+#figure(image("assets/11/memoria_esterna.svg", width: 50%))
 
 Un caso particolare è se la memoria esterna è codificata come una *pila* illimitata, ovvero riesco a leggere solo quello che c'è in cima, allora andiamo a riconoscere i linguaggi di tipo $2$, ottenendo quindi un *automa a pila*. Se passiamo infine ad un two-way con una pila diventiamo più potenti ma non sappiamo di quanto.
 
-#figure(image("assets/11_pila.svg", width: 50%))
+#figure(image("assets/11/pila.svg", width: 50%))
 
 == Automi two-way
 
@@ -113,7 +92,7 @@ Tra tutte queste varianti, fissiamoci sugli *automi two-way*, ovvero quelli che 
 
 Abbiamo sollevato poco fa il problema: come facciamo a capire dove finisce il nastro? Andiamo a inserire dei *marcatori*, uno a sinistra e uno a destra, che delimitano la stringa. Se per caso arriviamo su un marcatore non possiamo andare oltre: possiamo solo rientrare sul nastro. In realtà, vedremo che in un particolare caso usciremo dai bordi.
 
-#figure(image("assets/11_marker.svg", width: 60%))
+#figure(image("assets/11/marker.svg", width: 60%))
 
 Vediamo ancora un po' di esempi.
 
@@ -184,15 +163,15 @@ Avere a disposizione un two-way sembra darci molta potenza, ma in realtà non è
 #theorem-proof()[
   Abbiamo a disposizione un 2DFA nel quale abbiamo inserito un input che viene accettato. Vogliamo cambiare la computazione del 2DFA in una computazione di un 1DFA. Vediamo che stati vengono visitati nel tempo.
 
-  #figure(image("assets/11_computazione.svg", width: 75%))
+  #figure(image("assets/11/computazione.svg", width: 75%))
 
   Prima di tutto, dobbiamo ricordarci che nei DFA non abbiamo end marker, quindi abbiamo solo l'input. Nell'automa two-way ci sono momenti dove entro nelle celle per la prima volta: nel grafico sopra sono segnati in verde. Chiamiamo questi stati $q_(i gt.eq 0)$.
 
   Usiamo delle *scorciatoie*: visto che nel 1DFA non possiamo andare avanti a indietro, dobbiamo tagliare via le computazioni che tornano indietro e vedere solo in che stato esco.
 
-  #figure(image("assets/11_computazione_DFA.svg", width: 75%))
+  #figure(image("assets/11/computazione_DFA.svg", width: 75%))
 
-  Come vediamo, a me interessa sapere in che stato devo spostarmi a partire dalla mia posizione, evitando quello che viene fatto tornando all'indietro. Per tagliare le parti che tornano indietro usiamo delle *matrici*, molto simili a quelle della lezione precedente. Quelle matrici erano nella forma $M_w [p,q]$ che conteneva un $1$ se e solo se partendo da $q$ finivo in $p$ leggendo $w$.
+  Come vediamo, a noi interessa sapere in che stato devo spostarmi a partire dalla mia posizione, evitando quello che viene fatto tornando all'indietro. Per tagliare le parti che tornano indietro usiamo delle *matrici*, molto simili a quelle della lezione precedente. Quelle matrici erano nella forma $M_w [p,q]$ che conteneva un $1$ se e solo se partendo da $q$ finivo in $p$ leggendo $w$.
 
   Le matrici che costruiamo ora sono nella forma $ tau_w : Q times Q arrow.long [0,1] $ che mi vanno a definire il primo stato che incontriamo quando leggiamo un nuovo carattere della stringa.
 
@@ -208,7 +187,7 @@ Avere a disposizione un two-way sembra darci molta potenza, ma in realtà non è
 
   Se invece andiamo indietro dobbiamo capire cosa fare.
 
-  #figure(image("assets/11_tau_induttiva.svg", width: 65%))
+  #figure(image("assets/11/tau_induttiva.svg", width: 65%))
 
   Ogni volta che da $p_i$ torniamo indietro finiamo in uno stato $r_(i+1)$, che poi dopo un po' di giri finisce per forza in $p_(i+1)$. Andiamo avanti così, fino ad un certo $p_k$, dal quale usciamo e andiamo in $q$. In poche parole $ tau_(w sigma) [p,q] = 1 $ se e solo se esiste una sequenza di stati $ p_0, p_1, dots, p_k, r_1, dots, r_k bar.v k gt.eq 0 $ tale che:
   - $p_0 = p$, ovvero parto dallo stato $p$, per definizione;
@@ -239,9 +218,7 @@ Che considerazioni possiamo fare sul numero di stati? Sappiamo che:
 
 Ma allora il numero di stati è $ abs(Q') lt.eq n 2^n^2 . $
 
-Come vediamo, la simulazione è *poli-esponenziale*.
-
-Abbiamo visto la trasformazione da $2$DFA a $1$DFA, ma la stessa trasformazione può essere fatta per il passaggio da $2$NFA a $1$NFA.
+Come vediamo, la simulazione è *poli-esponenziale*. Abbiamo visto la trasformazione da $2$DFA a $1$DFA, ma la stessa trasformazione può essere fatta per il passaggio da $2$NFA a $1$NFA.
 
 === Problema di Sakoda & Sipser
 
@@ -252,9 +229,9 @@ Nel caso partissimo da un $2$DFA e volessimo arrivare in un $1$DFA, il costo il 
 
 Ci sono due simulazioni che sono però molto particolari e importanti.
 
-La prima trasformazione che vediamo è quella da $2$NFA a $2$DFA: qua non possiamo usare la costruzione per sottoinsiemi perché ad un certo punto potrei avere il non determinismo su una mossa che però mi sposta la testina su due caratteri diversi della stringa, e questo non è possibile. Ci serve quindi una trasformazione alternativa, ma ci arriviamo dopo.
+La prima trasformazione che vediamo è quella *da $2$NFA a $2$DFA*: qua non possiamo usare la costruzione per sottoinsiemi perché ad un certo punto potrei avere il non determinismo su una mossa che però mi sposta la testina su due caratteri diversi della stringa, e questo non è possibile. Ci serve quindi una trasformazione alternativa, ma ci arriviamo dopo.
 
-La seconda trasformazione è quella da $1$NFA a $2$DFA: questa trasformazione cerca di capire se, dando il two-way ad un automa deterministico, esso è capace di simulare il non determinismo.
+La seconda trasformazione è quella da *$1$NFA a $2$DFA*: questa trasformazione cerca di capire se, dando il two-way ad un automa deterministico, esso è capace di simulare il non determinismo.
 
 Vediamo un paio di esempi.
 
@@ -287,10 +264,10 @@ Per il problema da $2$NFA a $2$DFA, si fa un passaggio intermedio all'$1$NFA e p
 Il lower bound, invece, è lo stesso del problema precedente.
 
 Ci sono casi particolari che hanno delle dimostrazioni precise:
-- se utilizziamo dei $2$DFA sweeping il costo per la trasformazione è *esponenziale*, ma questo non risolve il problema perché (????) ci sono automi non sweeping che per diventarlo hanno un salto esponenziale (????);
-- se $Sigma = {a}$:
+- se utilizziamo dei *$2$DFA sweeping* il costo per la trasformazione è *esponenziale*, ma questo non risolve il problema perché (????) ci sono automi non sweeping che per diventarlo hanno un salto esponenziale (????);
+- se consideriamo un *alfabeto unario* $Sigma = {a}$:
   // spazio logaritmo deterministico
-  - se facciamo la trasformazione da $2$NFA a $2$DFA l'upper bound è $ e^(O(log^2(n))) , $ ovvero una funzione super polinomiale ma meno di una esponenziale. Inoltre, se si dimostra che esiste un lower bound super polinomiale, allora abbiamo dimostrato che $ L = NL (????) ; $
+  - se facciamo la trasformazione da $2$NFA a $2$DFA l'upper bound è $ e^(O(log^2(n))) , $ ovvero una funzione super polinomiale ma meno di una esponenziale. Inoltre, se si dimostra che esiste un lower bound super polinomiale, allora abbiamo dimostrato che $ "L" = NL (????) ; $
   - se facciamo la trasformazione da $1$NFA a $2$DFA l'upper bound diventa esattamente $n^2$, quindi la trasformazione fatta è ottimale.
 
 Dei ricercatori hanno troviamo degli *automi completi* per questi problemi, ovvero degli automi che permettono lo studio dei problemi solo su questi pochi automi scelti per poi far _"arrivare"_ tutte le conseguenze a tutti gli altri automi. Scritto malissimo, sono tipo gli NP-completi.

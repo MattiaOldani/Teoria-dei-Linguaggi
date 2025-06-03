@@ -10,10 +10,7 @@
 
 = Automa minimo
 
-Negli scorsi capitoli abbiamo visto dei metodi che limitavano il numero di stati di DFA e NFA per un certo linguaggio. In questo capitolo vediamo invece un criterio che lavora direttamente sugli automi e non sui linguaggi.
-
-// Prima: ho linguaggio, limite
-// Ora: ho automa, limite
+Nel capitolo @capitolo03-tipo3 abbiamo visto dei metodi che limitavano il numero di stati di DFA e NFA per un certo linguaggio. In questo capitolo vediamo invece un criterio che lavora direttamente sugli automi e non sui linguaggi.
 
 == Introduzione matematica
 
@@ -21,7 +18,7 @@ Negli scorsi capitoli abbiamo visto dei metodi che limitavano il numero di stati
   Sia $S$ un insieme. Una *relazione binaria* sull'insieme $S$ è definita come l'insieme $ R subset.eq S times S . $
 ]
 
-Come notazione useremo $ rel(x,R,y) $ oppure $(x,y) in R$, molto di più la prima che la seconda.
+Come notazione useremo $ rel(x, R, y) $ oppure $(x,y) in R$, ma molto di più la prima della seconda.
 
 Ci interessiamo ad un tipo molto particolare di relazioni.
 
@@ -32,7 +29,7 @@ Ci interessiamo ad un tipo molto particolare di relazioni.
   - *transitiva* $forall x,y,z in S quad rel(x, R, y) and rel(y, R, z) arrow.long.double rel(x, R, z)$.
 ]
 
-Una relazione di equivalenza *induce* sull'insieme $S$ una *partizione* formata da *classi di equivalenza*. Queste classi sono formate da elementi che sono equivalenti tra di loro. Le classi di equivalenza le indichiamo con $[x]_R$, dove $x in S$ è detto *rappresentante* (_credo_).
+Una relazione di equivalenza *induce* sull'insieme $S$ una *partizione* formata da *classi di equivalenza*. Queste classi sono formate da elementi che sono equivalenti tra di loro. Le classi di equivalenza le indichiamo con $[x]_R$, dove $x in S$ è detto *rappresentante*.
 
 Se $R$ è una relazione di equivalenza, l'*indice* di $R$ è il numero di classi di equivalenza.
 
@@ -45,21 +42,21 @@ Se $R$ è una relazione di equivalenza, l'*indice* di $R$ è il numero di classi
   - $[2]_R$ formata da tutti i multipli di $3$ sommati a $2$.
 
   L'indice di questa relazione è quindi $3$.
-]
+]<modulo3>
 
 #definition([Relazione invariante a destra])[
   Sia $dot$ un'operazione sull'insieme $S$. La relazione $R$ è *invariante a destra* rispetto a $dot$ se presi due elementi nella relazione $R$, e applicando $dot$ con uno stesso elemento, otteniamo ancora due elementi in relazione, ovvero $ rel(x, R, y) arrow.long.double forall z in S quad rel((x dot z), R, (y dot z)) . $
 ]
 
 #example()[
-  Sia $R$ la relazione dell'esempio precedente. Definiamo $dot = +$ l'operazione di somma. La relazione $R$ è invariante a destra?
+  Sia $R$ la relazione dell'@modulo3. Definiamo $dot = +$ l'operazione di *somma*. La relazione $R$ è invariante a destra?
 
   Dobbiamo verificare se $ rel(x, R, y) arrow.long.double forall z in NN quad rel((x + z), R, (y + z)) , $ ovvero se $ x mod 3 = y mod 3 arrow.long.double forall z in NN quad (x + z) mod 3 = (y + z) mod 3 . $
 
   Questo è vero perché ce lo dice l'algebra modulare, quindi $R$ è invariante a destra.
 ]
 
-Ora vediamo una definizione che va contro la semantica italiana.
+Ora vediamo una definizione che va contro la *semantica italiana*.
 
 #definition([Raffinamento])[
   Sia $S$ un insieme e siano $R_1, R_2 subset.eq S times S$ due relazioni di equivalenza su $S$.
@@ -70,12 +67,12 @@ Ora vediamo una definizione che va contro la semantica italiana.
   + vale $ forall x,y in S quad (x,y) in R_1 arrow.long.double (x,y) in R_2 . $
 ]
 
-Il primo punto è la definizione, le altre sono solo conseguenze.
+Il primo punto è la definizione, gli altri due punti sono solo conseguenze.
 
 Perché non rispecchia molto la semantica italiana? Perché un raffinamento di solito è qualcosa di migliore, in questo caso invece è il contrario: se $R_1$ è un raffinamento di $R_2$ allora $R_1$ è peggiore di $R_2$ in termini di classi di equivalenza.
 
 #example()[
-  Data la relazione $R$ di prima, definiamo ora la relazione $R'$ tale che $ rel(x, R', y) sse x mod 2 = y mod 2 . $
+  Presa ancora la relazione $R$ dell'@modulo3, definiamo ora la relazione $R'$ tale che $ rel(x, R', y) sse x mod 2 = y mod 2 . $
 
   Le classi di equivalenza di questa relazione sono $[0]_R'$ e $[1]_R'$.
 
@@ -132,12 +129,12 @@ In poche parole, $R_M$ è una relazione di equivalenza, invariante a destra e di
 
 Notiamo inoltre che se $(rel(x, R_M, y))$ allora $x$ e $y$ sono due stringhe non distinguibili per $L(M)$: infatti, esse vanno nello stato e, aggiungendo qualsiasi stringa $z in Sigma^*$ per l'invariante a destra, finisco sempre nello stesso stato. In particolare, se finiamo in uno stato finale accettiamo sia $x$ che $y$, altrimenti entrambe non sono accettate da $M$.
 
-Abbiamo appena dimostrato che $L(M)$ è l'*unione* di alcune classi di equivalenza di $R_M$, ovvero tutte le classi di equivalenza che sono definite da stati finali.
+Abbiamo appena dimostrato che $L(M)$ è l'*unione* di alcune classi di equivalenza di $R_M$, ovvero tutte le classi di equivalenza che contengono stringhe che mandano in stati finali.
 
 #example()[
   Dato il seguente automa deterministico, determinare le classi di equivalenza della relazione $R_M$ appena studiata.
 
-  #figure(image("assets/05_esempio_da_ridurre.svg"))
+  #figure(image("assets/05/esempio_da_ridurre.svg"))
 
   Abbiamo $4$ classi di equivalenza, che sono tutte le varie combinazioni di $a$ e $b$ pari/dispari.
 
@@ -146,13 +143,13 @@ Abbiamo appena dimostrato che $L(M)$ è l'*unione* di alcune classi di equivalen
   - stringhe con $a$ pari e $b$ dispari.
 
   Vedremo dopo come migliorare questo automa.
-]
+]<relazione-Rm>
 
 == Relazione $R_L$
 
 Dato un linguaggio $L subset.eq Sigma^*$, ad esso ci associamo una relazione $ R_L subset.eq Sigma^* times Sigma^* $ tale che $ rel(x, R_L, y) sse forall z in Sigma^* quad (x z in L sse y z in L) $
 
-In poche parole, se a due elementi in relazione attacco una stringa $z$ qualsiasi, allora esse vanno a finire entrambe in stati accettanti oppure no. È praticamente il contrario della distinguibilità.
+In poche parole, due stringhe $x$ e $y$ sono in relazione se, attaccando una qualsiasi stringa $z$ a quelle date, allora entrambe sono accettate o entrambe sono rifiutate. È praticamente il contrario della *distinguibilità*, visto che partiamo da due stringhe diverse, ci attacchiamo la stessa cosa ma finiamo per essere entrambe accettate o rifiutate.
 
 #lemma()[
   La relazione $R_L$ è una relazione di equivalenza.
@@ -174,8 +171,6 @@ In poche parole, se a due elementi in relazione attacco una stringa $z$ qualsias
   La relazione $R_L$ è invariante a destra rispetto all'operazione di concatenazione.
 ]
 
-// TODO: da togliere
-
 #lemma-proof()[
   Dobbiamo dimostrare che $ rel(x, R_L, y) arrow.long.double forall w in Sigma^* quad rel((x w), R_L, (y w)) . $
 
@@ -190,15 +185,13 @@ Se prendiamo la stringa $z = epsilon$, le stringhe $x$ e $y$ che sono nella rela
   Definiamo il linguaggio $ L = {x in {a,b}^* bar.v hash_a (x) = "dispari"} . $
 
   Per questo linguaggio abbiamo due classi di equivalenza rispetto alla relazione $R_L$: una per le $a$ pari e una per le $a$ dispari.
-]
+]<relazione-Rl>
 
-Non abbiamo ancora parlato di *indice* per $R_L$. Ci sono linguaggi che hanno un numero di classi di equivalenza infinito: ad esempio il linguaggio $ L = {a^n b^n bar.v n gt.eq 0} $ ha un numero di classi di equivalenza infinito perché non è un linguaggio di tipo $3$.
+Non abbiamo ancora parlato di *indice* per $R_L$. Ci sono linguaggi che hanno un numero di classi di equivalenza infinito: ad esempio il linguaggio $ L = {a^n b^n bar.v n gt.eq 0} $ ha un numero di classi di equivalenza infinito perché non è un linguaggio regolare.
 
-Se confrontiamo gli ultimi due esempi fatti, notiamo che essi descrivono lo stesso linguaggio, ovvero quello delle stringhe con un numero di $a$ dispari, ma abbiamo due situazioni diverse:
+Se confrontiamo il linguaggio dell'@relazione-Rm con il linguaggio dell'@relazione-Rl, notiamo che essi descrivono lo stesso linguaggio, ovvero quello delle stringhe con un numero di $a$ dispari, ma abbiamo due situazioni diverse:
 - nel primo esempio la relazione $R_M$ ha $4$ classi di equivalenza e il DFA ha $4$ stati;
 - nel secondo esempio la relazione $R_L$ ha $2$ classi di equivalenza e il DFA (_non disegnato_) ha $2$ stati.
-
-// TODO: disegna il DFA (unisci q0-q2 e q1-q3 finale)
 
 Ma allora $R_M$ è un *raffinamento* di $R_L$. Questa cosa vale solo per questo esempio? *NO*.
 
@@ -218,7 +211,7 @@ Queste relazioni che abbiamo visto fin'ora sono dette *relazioni di Nerode*.
 #theorem-proof()[
   Facciamo vedere $1 arrow.long.double 2 arrow.long.double 3 arrow.long.double 1$.
 
-  [$1 arrow.long.double 2$]
+  [*$1 arrow.long.double 2$*]
 
   Sia $M$ un DFA per $L$. Consideriamo la relazione $R_M$: abbiamo osservato che essa è:
   - di equivalenza;
@@ -227,21 +220,19 @@ Queste relazioni che abbiamo visto fin'ora sono dette *relazioni di Nerode*.
 
   Inoltre, rende $L$ unione di alcune classi di equivalenza, quindi è esattamente quello che vogliamo dimostrare.
 
-  [$2 arrow.long.double 3$]
+  [*$2 arrow.long.double 3$*]
 
   Supponiamo di avere una relazione $ E subset.eq Sigma^* times Sigma^* $ di equivalenza, invariante a destra, di indice finito e che $L$ è l'unione di alcune classi di $E$.
 
   Sia $(rel(x, E, y))$. Sappiamo che $E$ è invariante a destra, ovvero vale che $ forall z in Sigma^* quad rel((x z), E, (y z)) . $
 
-  Inoltre, vale che $ forall z in Sigma^* quad (x z in L sse y z in L) $ perché L è unione di alcune classi di equivalenza di $E$.
-
-  Ma allora $ rel(x, R_L, y) $ per tutta la catena che abbiamo costruito.
+  Inoltre, vale che $ forall z in Sigma^* quad (x z in L sse y z in L) $ perché L è unione di alcune classi di equivalenza di $E$. Ma allora $ rel(x, R_L, y) $ per tutta la catena che abbiamo costruito.
 
   Inoltre, $E$ è un raffinamento di $R_L$, quindi vuol dire che l'indice di $E$ è maggiore di $R_L$, ovvero $ indice(R_L) lt.eq indice(E) . $
 
   Visto che $E$ ha indice finito, anche $R_L$ ha indice finito.
 
-  [$3 arrow.long.double 1$]
+  [*$3 arrow.long.double 1$*]
 
   Sia $R_L$ di indice finito, costruiamo l'automa $M'$ che deve essere un DFA per $L$.
 
@@ -254,21 +245,17 @@ Queste relazioni che abbiamo visto fin'ora sono dette *relazioni di Nerode*.
   Ma allora $L(M') = L(M)$ per costruzione.
 ]
 
-Visto che abbiamo dimostrato questo teorema, possiamo porre $E$ uguale a $R_M$: otteniamo $ indice(R_L) lt.eq indice(R_M) $ se $L$ è una tipo $3$, altrimenti partiamo a $infinity$ con le classi di equivalenza di $R_L$.
+Visto che abbiamo dimostrato questo teorema, possiamo porre $E$ uguale a $R_M$: otteniamo $ indice(R_L) lt.eq indice(R_M) $ se $L$ è un *linguaggio regolare*, altrimenti partiamo a $infinity$ con le classi di equivalenza di $R_L$.
 
 == Automa minimo
 
-Finiamo con le nozioni di automa minimo.
-
-Con *automa minimo* intendiamo il DFA per $L$ con il minimo numero di stati.
+Finiamo con alcune nozioni che riguardano l'automa minimo. Con *automa minimo* intendiamo il DFA per $L$ con il minimo numero di stati.
 
 #theorem([Teorema dell'automa minimo])[
   Dato un linguaggio $L$ accettato da automi, il DFA minimo per $L$ è unico. Con unicità intendiamo la non esistenza di una configurazione diversa del grafo.
 ]
 
-L'automa minimo contiene anche l'eventuale stato trappola dove mandiamo i pattern non accettanti.
-
-L'automa minimo $M'$ è ottenuto grazie alla relazione $R_L$.
+L'automa minimo contiene anche l'eventuale *stato trappola* dove mandiamo i pattern non accettanti. L'automa minimo $M'$ è ottenuto grazie alla relazione $R_L$.
 
 Per calcolare l'automa minimo abbiamo algoritmi per farlo in modo efficiente, che cercano le stringhe non distinguibili per abbassare il numero di stati. Se troviamo delle stringhe distinguibili siamo arrivati all'automa minimo.
 
@@ -277,14 +264,14 @@ Per calcolare l'automa minimo abbiamo algoritmi per farlo in modo efficiente, ch
 Cosa succede se applichiamo tutte questi concetti sugli NFA?
 
 #example()[
-  Costruiamo un po' di automi non deterministici per stringhe che finiscono in $b$.
+  Costruiamo un po' di automi NFA per stringhe che finiscono in $b$.
 
   #grid(
     align: center + horizon,
     columns: (50%, 50%),
     inset: 10pt,
-    [#figure(image("assets/05_01.svg"))], [#figure(image("assets/05_02.svg"))],
-    [#figure(image("assets/05_03.svg"))], [#figure(image("assets/05_04.svg"))],
+    [#figure(image("assets/05/NFA_01.svg"))], [#figure(image("assets/05/NFA_02.svg"))],
+    [#figure(image("assets/05/NFA_03.svg"))], [#figure(image("assets/05/NFA_04.svg"))],
   )
 ]
 

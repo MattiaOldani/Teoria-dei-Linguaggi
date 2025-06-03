@@ -9,6 +9,7 @@
 // Capitolo
 
 = Operazioni tra linguaggi
+<operazioni>
 
 Supponiamo di avere in mano una serie di linguaggi. Vediamo un po' di *operazioni* che possiamo fare su essi per combinarli assieme e ottenere altri linguaggi importanti.
 

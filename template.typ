@@ -65,6 +65,8 @@
   show link: underline
   show ref: underline
 
+  show figure: set block(breakable: true)
+
   body
 }
 

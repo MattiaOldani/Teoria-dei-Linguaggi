@@ -12,7 +12,7 @@
 
 = Macchine di Turing
 
-Finiamo la gerarchia di Chomsky parlando finalmente di *macchine di Turing*.
+Finiamo finalmente la gerarchia di Chomsky parlando finalmente di *macchine di Turing*.
 
 == Introduzione
 
@@ -20,7 +20,7 @@ Come costruiamo una macchina di Turing?
 
 Partiamo da un *automa a stati finiti*: questa macchina è one-way/two-way con un nastro che non può essere riscritto. Se aggiungiamo la possibilità di testina read-write allora otteniamo un *automa limitato linearmente*. Per ottenere finalmente una *macchina di Turing* dobbiamo rompere il vincolo di memoria pari alla lunghezza dell'input, togliendo i marcatori $lmarker rmarker$ e inserire due porzioni di nastro potenzialmente infinite. Queste celle che non contengono l'input contengono il simbolo $blank$.
 
-#figure(image("assets/01_MdT.svg", width: 75%))
+#figure(image("assets/01/MdT.svg", width: 75%))
 
 A differenza degli LBA abbiamo *memoria illimitata*, quindi se ci serve dello spazio ce l'abbiamo sempre a disposizione per fare conti o per ricordarci qualcosa.
 
@@ -52,7 +52,7 @@ Con *semi-decidibilità* di un linguaggio $L$ di tipo $0$ intendiamo che:
   - può fermarsi e non accettare;
   - può entrare in *loop infinito*.
 
-#figure(image("assets/01_riconoscitore_MdT.svg", width: 75%))
+#figure(image("assets/01/riconoscitore_MdT.svg", width: 75%))
 
 Le macchine di Turing sono un modello in grado di calcolare tutte le *funzioni calcolabili* da un computer. Queste funzioni sono dette *funzioni ricorsive*, ma con "ricorsive" non intendiamo le funzioni che chiamano sé stesse.
 
@@ -64,7 +64,7 @@ Quella che abbiamo visto ora è una *MdT a $1$ nastro*. Da questa nostra base po
 
 Abbiamo visto che limitando la lunghezza del nastro della macchina collassiamo nei linguaggi context-sensitive, ma se limitiamo il nastro da una parte sola otteniamo una MdT con *nastro semi-infinito*, o *infinito a destra*.
 
-#figure(image("assets/01_semi-infinito.svg", width: 75%))
+#figure(image("assets/01/semi-infinito.svg", width: 75%))
 
 #lemma()[
   Una MdT con nastro semi-infinito è equivalente ad una MdT a $1$ nastro.
@@ -75,14 +75,14 @@ Abbiamo visto che limitando la lunghezza del nastro della macchina collassiamo n
 
   Dato invece una MdT a $1$ nastro, la possiamo simulare con una MdT con nastro semi-infinito "incollando" la parte sinistra dell'input sopra al nastro, creando una nuova *traccia*.
 
-  #figure(image("assets/01_semi-infinito_soluzione.svg", width: 75%))
+  #figure(image("assets/01/semi-infinito_soluzione.svg", width: 75%))
 ]
 
 === Nastri multipli
 
 Una *MdT con $k$ nastri*, di cui almeno uno infinito semi-infinito, è una variante un pelo più complicata. Infatti, oltre ad avere $k$ nastri diversi, ognuno di questi ha la propria testina, che può essere in punti diversi durante la computazione.
 
-#figure(image("assets/01_k_nastri.svg", width: 75%))
+#figure(image("assets/01/k_nastri.svg", width: 75%))
 
 #lemma()[
   Una MdT con $k$ nastri è equivalente ad una MdT a $1$ nastro.
@@ -102,13 +102,13 @@ Una versione di MdT a più nastri è quella che *dedica un nastro al solo input*
 
 Una versione ancora migliorata ha un nastro per il solo *output*, in cui scriviamo e basta senza poter tornare indietro, perché ovviamente è un output.
 
-#figure(image("assets/01_dedicati.svg", width: 75%))
+#figure(image("assets/01/dedicati.svg", width: 75%))
 
 === Testine multiple
 
 Rimaniamo sulle MdT a $1$ nastro ma inseriamo *testine multiple*.
 
-#figure(image("assets/01_testine_multiple.svg", width: 75%))
+#figure(image("assets/01/testine_multiple.svg", width: 75%))
 
 #lemma()[
   Una MdT con $k$ testine è equivalente ad una MdT a $1$ nastro.
@@ -134,7 +134,7 @@ Se nelle MdT questa variante non aumenta la potenza, nei *linguaggi regolari* lo
 
 Negli automi a pila avevamo visto che non potevamo ricreare l'automa prodotto per l'intersezione e l'unione perché avevamo a disposizione una sola pila. Supponiamo di avere ora un *PDA con due pile*.
 
-#figure(image("assets/01_PDA_doppia_pila.svg", width: 75%))
+#figure(image("assets/01/PDA_doppia_pila.svg", width: 75%))
 
 // Immagine [guarda telefono preferiti] da formalizzare
 // Chiedi assolutamente
@@ -240,7 +240,7 @@ Una MdT è una tupla $ M = (Q, Sigma, Gamma, delta, q_0, F) $ definita da:
 
 Una *configurazione* è una foto della macchina in un dato istante di tempo. All'accensione della MdT la *configurazione iniziale* su input $w$ contiene tutto l'input $w$ sul nastro, la testina sul primo carattere di $w$ e la macchina nello stato $q_0$.
 
-#figure(image("assets/01_configurazione_iniziale.svg", width: 75%))
+#figure(image("assets/01/configurazione_iniziale.svg", width: 75%))
 
 Una *configurazione accettante* è una qualsiasi configurazione che si trova in uno stato finale, a prescindere da quello che troviamo sul nastro. Questo è abbastanza strano, ovvero *non siamo obligati a leggere tutto l'input*, questo perché magari devo riconoscere solo una parte iniziale dell'input. Si può forzare tutta la lettura obbligando la macchina a scorrere tutto l'input prima di poter andare in uno stato finale. Inoltre, assumiamo per semplicità che quando la macchina entra in uno stato finale allora essa *si ferma* e *accetta* l'input fornito.
 
@@ -260,7 +260,7 @@ Con questo truccaccio riusciamo a fare una fotografia completa:
 
 La configurazione di una MdT nello stato $q$ con input $w = x y$ è quindi una *tripla* $ x q y bar.v x,y in Gamma^* and q in Q . $ È molto comodo di solito *evidenziare* il primo simbolo $a$ di $y$ perché lo utilizza la funzione di transizione, quindi ogni tanto configurazioni diamo la forma $ x q a y bar.v x,y in Gamma^* and a in Gamma and q in Q . $
 
-#figure(image("assets/01_configurazione.svg", width: 75%))
+#figure(image("assets/01/configurazione.svg", width: 75%))
 
 #example()[
   Se la configurazione è $ w q $ vuol dire che mi trovo nello stato $q$ avendo letto tutto l'input, ovvero mi trovo con la testina sul primo $blank$ di destra.

@@ -9,6 +9,7 @@
 // Capitolo
 
 = Problemi di decisione
+<capitolo02-tipo0>
 
 Abbiamo visto che la computazione di una MdT è un susseguirsi di *configurazioni*, che racchiudono l'input, lo stato corrente della macchina e anche la posizione della testina, implicitamente usando una divisione della stringa di input.
 

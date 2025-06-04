@@ -50,6 +50,8 @@ Nei linguaggi regolari passavamo per il complemento per vedere se il linguaggio 
 
 Infatti, questo problema *non si può decidere*: non esistono algoritmi che stabiliscono se un PDA riesce a riconoscere tutte le stringhe, o se una grammatica riesce a generare tutte le stringhe.
 
+La dimostrazione più rigorosa di questo si trova nel @capitolo02-tipo0[Capitolo]
+
 == Altri problemi
 
-Per vedere altri problemi di decisione sui CFL guardate il capitolo sui *problemi di decisione delle macchine di Turing*.
+Come detto a inizio capitolo, per vedere tutti gli altri problemi di decisione bisogna spostarsi nel @capitolo02-tipo0[Capitolo], nel quale abbiamo già introdotto nel *macchine di Turing* e quindi possiamo risolvere molti più problemi di decisione.

@@ -54,7 +54,7 @@ Una terza tecnica è usare le *proprietà di chiusura* rispetto al complemento. 
 
   Calcoliamo il suo complemento $ L^C = {w w bar.v w in {a,b}^*} . $
 
-  Con il pumping abbiamo dimostrato che questo linguaggio non è CFL. Ma allora $L$ non è DCFL, quindi sapendo che è CFL cerchiamo un PDA per esso.
+  Con il pumping abbiamo dimostrato che questo linguaggio non è CFL, quindi nemmeno DCFL. Ma allora $L$ non è DCFL, quindi sapendo che è CFL cerchiamo un PDA per esso.
 
   Creiamo una sorta di automa prodotto che simula l'intersezione con un regolare:
   - una prima componente è un *automa a stati finiti* che controlla la lunghezza della stringa. Se questa è dispari allora accettiamo, altrimenti guardiamo l'altra componente;

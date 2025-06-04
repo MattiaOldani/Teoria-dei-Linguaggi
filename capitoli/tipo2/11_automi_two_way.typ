@@ -2,29 +2,8 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
-
-#import "@preview/cetz:0.3.4"
-
-#import "@preview/syntree:0.2.1": syntree
-
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
@@ -39,9 +18,9 @@ Negli automi a stati finiti, il movimento *two-way* non aumentava la potenza com
 
 Vediamo prima di tutto una rappresentazione del modello.
 
-#figure(image("assets/11_2PDA.svg", width: 75%))
+#figure(image("assets/11/2PDA.svg", width: 75%))
 
-Come nei 2DFA, mettiamo degli *end marker* per marcare i bordi della stringa, perché ora la nostra testina di lettura può andare *avanti e indietro* sul nastro.
+Come nei $2$DFA, mettiamo degli *end marker* per marcare i bordi della stringa, perché ora la nostra testina di lettura può andare *avanti e indietro* sul nastro.
 
 Con questo modello possiamo fare *molto di più* dei classici automi a pila.
 
@@ -52,7 +31,7 @@ Vediamo una serie di linguaggi non CFL che riusciamo a riconoscere con questo mo
 #example()[
   Definiamo il linguaggio $ L = {a^n b^n c^n bar.v n gt.eq 0} . $
 
-  Questo linguaggio non è CFL perché una volta che controlliamo le $b$ con le $a$ perdiamo l'informazione su $n$. Con un *2DPDA* possiamo controllare le $a$ con le $b$, poi tornare all'inizio delle $b$ e controllare le $b$ con le $c$.
+  Questo linguaggio non è CFL perché una volta che controlliamo le $b$ con le $a$ perdiamo l'informazione su $n$. Con un *$2$DPDA* possiamo controllare le $a$ con le $b$, poi tornare all'inizio delle $b$ e controllare le $b$ con le $c$.
 ]
 
 #example()[
@@ -67,7 +46,7 @@ Vediamo una serie di linguaggi non CFL che riusciamo a riconoscere con questo mo
   + svuotiamo la pila, spostandoci di una posizione a sinistra ogni volta che togliamo un carattere. Con questa mezza passata ci troviamo, appunto, a metà della stringa, sul carattere in posizione $k / 2$;
   + ricominciamo dal primo punto fino a quando non rimaniamo con un carattere solo, che mi dà per forza resto $1$.
 
-  Anche questo, come quello di prima, è un *2DPDA*.
+  Anche questo, come quello di prima, è un *$2$DPDA*.
 ]
 
 #example()[
@@ -81,13 +60,13 @@ Vediamo una serie di linguaggi non CFL che riusciamo a riconoscere con questo mo
 
   Spostiamoci di nuovo a metà della stringa, mettendo un separatore $hash$ tra $w$ e i caratteri che usiamo per spostarci. Ora che siamo a metà, togliamo $hash$ dal congelatore e, con $w$ sulla pila, possiamo controllare se la seconda parte è uguale a $w$.
 
-  Anche questo è un fantastico *2DPDA*.
+  Anche questo è un fantastico *$2$DPDA*.
 ]
 
 #example()[
-  Non lo facciamo vedere, ma il linguaggio $ L = {w w^R bar.v w in {a,b}^*} $ ha un *2DPDA* che lo riconosce in maniera molto simile a quelle precedenti.
+  Non lo facciamo vedere, ma il linguaggio $ L = {w w^R bar.v w in {a,b}^*} $ ha un *$2$DPDA* che lo riconosce in maniera molto simile a quelle precedenti.
 ]
 
-Come vediamo, questo modello è *molto potente*, talmente potente che nessuno sa quanto sia potente: infatti, tutti gli esempi visti sono stati risolti con un *2DPDA*, quindi anche da un *2NPDA* che fa partire una sola computazione alla volta, ma non sappiamo se $ 2"NPDA" =^? 2"DPDA" . $
+Come vediamo, questo modello è *molto potente*, talmente potente che nessuno sa quanto sia potente: infatti, tutti gli esempi visti sono stati risolti con un *$2$DPDA*, quindi anche da un *$2$NPDA* che fa partire una sola computazione alla volta, ma non sappiamo se $ 2"NPDA" =^? 2"DPDA" . $
 
 Inoltre, non si conosce la relazione che si ha con i linguaggi di tipo $1$, che vediamo tra poco, ovvero non sappiamo se $ 2"DPDA" =^? "CS" . $

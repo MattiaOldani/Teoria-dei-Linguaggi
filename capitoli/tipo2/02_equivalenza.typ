@@ -2,51 +2,20 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
 #import "@preview/cetz:0.3.4"
 
-#import "@preview/syntree:0.2.1": syntree
-
 #import "@preview/lilaq:0.1.0" as lq
 #import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
 
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-#set heading(numbering: "1.")
-
-#show outline.entry.where(level: 1): it => {
-  v(12pt, weak: true)
-  strong(it)
-}
-
-#outline(indent: auto)
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-
 = Equivalenza tra CFL e grammatiche di tipo $2$
 
-Facciamo un breve ripasso sulle grammatiche di tipo $2$ e poi andiamo a vedere l'equivalenza tra le grammatiche di tipo $2$ e gli automi a pila.
+Facciamo un breve ripasso sulle grammatiche di tipo $2$ e poi andiamo a vedere l'*equivalenza* tra le grammatiche di tipo $2$ e gli automi a pila.
 
 == Ripasso e introduzione
 
@@ -111,27 +80,27 @@ Vediamo questi alberi applicati a qualche esempio.
   Questo secondo albero genera invece la stringa $w = ()()()$.
 
   Per leggera la stringa che viene generata basta una *visita in profondità* dell'albero.
-]
+]<tonde-bilanciate>
 
 Gli alberi sono un *modo compatto* di descrivere un processo di derivazione.
 
 #example()[
-  Rimaniamo con il linguaggio dell'ultimo esempio, e prendiamo in considerazione l'ultima stringa $()()()$ che abbiamo derivato.
+  Rimaniamo con il linguaggio dell'@tonde-bilanciate, e prendiamo in considerazione l'ultima stringa $()()()$ che abbiamo derivato.
 
   Proviamo a scrivere la derivazione usando proprio le regole di produzione che abbiamo a disposizione. Ci accorgiamo subito che abbiamo diversi modi di arrivare a quella stringa: $ #text(fill: blue)[$S$] arrow.stroked #text(fill: blue)[$S$] S arrow.stroked #text(fill: blue)[$S$] S S arrow.stroked (#text(fill: blue)[$S$]) S S arrow.stroked () #text(fill: blue)[$S$] S arrow.stroked () (#text(fill: blue)[$S$]) S arrow.stroked ()() #text(fill: blue)[$S$] arrow.stroked ()()(#text(fill: blue)[$S$]) arrow.stroked& ()()() \ #text(fill: blue)[$S$] arrow.stroked #text(fill: blue)[$S$] S arrow.stroked S #text(fill: blue)[$S$] S arrow.stroked S (#text(fill: blue)[$S$]) S arrow.stroked S () #text(fill: blue)[$S$] arrow.stroked #text(fill: blue)[$S$] () (S) arrow.stroked (#text(fill: blue)[$S$]) () (S) arrow.stroked ()() (#text(fill: blue)[$S$]) arrow.stroked& ()()() \ #text(fill: blue)[$S$] arrow.stroked #text(fill: blue)[$S$] S arrow.stroked (#text(fill: blue)[$S$]) S arrow.stroked () #text(fill: blue)[$S$] arrow.stroked () #text(fill: blue)[$S$] S arrow.stroked () (#text(fill: blue)[$S$]) S arrow.stroked ()() #text(fill: blue)[$S$] arrow.stroked ()() (#text(fill: blue)[$S$]) arrow.stroked& ()()() . $
 
   In blu viene indicata la variabile $S$ che viene sostituita ad ogni passo.
 
   Queste derivazioni generano la stessa stringa ma hanno alberi di derivazione diversi (non lo disegno, ma vale quanto scritto).
-]
+]<derivazioni-bilanciate>
 
 Cerchiamo di dare una corrispondenza tra derivazioni e alberi di derivazione. Andiamo ad utilizzare le *derivazioni leftmost*: esse sono derivazioni in cui, ad ogni passo, la variabile che andiamo a sostituire è quella più a sinistra nella forma sentenziale.
 
 #example()[
-  Nelle tre derivazioni precedenti ci accorgiamo che la prima e la terza derivazione sono leftmost, mentre la seconda non lo è.
+  Nelle tre derivazioni dell'@derivazioni-bilanciate ci accorgiamo che la prima e la terza derivazione sono leftmost, mentre la seconda non lo è.
 ]
 
-Abbiamo quindi creato una corrispondenza $1:1$ tra derivazioni leftmost e alberi di derivazione. Da questo momento, parleremo di derivazioni leftmost riferendoci ad alberi di derivazione e viceversa.
+Abbiamo quindi creato una *corrispondenza* $1:1$ tra derivazioni leftmost e alberi di derivazione. Da questo momento, parleremo di derivazioni leftmost riferendoci ad alberi di derivazione e viceversa.
 
 #definition([Grammatica ambigua])[
   Una grammatica $G$ è *ambigua* se $exists w in L(G)$ che ammette due alberi di derivazione differenti, oppure, in maniera equivalente, se $exists w in L(G)$ che ammette due derivazioni leftmost diverse.
@@ -141,12 +110,10 @@ Abbiamo quindi creato una corrispondenza $1:1$ tra derivazioni leftmost e alberi
   La grammatica delle parentesi tonde bilanciate è *ambigua*, mentre la grammatica della parole palindrome di lunghezza pari è *non ambigua*.
 ]
 
-La pila è la struttura che ci permette di implementare la *ricorsione*. I linguaggi CFL hanno in più, rispetto ai regolari, l'accesso alle strutture ricorsive, e questo lo vediamo negli esempi che abbiamo fatto: l'esempio delle parentesi tonde bilanciate ha come flow
+La pila è la struttura che ci permette di implementare la *ricorsione*. I linguaggi CFL hanno in più, rispetto ai regolari, l'accesso alle strutture ricorsive, e questo lo vediamo negli esempi che abbiamo fatto: l'esempio delle parentesi tonde bilanciate ha come *flow*
 - inizio qualcosa (trovo una tonda aperta);
 - vedo se ho ancora qualcosa di bilanciato;
 - finisco quel qualcosa (trovo una tonda chiusa).
-
-Tra l'altro, molto figo che *tutti i CFL* si possono ricondurre al *linguaggio delle parentesi bilanciate*, molto molto bello.
 
 == Da grammatica di tipo 2 ad automa a pila
 

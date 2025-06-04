@@ -270,21 +270,21 @@ Se nel *PL3* ripetevamo la parte centrale dicendo che questa non poteva essere v
 
   Di questi $k + 2$ nodi, l'ultimo che visitiamo è il terminale presente nella stringa $z$, quindi stiamo visitando $k + 1$ variabili. Avendo a disposizione $k$ variabili, vuol dire che visitiamo una variabile almeno due volte. Sia $A$ questa variabile che viene ripetuta.
 
-  #figure(image("assets/02_albero_ripetizione.svg", width: 85%))
+  #figure(image("assets/04/albero_ripetizione.svg", width: 85%))
 
   Nella figura precedente abbiamo indicato con due pallini la variabile $A$ che viene ripetuta durante il cammino dal fondo verso la radice. Ora iniziamo la divisione in fattori.
 
   Consideriamo solo l'albero che parto dalla $A$ più sotto: esso genera un fattore di $z$, che chiamiamo $w$, ovvero $A arrow.stroked^* w$.
 
-  #figure(image("assets/02_albero_w.svg", width: 85%))
+  #figure(image("assets/04/albero_w.svg", width: 85%))
 
   Consideriamo ora l'albero che parte dalla $A$ più sopra: esso genera un altro fattore di $z$, che contiene quello precedente più due fattori esterni, che chiamiamo $v$ e $x$, ovvero $A arrow.stroked^* v w x$.
 
-  #figure(image("assets/02_albero_vx.svg", width: 85%))
+  #figure(image("assets/04/albero_vx.svg", width: 85%))
 
   Infine, prendiamo i due fattori esterni, che chiamiamo $u$ e $y$, trovando quindi la derivazione completa di $z$ come $ S arrow.stroked^* u v w x y . $
 
-  #figure(image("assets/02_albero_uy.svg", width: 85%))
+  #figure(image("assets/04/albero_uy.svg", width: 85%))
 
   Abbiamo quindi mostrato che esiste la decomposizione.
 

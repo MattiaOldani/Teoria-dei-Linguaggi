@@ -16,7 +16,7 @@ Toccata e fuga nel campo dei *linguaggi context-sensitive*, visto che li vedremo
 
 I linguaggi di tipo $1$ hanno come modello riconoscitivo gli *LBA*, o *Linear Bounded Automata*. In poche parole, sono degli automi a stati finiti two-way con la testina che però può scrivere sul nastro.
 
-#figure(image("assets/01_LBA.svg", width: 75%))
+#figure(image("assets/01/LBA.svg", width: 75%))
 
 Gli LBA vedono il nastro come se fosse una memoria, nella quale possono anche scrivere. Visto che possiamo scrivere solo sul nastro, lo spazio a nostra disposizione rimane *limitato dall'input*.
 

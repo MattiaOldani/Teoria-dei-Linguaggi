@@ -2,18 +2,6 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
@@ -21,28 +9,8 @@
 
 #import "@preview/syntree:0.2.1": syntree
 
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
-
 
 // Capitolo
-
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-#set heading(numbering: "1.")
-
-#show outline.entry.where(level: 1): it => {
-  v(12pt, weak: true)
-  strong(it)
-}
-
-#outline(indent: auto)
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
 
 = Ambiguità
 
@@ -340,7 +308,7 @@ Ma vale anche il viceversa? Ovvero dato un automa non deterministico allora abbi
 #example()[
   Vediamo il complemento del linguaggio precedente, ovvero il linguaggio delle stringhe nelle quali esiste almeno una posizione alla stessa distanza dai bordi in cui i caratteri sono diversi.
 
-  #figure(image("assets/06_lc.svg", width: 75%))
+  #figure(image("assets/06/lc.svg", width: 75%))
 
   Ovviamente questo è non deterministico: dobbiamo scommettere su un simbolo che non ci piace $sigma$, far passare un po' di stringa, trovare il suo compare $gamma$, controllare che sono diversi e vedere se la distanza dalla fine è uguale a quella tra il primo e l'inizio.
 

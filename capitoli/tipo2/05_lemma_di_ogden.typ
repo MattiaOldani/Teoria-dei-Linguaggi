@@ -31,39 +31,6 @@
 
 = Lemma di Ogden
 
-// SPOSTA NEL CAPITOLO PRIMA
-== Ancora pumping lemma
-
-La scorsa lezione abbiamo visto il pumping lemma per i CFL. Rivediamo un secondo la dimostrazione del punto $v x eq.not epsilon$ perché non era molto chiara.
-
-Quando risaliamo l'albero di derivazione supponiamo di incontrare la variabile che viene ripetuta dopo. Chiamiamo questa variabile $A$. Visto che siamo in un nodo interno, e siamo nella FN di Chomsky, questa variabile arriva una biforcazione di una variabile del livello superiore. Sia $P$ questa variabile, che genera anche la variabile $B$ allo stesso livello di $A$.
-
-Qua abbiamo due casi:
-- se $P = A$ allora abbiamo subito la ripetizione e potremmo avere $v$ o $x$ uguali ad $epsilon$ ma non tutti e due, perché da $B$ tiriamo fuori almeno un terminale, non avendo $epsilon$-produzioni;
-- se $P eq.not A$ allora ancora meglio di prima perché tutti e due potrebbero non essere nulli, visto che ci biforchiamo ancora in su.
-
-Vediamo un esempio per capire meglio.
-
-#example()[
-  Abbiamo una grammatica in FN di Chomsky con le regole di produzione $ A arrow.long a bar.v A B \ B arrow.long b . $
-
-  Ci viene dato l'albero di derivazione della stringa $z = a b$ in questa grammatica.
-
-  #align(center)[
-    #syntree(
-      child-spacing: 2em,
-      layer-spacing: 2em,
-      "[$A$ [$A$ $a$] [$B$ $b$]]",
-    )
-  ]
-
-  La $A$ più in basso viene ripetuta al livello superiore, quindi essa genera il fattore $w$ della nostra scomposizione. Questo implica che la parte prima, definita dal fattore $u v$, è vuota.
-
-  La $A$ più in alto invece genera il fattore $v w x$, ma visto che $w = a$ e che $v = epsilon$, allora sicuramente $x = b$, che come vediamo non è vuoto.
-
-  Gli altri due fattori esterni sono invece vuoti, ma su loro non abbiamo condizioni.
-]
-
 == Fail del pumping lemma
 
 Il pumping lemma viene usato classicamente per dimostrare che un linguaggio non è CFL. Purtroppo per noi, questo lemma però ogni tanto fallisce nelle dimostrazioni.

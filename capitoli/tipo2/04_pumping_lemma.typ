@@ -2,18 +2,6 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
@@ -21,28 +9,10 @@
 
 #import "@preview/syntree:0.2.1": syntree
 
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
 #import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
-
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-#set heading(numbering: "1.")
-
-#show outline.entry.where(level: 1): it => {
-  v(12pt, weak: true)
-  strong(it)
-}
-
-#outline(indent: auto)
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
 
 = Pumping lemma
 
@@ -126,7 +96,7 @@ Come nei linguaggi regolari, anche nei CFL abbiamo un *pumping lemma*. Questa è
 
   Con questa operazione otteniamo la stringa $ S arrow.stroked^* [[()]] . $
 
-  Prendiamo ora l'albero con radice in $S$ colorato di blu. Questo albero ha radice in $S$ che genera, in una sola mossa, la stringa $[S]$, dove la $S$ tra quadre è rappresentata dalla $S$ fuchsia nel disegno. Notiamo che possiamo innestare questo albero in sé stesso un numero arbitrario di volte.
+  Prendiamo ora l'albero con radice in $S$ colorata di blu. Questo albero ha radice in $S$ che genera, in una sola mossa, la stringa $[S]$, dove la $S$ tra quadre è rappresentata dalla $S$ fuchsia nel disegno. Notiamo che possiamo innestare questo albero in sé stesso un numero arbitrario di volte.
 
   #align(center)[
     #cetz.canvas({
@@ -304,13 +274,39 @@ Se nel *PL3* ripetevamo la parte centrale dicendo che questa non poteva essere v
 
   [*SECONDO PUNTO*]
 
-  Le due parti vuote non sono entrambe vuote allo stesso tempo: noi all'inizio dell'albero di derivazione stiamo applicando una regola del tipo $A arrow.long B C$. Supponiamo che in $B$ ci sia la ripetizione della variabile $A$ e che da qui esca il fattore $v$. Nell'albero che invece parte da $C$ esce il fattore $x$, che però non può essere vuoto perché non abbiamo, in una FN di Chomsky, delle $epsilon$-produzioni.
+  Quando risaliamo l'albero di derivazione supponiamo di incontrare la variabile $A$ che poi viene ripetuta sopra. Visto che siamo in un nodo interno, e siamo nella FN di Chomsky, questa variabile arriva da una biforcazione di una variabile del livello superiore. Sia $P$ questa variabile, che genera anche la variabile $B$ allo stesso livello di $A$.
+
+  Qua abbiamo due casi:
+  - se $P = A$ allora abbiamo subito la ripetizione e potremmo avere $v$ o $x$ uguali ad $epsilon$ ma non tutti e due, perché da $B$ tiriamo fuori almeno un terminale, non avendo $epsilon$-produzioni;
+  - se $P eq.not A$ allora ancora meglio di prima perché tutti e due potrebbero non essere nulli, visto che ci biforchiamo ancora in su.
 
   [*PRIMO PUNTO*]
 
   Consideriamo il cammino di $z$ che parte dalla foglia e arriva fino a $S$. Se saliamo di $k + 1$ archi abbiamo attraversato $k + 2$ nodi, ma uno di questi è il carattere terminale della foglia, quindi abbiamo attraversato $k + 1$ variabili. Avendo a disposizione $k$ variabili, una viene ripetuta.
 
   Questo albero ha altezza massima $k + 1$, perché al massimo in quel punto otteniamo la ripetizione della variabile. La variabile che troviamo ripetuta fa partire un albero che genera la stringa $v w x$, ma per il lemma precedente vale $ abs(v w x) lt.eq 2^(k + 1 - 1) = 2^k = N . qedhere $
+]
+
+Vediamo un esempio per capire meglio la dimostrazione del secondo punto del pumping lemma.
+
+#example()[
+  Abbiamo una grammatica in FN di Chomsky con le regole di produzione $ A &arrow.long a bar.v A B \ B &arrow.long b . $
+
+  Ci viene dato l'albero di derivazione della stringa $z = a b$ in questa grammatica.
+
+  #align(center)[
+    #syntree(
+      child-spacing: 2em,
+      layer-spacing: 2em,
+      "[$A$ [$A$ $a$] [$B$ $b$]]",
+    )
+  ]
+
+  La $A$ più in basso viene ripetuta al livello superiore, quindi essa genera il fattore $w$ della nostra scomposizione. Questo implica che la parte prima, definita dal fattore $u v$, è vuota.
+
+  La $A$ più in alto invece genera il fattore $v w x$, ma visto che $w = a$ e che $v = epsilon$, allora sicuramente $x = b$, che come vediamo non è vuoto.
+
+  Gli altri due fattori esterni sono invece vuoti, ma su loro non abbiamo condizioni.
 ]
 
 == Applicazioni del pumping lemma

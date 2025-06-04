@@ -19,9 +19,9 @@ Quando però passiamo da una configurazione alla successiva, l'area in cui facci
 
 Quanto detto fin'ora ci servirà per riconoscere dei linguaggi molto particolari che sono *basati sulle configurazioni* di una MdT generica.
 
-Definiamo un nuovo alfabeto $ Upsilon = Gamma union Q union {hash} bar.v hash in.not Gamma union Q . $
+Definiamo un nuovo alfabeto $ Delta = Gamma union Q union {hash} bar.v hash in.not Gamma union Q . $
 
-Definiamo due linguaggi che sono basati su questo nuovo alfabeto $Upsilon$.
+Definiamo due linguaggi che sono basati su questo nuovo alfabeto $Delta$.
 
 Il primo linguaggio che definiamo è il *primo linguaggio successore* $ L'_"succ" = {alpha hash beta^R bar.v alpha,beta "configurazioni" and alpha tack beta} . $
 
@@ -118,7 +118,7 @@ Con l'intersezione di due DCFL non ci è andata molto bene, quindi ora proviamo 
 
 Per riconoscere questo linguaggio potremmo costruire un riconoscitore $A$ non deterministico che all'inizio usa una $epsilon$-mossa per far partire in parallelo i due *DPDA* e vedere se almeno uno dei due riconosce la stringa che viene data in input.
 
-#figure(image("assets/02_riconoscitore_xi.svg", width: 75%))
+#figure(image("assets/02/riconoscitore_xi.svg", width: 75%))
 
 I due linguaggi $L'$ e $L''$ sono *DCFL*, quindi hanno una sola computazione accettante, ma con $A$ potremmo invece avere *ambiguità* perché abbiamo inserito due $epsilon$-mosse e quindi riconoscere la stringa in due modi diversi.
 
@@ -142,7 +142,7 @@ Dati due linguaggi $L_1$ e $L_2$ CFL, ci chiediamo se $L_1 = L_2$.
 
 Il problema di equivalenza è un *caso generale* del problema di universalità, perché scegliendo $L_2 = Delta^*$ ci possiamo ricollegare al problema precedente.
 
-Addirittura non siamo possiamo rispondere all'*equivalenza con un regolare*, visto che $Delta^*$ è un linguaggio regolare.
+Addirittura non siamo possiamo rispondere all'*equivalenza con un regolare*, visto che $Delta^*$ è un linguaggio regolare, quindi andiamo veramente male.
 
 === Contenimento
 
@@ -154,6 +154,7 @@ Non ho ben capito perché, ma non si può decidere.
 
 Dato $L$ un CFL, ci chiediamo se il linguaggio $L$ è regolare. Questa domanda è "lecita", visto che i regolari sono un sottoinsieme dei CFL. Il problema sembra molto simile al precedente, ma qua la situazione è leggermente diversa da prima perché in quel caso il linguaggio regolare ci veniva dato.
 
+// Spostare nelle operazioni dei regolari
 Per risolvere questo problema ci serve l'operazione di *quoziente tra linguaggi*.
 
 Dati due linguaggi $L_1$ e $L_2$ definiamo l'operazione $ L_1 slash L_2 = {x in Sigma^* bar.v exists y in L_2 bar.v x y in L_1} . $ In poche parole, prendiamo tutte le stringhe nella forma $x y$ di $L_1$ e andiamo a togliere il suffisso $y$ che però dobbiamo trovare in $L_2$.
@@ -187,7 +188,7 @@ In poche parole, rendiamo finali tutti gli stati dai quali, leggendo una stringa
   columns: (50%, 50%),
   align: center + horizon,
   inset: 10pt,
-  [#figure(image("assets/02_pre.svg"))], [#figure(image("assets/02_post.svg"))],
+  [#figure(image("assets/02/pre.svg"))], [#figure(image("assets/02/post.svg"))],
 )
 
 Questo automa $M'$ che abbiamo appena definito calcola il quoziente, ovvero $ L(M') = L_1 slash L_2 . $

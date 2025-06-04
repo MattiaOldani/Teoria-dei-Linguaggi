@@ -2,29 +2,8 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
-
-#import "@preview/cetz:0.3.4"
-
-#import "@preview/syntree:0.2.1": syntree
-
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
@@ -37,14 +16,14 @@ In questo capitolo vediamo alcuni risultati con gli *alfabeti unari*: questi son
 
 Riprendiamo in mano, dopo tanto tempo, gli *automi a stati finiti*. Se rimaniamo nel caso deterministico, da ogni stato di un *DFA* può uscire un solo arco con una certa etichetta, ovvero non posso avere più di $2$ archi uscenti con la stessa etichetta. Avendo ora un solo carattere in $Sigma$ quello che abbiamo è una sequenza (opzionale) di stati che prima o poi sfocia in un *ciclo* (opzionale).
 
-#figure(image("assets/10_DFA_unario.svg", width: 90%))
+#figure(image("assets/10/DFA_unario.svg", width: 90%))
 
 Notiamo come l'informazione sulle parole diventa *informazione sulla lunghezza* di esse, visto che possiamo riconoscere delle stringhe che seguono un certo pattern di lunghezze.
 
 #example()[
   Vediamo un esempio di automa a stati finiti unario.
 
-  #figure(image("assets/10_esempio.svg"))
+  #figure(image("assets/10/esempio.svg"))
 
   Con questo automa riconosciamo $epsilon$, $a$ e poi quest'ultima a cui aggiungiamo un numero di $a$ uguali alla lunghezza del ciclo, ovvero $ L = {epsilon} union {a^(1 + 3k) bar.v k gt.eq 0} = epsilon + a (a^3)^* . $
 ]<esempio-iniziale>

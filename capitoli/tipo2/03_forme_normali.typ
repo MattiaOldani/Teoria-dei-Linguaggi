@@ -17,36 +17,14 @@
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
-#import "@preview/cetz:0.3.4"
-
 #import "@preview/syntree:0.2.1": syntree
-
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
 
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-#set heading(numbering: "1.")
-
-#show outline.entry.where(level: 1): it => {
-  v(12pt, weak: true)
-  strong(it)
-}
-
-#outline(indent: auto)
-/*********************************************/
-/***** DA CANCELLARE PRIMA DI COMMITTARE *****/
-/*********************************************/
-
 = Forme normali per le grammatiche di tipo $2$
 
-Nello scorso capitolo abbiamo visto una forma normale per i PDA per facilitare una dimostrazione già di suo molto pesante. Ora vediamo delle *forme normali* per le grammatiche di tipo $2$.
+Nel @capitolo02-tipo2[Capitolo] abbiamo visto una *forma normale* per i PDA per facilitare una dimostrazione già di suo molto pesante. Ora vediamo delle *forme normali* per le grammatiche di tipo $2$.
 
 Abbiamo detto che le produzioni sono nella forma $ A arrow.long alpha quad bar.v quad A in V and alpha in (V union Sigma)^* $
 
@@ -64,9 +42,7 @@ Nella *forma normale di Greibach*, spesso abbreviata con *FNG*, le produzioni so
 
 Data una grammatica $G$ qualunque, si può sempre scrivere una grammatica in FN di Greibach per lo stesso linguaggio a meno della parola vuota: infatti, se in $G$ abbiamo la parola vuota, nella sua trasformata non ce l'abbiamo e la dobbiamo aggiungere a mano. In poche parole vale $ L(FNG) = L(G) slash {epsilon} . $
 
-La trasformazione da Greibach ad automa a pila in alcuni casi *elimina il non determinismo*, però da fare è abbastanza pesante e non vedremo come fare.
-
-Con la FN di Greibach possiamo costruire un PDA leggermente più semplice di prima.
+La trasformazione da Greibach ad automa a pila in alcuni casi *elimina il non determinismo*, però da fare è abbastanza pesante e non vedremo come fare. Inoltre, con la FN di Greibach possiamo costruire un PDA leggermente più semplice.
 
 Data la grammatica $G$ in FN di Greibach, vogliamo costruire un PDA $ M = (Q, Sigma, Gamma, delta, q_0, Z_0, emptyset.rev) $ che *accetta per pila vuota* definito da:
 - *insieme degli stati* $Q$ formato da un solo stato, ovvero $ Q = {q} ; $
@@ -80,7 +56,7 @@ Il simbolo in input mi *aiuta* nella scelta della produzione, e questo può *rid
 === Esempio
 
 #example()[
-  Modifichiamo leggermente la grammatica dell'ultimo esempio usando le seguenti regole di produzione:
+  Modifichiamo leggermente la grammatica che abbiamo visto nell'@esempio-trasformazione del @capitolo02-tipo2[Capitolo] usando le seguenti regole di produzione:
 
   #grid(
     columns: (33%, 33%, 33%),
@@ -158,7 +134,7 @@ Vediamo una *costruzione* per costruire effettivamente una grammatica in FN di C
 Vogliamo costruire la grammatica $G' = (V, Sigma, P', S)$ in FN di Chomsky a partire dalla grammatica $G$ di tipo $2$. Lo possiamo fare seguendo i seguenti i passi:
 
 #align(center)[
-  #pseudocode-list(title: [FN di Chomsky])[
+  #pseudocode-list(title: [*FN di Chomsky*])[
     + Eliminazione delle $epsilon$-produzioni
     + Eliminazione delle produzioni unitarie
     + Eliminazione dei simboli inutili
@@ -241,10 +217,10 @@ L'*eliminazione dei simboli inutili* rimuove tutti i simbolo che non ci servono 
 
 #definition([Simbolo utile])[
   Un simbolo $X in V union Sigma$ è *utile* se:
-  - il simbolo è raggiungibile, quindi esiste una computazione che genera una forma sentenziale che contiene quel simbolo, ovvero $ exists S arrow.stroked^* alpha X beta ; $
-  - dalla forma sentenziale centrale si riesce a generare una stringa del linguaggio, ovvero $ alpha X beta arrow.stroked^* w in Sigma^* . $
+  - il simbolo è *raggiungibile*, quindi esiste una computazione che genera una forma sentenziale che contiene quel simbolo, ovvero $ S arrow.stroked^* alpha X beta ; $
+  - dalla forma sentenziale centrale si riesce a generare una *stringa del linguaggio*, ovvero $ alpha X beta arrow.stroked^* w in Sigma^* . $
 
-  Riassunto in una sola sentenza, possiamo dire che $ exists S arrow.stroked^* alpha X beta arrow.stroked^* w in Sigma . $
+  Riassunto in una sola sentenza, possiamo dire che $ S arrow.stroked^* alpha X beta arrow.stroked^* w in Sigma . $
 ]
 
 Con questi tre passi abbiamo rimosso tutte le $epsilon$-produzioni, tutti i cammini unitari e tutti i simboli inutili. Le produzioni che abbiamo ora sono nella forma $ A arrow.long alpha $ con $alpha$ terminale oppure $abs(alpha) > 1$.
@@ -285,11 +261,13 @@ Per fare ciò, usiamo ancora delle *variabili ausiliarie* per aggiungere delle r
 Applichiamo questa costruzione ad un esempio.
 
 #example()[
-  Costruire la FN di Chomsky a partire da queste produzioni: $ S arrow.long a B bar.v b A \ A arrow.long a bar.v a S bar.v b A A \ B arrow.long b bar.v b S bar.v a B B . $
+  Costruire la FN di Chomsky a partire da queste produzioni: $ S &arrow.long a B bar.v b A \ A &arrow.long a bar.v a S bar.v b A A \ B &arrow.long b bar.v b S bar.v a B B . $
 
   Non abbiamo $epsilon$-produzioni e variabili cancellabili, come non abbiamo cammini unitari, come non abbiamo simboli inutili, quindi i primi tre passi non vengono eseguiti.
 
-  Partiamo quindi con il cancellare tutti i terminali: $ S arrow.long X_a B bar.v X_b A \ A arrow.long a bar.v X_a S bar.v X_b A A \ B arrow.long b bar.v X_b S bar.v X_a B B \ X_a arrow.long a \ X_b arrow.long b . $
+  Partiamo quindi con il cancellare tutti i terminali: $ S &arrow.long X_a B bar.v X_b A \ A &arrow.long a bar.v X_a S bar.v X_b A A \ B &arrow.long b bar.v X_b S bar.v X_a B B \ X_a &arrow.long a \ X_b &arrow.long b . $
 
-  Infine, smontiamo le catene di variabili che abbiamo ottenuto: $ S arrow.long X_a B bar.v X_b A \ A arrow.long a bar.v X_a S bar.v X_b Y_1 \ Y_1 arrow.long A A \ B arrow.long b bar.v X_b S bar.v X_a Y_2 \ Y_2 arrow.long B B \ X_a arrow.long a \ X_b arrow.long b . $
+  Infine, smontiamo le catene di variabili che abbiamo ottenuto: $ S &arrow.long X_a B bar.v X_b A \ A &arrow.long a bar.v X_a S bar.v X_b Y_1 \ Y_1 &arrow.long A A \ B &arrow.long b bar.v X_b S bar.v X_a Y_2 \ Y_2 &arrow.long B B \ X_a &arrow.long a \ X_b &arrow.long b . $
 ]
+
+*AGGIUNGI CAPITOLO + ESE + CAPITOLO*

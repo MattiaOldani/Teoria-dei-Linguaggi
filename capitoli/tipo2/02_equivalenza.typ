@@ -14,6 +14,7 @@
 // Capitolo
 
 = Equivalenza tra CFL e grammatiche di tipo $2$
+<capitolo02-tipo2>
 
 Facciamo un breve ripasso sulle grammatiche di tipo $2$ e poi andiamo a vedere l'*equivalenza* tra le grammatiche di tipo $2$ e gli automi a pila.
 
@@ -231,7 +232,7 @@ Dimostriamo questo con un esempio.
   )
 
   Riprendiamo quello detto prima: possiamo notare che, guardando la derivazione, dalla variabile più a sinistra in poi c'è esattamente quello che troviamo sulla pila nello stesso momento, mentre prima della variabile troviamo la parte dell'input su nastro che abbiamo già controllato.
-]
+]<esempio-trasformazione>
 
 Le mosse che noi abbiamo etichettato come non deterministiche sono le mosse che avvengono nei *parser*:
 - quando facciamo una predizione, ovvero quando cerchiamo di indovinare l'espansione, stiamo facendo una mossa di tipo *predictor*;

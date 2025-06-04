@@ -2,29 +2,10 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
 
 #import "@preview/cetz:0.3.4"
-
-#import "@preview/syntree:0.2.1": syntree
-
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
@@ -33,7 +14,7 @@
 
 == Fail del pumping lemma
 
-Il pumping lemma viene usato classicamente per dimostrare che un linguaggio non è CFL. Purtroppo per noi, questo lemma però ogni tanto fallisce nelle dimostrazioni.
+Il *pumping lemma* viene usato classicamente per dimostrare che un linguaggio non è CFL. Purtroppo per noi, questo lemma però ogni tanto fallisce nelle dimostrazioni.
 
 #example()[
   Definiamo il linguaggio $ L = {a^n b^n c^k bar.v k eq.not n} . $
@@ -336,7 +317,7 @@ Vediamo ora un lemma molto simile ad uno che abbiamo già visto prima del pumpin
 Questo lemma dà una nuova idea di *misura*: non misuriamo più tutta la stringa, ma solo le posizioni marcate, e consideriamo l'albero semplificato al posto di quello normale.
 
 #lemma-proof()[
-  Si dimostra per induzione, come il lemma della lezione scorsa.
+  Si dimostra per induzione, come il lemma del capitolo scorso.
 ]
 
 Introduciamo finalmente il *lemma di Ogden*.

@@ -2,29 +2,8 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
-
-#import "@preview/cetz:0.3.4"
-
-#import "@preview/syntree:0.2.1": syntree
-
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
@@ -52,7 +31,7 @@ In poche parole, le produzioni sono *non decrescenti*, e questo ci aiutava con l
 
   Data una grammatica, costruiamo un LBA che fa il contrario del processo di produzione: se ho in input una stringa $w$ devo costruire un LBA per capire se $S arrow.stroked^* w$.
 
-  Questo lo facciamo imponendo la macchina a scrivere le forme sentenziali sul nastro, ovvero se sul nastro troviamo un certo $beta$ allora lo sostituiamo con un certo $alpha$ e qualche marcatore per fare da tappo. Ovviamente, il processo è non deterministico, e inoltre non ci fa strabordare perché sappiamo che $alpha$ non sorpassa $beta$ come lunghezza.
+  Questo lo facciamo imponendo la macchina a scrivere le forme sentenziali sul nastro, ovvero se sul nastro troviamo un certo $beta$ allora lo sostituiamo con un certo $alpha$ e qualche marcatore per fare da tappo. Ovviamente, il processo è *non deterministico*, e inoltre non ci fa strabordare perché sappiamo che $alpha$ non sorpassa $beta$ come lunghezza.
 
   [*LBA $arrow.long$ grammatica*]
 

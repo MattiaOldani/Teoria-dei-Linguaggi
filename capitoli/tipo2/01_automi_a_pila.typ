@@ -31,11 +31,11 @@
 
 = Automi a pila
 
-Lasciamo finalmente stare gli automi a stati finiti per passare ad una nuova classe di riconoscitori: gli *automi a pila*. Questi praticamente sono degli automi a stati finiti con testina di lettura one-way ai quali viene aggiunta una *memoria infinita con restrizioni di accesso*, ovvero l'accesso avviene solo sulla cima della memoria, con politica LIFO.
+Chiusa la (grande) parte dei linguaggi regolari e degli automi a stati finiti è ora di passare ad una nuova classe di riconoscitori: gli *automi a pila*. Sono praticamente degli automi a stati finiti con testina di lettura one-way ai quali viene aggiunta una *memoria infinita con restrizioni di accesso*, ovvero l'accesso avviene solo sulla cima della memoria, con politica *LIFO*.
 
-#figure(image("assets/01_pda.svg", width: 50%))
+#figure(image("assets/01/pda.svg", width: 50%))<automa-a-pila>
 
-Come vediamo, la parte degli automi a stati finiti ce l'abbiamo ancora, ma ora abbiamo una *memoria esterna*, che nell'immagine è sulla destra, che possiamo utilizzare con una politica di accesso LIFO. Per via di questa politica, questi automi sono anche detti *automi pushdown*, o *PDA*, perché quando inserisci qualcosa lo fai a spingere giù.
+Come vediamo, la parte degli automi a stati finiti ce l'abbiamo ancora, ma ora abbiamo una *memoria esterna*, che nell'@automa-a-pila[Immagine] è sulla destra, che possiamo utilizzare con una politica di accesso LIFO. Per via di questa politica, questi automi sono anche detti *automi pushdown*, o *PDA*, perché quando si inserisce qualcosa si spinge giù quello che già c'era dentro.
 
 == Definizione
 
@@ -59,9 +59,9 @@ Facciamo qualche esempio. Come convenzione useremo le *maiuscole* per i simboli 
 #example()[
   Facciamo che la funzione di transizione sia definita in questo modo: $ delta(q, a, A) = {(q_1, epsilon), (q_2, B C C)} . $
 
-  #figure(image("assets/01_primo_esempio.svg", width: 50%))
+  #figure(image("assets/01/primo_esempio.svg", width: 50%))<esempio-pila>
 
-  Con $alpha$ nel disegno si intende una stringa in $Gamma^*$ perché oltre ad $A$ potremmo avere altro.
+  Con $alpha$ nell'@esempio-pila[Immagine] si intende una stringa generica in $Gamma^*$ che potremmo eventualmente avere sotto al carattere $A$ in cima.
 
   Cosa vuol dire quella regola della funzione di transizione? Ci sta dicendo che se ci troviamo nello stato $q$, leggiamo $a$ sul nastro leggiamo $A$ sulla cima della pila, possiamo:
   - andare in $q_1$ e non mettere altro sulla pila, praticamente consumando un simbolo in input;
@@ -73,7 +73,7 @@ Facciamo qualche esempio. Come convenzione useremo le *maiuscole* per i simboli 
     columns: (50%, 50%),
     align: center + horizon,
     inset: 10pt,
-    [#figure(image("assets/01_primo_esempio_r1.svg"))], [#figure(image("assets/01_primo_esempio_r2.svg"))],
+    [#figure(image("assets/01/primo_esempio_r1.svg"))], [#figure(image("assets/01/primo_esempio_r2.svg"))],
   )
 
   Per convenzione, quando inseriamo una stringa sulla pila, l'inserimento avviene da destra verso sinistra. In poche parole, se inseriamo la stringa $X in Gamma^*$ nella pila, se la togliessimo noi leggeremmo, in ordine, esattamente $X$. In altre parole ancora, quando leggiamo una stringa da inserire è come se la stessimo leggendo dall'alto verso il basso.
@@ -82,17 +82,17 @@ Facciamo qualche esempio. Come convenzione useremo le *maiuscole* per i simboli 
 
   Ora abbiamo tre scelte a disposizione. Le $epsilon$-mosse possiamo vederle come delle *mosse interne*, che avvengono senza leggere l'input, e che ci permettono di spostarci negli stati modificando eventualmente la pila.
 
-  #figure(image("assets/01_primo_esempio_r3.svg", width: 50%))
+  #figure(image("assets/01/primo_esempio_r3.svg", width: 50%))
 ]
 
-Una *configurazione* è una fotografia dell'automa in un dato istante di tempo, e ci dice quali sono le informazioni rilevanti per il futuro per definire al meglio la macchina, ovvero:
+Una *configurazione* è una *fotografia* dell'automa in un dato istante di tempo, e ci dice quali sono le informazioni rilevanti per il futuro per definire al meglio la macchina, ovvero:
 - lo *stato corrente*;
 - il *contenuto del nastro* che ci manca da leggere;
 - il *contenuto della pila*.
 
 Una configurazione è quindi una *tripla* $ (q, a y, A alpha) $ che contiene lo stato corrente, il contenuto del nastro ancora da leggere indicato dal carattere corrente $a$ unito al resto della stringa $y$ e il contenuto della pila indicato dal carattere in testa $A$ e dal resto della pila $alpha$.
 
-Una *mossa* è l'applicazione della funzione di transizione, ovvero un passaggio $ (q, a y, A alpha) arrow.long (p, y, gamma alpha) sse (p,gamma) in delta(q, a, A) . $ Analogamente, un passaggio che usa le $epsilon$-mosse è un passaggio $ (q, a y, A alpha) arrow.long (p, a y, gamma alpha) arrow.long (p,gamma) in delta(q, epsilon, A) . $
+Una *mossa* è l'applicazione della funzione di transizione, ovvero un passaggio $ (q, a y, A alpha) arrow.long (p, y, gamma alpha) sse (p,gamma) in delta(q, a, A) . $ Analogamente, un passaggio che usa le $epsilon$-mosse è un passaggio $ (q, a y, A alpha) arrow.long (p, a y, gamma alpha) sse (p,gamma) in delta(q, epsilon, A) . $
 
 Una *computazione* è una serie di mosse che partono da una configurazione iniziale e mi portano in una configurazione finale. Di queste ultime parleremo tra poco. Torniamo sulle computazioni.
 
@@ -170,7 +170,7 @@ Con il termine *non determinismo* non intendiamo le $epsilon$-mosse da sole, que
   + come nel caso classico, considero un carattere, o anche $epsilon$, allora a parità di stato corrente e simbolo sulla pila, ho al massimo una transizione possibile, ovvero $ forall q in Q quad forall A in Gamma quad forall sigma in Sigma union {epsilon} quad abs(delta(q, sigma, A)) lt.eq 1 . $
 ]
 
-A differenza del caso classico, il determinismo e il non determinismo non sono ugualmente potenti: un automa a pila non deterministico è *più potente* di un automa a pila deterministico, che riconosce una sottoclasse di linguaggi diversa dai linguaggi di tipo $2$, che sono riconosciuti dai PDA non deterministici.
+A differenza del caso classico, il determinismo e il non determinismo *non sono ugualmente potenti*: un automa a pila non deterministico è *più potente* di un automa a pila deterministico, che riconosce una sottoclasse di linguaggi diversa dai linguaggi di tipo $2$, che sono riconosciuti dai PDA non deterministici.
 
 == Trasformazioni
 

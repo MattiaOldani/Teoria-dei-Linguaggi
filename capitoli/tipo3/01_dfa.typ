@@ -74,9 +74,9 @@ Diamo subito una distinzione dei problemi che abbiamo sugli automi:
   Costruiamo un automa deterministico per $L$.
 
   #figure(image("assets/01/a_pari_coppie_b.svg"))
-]
+]<esempio-a-pari-coppie-b>
 
-Come vediamo dall'esempio precedente, abbiamo uno stato particolare $q_T$ che è detto *stato trappola*: esso viene utilizzato come _"punto di arrivo"_ per esaurire la lettura dell'input e non accettare la stringa data in input. Finiamo in questo stato se, in uno stato $q$, leggiamo un carattere che rende la stringa non presente in $L$.
+Come vediamo dall'@esempio-a-pari-coppie-b, abbiamo uno stato particolare $q_T$ che è detto *stato trappola*: esso viene utilizzato come _"punto di arrivo"_ per esaurire la lettura dell'input e non accettare la stringa data in input. Finiamo in questo stato se, in uno stato $q$, leggiamo un carattere che rende la stringa non presente in $L$.
 
 Lo stato trappola è *opzionale*: per semplicità, quando un automa *non è completo*, ovvero uno stato non ha un arco per un carattere, si assume che quell'arco vada a finire in uno stato trappola. Questa semplificazione permette di disegnare automi molto più *compatti*.
 
@@ -86,6 +86,8 @@ Lo stato trappola è *opzionale*: per semplicità, quando un automa *non è comp
   Costruiamo un automa deterministico per $L$.
 
   #figure(image("assets/01/terzo_a.svg"))
+
+  Qua abbiamo aggiunto lo stato trappola, ma per semplicità lo potevamo non inserire.
 ]
 
 #example()[

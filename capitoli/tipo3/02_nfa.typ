@@ -13,14 +13,14 @@
 = Automi a stati finiti non deterministici
 <capitolo02-tipo3>
 
-L'automa proposto nell'esempio @esempio-terzultimo-a del capitolo precedente ci ha richiesto $2^n$ stati. Abbiamo poi detto che con la nozione di *distinguibilità* dimostreremo che non ci sono DFA con meno stati di quello che abbiamo costruito. Ma se invece utilizzassimo degli *automi non deterministici*?
+L'automa proposto nell'@esempio-terzultimo-a del @capitolo01-tipo3[Capitolo] ci ha richiesto $2^n$ stati. Abbiamo poi detto che con la nozione di *distinguibilità* dimostreremo che non ci sono DFA con meno stati di quello che abbiamo costruito. Ma se invece utilizzassimo degli *automi non deterministici*?
 
 #example()[
-  Vediamo un automa non deterministico per il linguaggio appena discusso.
+  Cerchiamo quindi di costruire un automa non deterministico per il linguaggio appena discusso dell'@esempio-terzultimo-a.
 
   #figure(image("assets/02/terzultimo_a.svg"))
 
-  Abbiamo usato un numero di stati uguale a $n+1$ (escluso quello trappola), dove $n$ è la posizione da destra del carattere richiesto.
+  Abbiamo usato un numero di stati uguale a $n+1$ (escluso quello trappola, che però qua è presente), dove $n$ è la posizione da destra del carattere richiesto.
 ]<esempio-terzultimo-a-nd>
 
 == Definizione
@@ -33,7 +33,7 @@ Prima di definire formalmente l'accettazione di una stringa da parte di un autom
 
 Come prima, per non avere in giro troppo nomi, usiamo $delta^*$ con il nome $delta$ anche per le stringhe.
 
-Quando *accettiamo* una stringa? Avendo teoricamente la possibilità di fare *infinite computazioni parallele*, visto che ad ogni passo posso sdoppiare la mia computazione, ci basta avere *almeno* un percorso che finisce in uno stato finale.
+Quando *accettiamo* una stringa? Avendo teoricamente la possibilità di fare *infinite computazioni parallele*, visto che ad ogni passo possiamo sdoppiare la computazione, ci basta avere *almeno* un percorso che finisce in uno stato finale.
 
 Il *linguaggio riconosciuta* dall'automa $A$ non deterministico è $ L(A) = {w in Sigma^* bar.v delta^*(q_0, w) inter F eq.not emptyset.rev} . $
 
@@ -99,7 +99,7 @@ Che applicazioni può avere una forma del genere? Nei *compilatori* questo appro
 
   #figure(image("assets/02/segno.svg"))
 
-  La epsilon mossa indica una opzionalità: potremmo leggere il prossimo carattere stando nello stato $q_0$ oppure nello stato $q_s$.
+  La $epsilon$-mossa indica una *opzionalità*: potremmo leggere il prossimo carattere stando nello stato $q_0$ oppure nello stato $q_s$.
 ]
 
 Questa soluzione aumenta la potenza dell'automa? *NO*: ogni sequenza nella forma $ p arrow.long.squiggly^epsilon p' arrow.long^a q' arrow.long.squiggly^epsilon q $ può essere tradotta nella transizione $ p arrow.long^a q . $
@@ -140,7 +140,7 @@ Vediamo altre applicazioni delle $epsilon$-produzioni.
 ]
 
 #example()[
-  Riprendiamo il linguaggio $L_n$ delle stringhe con l'$n$-esimo carattere da destra uguale ad una $a$. Avevamo visto un NFA sulle transizioni nell'@esempio-terzultimo-a-nd, vediamone uno non deterministico sulle $epsilon$-transizioni fissando il valore a $n = 3$.
+  Riprendiamo il linguaggio $L_n$ delle stringhe con l'$n$-esimo carattere da destra uguale ad una $a$. Avevamo visto un NFA sulle transizioni nell'@esempio-terzultimo-a-nd, vediamone uno non deterministico con $epsilon$-transizioni fissando il valore a $n = 3$.
 
   #figure(image("assets/02/ln_epsilon.svg"))
 

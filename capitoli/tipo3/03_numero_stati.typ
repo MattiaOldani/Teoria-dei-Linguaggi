@@ -127,7 +127,7 @@ Vediamo ancora un esempio, ma teniamo a mente il linguaggio $D_n$ che abbiamo ap
 #example()[
   Dato l'alfabeto $Sigma = {a,b}$, definiamo $ D'_n = {x in Sigma^* bar.v "ogni coppia di simboli di" x "a distanza" n "contiene lo stesso simbolo"} . $
 
-  Notiamo che dopo che ho letto $n$ simboli essi si iniziano a ripetere fino alla fine, ma allora $ x in D'_n sse exists w in Sigma^n and exists y in Sigma^(lt.eq n) bar.v x = w^(m gt.eq 0) y and y "suffisso di" w . $ Posso ripetere $w$ quante volte voglio, ma poi la parte finale deve ripetere in parte $w$.
+  Notiamo che dopo che ho letto $n$ simboli essi si iniziano a ripetere fino alla fine, ma allora $ x in D'_n sse exists w in Sigma^n and exists y in Sigma^(lt.eq n) bar.v x = w^(m gt.eq 0) y and y "suffisso di" w . $ Possiamo ripetere $w$ quante volte voglio, ma poi la parte finale deve ripetere in parte $w$.
 
   Notiamo inoltre che questo linguaggio è il complementare del precedente, ovvero $ D'_n = D_n^C . $
 
@@ -135,7 +135,7 @@ Vediamo ancora un esempio, ma teniamo a mente il linguaggio $D_n$ che abbiamo ap
 
   Vediamo un esempio di automa con $n = 3$, un po' grossino, ma fa niente. Non viene inserito lo stato trappola per semplicità, ma ci dovrebbe essere anche quello per ogni transizione _"sbagliata"_ nell'ultima parte dell'automa.
 
-  #figure(image("assets/03/albero_pazzo.svg"))
+  #figure(image("assets/03/albero_pazzo.svg", width: 80%))
 
   Per il linguaggio generico $D'_n$, l'albero usa un numero di stati pari a $ 2^(n+1) - 1 + - 2^n (n-1) + 1 = 2^(n+1) + 2^n (n-1) . $
 
@@ -173,7 +173,7 @@ Abbiamo visto qualche applicazione del @teorema-distinguibilita. Osserviamo che 
 
   #figure(image("assets/03/ln_nfa.svg"))
 
-  Il numero totale di stati è $n+1$.
+  Il numero totale di stati è quindi $n+1$.
 ]
 
 Per $L_n$ abbiamo quindi visto che il numero di stati richiesti per un NFA è $n+1$, mentre per un DFA è almeno $2^n$ grazie al @teorema-distinguibilita. Il salto che abbiamo fatto è quindi *esponenziale*.
@@ -214,9 +214,9 @@ L'automa $M_n$ lo possiamo disegnare in questo modo.
 #theorem-proof()[
   Sia $S subset.eq {0, dots, n-1}$. Definiamo la stringa $ w_S = cases(b & "se" S = emptyset.rev, a^i & "se" S = {i}, a^(e_k - e_(k-1)) b a^(e_(k-1) - e_(k-2)) b dots.c b a^(e_2 - e_1) b a^(e_1) quad & "se" S = {e_1, dots, e_k} bar.v k > 1 and e_1 < dots < e_k) . $
 
-  Si può dimostrare (vedi @primo-lemma) che per ogni $S subset.eq {0, dots, n-1}$ vale $ delta(q_0, w_S) = S . $
+  Si può dimostrare -- @primo-lemma -- che per ogni $S subset.eq {0, dots, n-1}$ vale $ delta(q_0, w_S) = S . $
 
-  Si può dimostrare (vedi @secondo-lemma) inoltre che dati $S,T subset.eq {0, dots, n-1}$, se $S eq.not T$ allora $w_S$ e $w_T$ sono distinguibili per il linguaggio $L(M_n)$.
+  Si può dimostrare inoltre -- @secondo-lemma -- che dati $S,T subset.eq {0, dots, n-1}$, se $S eq.not T$ allora $w_S$ e $w_T$ sono distinguibili per il linguaggio $L(M_n)$.
 
   Viste queste due proprietà, l'insieme di tutte le stringhe $w_S$ associate ai vari insiemi $S$ è formato da stringhe indistinguibili tra loro a coppie. Definiamo quindi $ X = {w_S bar.v S subset.eq {0, dots, n-1}} $ insieme di stringhe distinguibili tra loro per $L(M_n)$.
 
@@ -254,7 +254,7 @@ E ora vediamo la seconda e ultima proprietà.
 ]<secondo-lemma>
 
 #lemma-proof()[
-  Se $S eq.not T$ allora sia $x in S slash T$ uno degli elementi che sta in $S$ ma non in $T$. Vale anche il simmetrico, quindi consideriamo questo caso per ora.
+  Se $S eq.not T$ allora sia $x in S backslash T$ uno degli elementi che sta in $S$ ma non in $T$. Vale anche il simmetrico, quindi consideriamo questo caso per ora.
 
   Per il @primo-lemma, sappiamo che $ delta(q_0, w_S) = S quad bar.v quad delta(q_0, w_T) = T . $
 
@@ -287,7 +287,7 @@ Noi useremo una versione leggermente diversa del fooling set.
   + $forall i,j in {1, dots, N} bar.v i eq.not j quad x_i y_j in.not L or x_j y_i in.not L$.
 ]
 
-Come vediamo, è una versione un pelo più rilassata: prima chiedevo che, presa ogni prima parte di indice $i$, ogni concatenazione con seconde parti di indice $j$ mi desse una stringa fuori dal linguaggio. Ora invece me ne basta solo uno dei due versi.
+Come vediamo, è una versione un pelo più rilassata: prima chiedevamo che, presa ogni prima parte di indice $i$, ogni concatenazione con seconde parti di indice $j$ ci desse una stringa fuori dal linguaggio. Ora invece me ne basta solo uno dei due versi.
 
 #theorem([Teorema del fooling set])[
   Se $P$ è un extended fooling set per il linguaggio $L$ allora ogni NFA per $L$ deve avere almeno $abs(P)$ stati.
@@ -307,24 +307,26 @@ Come vediamo, è una versione un pelo più rilassata: prima chiedevo che, presa 
 
 == Applicazioni del concetto di fooling set
 
-Usiamo il @fooling-set per valutare un NFA per il linguaggio precedente.
+Usiamo il @fooling-set per valutare un NFA.
 
 #example()[
-  Dato il linguaggio $D'_n$ dell'@linguaggio-Dn-primo, definiamo l'insieme $ P = {(x,x) bar.v x in Sigma^n} $ extended fooling set per $D'_n$. Infatti, ogni stringa $z = x x$ appartiene a $D'_n$, mentre ogni _"stringa incrociata"_ $z = x y$, con $x eq.not y$, non appartiene a $D'_n$ perché in almeno una posizione a distanza $n$ ho un carattere diverso.
+  Dato il linguaggio $D'_n$ dell'@linguaggio-Dn-primo, definiamo l'insieme $ P = {(x,x) bar.v x in Sigma^n} $ extended fooling set per $D'_n$. Infatti, ogni stringa $z = x x$ appartiene a $D'_n$, mentre ogni "stringa incrociata" $z = x y$, con $x eq.not y$, non appartiene a $D'_n$ perché in almeno una posizione a distanza $n$ ho un carattere diverso.
 
   Il numero di elementi di $P$ è $2^n$, che è il numero di configurazioni lunghe $n$ di $2$ caratteri, quindi ogni NFA per $D'_n$ ha almeno $2^n$ stati.
 ]
 
 Vediamo un mini *riassunto* dei due linguaggi visti di recente.
 
-#table(
-  columns: (33%, 33%, 33%),
-  align: center + horizon,
-  inset: 10pt,
-  [*Linguaggio*], [*DFA*], [*NFA*],
-  [$D_n$], [$gt.eq 2^n$], [$lt.eq 2n + 2$],
-  [$D'_n$], [$gt.eq 2^n and lt.eq 2^(n+1)$], [$gt.eq 2^n$],
-)
+#figure(
+  table(
+    columns: (33%, 33%, 33%),
+    align: center + horizon,
+    inset: 10pt,
+    [*Linguaggio*], [*DFA*], [*NFA*],
+    [$D_n$], [$gt.eq 2^n$], [$lt.eq 2n + 2$],
+    [$D'_n$], [$gt.eq 2^n and lt.eq 2^(n+1)$], [$gt.eq 2^n$],
+  ),
+)<riassunto-Dn>
 
 Finiamo con un ultimo esempio.
 
@@ -347,5 +349,5 @@ Finiamo con un ultimo esempio.
     - se sono diverse le $i$ abbiamo un numero di $0$ e $2$ diversi;
     - se sono uguali le $i$ allora sono diverse le $j$, ma allora la stringa $0^i 1^(j + i - j') 2^i$ non appartiene al linguaggio perché $j + i - j' eq.not i$.
 
-  Il numero di stati di $P$ è ancora una somma di Gauss, quindi ogni NFA per $T_n$ ha almeno un numero quadratico di stati.
+  Il numero di stati di $P$ è ancora una somma di Gauss, quindi ogni NFA per $T_n$ ha almeno un numero *quadratico* di stati.
 ]

@@ -20,7 +20,7 @@ Prima di tutto abbiamo il *criterio di distinguibilità*: se troviamo un insieme
   Gli automi a stati finiti *non sanno contare*, quindi non posso contare quante $a$ ci sono nella stringa e poi verificare lo stesso numero di $b$.
 
   Definiamo l'insieme $ X = {a^n bar.v n gt.eq 0} . $ Esso è formato da stringhe distinguibili tra loro: infatti, date due stringhe $x = a^i$ e $y = a^j$, per distinguerle utilizziamo la stringa $z = b^i$.
-]
+]<esempio-an-bn>
 
 Un altro modo per dimostrare la non regolarità è far vedere che il linguaggio dato fa saltare qualche *proprietà di chiusura*.
 
@@ -31,7 +31,7 @@ Un altro modo per dimostrare la non regolarità è far vedere che il linguaggio 
 
   Sappiamo che i linguaggi regolari sono chiusi rispetto all'operazione di intersezione. Prendiamo quindi un linguaggio regolare e facciamo l'intersezione con $L$, ad esempio facciamo $ L inter a^* b^* . $
 
-  Visto che $a^* b^*$ è un linguaggio regolare e l'intersezione chiude i linguaggi regolari, anche il linguaggio risultante deve essere regolare, ma questa intersezione genera il linguaggio dell'esempio precedente, perché date tutte le stringhe con $a$ e $b$ uguali filtriamo tenendo solo quelle che hanno tutte le $a$ all'inizio e poi tutte le $b$.
+  Visto che $a^* b^*$ è un linguaggio regolare e l'intersezione chiude i linguaggi regolari, anche il linguaggio risultante deve essere regolare, ma questa intersezione genera il linguaggio dell'@esempio-an-bn, perché date tutte le stringhe con $a$ e $b$ uguali filtriamo tenendo solo quelle che hanno tutte le $a$ all'inizio e poi tutte le $b$.
 
   Visto che il linguaggio risultante non è regolare, non lo è nemmeno $L$.
 ]
@@ -47,14 +47,14 @@ L'ultimo metodo che abbiamo a disposizione è il *pumping lemma per i linguaggi 
   + $forall k gt.eq 0 quad u v^k w in L$.
 ]
 
-Un po' strano: il succo di questo lemma è che se prendiamo delle stringhe lunghe prima o poi qualcosa si deve ripetere. Infatti, i tre punti ci dicono questo:
+Un po' *strano*: il succo di questo lemma è che se prendiamo delle stringhe lunghe prima o poi qualcosa si deve ripetere. Infatti, i tre punti ci dicono questo:
 + il primo ci dice che la parte che contiene la ripetizione è all'inizio e non è troppo lontana;
 + il secondo ci dice che effettivamente viene ripetuto qualcosa;
-+ il terzo ci dice che possiamo ripetere all'infinito la parte centrale senza uscire dal linguaggio, ovvero possiamo fare *pumping*, pompare.
++ il terzo ci dice che possiamo ripetere all'infinito la parte centrale senza uscire dal linguaggio, ovvero possiamo fare *pumping*, pompare la stringa.
 
 In poche parole, la scomposizione di $z$ avviene nei punti di ripetizione: $u$ è la parte prima della ripetizione, $v$ è la parte che viene ripetuta e $w$ è la parte dopo la ripetizione.
 
-Questa è una *condizione necessaria*: se faccio vedere se un linguaggio viola questo lemma allora non è regolare, ma potrebbe non bastare questo per far vedere che un linguaggio non è regolare.
+Questa è una *condizione necessaria*: se faccio vedere se un linguaggio falsifica questo lemma allora non è regolare, ma potrebbe non bastare questo per far vedere che un linguaggio non è regolare.
 
 #lemma-proof()[
   Sia $A = (Q, Sigma, delta, q_0, F)$ un DFA per $L$. Sia $N = abs(Q)$.
@@ -65,14 +65,14 @@ Questa è una *condizione necessaria*: se faccio vedere se un linguaggio viola q
 
   Visto che $i < j$ allora la parte centrale ha almeno un elemento, quindi $v eq.not epsilon$.
 
-  Inoltre, visto che $p_i = p_j$ vuol dire che partendo da $p_i$, leggendo la parte di stringa $v$, finiamo in $p_j$. Ma allora è possibile ripetere un numero questo cammino un numero arbitrario di volte.
+  Inoltre, visto che $p_i = p_j$ vuol dire che partendo da $p_i$, leggendo la parte di stringa $v$, finiamo in $p_j$. Ma visto che $p_i = p_j$ allora è possibile ripetere un numero questo cammino un numero arbitrario di volte.
 
-  Infine, per assunzione la lunghezza della stringa è $abs(z) = m gt.eq N$. Quando arriviamo all'$N$-esimo carattere abbiamo visto $N+1$ stati, ovvero sono già passato in uno stato ripetuto, quindi $abs(u v) lt.eq N$ perché la ripetizione deve avvenire prima dell'inizio dell'ultima parte della stringa.
+  Infine, per assunzione la lunghezza della stringa è $abs(z) = m gt.eq N$. Quando arriviamo all'$N$-esimo carattere abbiamo visto $N+1$ stati, ovvero sono già passato in uno stato ripetuto, quindi $abs(u v) lt.eq N$ perché la ripetizione deve avvenire entro la lettura dell'$N$-esimo carattere, che causa necessariamente il primo loop.
 ]
 
 == Applicazioni
 
-Vediamo come utilizzare il pumping lemma per dimostrare la non regolarità. Generalmente, faremo delle dimostrazioni per assurdo: assumendo la regolarità faremo vedere che esiste una stringa tale che ogni sua scomposizione possibile fa cadere almeno uno dei punti del pumping lemma.
+Vediamo come utilizzare il pumping lemma per dimostrare la non regolarità. Generalmente, faremo delle *dimostrazioni per assurdo*: assumendo la regolarità faremo vedere che esiste una stringa tale che ogni sua scomposizione fa cadere almeno uno dei punti del pumping lemma.
 
 #example()[
   Definiamo il linguaggio $L = {a^n b^n bar.v n gt.eq 0}$.

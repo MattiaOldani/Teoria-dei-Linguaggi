@@ -231,14 +231,14 @@ Dimostriamo questo con un esempio.
     [Ora che ho un carattere sulla cima della pila, verifico che sono uguali (lo sono), sposto avanti la testina consumando il carattere della pila e quello del nastro],
   )
 
-  Riprendiamo quello detto prima: possiamo notare che, guardando la derivazione, dalla variabile più a sinistra in poi c'è esattamente quello che troviamo sulla pila nello stesso momento, mentre prima della variabile troviamo la parte dell'input su nastro che abbiamo già controllato.
+  Possiamo notare che, guardando la derivazione, dalla variabile più a sinistra in poi c'è esattamente quello che troviamo sulla pila nello stesso momento, mentre prima della variabile troviamo la parte dell'input su nastro che abbiamo già controllato.
 ]<esempio-trasformazione>
 
-Le mosse che noi abbiamo etichettato come non deterministiche sono le mosse che avvengono nei *parser*:
+Le mosse non deterministiche che abbiamo creato sono quelle che avvengono nei *parser*:
 - quando facciamo una predizione, ovvero quando cerchiamo di indovinare l'espansione, stiamo facendo una mossa di tipo *predictor*;
 - quando controlliamo la predizione fatta, ovvero quando controlliamo le lettere sul nastro e sulla pila, stiamo facendo una mossa di tipo *scanner*.
 
-Siamo partiti quindi da una CFG e abbiamo costruito un PDA *equivalente* che accetta per pila vuota e con un solo stato, tanta tanta roba.
+Siamo partiti quindi da una CFG e abbiamo costruito un PDA *equivalente* che accetta per pila vuota e con *un solo stato*, tanta tanta roba.
 
 == Da automa a pila a grammatica di tipo $2$
 
@@ -247,9 +247,7 @@ Per finire la dimostrazione che gli automi a pila sono equivalenti alle grammati
 #example()[
   Definiamo l'alfabeto $Sigma = {(, )}$ e consideriamo l'alfabeto delle stringhe che rappresentano sequenze di parentesi tonde bilanciate. Come costruiamo un automa a pila per questo linguaggio?
 
-  Facilmente, ogni volta che trovo una parentesi aperta metto un simbolo sulla pila, mentre ogni volta che trovo una parentesi chiusa tolgo un simbolo dalla pila, se possibile. Se a fine input arrivo in una configurazione $ (q, epsilon, Z_0) $ vado ad accettare, visto che tutto quello che ho messo sulla pila l'ho tolto. Andiamo quindi ad accettare "per stati finali", e non per pila vuota, come dice Pighizzini.
-
-  Inoltre, la versione "per stati finali" è deterministica, mentre quella per pila vuota non lo è.
+  Facilmente, ogni volta che trovo una parentesi aperta metto un simbolo sulla pila, mentre ogni volta che trovo una parentesi chiusa tolgo un simbolo dalla pila, se possibile. Se a fine input arrivo in una configurazione $ (q, epsilon, Z_0) $ vado ad accettare, visto che tutto quello che ho messo sulla pila l'ho tolto. Andiamo quindi ad accettare "per stati finali", e non per pila vuota. Inoltre, la versione "per stati finali" è deterministica, mentre quella per pila vuota non lo è.
 
   Quello che stiamo facendo, in ogni caso, è buttare sulla pila delle robe da controllare dopo: ogni volta che apro devo fare altri lavori e poi andare a chiudere.
 ]
@@ -288,12 +286,12 @@ Ci rendiamo conto, visto l'esempio precedente, che *i due modelli sono equivalen
 
   Simuliamo la computazione dell'automa su $w$ visualizzando la pila dell'automa: $ mat(, , , A, , , , , ; , , B, B, B, , A, , ; , A, A, A, A, A, A, A, ; Z_0, Z_0, Z_0, Z_0, Z_0, Z_0, Z_0, Z_0, Z_0; , \(, \[, \(, \), \], \(, \), \); augment: #(hline: 4)) . $
 
-  Andiamo a graficare anche l'altezza della pila che abbiamo ottenuto durante la computazione.
+  Andiamo a graficare anche l'altezza della pila durante la computazione.
 
   #align(center)[
     #lq.diagram(
-      width: 12cm,
-      height: 8cm,
+      width: 9cm,
+      height: 6cm,
 
       xlim: (-0.5, 11),
       ylim: (-0.5, 5),
@@ -336,9 +334,9 @@ Aggiungiamo ancora una regola:
 La nuova *funzione di transizione* di questi automi è nella forma $ delta : Q times (Sigma union {epsilon}) times Gamma arrow.long 2^(Q times {-, push(A) bar.v A in Gamma, pop}) , $ ovvero delle coppie formate da nuovo stato e operazione tra pila invariata, push e pop. Qua, a differenza di prima, non mi servono le parti finite perché ho già sottoinsiemi finiti.
 
 Come sono fatte le regole della funzione di transizione? Dipende se stiamo leggendo o meno, per la nuova regola $4$, quindi possiamo avere:
-- *mosse di lettura*, che facciamo lasciando inalterata la pila per la regola che abbiamo appena aggiunto, ovvero $ (p,-) in delta(q, a, A) bar.v p,q in Q and a in Sigma, and A in Gamma ; $
-- *mosse pop*, che non leggono niente dal nastro ma liberano la prima posizione sulla pila, ovvero $ (p, pop) in delta(q, epsilon, A) ; $
-- *mosse push*, che non leggono niente dal nastro ma aggiungono un elemento sulla pila, ovvero $ (p, push(B)) in delta(q, epsilon, A) bar.v B in Gamma ; $
+- *mosse di lettura*, che lasciano inalterata la pila, ovvero $ (p,-) in delta(q, a, A) bar.v p,q in Q and a in Sigma, and A in Gamma ; $
+- *mosse pop*, che non leggono dal nastro ma liberano la prima posizione sulla pila, ovvero $ (p, pop) in delta(q, epsilon, A) ; $
+- *mosse push*, che non leggono dal nastro ma aggiungono un elemento sulla pila, ovvero $ (p, push(B)) in delta(q, epsilon, A) bar.v B in Gamma ; $
 - *mosse di cambio stato*, che non leggono niente e non modificano la pila, ovvero $ (p,-) in delta(q, epsilon, A) . $
 
 === Dimostrazione
@@ -414,11 +412,9 @@ In generale, possiamo sostituire a $Z_0$ un qualsiasi carattere che inseriamo su
   ],
 )
 
-Definiamo la grammatica $G = (V, Sigma, P, S)$ formata dalle variabili $ V = S union {[q A p] bar.v q,p in Q and A in Gamma} . $ Le variabili, oltre a $S$, sono delle *triple* che mi indicano lo stato nel quale sono, il simbolo corrente sulla pila e lo stato nel quale arrivo dopo essere tornato nel simbolo che ho trovato sulla pila.
+Definiamo la grammatica $G = (V, Sigma, P, S)$ formata dalle variabili $ V = S union {[q A p] bar.v q,p in Q and A in Gamma} . $ Le variabili, oltre a $S$, sono delle *triple* che mi indicano lo stato nel quale sono, il simbolo corrente sulla pila e lo stato nel quale arrivo dopo essere tornato nel simbolo che ho trovato sulla pila. Vediamo le *mosse* che possiamo fare.
 
-Vediamo le *mosse* che possiamo fare.
-
-Se stiamo *leggendo un simbolo in input*, non modifichiamo la pila, quindi $ forall (p,-) in delta(q, a, A) quad [q A p] arrow.long a . $ In poche parole, ci stiamo spostando in linea retta, consumando il carattere $a$ sul nastro: $ q #box(stroke: black, inset: 2pt)[$A$] arrow.long^a #box(stroke: black, inset: 2pt)[$A$] p . $
+Se stiamo *leggendo un simbolo in input*, non modifichiamo la pila, quindi $ forall (p,-) in delta(q, a, A) quad [q A p] arrow.long a . $ In poche parole, ci stiamo spostando in linea retta, consumando il carattere $a$ sul nastro: $ q #box(stroke: black, inset: 2pt)[$A$] arrow.long^a #box(stroke: black, inset: 2pt)[$A$] p . $ Questa regola ha senso perché la stringa $a$ è esattamente quella che causa la mossa da $q$ a $p$ avendo $A$ sulla cima della pila.
 
 Aggiungiamo anche la produzione $ [q A q] arrow.long epsilon $ che serve per chiudere delle ricorsioni banali come se fosse un caso base. In poche parole, andiamo a generare solo la *parola vuota*: $ q #box(stroke: black, inset: 2pt)[$A$] arrow.long^epsilon #box(stroke: black, inset: 2pt)[$A$] q . $
 
@@ -429,54 +425,54 @@ Ora facciamo le costruzioni *induttive*.
 Supponiamo di essere nel caso in cui, dopo aver caricato $A$ sulla pila, torniamo con la lettera $A$ in cima alla pila alla fine della computazione. In questo caso, la pila è sempre più alta di $A$, che dopo essere stata caricata "induce" una chiamata ricorsiva nella quale carico, ad esempio, il carattere $B$ e poi lo devo scaricare prima o poi.
 
 #align(center)[
-  #lq.diagram(
-    width: 12cm,
-    height: 8cm,
+  #figure(
+    lq.diagram(
+      width: 10.5cm,
+      height: 7cm,
 
-    xlim: (-1, 12),
-    ylim: (-2, 5),
+      xlim: (-1, 12),
+      ylim: (-2, 5),
 
-    xaxis: (position: 0, tip: tp.stealth, filter: filter_all, tick-distance: 1),
-    yaxis: (position: 0, tip: tp.stealth, filter: filter_all, tick-distance: 1),
+      xaxis: (position: 0, tip: tp.stealth, filter: filter_all, tick-distance: 1),
+      yaxis: (position: 0, tip: tp.stealth, filter: filter_all, tick-distance: 1),
 
-    lq.line((1, 1), (2, 2)),
-    lq.line((2, 2), (3, 3)),
-    lq.line((3, 3), (4, 2)),
-    lq.line((4, 2), (5, 3)),
-    lq.line((5, 3), (6, 4)),
-    lq.line((6, 4), (7, 3)),
-    lq.line((7, 3), (8, 4)),
-    lq.line((8, 4), (9, 3)),
-    lq.line((9, 3), (10, 2)),
-    lq.line((10, 2), (11, 1)),
+      lq.line((1, 1), (2, 2)),
+      lq.line((2, 2), (3, 3)),
+      lq.line((3, 3), (4, 2)),
+      lq.line((4, 2), (5, 3)),
+      lq.line((5, 3), (6, 4)),
+      lq.line((6, 4), (7, 3)),
+      lq.line((7, 3), (8, 4)),
+      lq.line((8, 4), (9, 3)),
+      lq.line((9, 3), (10, 2)),
+      lq.line((10, 2), (11, 1)),
 
-    lq.plot((1, 11), (1, 1), stroke: none, mark: "o"),
-    lq.plot((2, 10), (2, 2), stroke: none, mark: "o"),
+      lq.plot((1, 11), (1, 1), stroke: none, mark: "o"),
+      lq.plot((2, 10), (2, 2), stroke: none, mark: "o"),
 
-    lq.line((1, -1.5), (11, -1.5), tip: tp.straight, toe: tp.straight),
-    lq.place(6, -1)[$w$],
+      lq.line((1, -1.5), (11, -1.5), tip: tp.straight, toe: tp.straight),
+      lq.place(6, -1)[$w$],
 
-    lq.place(1, -0.3)[$q$],
-    lq.place(11, -0.3)[$p$],
-    lq.place(2, -0.3)[$q'$],
-    lq.place(10, -0.3)[$p'$],
-  )
+      lq.place(1, -0.3)[$q$],
+      lq.place(11, -0.3)[$p$],
+      lq.place(2, -0.3)[$q'$],
+      lq.place(10, -0.3)[$p'$],
+    ),
+  )<scendo-alla-fine>
 ]
 
-Nel grafico, abbiamo $B$ che viene indicato dal pallino arancione, che è posizionato sopra il pallino blu, che indica invece la lettera $A$ che viene scaricata poi alla fine.
+Nel @scendo-alla-fine[Grafico], abbiamo $B$ che viene indicato dal pallino arancione, che è posizionato sopra il pallino blu, che indica invece la lettera $A$ che viene scaricata poi alla fine.
 
 Se chiamiamo $w$ la parte di stringa che stiamo riconoscendo tra la prima $A$ e la seconda $A$, allora visto che non leggiamo altro durante la push di $B$ stiamo andando a consumare ancora $w$ ma partendo da $B$. Supponiamo che la mossa che carica la $B$ mi manda nello stato $q'$ e che la mossa che scarica la $B$ parte da $p'$. Possiamo definire allora $ forall (q', push(B)) in delta(q, epsilon, A) quad forall (p, pop) in delta(p', epsilon, B) quad [q A p] arrow.long [q' B p'] . $
 
 In poche parole, se da $q$ ed $A$ faccio una push di $B$ in $q'$ e poi da $p'$ faccio una pop per andare in $p$ ho fatto una chiamata ricorsiva che ora parte da $B$ e usa gli stati accentati. Come detto prima, la stringa che stiamo consumando rimane sempre $w$ perché con le push e le pop non leggiamo caratteri dal nastro.
 
-L'ultimo caso che ci manca è quando abbiamo almeno una configurazione intermedia nella quale mi trovo allo stesso livello. In questo caso finiamo in uno stato $r$ diverso, quindi abbiamo due percorsi:
-- uno da $q$ a $r$;
-- uno da $r$ a $p$.
+L'ultimo caso che ci manca è quando abbiamo almeno una configurazione intermedia nella quale mi trovo allo stesso livello. In questo caso finiamo in uno stato $r$ diverso, quindi abbiamo due percorsi: uno da $q$ a $r$ e uno da $r$ a $p$.
 
 #align(center)[
   #lq.diagram(
-    width: 12cm,
-    height: 8cm,
+    width: 10.5cm,
+    height: 7cm,
 
     xlim: (-1, 12),
     ylim: (-3, 4),
@@ -511,7 +507,7 @@ L'ultimo caso che ci manca è quando abbiamo almeno una configurazione intermedi
   )
 ]
 
-Come regole aggiungiamo $ forall r in Q quad [q A p] arrow.long [q A r][r A p] . $ In poche parole, spezziamo la computazione in due parti, entrambe che partono e finiscono in $A$.
+Come regole aggiungiamo $ forall r in Q quad [q A p] arrow.long [q A r][r A p] . $ In poche parole, spezziamo la computazione in $2$ parti, entrambe che partono e finiscono in $A$.
 
 Tra tutte le computazioni noi vogliamo quelle *accettanti*, quindi vorremmo arrivare in una configurazione del tipo $ [q_0 Z_0 p] bar.v p in F . $ Per far sì che ciò accada, dobbiamo imporre le regole $ forall p in F quad S arrow.long [q_0 Z_0 p] . $
 
@@ -519,7 +515,8 @@ Tra tutte le computazioni noi vogliamo quelle *accettanti*, quindi vorremmo arri
   Vale $ forall q,p in Q quad forall w in Sigma^* quad [q A p] arrow.stroked^* w sse (q, w, A) tack.long^* (p, epsilon, A) . $
 ]
 
-// corollario
+Vediamo un *corollario*, che però mettiamo come lemma.
+
 #lemma()[
   Vale $ S arrow.stroked^* w sse (q_0, w, Z_0) tack.long^* (p, epsilon, Z_0) bar.v p in F . $
 ]

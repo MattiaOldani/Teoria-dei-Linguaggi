@@ -9,7 +9,7 @@
 // Capitolo
 
 = Operazioni tra linguaggi
-<operazioni>
+<capitolo06-tipo3>
 
 Supponiamo di avere in mano una serie di linguaggi. Vediamo un po' di *operazioni* che possiamo fare su essi per combinarli assieme e ottenere altri linguaggi importanti.
 
@@ -47,10 +47,10 @@ Esiste anche la *chiusura positiva*, definita come $ L^+ = union.big_(k gt.eq 1)
 
 Che relazione abbiamo tra le due chiusure? Questo dipende da $epsilon$, ovvero:
 - se $epsilon in L$ allora $L^* = L^+$ perché $L^1 subset.eq L^+$ e visto che $epsilon in L^1$ abbiamo gli stessi insiemi;
-- se $epsilon in.not L$ allora $L^+ = L^* slash {epsilon}$ perché l'unico modo di ottenere $epsilon$ sarebbe con $L^0$.
+- se $epsilon in.not L$ allora $L^+ = L^* backslash {epsilon}$ perché l'unico modo di ottenere $epsilon$ sarebbe con $L^0$.
 
 #example()[
-  Vediamo una cosa simpatica: $ emptyset.rev^* = {epsilon} . $
+  Vediamo una cosa *simpatica*: $ emptyset.rev^* = {epsilon} . $
 
   Abbiamo appena generato qualcosa dal nulla, fuori di testa. La generazione si blocca con la chiusura positiva, ovvero $ emptyset.rev^+ = emptyset.rev . $
 

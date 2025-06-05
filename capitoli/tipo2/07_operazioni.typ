@@ -299,7 +299,6 @@ Prima di tutto facciamo il classico truccaccio, ovvero lasciamo qualcosa sotto l
 
 Se in una certa configurazione non abbiamo $epsilon$-mosse o mosse normali a disposizione allora finiamo in uno stato trappola, il *death state*, ovvero $ forall q in Q quad forall a in Sigma union {epsilon} quad forall X in Gamma quad delta(q, a, X) = emptyset.rev arrow.long.double delta'(q, a, X) = (d, X) . $
 
-// chiedi se cambia qualcosa se questo succede alla fine
 Se ad un certo punto troviamo $X_0$ sulla pila vuol dire che quest'ultima è stata svuotata da $M$, quindi l'automa si è bloccato e con $M'$ devo andare nel death state, ovvero $ forall a in Sigma quad delta'(q, a, X_0) = (d,X_0) . $
 
 Nello stato trappola leggo l'input per intero senza toccare altro, quindi $ forall a in Sigma quad forall X in Gamma quad delta'(d, a, X) = (d, X) . $

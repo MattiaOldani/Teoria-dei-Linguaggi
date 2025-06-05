@@ -27,7 +27,7 @@ Vogliamo cercare di rappresentare in maniera *finita* un oggetto potenzialmente 
   Un *modello riconoscitivo* per questo linguaggio è una black-box che, presa una parola, ci dice se essa appartiene o meno al linguaggio. In realtà questa macchina potrebbe *non terminare* mai, ma ne parleremo più in fondo in questo capitolo. Una macchina per questo linguaggio deve verificare i seguenti fatti:
   - il numero di parentesi aperte è uguale al numero di parentesi chiuse, quindi $ hash_("(") (x) = hash_(")") (x) ; $
   - considerato ogni prefisso, il numero di parentesi aperte non deve superare il numero di parentesi chiuse, quindi $ forall y in Sigma^* bar.v x = y z quad hash_("(") (y) lt.eq hash_(")") (y) . $
-]
+]<esempio-tonde-bilanciate>
 
 == Grammatiche
 
@@ -76,7 +76,7 @@ In poche parole, $L(G)$ è l'insieme di tutte le stringhe $w$ che si possono ott
 Vediamo qualche grammatica come esempio.
 
 #example()[
-  Riprendiamo il linguaggio delle parentesi tonde ben bilanciate.
+  Riprendiamo il linguaggio dell'@esempio-tonde-bilanciate.
 
   Possiamo definire una grammatica che ha le seguenti regole di produzione:
 
@@ -129,27 +129,24 @@ Vediamo qualche grammatica come esempio.
 
 Negli anni $'50$ *Noam Chomsky* studia la generazione dei linguaggi formali e crea una *gerarchia di grammatiche formali* che si basa sulla forma delle *regole di produzione* che definiscono la grammatica.
 
-// Trova una formattazione migliore di questa tabella
-#align(center)[
-  #table(
-    columns: (31%, 38%, 31%),
-    inset: 10pt,
-    align: horizon,
-    [*Grammatica*], [*Regole*], [*Modello riconoscitivo*],
-    [*Tipo 0*], [Nessuna restrizione], [*Macchine di Turing*],
-    [*Tipo 1*, dette *context-sensitive* (o dipendenti dal contesto)],
-    [Se $(alpha arrow.long beta) in P$ allora $ abs(alpha) lt.eq abs(beta), $ ovvero devo generare parole che *non sono più corte* di quella di partenza \ \ Sono dette *dipendenti dal contesto* perché ogni regola $(A arrow.long B) in P$ può essere riscritta come $ alpha_1 A alpha_2 arrow.long alpha_1 B alpha_2, $ con $alpha_1, alpha_2 in (V union Sigma)^*$ che rappresentano il *contesto*, $A in V$ e $B in (V union Sigma)^+$],
-    [*Automi limitati linearmente*],
+#table(
+  columns: (26%, 46%, 28%),
+  inset: 10pt,
+  align: center + horizon,
+  [*Grammatica*], [*Regole*], [*Riconoscitore*],
+  [*Tipo 0*], [Nessuna restrizione], [*Macchine di Turing*],
+  [*Tipo 1* \ *Context-sensitive* \ Dipendenti dal contesto],
+  [Se $(alpha arrow.long beta) in P$ allora $abs(alpha) lt.eq abs(beta),$ ovvero devo generare parole che *non sono più corte* di quella di partenza \ Sono dette *dipendenti dal contesto* perché ogni regola $(A arrow.long B) in P$ può essere riscritta come $alpha_1 A alpha_2 arrow.long alpha_1 B alpha_2$, con $alpha_1, alpha_2 in (V union Sigma)^*$ che rappresentano il *contesto*, $A in V$ e $B in (V union Sigma)^+$],
+  [*Automi limitati linearmente*],
 
-    [*Tipo 2*, dette *context-free* (o libere dal contesto)],
-    [Le regole in $P$ sono del tipo $alpha arrow.long beta$, con $alpha in V$ e $beta in (V union Sigma)^+$],
-    [*Automi a pila*],
+  [*Tipo 2* \ *Context-free* \ Libere dal contesto],
+  [Le regole in $P$ sono del tipo $alpha arrow.long beta$ con $alpha in V$ e $beta in (V union Sigma)^+$],
+  [*Automi a pila*],
 
-    [*Tipo 3*, dette *grammatiche regolari*],
-    [Le regole in $P$ sono del tipo $A arrow.long a B$ oppure $A arrow.long a$, con $A,B in V$ e $a in Sigma$],
-    [*Automi a stati finiti*],
-  )
-]
+  [*Tipo 3* \ *Regolari*],
+  [Le regole in $P$ sono del tipo $A arrow.long a B bar.v a$ con $A,B in V$ e $a in Sigma$],
+  [*Automi a stati finiti*],
+)
 
 La gerarchia che ha definito Chomsky è *propria*, ovvero: $ L_3 subset L_2 subset L_1 subset L_0. $
 
@@ -179,7 +176,6 @@ Come vedremo alla fine di questo capitolo, questa gerarchia *non esaurisce* tutt
   Sia $L subset.eq Sigma^*$ un linguaggio. Allora $L$ è di tipo $i$ se e solo se esiste una grammatica $G$ di tipo $i$ tale che $ L = L(G) . $
 ]
 
-// TODO: riformulare
 La gerarchia data considera dei *modelli deterministici*, ma come cambia considerando invece dei *modelli non deterministici*? Sappiamo che:
 - le grammatiche di tipo $3$ mantengono la stessa potenza computazionale, pagando un costo in termini di descrizione, quindi in *numero di stati*;
 - le grammatiche di tipo $2$ hanno il modello non deterministico strettamente più potente;

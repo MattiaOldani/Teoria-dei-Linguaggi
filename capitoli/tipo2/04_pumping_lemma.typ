@@ -37,7 +37,7 @@ Abbiamo un modo formale per dimostrare che l'ultimo linguaggio non è CF?
 Come nei linguaggi regolari, anche nei CFL abbiamo un *pumping lemma*. Questa è una *condizione necessaria* affinché un linguaggio sia CF, quindi questo lemma è usato come "arma" per dimostrare che un linguaggio non appartiene ai CFL.
 
 #example()[
-  Le regole di produzione $ S arrow.long [S] bar.v S S bar.v T \ T arrow.long (T) bar.v T T bar.v epsilon $ sono in grado di generare le stringhe di parentesi bilanciate dove le parentesi tonde stanno solo dentro le parentesi quadre. La variabile $S$ genera le quadre e dà un livello "esterno", mentre la variabile $T$ genera le tonde e dà un livello "interno".
+  Le regole di produzione $ S &arrow.long [S] bar.v S S bar.v T \ T &arrow.long (T) bar.v T T bar.v epsilon $ sono in grado di generare le stringhe di parentesi bilanciate dove le parentesi tonde stanno solo dentro le parentesi quadre. La variabile $S$ genera le quadre e dà un livello "esterno", mentre la variabile $T$ genera le tonde e dà un livello "interno".
 
   Vediamo un albero di derivazione per una stringa di questo linguaggio.
 
@@ -122,7 +122,7 @@ Come nei linguaggi regolari, anche nei CFL abbiamo un *pumping lemma*. Questa è
       "[^$A$ $$ $dots$ $$ $A$ $$ $dots$ $$]",
     )
   ]
-]
+]<esempio-parentesi-con-alberi>
 
 Questi alberi di derivazioni saranno importantissimi per dimostrare il pumping lemma.
 
@@ -136,7 +136,7 @@ Ragioniamo con delle grammatiche in *FN di Chomsky*. Le regole di produzione son
 
 #lemma()[
   Sia $G = (V, Sigma, P, S)$ una grammatica in FN di Chomsky. Se $ T : A arrow.stroked^* w $ è un albero di derivazione di profondità $k$, allora $ abs(w) lt.eq 2^(k-1) , $ con $w in Sigma^*$ stringa di soli terminali.
-]
+]<lemma-misura-completa>
 
 #lemma-proof()[
   Dimostriamolo per induzione sulla profondità $k$.
@@ -210,7 +210,7 @@ Vediamo la definizione formale e la dimostrazione.
   + $abs(v w x) lt.eq N$;
   + $v x eq.not epsilon$;
   + $forall i gt.eq 0 quad u v^i w x^i y in L$.
-]
+]<pumping-CFL>
 
 Se nel *PL3* ripetevamo la parte centrale dicendo che questa non poteva essere vuota, ora invece:
 + la parte centrale della decomposizione è lunga al massimo $N$;
@@ -218,7 +218,7 @@ Se nel *PL3* ripetevamo la parte centrale dicendo che questa non poteva essere v
 + visto che almeno una parte tra la seconda e la quarta è non vuota, possiamo pompare quelle due parti lo stesso numero di volte generando nuove stringhe che mi fanno rimanere comunque dentro $L$.
 
 #lemma-proof()[
-  Abbiamo a disposizione un linguaggio CF, dal quale possiamo ricavare facilmente una grammatica CF e, per costruzione, una grammatica in FN di Chomsky. Sia quindi $G = (V, Sigma, P, S)$ una grammatica in FN di Chomsky per $L slash {epsilon}$.
+  Abbiamo a disposizione un linguaggio CF, dal quale possiamo ricavare facilmente una grammatica CF e, per costruzione, una grammatica in FN di Chomsky. Sia quindi $G = (V, Sigma, P, S)$ una grammatica in FN di Chomsky per $L backslash {epsilon}$.
 
   Fissato $k = abs(V)$, definiamo $ N = 2^k . $
 
@@ -240,9 +240,9 @@ Se nel *PL3* ripetevamo la parte centrale dicendo che questa non poteva essere v
 
   Di questi $k + 2$ nodi, l'ultimo che visitiamo è il terminale presente nella stringa $z$, quindi stiamo visitando $k + 1$ variabili. Avendo a disposizione $k$ variabili, vuol dire che visitiamo una variabile almeno due volte. Sia $A$ questa variabile che viene ripetuta.
 
-  #figure(image("assets/04/albero_ripetizione.svg", width: 85%))
+  #figure(image("assets/04/albero_ripetizione.svg", width: 85%))<albero-ripetizione-variabile>
 
-  Nella figura precedente abbiamo indicato con due pallini la variabile $A$ che viene ripetuta durante il cammino dal fondo verso la radice. Ora iniziamo la divisione in fattori.
+  Nella @albero-ripetizione-variabile abbiamo indicato con due pallini la variabile $A$ che viene ripetuta durante il cammino dal fondo verso la radice. Ora iniziamo la divisione in fattori.
 
   Consideriamo solo l'albero che parto dalla $A$ più sotto: esso genera un fattore di $z$, che chiamiamo $w$, ovvero $A arrow.stroked^* w$.
 
@@ -268,7 +268,7 @@ Se nel *PL3* ripetevamo la parte centrale dicendo che questa non poteva essere v
 
   Infine, prendiamo la parte interna dell'albero, ovvero la stringa generata dalla seconda $A$. La produzione che sta avvenendo è $ A arrow.stroked^* w . $
 
-  Facciamo il gioco che abbiamo fatto prima con le parentesi: prendiamo l'albero intermedio, lo innestiamo tante volte in sé stesso e poi mettiamo l'albero interno come tappo, ovvero $ S arrow.stroked^* u A y arrow.stroked u v A x y arrow.stroked^* u v v A x x y arrow.stroked^* dots arrow.stroked^* u v^i A x^i y arrow.stroked^* u v^i w x^i y . $
+  Facciamo il gioco che abbiamo fatto nell'@esempio-parentesi-con-alberi: prendiamo l'albero intermedio, lo innestiamo tante volte in sé stesso e poi mettiamo l'albero interno come tappo, ovvero $ S arrow.stroked^* u A y arrow.stroked u v A x y arrow.stroked^* u v v A x x y arrow.stroked^* dots arrow.stroked^* u v^i A x^i y arrow.stroked^* u v^i w x^i y . $
 
   Questo possiamo farlo un numero arbitrario di volte, anche $0$: infatti, con $i = 0$ è come mettere subito il tappo al posto di $v A x$.
 
@@ -362,7 +362,7 @@ Vediamo un altro *linguaggio a blocchi*.
   In ogni caso possibile abbiamo ottenuto un assurdo, quindi $L$ non è CFL.
 ]
 
-Questi esempi sono facili perché hanno la struttura a blocchi. Vediamo un esempio che è riconducibile ad una struttura a blocchi.
+Questi esempi sono facili perché hanno la *struttura a blocchi*. Vediamo un esempio che è riconducibile ad una struttura a blocchi.
 
 #example()[
   Definiamo ora $ L = {alpha alpha bar.v alpha in {a,b}^*} . $

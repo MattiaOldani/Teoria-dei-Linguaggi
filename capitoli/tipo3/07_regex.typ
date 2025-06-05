@@ -76,7 +76,7 @@ Andiamo ora a dimostrare il @kleene nella sua forma con le espressioni regolari.
 
   Dobbiamo far vedere che, dato un automa per il linguaggio $L$, possiamo costruire una operazione regolare che denota esattamente $L$.
 
-  La "dimostrazione" si trova nell'@esempio-automa-regex del @automa-to-regex[Paragrafo].
+  La "dimostrazione" si trova nell'@esempio-automa-regex.
 
   [*RegExp $arrow.long$ Automa*]
 
@@ -86,7 +86,6 @@ Andiamo ora a dimostrare il @kleene nella sua forma con le espressioni regolari.
 ]
 
 == Da automa ad espressione regolare
-<automa-to-regex>
 
 Vediamo un esempio di come passare da un *automa* ad una *espressione regolare*.
 
@@ -130,7 +129,7 @@ Con questo esempio siamo riusciti a "dimostrare" la trasformazione da *automa* a
 
 == State complexity
 
-Nella seconda parte della dimostrazione, ovvero la trasformazione da *espressioni regolari* ad *automi*, che troviamo nel @regex-to-automa[Paragrafo], vogliamo studiare anche il numero di stati che sono *necessari* per definire un automa. Vediamo due quantità che sono chiave in questo studio.
+Nella seconda parte della dimostrazione, ovvero la trasformazione da *espressioni regolari* ad *automi*, che come detto troviamo nel @regex-to-automa[Paragrafo], vogliamo studiare anche il *numero di stati* che sono *necessari* per definire un automa. Vediamo due quantità che sono chiave in questo studio.
 
 #definition([State complexity deterministica])[
   Sia $L subset.eq Sigma^*$. Indichiamo con $ sc(L) $ il *minimo numero di stati* di un DFA completo per $L$.
@@ -157,7 +156,7 @@ Vediamo una prima applicazione di queste due quantità.
 Avevamo inoltre il bound per passare da NFA a DFA, che nel caso peggiore trasformava $n$ stati di un NFA in $2^n$ stati di un DFA con l'automa di *Meyer-Fischer*.
 
 #example()[
-  Sia $L_n$ il classico linguaggio dell'$n$-esimo simbolo da destra uguale ad $a$.
+  Sia $L_n$ il linguaggio dell'$n$-esimo simbolo da destra uguale ad $a$.
 
   Avevamo visto un NFA che utilizzava $n+1$ stati, quindi $ nsc(L_n) lt.eq n + 1 . $
 
@@ -171,7 +170,7 @@ Avevamo inoltre il bound per passare da NFA a DFA, che nel caso peggiore trasfor
 == Da espressione regolare ad automa
 <regex-to-automa>
 
-Per dimostrare questa parte dell'implicazione dobbiamo costruire un automa per ogni espressione regolare possibile, quindi per le tre espressioni base e per le tre operazioni regolari. In realtà, in questa parte vedremo gli automi di un po' tutte le operazioni che abbiamo visto per adesso, studiando anche la complessità che otteniamo in termini di stati.
+Per dimostrare questa parte dell'implicazione dobbiamo costruire un automa per ogni espressione regolare possibile, quindi per le tre espressioni base e per le tre operazioni regolari. In realtà, in questa parte vedremo gli automi di un po' tutte le *operazioni* che abbiamo visto per adesso, studiando anche la *complessità* che otteniamo in termini di stati.
 
 === Espressioni base
 
@@ -193,31 +192,29 @@ Per essere precisi, dovremmo utilizzare dei *DFA completi*, quindi dovremmo cons
 
 === Complemento
 
-Dato il linguaggio $L$ con $sc(L) = n$, vogliamo valutare la quantità $sc(L^C)$ del *complemento* di $L$.
+Dato il linguaggio $L$ con $sc(L) = n$, vogliamo valutare la quantità $sc(L^C)$ del linguaggio che rappresenta il *complemento* di $L$.
 
 ==== DFA
 
-Se abbiamo un DFA per $L$, passare a $L^C$ è molto facile: tutte le stringhe che prima accettavo ora le devo rifiutare e viceversa. Parlando in termini di dell'automa, invertiamo ogni stato finale in non finale e viceversa, mantenendo intatte le transizioni.
+Se abbiamo un *DFA* per $L$, passare a $L^C$ è molto facile: tutte le stringhe che prima accettavamo ora le dobbiamo rifiutare e viceversa. Parlando in termini di dell'automa, *invertiamo* ogni stato finale in non finale e viceversa, mantenendo intatte le transizioni.
 
-Dato $A = (Q, Sigma, delta, q_0, F)$ un DFA per $L$, costruisco l'automa $A' = (Q, Sigma, delta, q_0, F')$ un DFA per $L^C$ tale che $ F' = Q slash F . $
+Dato $A = (Q, Sigma, delta, q_0, F)$ un DFA per $L$, costruiamo l'automa $A' = (Q, Sigma, delta, q_0, F')$ un DFA per $L^C$ tale che $ F' = Q backslash F . $
 
 Dobbiamo imporre che $A$ sia *completo* perché ciò che andava nello stato trappola ora deve essere accettato. Ma allora $ sc(L^C) = sc(L) . $
 
 ==== NFA
 
-Come ci comportiamo sugli NFA?
+Come ci comportiamo con gli *NFA*?
 
 #example()[
   Sia $L_3$ l'istanza del linguaggio $L_n$ solito con $n = 3$. Andiamo a vedere un automa che cerca di calcolare $L_3^C$ con la tecnica che abbiamo appena visto nei DFA.
 
   #figure(image("assets/07/l3c_NFA.svg"))
 
-  Abbiamo un problema: questo automa *accetta tutto*. Ma perché succede questo? Negli NFA accettiamo se esiste almeno un cammino accettante e rifiutiamo se ogni cammino è rifiutante. Quando accettiamo è molto probabile che ci sia, oltre al cammino accettante, anche qualche cammino rifiutante. Facendo il complemento, accettiamo ancora quando abbiamo almeno un cammino accettante, ma questo deriva da uno dei cammini rifiutanti precedenti.
+  Abbiamo un problema: questo automa *accetta tutto*. Ma perché succede questo? Negli NFA accettiamo se *esiste almeno un cammino accettante* e rifiutiamo se *ogni cammino è rifiutante*. Quando accettiamo è molto probabile che ci sia, oltre al cammino accettante, anche qualche cammino rifiutante. Facendo il complemento, accettiamo ancora quando abbiamo almeno un cammino accettante, ma questo deriva da uno dei cammini rifiutanti precedenti.
 ]
 
-È importantissimo avere il DFA, per via di questa *asimmetria* tra accettazione e non accettazione.
-
-Ma se volessimo per forza un NFA per il complemento? Questo va molto a caso, dipende da linguaggio a linguaggio, potrebbe essere molto facile da trovare come molto difficile.
+È importantissimo avere il DFA, per via di questa *asimmetria* tra accettazione e non accettazione. Ma se volessimo per forza un NFA per il complemento? Questo va molto a caso, dipende da linguaggio a linguaggio, potrebbe essere molto facile da trovare come molto difficile.
 
 #example()[
   Sempre per il linguaggio $L_3$, diamo due NFA per riconoscere $L_3^C$.
@@ -235,13 +232,13 @@ Questo approccio di cercare a tutti i costi un NFA può essere difficoltoso.
 
 ==== Costruzione per sottoinsiemi
 
-Vediamo un algoritmo che ci permette di avere un automa deterministico per $L^C$.
+Vediamo quindi un algoritmo che ci permette di ottenere un automa deterministico per $L^C$ partendo però da un NFA.
 
 Sia $A = (Q, Sigma, delta, q_0, F)$ un NFA per $L$. Vogliamo costruire un automa per il linguaggio $L^C$. Un modo sistematico e ottimo per avere un DFA sotto mano è passare al DFA di $A$ e poi eseguire la costruzione del complemento che abbiamo visto prima.
 
 Quanti stati abbiamo? Sappiamo che abbiamo un salto esponenziale passando dall'NFA al DFA, e poi uno stesso numero di stati, quindi $ nsc(L^C) lt.eq 2^(nsc(L)) . $
 
-Possiamo fare di meglio? Sicuramente esistono esempi di salti che non sono esattamente esponenziali, come i linguaggi delle coppie di elementi uguali/diversi a distanza $n$, che avevano un salto del tipo $ 2n + 2 arrow.long 2^n , $ ma si può costruire un esempio che faccia un salto esponenziale perfetto.
+Possiamo fare di meglio? Sicuramente esistono esempi di salti che non sono esattamente esponenziali, come il linguaggio $D_n$ riassunto nella @riassunto-Dn, che aveva un salto del tipo $ 2n + 2 arrow.long 2^n , $ ma si può costruire un esempio che faccia un salto esponenziale perfetto.
 
 Abbiamo quindi visto che del complemento negli NFA non ce ne facciamo niente, questo proprio per la natura asimmetrica del non determinismo.
 
@@ -249,11 +246,11 @@ Abbiamo quindi visto che del complemento negli NFA non ce ne facciamo niente, qu
 
 Dati due linguaggi $L',L'' subset.eq Sigma^*$ rispettivamente riconosciuti dagli automi $A' = (Q', Sigma, delta', q'_0, F')$ e $A'' = (Q'', Sigma, delta'', q''_0, F'')$, vogliamo costruire un automa per l'*unione* $ L' union L'' . $
 
-Per risolvere questo problema pensiamo agli automi come se fossero delle scatole, che prendono l'input nello stato iniziale e poi arrivano alla fine nell'insieme degli stati finali.
+Per risolvere questo problema pensiamo agli automi come se fossero delle *scatole*, che prendono l'input nello stato iniziale e poi arrivano alla fine nell'insieme degli stati finali.
 
 #figure(image("assets/07/black_box.svg"))
 
-L'idea per costruire l'automa l'unione è combinare i due automi $A'$ e $A''$ usando il non determinismo per scegliere in quale automa finire con una $epsilon$-mossa.
+L'idea per costruire l'automa l'unione è *combinare* i due automi $A'$ e $A''$ usando il non determinismo per scegliere in quale automa finire con una $epsilon$-mossa.
 
 #figure(image("assets/07/unione_NFA.svg"))
 
@@ -274,10 +271,10 @@ Utilizzando una costruzione particolare, la *costruzione dell'automa prodotto*, 
 L'*automa prodotto* fa partire in parallelo i due automi, e alla fine controlla che almeno uno dei due abbia dato un cammino accettante. Definiamo quindi $A = (Q, Sigma, delta, q_0, F)$ tale che:
 - gli *stati* rappresentano i due automi che viaggiano in parallelo, come se avessi due pc davanti, ognuno che lavora da solo. Gli stati sono quindi l'insieme $ Q = Q' times Q'' ; $
 - lo *stato iniziale* è la coppia di stati iniziali, ovvero $ q_0 = (q'_0, q''_0) ; $
-- la *funzione di transizione* lavora ora sulle coppie di stati, che deve portare avanti in parallelo, quindi $ delta((q,p), a) = (delta'(q,a), delta''(p,a)) ; $
+- la *funzione di transizione* lavora ora sulle coppie di stati, quindi $ delta((q,p), a) = (delta'(q,a), delta''(p,a)) ; $
 - gli *stati finali* sono tutte le coppie dove riesco a finire in almeno uno stato finale, ovvero $ F = {(q,p) bar.v q in F' or p in F''} . $
 
-Come cambia la complessità dell'automa rispetto alla costruzione per sottoinsiemi? Qua il numero di stati è $ sc(L' union L'') lt.eq sc(L') dot sc(L'') , $ quindi abbiamo una soluzione notevolmente migliore. Inoltre, non si può fare meglio di così.
+La complessità in stati di questa bellissima costruzione è $ sc(L' union L'') lt.eq sc(L') dot sc(L'') , $ quindi abbiamo una soluzione notevolmente migliore. Inoltre, non si può fare meglio di così.
 
 #example()[
   Fissati due valori $m,n$ positivi, definiamo i linguaggi $ L' = {x in {a,b}^* bar.v hash_a (x) "è multiplo di" m} \ L'' = {x in {a,b}^* bar.v hash_b (x) "è multiplo di" n} . $
@@ -338,7 +335,7 @@ Come prima, possiamo ottimizzare questa costruzione, anche se non di molto stavo
 
 Il problema dell'esplosione del doppio esponenziale deriva dal fatto che, quando arrivo in uno stato finale del primo automa, devo far partire il secondo automa, ma il primo continua ancora a scandagliare la stringa perché deve scommettere.
 
-La soluzione inefficiente di prima prendeva i due automi $A'$ e $A''$, li univa in un NFA ed effettuava la costruzione per sottoinsiemi. La soluzione che facciamo adesso *incorpora* i sottoinsiemi nei passi del DFA, così da evitare l'esecuzione non deterministica.
+La soluzione inefficiente vista poco fa prendeva i due automi $A'$ e $A''$, li univa in un NFA ed effettuava la costruzione per sottoinsiemi. La soluzione che facciamo adesso *incorpora* i sottoinsiemi nei passi del DFA, così da evitare l'esecuzione non deterministica.
 
 Costruiamo l'automa $A = (Q, Sigma, delta, q_0, F)$ che, ogni volta che $A'$ finisce in uno stato finale, avvia anche $A''$ dal punto nel quale si trova. Esso è definito da:
 - gli *stati* sono tutte le coppie di stati di $A'$ con i sottoinsiemi di $A''$, così da incorporare i sottoinsiemi nel DFA direttamente, ovvero $ Q = Q' times 2^Q'' ; $
@@ -366,9 +363,8 @@ Un automa per la *star* deve cercare di scomporre la stringa in ingresso in più
 
 Abbiamo bisogno dello stato iniziale $q'_0$ perché dentro l'automa ci possono essere delle transizioni che mi fanno ritornare indietro e mi fanno accettare di più di quello che dovrei.
 
-// Controlla
 #example()[
-  Consideriamo il seguente automa *sbagliato* per la chiusura di Kleene del linguaggio delle sequenze dispari di $a$ seguite da una $b$. Se vogliamo l'espressione regolare per questo linguaggio, essa è $(a a)^* a b$.
+  Consideriamo il seguente automa *sbagliato* per la chiusura di Kleene del linguaggio delle sequenze dispari di $a$ seguite da una $b$. Se vogliamo l'espressione regolare per questo linguaggio, essa è $(a a)^* a b = a (a a)^* b$.
 
   #figure(image("assets/07/star_errata.svg"))
 
@@ -381,7 +377,7 @@ Abbiamo bisogno dello stato iniziale $q'_0$ perché dentro l'automa ci possono e
 
 ==== DFA
 
-Ci piace questa soluzione, perché stiamo aumentando solo di uno il numero di stati dell'automa, ma siamo caduti nel non determinismo, e partire da DFA e finire in NFA non ci piace molto.
+Ci "piace" questa soluzione, perché stiamo aumentando solo di uno il numero di stati dell'automa, ma siamo caduti nel *non determinismo*, e partire da DFA e finire in NFA non ci piace molto.
 
 Purtroppo, come spesso ci succede, per tornare nei DFA dobbiamo, nel caso peggiore, applicare la costruzione per sottoinsiemi e fare un salto esponenziale nel numero degli stati. In poche parole $ sc(L^*) lt.eq 2^(nsc(L^*)) . $
 
@@ -410,7 +406,7 @@ Abbiamo visto il linguaggio dell'@b-marcatore, che era estremamente comodo da sc
 
   Per questa stringa abbiamo già due modi di scomposizione possibili.
 
-  Cambiamo la stringa: data la stringa $ a b a a b a a b a a b a a a b a $ essa la possiamo dividere in $ a b a bar.v a b a bar.v a b a bar.v a b a a bar.v a b a $ oppure la possiamo dividere in $ a b a a b a bar.v a b a a b a a bar.v a b a . $
+  Cambiamo la stringa: data $ a b a a b a a b a a b a a a b a $ essa la possiamo dividere in $ a b a bar.v a b a bar.v a b a bar.v a b a a bar.v a b a $ oppure la possiamo dividere in $ a b a a b a bar.v a b a a b a a bar.v a b a . $
 
   In generale, si possono creare delle stringhe che hanno un numero di suddivisioni enorme.
 ]<terribile>
@@ -423,7 +419,7 @@ A cosa servono questi esempi che abbiamo appena introdotto?
 
 Dei tre linguaggi che abbiamo visto, quello dell'@b-marcatore e quello dell'@b-quasi-marcatore sono *codici*: è facile dimostrare che lo sono, soprattutto il primo per via della $b$ che fa da delimitatore. L'@terribile, invece, abbiamo visto che ha un linguaggio con stringhe scomponibili in più modi, quindi non è un codice.
 
-Tra tutti i codici a noi interessano quelli che possono essere *decomposti in tempo reale*: essi sono chiamati *codici prefissi*, e sono dei codici tali che $ forall i eq.not j quad x_i "non è prefisso di" x_j . $ In poche parole, il codice contiene parole che *non* sono prefisse di altre. Essi sono i più *efficienti*.
+Tra tutti i codici a noi interessano quelli che possono essere *decomposti in tempo reale*: essi sono chiamati *codici prefissi*, e sono dei codici tali che $ forall i eq.not j quad x_i "non è prefisso di" x_j . $ In poche parole, il codice contiene parole che *non* sono prefisse di altre. Questa proprietà li rende i più *efficienti* perché possono essere usati in *modalità stream*, ovvero possono essere decomposti in tempo reale senza osservare altre parti della stringa.
 
 Dei due codici che abbiamo a disposizione, quello dell'@b-marcatore è un *codice prefisso*: ogni volta che troviamo una $b$ sappiamo che dobbiamo dividere. Quello dell'@b-quasi-marcatore, invece, deve aspettare una $b$ e poi tornare indietro di $3$ posizioni per avere la decomposizione.
 
@@ -431,22 +427,22 @@ Dei due codici che abbiamo a disposizione, quello dell'@b-marcatore è un *codic
 
 Per definire le espressioni regolari abbiamo a disposizione le tre operazioni $ + quad bar.v quad dot quad bar.v quad ()^* $
 
-Concentriamoci un secondo sulla chiusura di Kleene e vediamo un esempio.
+Concentriamoci un secondo sulla *chiusura di Kleene* e vediamo un esempio.
 
 #example()[
-  Date le espressioni regolari
+  Ci vengono date tre espressioni regolari:
 
   #grid(
     columns: (33%, 33%, 33%),
     align: center + horizon,
     inset: 10pt,
-    [$(a^* b^*)^*$], [$(a + b)^*$], [$(a b^*)^*$],
+    [$(a^* b^*)^*$], [$(a + b)^*$], [$(a^* + b^*)^*$],
   )
 
-  ci chiediamo che linguaggio stanno denotando. Questo è facile: ${a,b}^*$. Ognuna lo fa a modo proprio, in base a come ha risolto il sistema delle equazioni dell'automa associato.
+  Il linguaggio che esse denotano è esattamente ${a,b}^*$. Ognuna lo fa a modo proprio, in base a come ha risolto il sistema delle equazioni dell'automa associato.
 ]<star-height>
 
-Nell'esempio abbiamo visto diverse espressioni per lo stesso linguaggio, ma quante star mi servono per definire completamente un linguaggio?
+In questo @star-height abbiamo visto diverse espressioni per lo stesso linguaggio, ma quante star mi servono per definire completamente un linguaggio?
 
 #definition([Star height])[
   La *star height* è il massimo numero di star innestate in una espressione regolare. Possiamo definire la quantità induttivamente, ovvero $ h(emptyset.rev) = h(epsilon) = h(a) &= 0 \ h(E' + E'') = h(E' dot E'') &= max{h(E'), h(E'')} \ h(E^*) &= 1 + h(E) . $
@@ -454,7 +450,11 @@ Nell'esempio abbiamo visto diverse espressioni per lo stesso linguaggio, ma quan
 
 Nell'@star-height, le espressioni regolari hanno star height rispettivamente $2$, $1$ e $2$. A noi piacerebbe scrivere un'espressione regolare con la *minima star height*.
 
-Sia $L$ un linguaggio regolare. Definiamo con $h(L)$ la *minima altezza* delle espressioni regolari che definiscono $L$, ovvero $ h(L) = min{h(E) bar.v L = L(E)} . $ Questa quantità, nei *linguaggi infiniti*, è almeno $1$, ovvero non posso usare meno star.
+#definition([Star height di un linguaggio])[
+  Sia $L$ un linguaggio regolare. Definiamo $h(L)$ la *minima altezza* delle espressioni regolari $E$ che definiscono $L$, ovvero $ h(L) = min{h(E) bar.v L = L(E)} . $
+]
+
+Questa quantità, nei *linguaggi infiniti*, è almeno $1$, ovvero non posso usare meno star.
 
 #theorem([Un bro nel 1966])[
   Vale $ forall q > 0 quad exists W_q subset.eq {a,b}^* bar.v h(W_q) = q . $
@@ -472,7 +472,7 @@ Il linguaggio $W_q$ è definito come $ W_q = {w in {a,b}^* bar.v hash_a (w) equi
   A quanto pare ho sbagliato a risolvere il sistema, sono scarso scusate.
 ]
 
-Abbiamo quindi fatto vedere che se fissiamo il numero $q > 0$ di star che vogliamo usare in una espressione regolare, riusciamo a trovare un linguaggio $W_q$ che usa quel numero di star. Sincero? È un *teorema abbastanza inutile*.
+Abbiamo quindi fatto vedere che se *fissiamo* il numero $q > 0$ di star che vogliamo usare in una espressione regolare, riusciamo a trovare un linguaggio $W_q$ che usa quel numero di star. Sincero? È un *teorema abbastanza inutile*.
 
 #theorem()[
   Se $abs(Sigma) = 1$ è sufficiente una star innestata per definire completamente $L$, ovvero vale che $ forall L in Reg bar.v L subset.eq {a}^* quad h(L) lt.eq 1 . $
@@ -480,9 +480,9 @@ Abbiamo quindi fatto vedere che se fissiamo il numero $q > 0$ di star che voglia
 
 == Espressioni regolari estese
 
-Cosa succede se nelle espressioni regolari, oltre alle operazioni di unione, concatenazione e chiusura, utilizziamo anche le operazioni di *intersezione* e *complemento*?
+Cosa succede se nelle espressioni regolari, oltre alle *operazioni regolari*, utilizziamo anche le *operazioni* di *intersezione* e *complemento*?
 
-Otteniamo quelle che sono dette *espressioni regolari estese*: sono molto potenti ma devono essere usate con cautela. Vediamo il perché con qualche esempio.
+Con questa piccolo ampliamento otteniamo quelle che sono dette *espressioni regolari estese*: sono molto potenti ma devono essere usate con cautela. Vediamo il perché con alcuni esempi.
 
 #example()[
   Sia $ L = {w in {a,b}^* bar.v hash_a (w) "pari" and hash_b (w) "pari"} . $
@@ -511,7 +511,7 @@ Otteniamo quelle che sono dette *espressioni regolari estese*: sono molto potent
 
   Ora di questo dovrei farci l'espressione regolare. Sicuramente esce una bestiata enorme, con un po' di star qua e là visto che il linguaggio è infinito.
 
-  Con le espressioni regolari estese possiamo evitare l'uso delle star. Prima prendiamo tutte le stringhe che hanno tre $a$ consecutive: esse sono nella forma $ (a+b)^* a a a (a + b)^* . $ Dobbiamo applicare il complemento a questa espressione per ottenere $L$, quindi $ overline((a+b)^* a a a (a+b)^*) . $ L'insieme di tutte le stringhe su un alfabeto lo possiamo vedere come il complemento dell'insieme vuoto rispetto all'insieme delle stringhe su quell'alfabeto, ovvero $ (a+b)^* = overline(emptyset.rev) . $ Ma allora l'espressione regolare diventa $ overline(overline(emptyset.rev) a a a overline(emptyset.rev)) , $ che come vediamo è un'espressione che non utilizza alcuna star.
+  Con le *espressioni regolari estese* possiamo evitare l'uso delle star. Prima prendiamo tutte le stringhe che hanno tre $a$ consecutive: esse sono nella forma $ (a+b)^* a a a (a + b)^* . $ Dobbiamo applicare il complemento a questa espressione per ottenere $L$, quindi $ overline((a+b)^* a a a (a+b)^*) . $ L'insieme di tutte le stringhe su un alfabeto lo possiamo vedere come il complemento dell'insieme vuoto rispetto all'insieme delle stringhe su quell'alfabeto, ovvero $ (a+b)^* = overline(emptyset.rev) . $ Ma allora l'espressione regolare diventa $ overline(overline(emptyset.rev) a a a overline(emptyset.rev)) , $ che come vediamo è un'espressione che *non utilizza alcuna star*.
 ]<zero-star>
 
 Siamo stati in grado di *non usare le star* per un linguaggio infinito, cosa che nelle espressioni regolari classiche non è possibile. Bisogna stare attenti però: il complemento è molto comodo ma è anche molto insidioso perché fa saltare il numero di stati esponenzialmente se usiamo degli NFA.
@@ -519,10 +519,14 @@ Siamo stati in grado di *non usare le star* per un linguaggio infinito, cosa che
 Come nelle espressioni regolari, possiamo chiederci il *minimo numero di star* che sono necessarie per descrivere completamente un linguaggio.
 
 #definition([Star height generalizzata])[
-  L'*altezza generalizzata*, o star height generalizzata, è il massimo numero di star innestate di una espressione regolare estesa. Possiamo definire la quantità induttivamente, ovvero $ gh(emptyset.rev) = gh(epsilon) = gh(a) &= 0 \ gh(E' + E'') = gh(E' dot E'') = gh(E' inter E'') &= max{gh(E'), gh(E'')} \ gh(E^C) &= gh(E) \ gh(E^*) &= 1 + gh(E) . $
+  L'*altezza generalizzata*, o *star height generalizzata*, è il massimo numero di star innestate di una espressione regolare estesa. Possiamo definire la quantità induttivamente, ovvero $ gh(emptyset.rev) = gh(epsilon) = gh(a) &= 0 \ gh(E' + E'') = gh(E' dot E'') = gh(E' inter E'') &= max{gh(E'), gh(E'')} \ gh(E^C) &= gh(E) \ gh(E^*) &= 1 + gh(E) . $
 ]
 
-Come prima, dato un linguaggio $L$, possiamo definire la quantità $ gh(L) = min{g(E) bar.v L = L(E)} $ come la *minima star height generalizzata* di tutte le espressioni regolari estese che generano $L$.
+Come prima, vorremmo minimizzare questa quantità appena definita.
+
+#definition([Star height generalizzata di un linguaggio])[
+  Sia $L$ un linguaggio regolare. Definiamo $gh(L)$ la *minima altezza generalizzata* delle espressioni regolari estese $E$ che definiscono $L$, ovvero $ gh(L) = min{gh(E) bar.v L = L(E)} . $
+]
 
 Le espressioni regolari estese sono molto comode, ma di queste non si sa quasi niente:
 - si sa che esistono linguaggi di altezza $0$, e l'abbiamo visto nell'@zero-star;

@@ -10,7 +10,7 @@
 
 = Automi two-way
 
-In questo capitolo discuteremo alcune *varianti di automi a stati finiti*, passando prima per variazioni molto leggere, poi per alcune che modificano profondamente il modello di calcolo e infine daremo un'occhiata agli *automi two-way*.
+In questo ultimo capitolo della parte dei linguaggi regolari discuteremo alcune *varianti di automi a stati finiti*, passando prima per variazioni molto leggere, poi per alcune che modificano profondamente il modello di calcolo e infine daremo un'occhiata agli *automi two-way*.
 
 == Varianti di automi a stati finiti
 
@@ -50,14 +50,15 @@ Se manteniamo l'automa one-way, rendere il nastro anche in lettura non modifica 
 
 Consideriamo quindi un automa two-way che però mantiene la read-only del nastro: la classe che otteniamo è ancora una volta quella dei *linguaggi regolari*, e questo lo vedremo dopo.
 
-Rendiamo ora la testina capace di poter scrivere sul nastro che abbiamo a disposizione. Ora, in base a come è fatto il nastro abbiamo due situazioni:
-- se rendiamo il nastro illimitato oltre la porzione occupata dall'input, andiamo ad riconoscere i linguaggi di tipo $0$, ovvero otteniamo una *macchina di Turing*:
+Rendiamo ora la testina capace di poter scrivere sul nastro che abbiamo a disposizione. Ora, in base a come è fatto il nastro abbiamo *due situazioni* possibili.
+
+Se rendiamo il nastro illimitato oltre la porzione occupata dall'input, andiamo ad riconoscere i linguaggi di tipo $0$, ovvero otteniamo una *macchina di Turing*.
 
 #figure(image("assets/11/mdt.svg", width: 50%))
 
-- se invece lasciamo il nastro grande quando l'input andiamo a riconoscere i linguaggi di tipo $1$, ovvero otteniamo un *automa limitato linearmente*. Quest'ultima cosa vale perché nelle grammatiche di tipo $1$ le regole di produzione non decrescono mai, e un automa limitato linearmente per capire se deve accettare cerca di costruire una derivazione al contrario, accorciando mano a mano la stringa arrivando all'assioma $S$:
+Se invece lasciamo il nastro grande quando l'input andiamo a riconoscere i linguaggi di tipo $1$, ovvero otteniamo un *automa limitato linearmente*. Quest'ultima cosa vale perché nelle grammatiche di tipo $1$ le regole di produzione non decrescono mai, e un automa limitato linearmente per capire se deve accettare cerca di costruire una derivazione al contrario, accorciando mano a mano la stringa arrivando all'assioma $S$.
 
-#figure(image("assets/11/all.svg", width: 50%))
+#figure(image("assets/11/all.svg", width: 70%))
 
 === Memoria esterna
 
@@ -69,7 +70,7 @@ Dato un automa one-way con nastro read-only, se aggiungiamo un secondo nastro in
 
 Un caso particolare è se la memoria esterna è codificata come una *pila* illimitata, ovvero riesco a leggere solo quello che c'è in cima, allora andiamo a riconoscere i linguaggi di tipo $2$, ottenendo quindi un *automa a pila*. Se passiamo infine ad un two-way con una pila diventiamo più potenti ma non sappiamo di quanto.
 
-#figure(image("assets/11/pila.svg", width: 50%))
+#figure(image("assets/11/pila.svg", width: 70%))
 
 == Automi two-way
 
@@ -92,7 +93,7 @@ Tra tutte queste varianti, fissiamoci sugli *automi two-way*, ovvero quelli che 
 
 Abbiamo sollevato poco fa il problema: come facciamo a capire dove finisce il nastro? Andiamo a inserire dei *marcatori*, uno a sinistra e uno a destra, che delimitano la stringa. Se per caso arriviamo su un marcatore non possiamo andare oltre: possiamo solo rientrare sul nastro. In realtà, vedremo che in un particolare caso usciremo dai bordi.
 
-#figure(image("assets/11/marker.svg", width: 60%))
+#figure(image("assets/11/marker.svg", width: 75%))
 
 Vediamo ancora un po' di esempi.
 
@@ -105,7 +106,7 @@ Vediamo ancora un po' di esempi.
 ]
 
 #example()[
-  Definiamo infine $ K_n = (a+b)^* a (a+b)^(n-1) a (a+b)^* $ il linguaggio delle parole che hanno due $a$ distanti $n$. Come lo scriviamo un two-way per $K_n$?
+  Definiamo infine $ K_n = (a+b)^* a (a+b)^(n-1) a (a+b)^* $ il linguaggio delle parole che hanno due $a$ a distanza $n$. Come possiamo scrivere un automa two-way per $K_n$?
 
   Potremmo partire dall'inizio e scandire la stringa $x$. Ogni volta che troviamo una $a$ andiamo a controllare $n$ simboli dopo e vediamo se troviamo una seconda $a$:
   - se sì, accettiamo;
@@ -118,11 +119,11 @@ Vediamo ancora un po' di esempi.
   - $n-1$ stati per tornare indietro.
 
   Ma allora il numero di stati è $2n + 1$.
-]
+]<esempio-Kn>
 
-Abbiamo trovato una buonissima soluzione per l'esempio precedente, ma se volessimo una soluzione alternativa che utilizza un automa sweeping? Ma cosa sono ste cose?
+Abbiamo trovato una buonissima soluzione per l'@esempio-Kn precedente, ma se volessimo una soluzione alternativa che utilizza un automa sweeping? Ma cosa sono ste cose?
 
-Un *automa sweeping* è un automa che non cambia direzione mentre si trova nel nastro, ma è un automa che rimbalza avanti e indietro sugli end marker. La soluzione che abbiamo trovato non usa automi sweeping perché se il simbolo a distanza $n$ è una $b$ noi invertiamo la direzione e torniamo indietro.
+Un *automa sweeping* è un automa che non cambia direzione mentre si trova nel nastro, ma è un automa che *rimbalza* avanti e indietro sugli end marker. La soluzione che abbiamo trovato non usa automi sweeping perché se il simbolo a distanza $n$ è una $b$ noi invertiamo la direzione e torniamo indietro.
 
 #example()[
   Cerchiamo una soluzione che utilizzi un automa sweeping per $K_n$.
@@ -136,7 +137,7 @@ Un *automa sweeping* è un automa che non cambia direzione mentre si trova nel n
 
 === Definizione formale
 
-Abbiamo visto come è costruito un automa two-way, ora vediamo la definizione formale. Definiamo $ M = (Q, Sigma, delta, q_0, q_f) $ un $bold(2)$*NFA* tale che:
+Abbiamo visto come è costruito un automa two-way, ora vediamo la definizione formale. Definiamo $ M = (Q, Sigma, delta, q_0, q_f) $ un *$2$NFA* tale che:
 - $Q$ rappresenta l'*insieme degli stati*;
 - $Sigma$ rappresenta l'*alfabeto* di input;
 - $q_0$ rappresenta lo *stato iniziale*;
@@ -144,8 +145,8 @@ Abbiamo visto come è costruito un automa two-way, ora vediamo la definizione fo
 - $q_f$ è lo *stato finale* e si raggiunge _"passando"_ oltre l'end marker destro, unico caso in cui si può superare un end marker.
 
 Con questo modello possiamo incappare in *loop infiniti*, che:
-- nei DFA non ci fanno accettare;
-- negli NFA magari indicano che abbiamo fatto una scelta sbagliata e c'era una via migliore.
+- nei *DFA* non ci fanno accettare;
+- negli *NFA* magari indicano che abbiamo fatto una scelta sbagliata e c'era una via migliore.
 
 Ci sono poi diverse modifiche che possiamo fare a questo modello, ad esempio:
 - possiamo estendere le mosse con la *mossa stazionaria*, ovvero quella codificata con $0$ che ci mantiene nella posizione nella quale siamo, ma possono essere eliminate con una coppia di mosse sinistra+destra o viceversa;
@@ -154,32 +155,32 @@ Ci sono poi diverse modifiche che possiamo fare a questo modello, ad esempio:
 
 === Potenza computazionale
 
-Avere a disposizione un two-way sembra darci molta potenza, ma in realtà non è così: infatti, questi modelli sono equivalenti agli automi a stati finiti one-way, detti anche $bold(1)$*DFA*.
+Avere a disposizione un two-way sembra darci molta potenza, ma in realtà non è così: infatti, questi modelli sono equivalenti agli automi a stati finiti one-way, detti anche *$1$DFA*.
 
 #theorem()[
-  Vale $ L(2"DFA") = L(1"DFA") . $
+  Vale $ L(2DFA) = L(1DFA) . $
 ]
 
 #theorem-proof()[
-  Abbiamo a disposizione un 2DFA nel quale abbiamo inserito un input che viene accettato. Vogliamo cambiare la computazione del 2DFA in una computazione di un 1DFA. Vediamo che stati vengono visitati nel tempo.
+  Abbiamo a disposizione un $2$DFA nel quale abbiamo inserito un input che viene accettato. Vogliamo cambiare la computazione del $2$DFA in una computazione di un $1$DFA. Vediamo che stati vengono visitati nel tempo.
 
   #figure(image("assets/11/computazione.svg", width: 75%))
 
-  Prima di tutto, dobbiamo ricordarci che nei DFA non abbiamo end marker, quindi abbiamo solo l'input. Nell'automa two-way ci sono momenti dove entro nelle celle per la prima volta: nel grafico sopra sono segnati in verde. Chiamiamo questi stati $q_(i gt.eq 0)$.
+  Prima di tutto, dobbiamo ricordarci che nei DFA non abbiamo end marker, quindi abbiamo solo l'input. Nell'automa two-way ci sono momenti dove entro nelle celle per la prima volta: nel grafico sopra sono segnati in verde. Chiamiamo questi stati $q_i bar.v i gt.eq 0$.
 
   Usiamo delle *scorciatoie*: visto che nel 1DFA non possiamo andare avanti a indietro, dobbiamo tagliare via le computazioni che tornano indietro e vedere solo in che stato esco.
 
-  #figure(image("assets/11/computazione_DFA.svg", width: 75%))
+  #figure(image("assets/11/computazione_DFA.svg", width: 75%))<sequenza-stati>
 
-  Come vediamo, a noi interessa sapere in che stato devo spostarmi a partire dalla mia posizione, evitando quello che viene fatto tornando all'indietro. Per tagliare le parti che tornano indietro usiamo delle *matrici*, molto simili a quelle della lezione precedente. Quelle matrici erano nella forma $M_w [p,q]$ che conteneva un $1$ se e solo se partendo da $q$ finivo in $p$ leggendo $w$.
+  Come vediamo, a noi interessa sapere in che stato dobbiamo spostarci a partire dalla posizione corrente, evitando il continuo ritorno all'indietro. Per tagliare queste parti usiamo delle *matrici*, molto simili a quelle del @capitolo08-tipo3[Capitolo]. Quelle matrici erano nella forma $M_w [p,q]$ che conteneva un $1$ se e solo se partendo da $q$ finivo in $p$ leggendo $w$.
 
-  Le matrici che costruiamo ora sono nella forma $ tau_w : Q times Q arrow.long [0,1] $ che mi vanno a definire il primo stato che incontriamo quando leggiamo un nuovo carattere della stringa.
+  Le matrici che costruiamo ora sono nella forma $ tau_w : Q times Q arrow.long [0,1] $ che mi vanno a definire il primo stato che incontriamo quando leggiamo un nuovo carattere.
 
   Nella matrice abbiamo $tau_w [p,q] = 1$ se e solo se esiste una sequenze di mosse che:
   - inizia sul simbolo più a destra della porzione di nastro che contiene $(lmarker w)$ nello stato $p$;
   - termina quando la testina esce a destra dalla porzione di nastro considerata nello stato $q$.
 
-  Ad esempio, considerando l'esempio sopra, vale $ tau_"inp" [q_2,q_3] = 1 . $
+  Ad esempio, considerando la @sequenza-stati, vale $ tau_(lmarker"inp") [q_2,q_3] = 1 . $
 
   Vediamo come ottenere induttivamente queste tabelle. Partiamo con $w = epsilon$: la porzione di nastro che stiamo considerando è formata solo da $lmarker$, ma non potendo andare a sinistra l'unica mossa che possiamo fare è andare a destra, quindi andare in un nuovo stato, ovvero $ tau_epsilon [p,q] = 1 sse delta(p, lmarker) = (q, +1) . $
 
@@ -222,12 +223,13 @@ Come vediamo, la simulazione è *poli-esponenziale*. Abbiamo visto la trasformaz
 
 === Problema di Sakoda & Sipser
 
-Abbiamo visto queste trasformazioni, ma quanto costano?
+Abbiamo visto questa trasformazione molto pesante, ma quanto costa?
 
-// CHIEDI, VEDI FOTO
-Nel caso partissimo da un $2$DFA e volessimo arrivare in un $1$DFA, il costo il termini di stati è $ lt.eq dots , $ mentre cambiando il punto di partenza con un $2$NFA il salto diventa ancora peggiore: $ lt.eq 2^n 2^n^2 = 2^(n^2 + n) . $ Ma questo ce lo potevamo aspettare: abbiamo guà un salto esponenziale da NFA a DFA, quindi ciao.
+Nel caso partissimo da un $2$DFA e volessimo arrivare in un $1$DFA, il costo il termini di stati, con un "ragionamento roseo", è $ lt.eq n 2^n^2 $ come detto prima, mentre con un "ragionamento raffinato", che tiene conto del determinismo delle tabelle $tau$ e del numero di funzioni (parziali), questo bound diventa $ lt.eq 2^(O(n log(n))) . $
 
-Ci sono due simulazioni che sono però molto particolari e importanti.
+Se cambiamo il punto di partenza in un $2$NFA il salto diventa ancora peggiore: $ lt.eq 2^n 2^n^2 = 2^(n^2 + n) . $ Ma questo ce lo potevamo aspettare: abbiamo guà un salto esponenziale da NFA a DFA, se aggiungiamo anche il two-way esplodiamo con il numero di stati.
+
+Ci sono due *simulazioni/trasformazioni* che sono però molto particolari e importanti.
 
 La prima trasformazione che vediamo è quella *da $2$NFA a $2$DFA*: qua non possiamo usare la costruzione per sottoinsiemi perché ad un certo punto potrei avere il non determinismo su una mossa che però mi sposta la testina su due caratteri diversi della stringa, e questo non è possibile. Ci serve quindi una trasformazione alternativa, ma ci arriviamo dopo.
 
@@ -253,23 +255,22 @@ Vediamo un paio di esempi.
 
 Abbiamo visto due esempi che sembrano dare buone notizie, ma riusciamo a dimostrare che si riesce sempre a fare un $2$DFA di $n$ stati partendo da un $1$NFA di $n$ stati? Purtroppo, nessuno ci è mai riuscito.
 
-Questi problemi sono i *problemi di Sakoda & Sipser*, ideati nel $1978$ e che riguardano il costo della simulazioni di automi non deterministici one-way e two-way per mezzo di automi two-way deterministici, ovvero si chiedono se il movimento two-way aiuta nell'eliminazione del non determinismo.
+Questi problemi sono i *problemi di Sakoda & Sipser*, ideati nel $1978$ e che riguardano il costo della simulazioni di automi non deterministici one-way e two-way per mezzo di automi two-way deterministici, ovvero si chiedono se il *movimento two-way* aiuta nell'*eliminazione del non determinismo*.
 
 Cosa sappiamo su questi problemi? Diamo qualche *upper* e *lower bound*.
 
 Per il problema da $1$NFA a $2$DFA, si sfrutta la *costruzione per sottoinsiemi* per ottenere un $1$DFA, che è anche un $2$DFA che non torna mai indietro, ottenendo quindi un numero di stati $ lt.eq 2^n . $ Un lower bound per questo problema invece è $ gt.eq n^2 . $
 
-Per il problema da $2$NFA a $2$DFA, si fa un passaggio intermedio all'$1$NFA e poi al $1$DFA, che come prima è anche $2$DFA, quindi gli stati sono $ lt.eq 2^(n^2 + n) . $
+Per il problema da $2$NFA a $2$DFA, si fa un passaggio intermedio all'$1$NFA e poi al $1$DFA, che come prima è anche $2$DFA, quindi gli stati nel caso peggiore sono $ lt.eq 2^(n^2 + n) . $
 
-Il lower bound, invece, è lo stesso del problema precedente.
+Il lower bound, invece, è lo stesso del primo problema.
 
 Ci sono casi particolari che hanno delle dimostrazioni precise:
-- se utilizziamo dei *$2$DFA sweeping* il costo per la trasformazione è *esponenziale*, ma questo non risolve il problema perché (????) ci sono automi non sweeping che per diventarlo hanno un salto esponenziale (????);
+- se utilizziamo dei *$2$DFA sweeping* il costo per la trasformazione è *esponenziale*;
 - se consideriamo un *alfabeto unario* $Sigma = {a}$:
-  // spazio logaritmo deterministico
-  - se facciamo la trasformazione da $2$NFA a $2$DFA l'upper bound è $ e^(O(log^2(n))) , $ ovvero una funzione super polinomiale ma meno di una esponenziale. Inoltre, se si dimostra che esiste un lower bound super polinomiale, allora abbiamo dimostrato che $ "L" = NL (????) ; $
+  - se facciamo la trasformazione da $2$NFA a $2$DFA l'upper bound è $ e^(O(log^2(n))) , $ ovvero una funzione *super polinomiale* ma meno di una esponenziale. Inoltre, se si dimostra che esiste un lower bound super polinomiale, allora abbiamo dimostrato che $ "L" = NL , $ ch sono argomenti di *teoria della complessità*;
   - se facciamo la trasformazione da $1$NFA a $2$DFA l'upper bound diventa esattamente $n^2$, quindi la trasformazione fatta è ottimale.
 
-Dei ricercatori hanno troviamo degli *automi completi* per questi problemi, ovvero degli automi che permettono lo studio dei problemi solo su questi pochi automi scelti per poi far _"arrivare"_ tutte le conseguenze a tutti gli altri automi. Scritto malissimo, sono tipo gli NP-completi.
+Dei ricercatori hanno troviamo una classe di *automi completi* da studiare per risolvere questi problemi. Possiamo vedere questa classe come la *classe NPC*, ovvero una cerchia ristretta di problemi NP che potrebbero far cadere tutta la gerarchia delle classi di complessità se si riuscisse a risolvere anche solo uno di questi.
 
-Per ora, la *congettura* che circola tra la gente è che i costi siano *esponenziali nel caso peggiore*.
+Per ora la *congettura* che circola tra la gente è che i costi siano *esponenziali nel caso peggiore*, ma niente è stato dimostrato.

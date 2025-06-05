@@ -9,8 +9,9 @@
 // Capitolo
 
 = Equivalenza tra linguaggi di tipo 3 e automi a stati finiti
+<capitolo04-tipo3>
 
-In questo capitolo mostreremo l'*equivalenza* tra le grammatiche di tipo $3$ e gli automi a stati finiti.
+In questo capitolo mostreremo un risultato molto importante, ovvero l'*equivalenza* tra le grammatiche di tipo $3$ e gli automi a stati finiti.
 
 == Dall'automa alla grammatica
 
@@ -77,7 +78,6 @@ In maniera analoga, data la grammatica $G$ di tipo $3$ creiamo un automa $A$ tal
   Notiamo come l'automa ottenuto sia non deterministico e, soprattutto, non è l'automa minimo che avevamo invece nell'esempio precedente.
 ]
 
-// Non so se va qua
 == Grammatiche lineari
 
 Stiamo parlando di grammatiche, quindi vediamo un tipo particolare di grammatiche che però incontreremo molto più avanti: le *grammatiche lineari*.
@@ -86,7 +86,7 @@ Stiamo parlando di grammatiche, quindi vediamo un tipo particolare di grammatich
 
 Potrebbero capitarci delle grammatiche che hanno una forma simile a quelle regolari, ma che in realtà non lo sono. Queste grammatiche hanno le produzioni nella forma $ A arrow.long x B bar.v x quad "tale che" quad x in Sigma^* . $ Non abbiamo più, come nelle grammatiche regolari, la stringa $x$ formata da un solo terminale, ma possiamo averne un numero arbitrario.
 
-Queste grammatiche sono dette *grammatiche lineari a destra*, ma nonostante questa aggiunta di terminali non aumentiamo la potenza del linguaggio: per generare quella sequenza di terminali $x$ basta aggiungere una serie di regole che rispettano le grammatiche regolari che generino esattamente la stringa $x$.
+Queste grammatiche sono dette *grammatiche lineari a destra*, ma nonostante questa aggiunta di terminali *non aumentiamo* la potenza del linguaggio: per generare quella sequenza di terminali $x$ basta aggiungere una serie di regole che rispettano le grammatiche regolari che generino esattamente la stringa $x$.
 
 #example()[
   Dato l'automa in figura, andare a scrivere l'automa regolare corrispondente.
@@ -100,17 +100,15 @@ Queste grammatiche sono dette *grammatiche lineari a destra*, ma nonostante ques
   Abbiamo quindi sostituito la stringa $x = a_1 dots a_n$ con una serie di stati intermedi.
 ]
 
-// Se $x = epsilon$ basta mettere una $epsilon$-mossa, tutto molto facile (_anche se non ho capito_).
-
 === Grammatiche lineari a sinistra
 
 Esistono anche le *grammatiche lineari a sinistra*, che hanno le produzioni nella forma $ A arrow.long B x bar.v x quad "tale che" quad x in Sigma^* . $
 
-Si dimostra che anche queste grammatiche non vanno oltre i linguaggi regolari, anche se è un accrocchio passare da queste grammatiche a quelle regolari.
+Si dimostra che anche queste grammatiche non vanno oltre i linguaggi regolari.
 
 === Grammatiche lineari
 
-E se facciamo un *mischione* delle due grammatiche precedenti?
+E se facessimo un *mischione* delle due grammatiche precedenti?
 
 Le produzione di queste grammatiche sono nella forma $ A arrow.long x B bar.v B x bar.v x quad "tale che" quad x in Sigma^* and A,B in V . $
 
@@ -129,4 +127,4 @@ Queste grammatiche, che generano i cosiddetti *linguaggi lineari*, sono a cavall
   Con queste regole di una grammatica lineare stiamo generando il linguaggio $ L = {a^n b^n bar.v n gt.eq 0} , $ che non è un linguaggio di tipo $3$.
 ]
 
-La cosa che stiamo aggiungendo è una sorta di *ricorsione*, che mi permette di saltare fuori dai linguaggi regolari e catturare di più di prima.
+La cosa che stiamo aggiungendo è una sorta di *ricorsione*, che mi permette di saltare fuori dai linguaggi regolari e catturare di più di prima. Come vedremo nel @capitolo09-tipo2[Capitolo], la ricorsione è un aspetto fondamentale che usiamo per "scappare" dai linguaggi regolari.

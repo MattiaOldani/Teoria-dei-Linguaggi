@@ -27,9 +27,7 @@ Il *pumping lemma* viene usato classicamente per dimostrare che un linguaggio no
 
   Abbiamo diversi casi da controllare: $ v w x in a^+ quad &bar.v quad v w x in b^+ \ v w x in b^+ c^+ quad &bar.v quad v w x in a^+ b^n c^+ \ v w x in c^+ quad &bar.v quad v w x in a^+ b^+ . $
 
-  I casi della prima riga sono molto facili: pompando con $i eq.not 1$ rompiamo l'uguaglianza tra $a$ e $b$.
-
-  I casi della seconda riga sono facili: controllando dove cadono i vari limiti della stringa rompiamo l'uguaglianza tra $a$ e $b$ oppure la struttura.
+  I casi della *prima riga* sono molto facili: pompando con $i eq.not 1$ rompiamo l'uguaglianza tra $a$ e $b$. I casi della *seconda riga* sono facili: controllando dove cadono i vari limiti della stringa rompiamo l'uguaglianza tra $a$ e $b$ oppure la struttura.
 
   I casi dell'ultima riga sono invece *molto molto difficili*. Vediamoli entrambi.
 
@@ -58,7 +56,7 @@ Il pumping lemma *non funziona*, o meglio, in questo caso non funziona, anche se
 
 == Lemma di Ogden
 
-Partiamo con un paio di esempi utili per fissare alcuni concetti.
+Prima di tutto introduciamo una marea di concetti usando un paio di esempi.
 
 #example()[
   Ci viene dato un albero di derivazione di una grammatica generica.
@@ -317,7 +315,7 @@ Vediamo ora un lemma molto simile ad uno che abbiamo già visto prima del pumpin
 Questo lemma dà una nuova idea di *misura*: non misuriamo più tutta la stringa, ma solo le posizioni marcate, e consideriamo l'albero semplificato al posto di quello normale.
 
 #lemma-proof()[
-  Si dimostra per induzione, come il lemma del capitolo scorso.
+  Si dimostra come il @lemma-misura-completa.
 ]
 
 Introduciamo finalmente il *lemma di Ogden*.
@@ -327,13 +325,13 @@ Introduciamo finalmente il *lemma di Ogden*.
   + $v w x$ contiene al più $N$ posizioni marcate;
   + $v x$ contiene almeno una posizione marcata;
   + $forall i gt.eq 0 quad u v^i w x^i y in L$.
-]
+]<lemma-Ogden>
 
 Notiamo che marcando tutte le posizioni troviamo esattamente il *pumping lemma*.
 
 #lemma-proof()[
-  La dimostrazione di questo teorema è analoga a quella del pumping lemma, ma ragiona sull'albero semplificato associato a quello di derivazione di $z$.
-]
+  La dimostrazione è analoga a quella del pumping lemma (@pumping-CFL), ma ragiona sull'albero semplificato al posto di quello di derivazione.
+]<dimostrazione-Ogden>
 
 == Applicazioni
 
@@ -365,8 +363,6 @@ Applichiamo quindi il lemma di Ogden per risolvere il problema che abbiamo avuto
 
 #example()[
   Definiamo ora $ L = {a^p b^q c^r bar.v p = q or q = r "ma non entrambi"} . $
-
-  Possiamo vedere questo linguaggio come $ L = L_("prima") space slash space {a^n b^n c^n bar.v n gt.eq 0} . $
 
   Questo linguaggio non è CFL: la scommessa che facciamo all'inizio verifica che almeno una delle due scelte vada bene, ma non esattamente una delle due.
 

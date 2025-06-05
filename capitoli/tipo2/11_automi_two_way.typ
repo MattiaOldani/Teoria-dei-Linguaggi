@@ -67,6 +67,6 @@ Vediamo una serie di linguaggi non CFL che riusciamo a riconoscere con questo mo
   Non lo facciamo vedere, ma il linguaggio $ L = {w w^R bar.v w in {a,b}^*} $ ha un *$2$DPDA* che lo riconosce in maniera molto simile a quelle precedenti.
 ]
 
-Come vediamo, questo modello è *molto potente*, talmente potente che nessuno sa quanto sia potente: infatti, tutti gli esempi visti sono stati risolti con un *$2$DPDA*, quindi anche da un *$2$NPDA* che fa partire una sola computazione alla volta, ma non sappiamo se $ 2"NPDA" =^? 2"DPDA" . $
+Come vediamo, questo modello è *molto potente*, talmente potente che nessuno sa quanto sia potente: infatti, tutti gli esempi visti sono stati risolti con un *$2$DPDA*, quindi anche da un *$2$NPDA* che fa partire una sola computazione alla volta, ma non sappiamo se $ 2NPDA =^? 2DPDA . $
 
-Inoltre, non si conosce la relazione che si ha con i linguaggi di tipo $1$, che vediamo tra poco, ovvero non sappiamo se $ 2"DPDA" =^? "CS" . $
+Inoltre, non si conosce la relazione che si ha con i linguaggi di tipo $1$, che vediamo tra poco, ovvero non sappiamo se $ 2DPDA =^? CS . $

@@ -23,8 +23,9 @@
 // Capitolo
 
 = Operazioni esotiche e avanzate
+<capitolo08-tipo3>
 
-Riprendiamo il filo del @operazioni[Capitolo] e andiamo avanti con alcune *operazioni avanzate*.
+Riprendiamo il filo del @capitolo06-tipo3[Capitolo] e andiamo avanti con alcune *operazioni avanzate*.
 
 == Reversal
 
@@ -77,7 +78,7 @@ Possiamo fare di meglio o nel caso peggiore abbiamo questo salto esponenziale?
 
   In questo caso, il numero di stati è $n+1$, visto che ne abbiamo $n$ all'inizio per eliminare gli $n-1$ caratteri iniziali e poi uno stato per verificare di avere una $a$.
 
-  Il suo reversal è $L^R = L_n$, il solito linguaggio dell'$n$-esimo simbolo da destra uguale ad una $a$. Abbiamo visto che un NFA per $L_n$ ha $n+1$ stati mentre il DFA ha $2^n$ stati, visto che deve osservare finestre di $n$ caratteri consecutivi.
+  Il suo reversal è $L^R = L_n$, il linguaggio dell'$n$-esimo simbolo da destra uguale ad una $a$. Abbiamo visto che un NFA per $L_n$ ha $n+1$ stati mentre il DFA ha $2^n$ stati, visto che deve osservare finestre di $n$ caratteri consecutivi.
 ]
 
 Il *gap esponenziale* non riusciamo purtroppo ad evitarlo.
@@ -96,7 +97,7 @@ Abbiamo già visto l'operazione di reversal applicato ad un linguaggio, ovvero d
 
 Cosa succede se applichiamo il reversal ad una *grammatica*?
 
-Data una grammatica $G$ di tipo $2$ per $L$, come otteniamo una grammatica per $L^R$? Abbiamo scelto una grammatica di tipo $2$ perché le regole sono _"standard"_ nella forma $A arrow.long alpha$ con $alpha in (V union Sigma)^+$. Questa costruzione è facile: invertiamo ogni parte destra delle regole di derivazione, ovvero definiamo $ forall (A arrow.long alpha) in P quad "definiamo" A arrow.long alpha^R . $
+Data una grammatica $G$ di tipo $2$ per $L$, come otteniamo una grammatica per $L^R$? Abbiamo scelto una grammatica di tipo $2$ perché le regole sono _"standard"_ nella forma $A arrow.long alpha$ con $alpha in (V union Sigma)^+$. Questa costruzione è facile: invertiamo ogni parte destra delle regole di derivazione, ovvero $ forall (A arrow.long alpha) in P quad "definiamo" A arrow.long alpha^R . $
 
 #example()[
   Data una grammatica per $L$ con regola di produzione $ A arrow.long a a A b B b , $ una grammatica per $L^R$ ha come regola di produzione $ A arrow.long b B b A a a . $
@@ -120,7 +121,7 @@ Cosa possiamo dire di queste?
   Possiamo quindi dire che $ L(G') = (L(G))^R . $ Sappiamo che i linguaggi regolari sono chiusi rispetto all'operazione di reversal, quindi essendo $L(G')$ regolare allora anche $L(G)$ lo deve essere. Quindi anche le grammatiche lineari a sinistra generano i linguaggi regolari.
 ]
 
-Se prendiamo un linguaggio che è sia lineare a destra e a sinistra otteniamo le *grammatiche lineari*, che però generano di più rispetto alle grammatiche regolari.
+Se prendiamo un linguaggio che è sia lineare a destra e a sinistra otteniamo le *grammatiche lineari*, che però generano di più rispetto alle grammatiche regolari. Di queste grammatiche ne abbiamo già parlato nella parte finale del @capitolo04-tipo3[Capitolo].
 
 === Algoritmo per l'automa minimo
 
@@ -147,7 +148,7 @@ Vediamo adesso un risultato abbastanza strano di questa costruzione.
 
   Assumiamo quindi che $A,B in Q''$ siano due stati non distinguibili e che allora vale $A = B$. Questi due stati sono sottoinsiemi derivanti dalla costruzione per sottoinsiemi, quindi per dimostrare l'uguaglianza di insiemi devo dimostrare che $ A subset.eq B and B subset.eq A . $
 
-  Partiamo con $A subset.eq B$. Sia $p in A$, allora, visto che tutti gli stati sono raggiungibili, esiste una stringa $w in Sigma^*$ tale che, nell'automa $M$, vale $ delta(q_0, w) = p . $ Per come abbiamo definito l'NFA per il reversal, allora $ q_0 in delta^R (p, w^R) . $ Usando invece il DFA, abbiamo che $ q_0 in delta''(A, w^R) $ perché abbiamo assunto che $p in A$. Ma allora $w^R$ è accettata da $N$ partendo da $A$.
+  Partiamo con $A subset.eq B$. Sia $p in A$, allora visto che tutti gli stati sono raggiungibili esiste una stringa $w in Sigma^*$ tale che, nell'automa $M$, vale $ delta(q_0, w) = p . $ Per come abbiamo definito l'NFA per il reversal, allora $ q_0 in delta^R (p, w^R) . $ Usando invece il DFA, abbiamo che $ q_0 in delta''(A, w^R) $ perché abbiamo assunto che $p in A$. Ma allora $w^R$ è accettata da $N$ partendo da $A$.
 
   Ora, visto che $A$ e $B$ non sono distinguibili per ipotesi, la stringa $w^R$ è accettata da $N$ partendo anche da $B$, cioè $ q_0 in delta''(B, w^R) $ quindi esiste un elemento $p' in B$ tale che $ q_0 in delta^R (p', w^R) $ e quindi che $ delta(q_0, w) = p' . $
 
@@ -159,7 +160,7 @@ Vediamo adesso un risultato abbastanza strano di questa costruzione.
 Questa costruzione è un po' strana e contro quello che abbiamo sempre fatto: la costruzione per sottoinsiemi di solito fa esplodere il numero degli stati, mentre stavolta ci dà l'automa minimo per il reversal. Cosa possiamo fare con questo risultato?
 
 #align(center)[
-  #pseudocode-list(title: [Algoritmo di Brzozowski])[
+  #pseudocode-list(title: [*Algoritmo di Brzozowski*])[
     - Sia $K$ un DFA per il linguaggio $L$ senza stati irraggiungibili
     + Costruiamo $K^R$ NFA per $L^R$
     + Costruiamo $M = sub(K^R)$ DFA per $L^R$
@@ -189,7 +190,7 @@ Grazie all'*algoritmo di Brzozowski* noi abbiamo a disposizione un *algoritmo di
 
   Rendiamo DFA questo automa, e chiamiamolo $M$.
 
-  #figure(image("assets/08/M.svg", width: 60%))
+  #figure(image("assets/08/M.svg", width: 75%))
 
   Facciamo il renaming, chiamando $A$ l'insieme iniziale e $B$ l'insieme finale. Rifacciamo ora la costruzione del reversal, ottenendo $M^R$.
 
@@ -220,7 +221,7 @@ Come vediamo, l'inserimento che facciamo *non è atomico*: posso chiedere al maz
     [#text(fill: red)[$a a b b$]#text(fill: blue)[$b$]],
   )
 
-  Ovviamente, le ultime tre stringhe sono tutte uguali e vanno considerate come stringa unica.
+  Ovviamente, le ultime tre stringhe sono uguali e vanno considerate come stringa unica.
 ]
 
 #example()[
@@ -251,8 +252,6 @@ Prendiamo spunto dall'*automa prodotto*: uniamo i due automi e ne mandiamo avant
 Il numero di stati di questo automa è il prodotto del numero di stati dei due automi, ovvero $ sc(shuffle(L', L'')) = sc(L') dot sc(L'') . $
 
 Abbiamo considerato solo il caso in cui $A'$ e $A''$ sono DFA. Per il caso non deterministico, basta modificare leggermente la funzione di transizione ma il numero di stati rimane invariato.
-
-// TODO: fai NFA
 
 === Stesso alfabeto
 
@@ -407,4 +406,49 @@ Calcolando però le potenze della matrice dell'automa cosa otteniamo?
   I numeri che vediamo scritti nella tabella sono i *gradi di ambiguità* delle varie stringhe (_se ci limitiamo a quelle accettate_): questo rappresenta appunto il numero di modi in cui possiamo arrivare a quella stringa partendo dallo stato che indicizza la riga. Il *grado di ambiguità del grafo* è il massimo grado di ambiguità delle stringhe accettate.
 ]
 
-*CAPITOLO*
+== Quoziente
+<paragrafo-quoziente>
+
+Finiamo la carrellata di operazioni esotiche con il *quoziente tra linguaggi*.
+
+Dati due linguaggi $L_1$ e $L_2$ definiamo l'operazione $ L_1 slash L_2 = {x in Sigma^* bar.v exists y in L_2 bar.v x y in L_1} . $ In poche parole, prendiamo tutte le stringhe nella forma $x y$ di $L_1$ e andiamo a togliere il suffisso $y$ che però dobbiamo trovare in $L_2$.
+
+#example()[
+  Ci vengono dati i seguenti linguaggi.
+
+  #grid(
+    columns: (33%, 33%, 33%),
+    align: center + horizon,
+    inset: 10pt,
+    [$L_1 = a^+ b c^+$], [$L_2 = b c^+$], [$L_3 = c^+$],
+  )
+
+  Calcoliamo i possibili quozienti di questi linguaggi.
+
+  #table(
+    columns: (33%, 33%, 33%),
+    align: center + horizon,
+    inset: 10pt,
+    [$L_1 slash L_2$], [$L_1 slash L_3$], [$L_2 slash L_3$],
+    [$a^+$], [$a^+ b c^*$], [$b c^*$],
+  )
+]
+
+Dato un automa $M = (Q, Sigma, delta, q_0, F)$ che riconosce il linguaggio regolare $L_1$, possiamo costruire un automa $M' = (Q, Sigma, delta, q_0, F')$ tale che $ F' = {q in Q bar.v exists y in L_2 bar.v delta(q, y) in F} . $
+
+In poche parole, rendiamo *finali* tutti gli stati dai quali, leggendo una stringa di $L_2$, riusciamo a finire in uno stato finale del primo automa.
+
+#grid(
+  columns: (50%, 50%),
+  align: center + horizon,
+  inset: 10pt,
+  [#figure(image("assets/08/pre.svg"))], [#figure(image("assets/08/post.svg"))],
+)
+
+Questo automa $M'$ che abbiamo appena definito calcola il quoziente, ovvero $ L(M') = L_1 slash L_2 . $
+
+#lemma()[
+  Dati due linguaggi $L_1$ e $L_2$, con $L_1 in Reg$, allora $ L_1 slash L_2 $ è *regolare* per ogni possibile linguaggio $L_2$.
+]
+
+Non abbiamo studiato la *complessità* in stati di questa operazione, però possiamo intuire facilmente (credo) che DFA e NFA mantengono lo stesso numero di stati, quindi $ sc(L_1 slash L_2) = nsc(L_1 slash L_2) = sc(L_1) . $

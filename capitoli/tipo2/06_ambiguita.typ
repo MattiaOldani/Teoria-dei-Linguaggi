@@ -22,12 +22,16 @@ Vediamo un esempio che ci serve per introdurre il concetto di *ambiguità*.
   Definiamo il linguaggio $ L = {a^p b^q c^r bar.v p = q or q = r} . $
 
   Questo linguaggio è un *CFL*: infatti, possiamo fare una scommessa iniziale per verificare almeno una delle due condizioni del linguaggio.
-]
+]<esempio-ambiguita>
 
-Nel linguaggio appena visto però potrebbero essere vincenti entrambi i rami: in questo caso, noi abbiamo due modi diversi di riconoscere la stringa che ci viene data.
+In un linguaggio che usa il non determinismo potrebbero essere vincenti più di un ramo in una scommessa: in questo caso, noi abbiamo molti modi diversi di riconoscere la stringa di input.
 
 #example()[
-  Diamo una grammatica per il linguaggio precedente. Le produzioni sono $ S &arrow.long S_1 C bar.v A S_2 \ S_1 &arrow.long a S_1 b bar.v epsilon \ S_2 &arrow.long b S_2 c bar.v epsilon \ A &arrow.long a A bar.v epsilon \ C &arrow.long c C bar.v epsilon . $
+  Diamo una grammatica per il linguaggio dell'@esempio-ambiguita:
+
+  $
+    S &arrow.long S_1 C bar.v A S_2 \ S_1 &arrow.long a S_1 b bar.v epsilon \ S_2 &arrow.long b S_2 c bar.v epsilon \ A &arrow.long a A bar.v epsilon \ C &arrow.long c C bar.v epsilon .
+  $
 
   Le variabili $S_1$ e $S_2$ sono usate per generare rispettivamente delle stringhe di $a$ e $b$ in egual numero e delle stringhe di $b$ e $c$ in egual numero. Le variabili $A$ e $C$ invece generano rispettivamente sequenze di $a$ e sequenze di $c$ in numero casuale. Riassumendo: $ S_1 &arrow.stroked^* a^n b^n \ S_2 &arrow.stroked^* b^n c^n \ A &arrow.stroked a^k \ C &arrow.stroked^* c^k . $
 
@@ -64,7 +68,6 @@ Nel linguaggio appena visto però potrebbero essere vincenti entrambi i rami: in
 
 == Definizione
 
-// TODO: definizione (????)
 Una grammatica è *ambigua* quando riusciamo a trovare due diverse derivazioni per una stringa del linguaggio generato da quella grammatica.
 
 #definition([Grado di ambiguità di una stringa])[
@@ -77,7 +80,6 @@ Ovviamente, se una stringa non appartiene a $L(G)$ ha grado di ambiguità pari a
   Il *grado di ambiguità* di una grammatica $G$ è il massimo grado di ambiguità delle stringhe $w in Sigma^*$.
 ]
 
-// TODO: rivedi
 Il concetto di *ambiguità* è legato al *non determinismo*: abbiamo visto nell'equivalenza tra grammatiche di tipo $2$ e automi a pila che questi ultimi potevano simulare le derivazioni leftmost della grammatica. Se ad un certo punto la grammatica ha più derivazioni leftmost che mi portano poi nella stessa stringa allora stiamo introducendo del non determinismo. Viceversa, quando guardavamo le computazioni possibili in un automa a pila e dovevamo generare le regole di produzione, quando eravamo di fronte ad una scelta dovevamo generare delle regole ambigue.
 
 #definition([Grado di ambiguità di un automa a pila])[
@@ -103,17 +105,17 @@ Per parlare di ambiguità ci servirà il *lemma di Ogden*, ma in una forma legge
     e dunque $forall i gt.eq 0 quad u v^i w x^i y in L(G)$.
 ]
 
-Abbiamo una differenza sostanziale con il lemma dell'altra volta: in quest'ultimo ci veniva detto $L$ è CF, mentre ora stiamo dicendo che la grammatica lo è, e dalla grammatica noi siamo in grado di ricavare il linguaggio, quindi è una condizione più forte di quella di prima.
-
-Questo inoltre vale per ogni grammatica CF e non solo per quelle in FN di Chomsky.
+Abbiamo una differenza sostanziale con il lemma di Ogden classico (@lemma-Ogden): in quest'ultimo viene detto $L$ è CFL, mentre ora stiamo dicendo che la grammatica lo è, e dalla grammatica siamo in grado di ricavare il linguaggio, quindi è una condizione più forte di quella di prima. Questo inoltre vale per ogni grammatica CF e non solo per quelle in FN di Chomsky.
 
 #lemma-proof()[
-  La dimostrazione cambia leggermente dalla scorsa volta.
+  La dimostrazione cambia leggermente da quella classica.
 
-  Visto che possiamo avere nodi interni con più di due figli, sia $d$ il numero massimo di elementi sul lato destro di una produzione. Come costante prendiamo $ N = d^(k+1) $ e poi la dimostrazione va avanti allo stesso modo.
+  Visto che possiamo avere nodi interni con più di due figli, sia $d$ il numero massimo di elementi sul lato destro di una produzione. Come costante prendiamo $ N = d^(k+1) . $
+
+  Da questo punto la dimostrazione è analoga (@dimostrazione-Ogden).
 ]
 
-Riprendiamo l'esempio precedente per il discorso sull'ambiguità.
+Riprendiamo l'@esempio-ambiguita per il discorso sull'ambiguità.
 
 #example()[
   Definiamo il linguaggio $ L = {a^p b^q c^r bar.v p = q or q = r} . $
@@ -239,7 +241,7 @@ In generale la risposta è *NO*: esistono linguaggi che hanno solo grammatiche a
   Ma allora abbiamo due alberi diversi per la stessa stringa, quindi $G$ è ambigua. Visto che abbiamo preso una grammatica $G$ generica, allora ogni $G$ per $L$ è ambigua, e quindi $L$ è inerentemente ambiguo.
 ]
 
-Nel caso del linguaggio @linguaggio-i-ambiguo, il *grado di ambiguità* è $2$. In alcuni casi, il grado di ambiguità cresce in base alla lunghezza della stringa che si sta riconoscendo, rendendo di fatto *infinito* il grado della grammatica e/o del linguaggio.
+Nel caso del linguaggio @linguaggio-i-ambiguo, il *grado di ambiguità* è $2$. In alcuni casi, il grado di ambiguità *cresce in base alla lunghezza della stringa* che si sta riconoscendo, rendendo di fatto *infinito* il grado della grammatica e/o del linguaggio.
 
 Il concetto di ambiguità è importante perché parlare di ambiguità nelle grammatiche è equivalente a parlare di ambiguità negli *automi a pila*.
 
@@ -269,7 +271,7 @@ In poche parole, le due condizioni ci dicono che:
 
 Abbiamo visto due diverse *accettazioni* per gli automi a pila, e abbiamo dimostrato che nel caso non deterministico queste sono equivalenti. Nella trasformazione da stati finali a pila vuota, ogni volta che si finiva in uno stato finale si scommetteva di aver finito l'input svuotando la pila, ma lo facendo non deterministicamente. La trasformazione da pila vuota a stati finali invece ogni volta che svuotava la pila andava in uno stato finale, ma questo non introduceva non determinismo perché facevamo una pura simulazione e aggiungevamo regole che non interferivano tra loro.
 
-Sappiamo inoltre che i CFL sono *equivalenti* ai PDA. Cosa possiamo dire dei CFL deterministici?
+Sappiamo inoltre che i CFL sono *equivalenti* ai PDA. Cosa possiamo dire dei *CFL deterministici*?
 
 Definiamo la classe *DCFL* classe dei *linguaggi CF deterministici*, equivalente ai *DPDA* (PDA deterministici) che accettano per *stati finali*. Abbiamo specificato l'accettazione perché nel caso deterministico non abbiamo la stessa accettazione: con una pila vuota infatti andiamo ad accettare meno linguaggi. Addirittura ci sono dei *linguaggi regolari* che non riusciamo ad accettare.
 
@@ -283,13 +285,11 @@ In generale, una struttura con stringhe prefisse di altre non riesce ad essere r
 
 Nei parser il trucco è mettere un marcatore alla fine per indicare all'automa di svuotare la pila.
 
-La questione dell'ambiguità si collega al non determinismo. Infatti, se $L$ è un CFL ed è anche *inerentemente ambiguo*, allora ogni PDA per $L$ deve essere non deterministico, quindi $ L in CFL slash DCFL . $
+La questione dell'ambiguità si collega al non determinismo. Infatti, se $L$ è un CFL ed è anche *inerentemente ambiguo*, allora ogni PDA per $L$ deve essere non deterministico, quindi $ L in CFL backslash DCFL . $
 
 Questa affermazione mostra che i CFL sono diversi dai DCFL, e che questi sono meno potenti perché alcuni linguaggi non li possono proprio riconoscere.
 
 Negli automi a stati finiti avevamo la *costruzione per sottoinsiemi* per rimuovere il non determinismo. Con gli automi a pila non possiamo utilizzare questa costruzione perché avendo una sola pila non riusciamo a tenere traccia di tutto quello che viene fatto su essa.
-
-Breve *OT*: se abbiamo due pile il modello diventa potente quanto le macchine di Turing.
 
 Ma vale anche il viceversa? Ovvero dato un automa non deterministico allora abbiamo per forza un linguaggio o una grammatica ambigua?
 
@@ -303,10 +303,10 @@ Ma vale anche il viceversa? Ovvero dato un automa non deterministico allora abbi
   Vediamo una grammatica $G$ per $L$: $ S arrow.long a S a bar.v b S b bar.v epsilon . $
 
   Come vediamo, $G$ non è ambigua, e infatti nemmeno $L$ lo è.
-]
+]<esempio-palindrome-pari>
 
 #example()[
-  Vediamo il complemento del linguaggio precedente, ovvero il linguaggio delle stringhe nelle quali esiste almeno una posizione alla stessa distanza dai bordi in cui i caratteri sono diversi.
+  Vediamo il complemento del linguaggio dell'@esempio-palindrome-pari, ovvero il linguaggio delle stringhe nelle quali esiste almeno una posizione alla stessa distanza dai bordi in cui i caratteri sono diversi.
 
   #figure(image("assets/06/lc.svg", width: 75%))
 
@@ -321,10 +321,10 @@ Ma vale anche il viceversa? Ovvero dato un automa non deterministico allora abbi
   Dobbiamo scegliere la *scommessa giusta*, ovvero dobbiamo verificare di avere una parte iniziale $i$ poi la stessa $i$ alla fine ma rovesciata. Per indovinare subito la prima posizione che non va bene sulla pila non salviamo più la distanza, ma quello che leggiamo. Dopo un po' scommettiamo, arriviamo alla fine, controlliamo e svuotiamo.
 
   Con questo magheggio riusciamo a renderlo non ambiguo, perché l'automa fa tante scommesse ma riesce a beccare solo la prima posizione sbagliata, perché le parti prima e dopo saranno invece uguali.
-]
+]<esempio-palindrome-pari-complemento>
 
 #example()[
-  Per sfizio scriviamo $L^C$ in termini di grammatica.
+  Per sfizio scriviamo anche la grammatica del linguaggio $L^C$ che abbiamo appena visto nell'@esempio-palindrome-pari-complemento.
 
   Abbiamo una posizione che è fallata, quindi prima inseriamo qualcosa di uguale ai bordi, poi inseriamo l'elemento sbagliato, e poi aggiungiamo quello che vogliamo.
 

@@ -52,7 +52,7 @@ Con *semi-decidibilità* di un linguaggio $L$ di tipo $0$ intendiamo che:
   - può fermarsi e non accettare;
   - può entrare in *loop infinito*.
 
-#figure(image("assets/01/riconoscitore_MdT.svg", width: 75%))
+#figure(image("assets/01/riconoscitore_MdT.svg", width: 65%))
 
 Le macchine di Turing sono un modello in grado di calcolare tutte le *funzioni calcolabili* da un computer. Queste funzioni sono dette *funzioni ricorsive*, ma con "ricorsive" non intendiamo le funzioni che chiamano sé stesse.
 
@@ -102,7 +102,7 @@ Una versione di MdT a più nastri è quella che *dedica un nastro al solo input*
 
 Una versione ancora migliorata ha un nastro per il solo *output*, in cui scriviamo e basta senza poter tornare indietro, perché ovviamente è un output.
 
-#figure(image("assets/01/dedicati.svg", width: 75%))
+#figure(image("assets/01/dedicati.svg", width: 65%))
 
 === Testine multiple
 
@@ -136,8 +136,6 @@ Negli automi a pila avevamo visto che non potevamo ricreare l'automa prodotto pe
 
 #figure(image("assets/01/PDA_doppia_pila.svg", width: 75%))
 
-// Immagine [guarda telefono preferiti] da formalizzare
-// Chiedi assolutamente
 Con questa configurazione possiamo simulare una macchina di Turing. Prendiamo una MdT che ha sul nastro di lavoro $alpha$ e $beta$ concatenati, con la testina sul primo carattere di $beta$. Creiamo un automa a pila doppia che abbia $alpha^R$ sulla prima pila e $beta$ sulla seconda. Con questa configurazione se leggiamo qualcosa da $beta$ lo facciamo dalla seconda pila, mentre se leggiamo $alpha$ lo dobbiamo fare rovesciato.
 
 == Determinismo VS non determinismo
@@ -221,7 +219,7 @@ Vediamo finalmente la *definizione formale* di una MdT a $1$ nastro.
 Una MdT è una tupla $ M = (Q, Sigma, Gamma, delta, q_0, F) $ definita da:
 - $Q$ *insieme finito di stati*;
 - $Sigma$ *alfabeto finito di input*;
-- $Gamma$ *alfabeto finito di lavoro* che contiene sicuramente $Sigma$ visto che andiamo a scrivere sullo stesso nastro dove abbiamo l'input; contiene inoltre $blank$, che però non sta in $Sigma$, ovvero $ Sigma subset.eq Gamma and blank in Gamma slash Sigma ; $
+- $Gamma$ *alfabeto finito di lavoro* che contiene sicuramente $Sigma$ visto che andiamo a scrivere sullo stesso nastro dove abbiamo l'input; contiene inoltre $blank$, che però non sta in $Sigma$, ovvero $ Sigma subset.eq Gamma and blank in Gamma backslash Sigma ; $
 - $delta$ *funzione di transizione* che permette di processare le stringhe date in input. Essa è la funzione
   #align(center)[
     #table(
@@ -240,7 +238,7 @@ Una MdT è una tupla $ M = (Q, Sigma, Gamma, delta, q_0, F) $ definita da:
 
 Una *configurazione* è una foto della macchina in un dato istante di tempo. All'accensione della MdT la *configurazione iniziale* su input $w$ contiene tutto l'input $w$ sul nastro, la testina sul primo carattere di $w$ e la macchina nello stato $q_0$.
 
-#figure(image("assets/01/configurazione_iniziale.svg", width: 75%))
+#figure(image("assets/01/configurazione_iniziale.svg", width: 65%))
 
 Una *configurazione accettante* è una qualsiasi configurazione che si trova in uno stato finale, a prescindere da quello che troviamo sul nastro. Questo è abbastanza strano, ovvero *non siamo obligati a leggere tutto l'input*, questo perché magari devo riconoscere solo una parte iniziale dell'input. Si può forzare tutta la lettura obbligando la macchina a scorrere tutto l'input prima di poter andare in uno stato finale. Inoltre, assumiamo per semplicità che quando la macchina entra in uno stato finale allora essa *si ferma* e *accetta* l'input fornito.
 
@@ -271,8 +269,8 @@ La *configurazione iniziale* su input $w$ è $ q_0 w . $
 Una *configurazione accettante* è una qualsiasi configurazione che si trovi in uno stato finale, ovvero $ x q y bar.v x,y in Gamma^* and q in F . $
 
 Come passiamo da una configurazione all'altra usando la funzione di transizione? Sia $ C = x q y bar.v x = x' c and y = a y' $ la *configurazione corrente*. La configurazione che segue $C$ si calcola con la *funzione di transizione* e dipende dalla mossa che questa funzione ci ritorna, ovvero:
-- se $ delta(q, a) = (p, b, 0) $ vuol dire abbiamo cambiato la $a$ sulla testina con una $b$, abbiamo cambiato stato da $q$ a $p$ e non ci siamo spostati, ovvero $ x q a y' tack x p b y' ; $
-- se $ delta(q, a) = (p, b, +1) $ vuol dire abbiamo cambiato la $a$ sulla testina con una $b$, abbiamo cambiato stato da $q$ a $p$ e ci siamo spostati avanti di una posizione, ovvero $ x q a y' tack x b p y' ; $
-- se $ delta(q, a) = (p, b, -1) $ vuol dire abbiamo cambiato la $a$ sulla testina con una $b$, abbiamo cambiato stato da $q$ a $p$ e ci siamo spostati indietro di una posizione, ovvero $ x q a y' tack x' p c b y' . $
+- se $ delta(q, a) = (p, b, 0) $ vuol dire abbiamo cambiato la $a$ sulla testina con una $b$, abbiamo cambiato stato da $q$ a $p$ e non ci siamo spostati, ovvero $ x q a y' tack.long x p b y' ; $
+- se $ delta(q, a) = (p, b, +1) $ vuol dire abbiamo cambiato la $a$ sulla testina con una $b$, abbiamo cambiato stato da $q$ a $p$ e ci siamo spostati avanti di una posizione, ovvero $ x q a y' tack.long x b p y' ; $
+- se $ delta(q, a) = (p, b, -1) $ vuol dire abbiamo cambiato la $a$ sulla testina con una $b$, abbiamo cambiato stato da $q$ a $p$ e ci siamo spostati indietro di una posizione, ovvero $ x q a y' tack.long x' p c b y' . $
 
-Il *linguaggio riconosciuto* dalla MdT $M$ è l'insieme $ L(M) = {w in Sigma^* bar.v exists q in F and exists x,y in Gamma^* bar.v q_0 w tack^* x q y} . $
+Il *linguaggio riconosciuto* dalla MdT $M$ è l'insieme $ L(M) = {w in Sigma^* bar.v exists q in F and exists x,y in Gamma^* bar.v q_0 w tack.long^* x q y} . $

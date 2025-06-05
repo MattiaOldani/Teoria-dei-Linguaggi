@@ -13,7 +13,7 @@
 
 Abbiamo visto che la computazione di una MdT è un susseguirsi di *configurazioni*, che racchiudono l'input, lo stato corrente della macchina e anche la posizione della testina, implicitamente usando una divisione della stringa di input.
 
-Quando però passiamo da una configurazione alla successiva, l'area in cui facciamo i cambiamenti è ristretta: di solito quello che cambia è il simbolo sulla testina, con uno spostamento opzionale di quest'ultima.
+Quando però passiamo da una configurazione alla successiva, l'area in cui facciamo i cambiamenti è *ristretta*: di solito quello che cambia è il simbolo sulla testina, con uno spostamento opzionale di quest'ultima.
 
 == Definizioni preliminari
 
@@ -23,30 +23,30 @@ Definiamo un nuovo alfabeto $ Delta = Gamma union Q union {hash} bar.v hash in.n
 
 Definiamo due linguaggi che sono basati su questo nuovo alfabeto $Delta$.
 
-Il primo linguaggio che definiamo è il *primo linguaggio successore* $ L'_"succ" = {alpha hash beta^R bar.v alpha,beta "configurazioni" and alpha tack beta} . $
+Il primo linguaggio che definiamo è il *primo linguaggio successore* $ L'_"succ" = {alpha hash beta^R bar.v alpha,beta "configurazioni" and alpha tack.long beta} . $
 
 #example()[
-  Prendiamo due configurazioni $alpha$ e $beta$ con $alpha tack beta$ e $beta$ ottenuta dalla funzione di transizione con una mossa che sposta la testina avanti di una posizione.
+  Prendiamo due configurazioni $alpha$ e $beta$ con $alpha tack.long beta$ e $beta$ ottenuta dalla funzione di transizione con una mossa che sposta la testina avanti di una posizione.
 
-  Questo vuol dire che $ x q a y tack x b p y $ e quindi che dentro $L'_("succ")$ abbiamo la stringa $ x q a y hash y^R p b x^R . $
+  Questo vuol dire che $ x q a y tack.long x b p y $ e quindi che dentro $L'_("succ")$ abbiamo la stringa $ x q a y hash y^R p b x^R . $
 ]
 
 In che posizione della gerarchia posizioniamo questo linguaggio? Dobbiamo controllare due aspetti:
 - $alpha$ e $beta^R$ devono essere due configurazioni, e questo lo possiamo fare con un banale *controllo a stati finiti* che controlli che ci siano dei simboli di $Gamma$, un solo stato, e altri simboli di $Gamma$;
-- $alpha tack beta$, ma questo si può fare con un *automa a pila*:
+- $alpha tack.long beta$, ma questo si può fare con un *automa a pila*:
   - durante la prima passata carichiamo sulla pila i vari caratteri e capiamo, usando la funzione di transizione, quale parte della configurazione verrà modificata;
   - leggiamo il separatore $hash$;
   - iniziamo a fare il check della seconda configurazione, che, essendo scritta al contrario, è possibile fare con la pila. Inoltre, sapendo quali porzioni sono cambiate della configurazione, riusciamo a fare un controllo preciso.
 
 Ma allora riusciamo a riconoscere $L'_"succ"$ con un *automa a pila*, addirittura *deterministico*, quindi $ L'_"succ" in DCFL . $
 
-Il secondo linguaggio che definiamo è il *secondo linguaggio successore* $ L''_"succ" = {alpha^R hash beta bar.v alpha,beta "configurazioni" and alpha tack beta} . $
+Il secondo linguaggio che definiamo è il *secondo linguaggio successore* $ L''_"succ" = {alpha^R hash beta bar.v alpha,beta "configurazioni" and alpha tack.long beta} . $
 
 Anche in questo caso il linguaggio può essere riconosciuto da un automa a pila deterministico quindi $ L''_"succ" in DCFL . $
 
 Abbiamo quindi due linguaggi DCFL per i quali riusciamo a costruire due automi a pila deterministici che li riconoscono, conoscendo ovviamente la MdT che definisce la configurazioni. In poche parole, abbiamo un algoritmo che costruisce questi due automi a pila.
 
-Fissiamo ora una MdT $M$ e definiamo il *linguaggio delle computazioni valide* $ valid(M) = {alpha_1 hash alpha_2^R hash dots hash alpha_k^((R)) bar.v & #align(left)[#enum(numbering: "a.", [$forall i in {1, dots, k} quad alpha_i in Gamma^* Q Gamma^* "configurazione di" M$], [$alpha_1 = q_0 w bar.v w in Sigma^* "configurazione iniziale di" M$], [$alpha_k = Gamma^* F Gamma^* "configurazione finale di" M$], [$forall i in {2, dots, k} quad alpha_(i-1) tack alpha_i$])]} . $
+Fissiamo ora una MdT $M$ e definiamo il *linguaggio delle computazioni valide* $ valid(M) = {alpha_1 hash alpha_2^R hash dots hash alpha_k^((R)) bar.v & #align(left)[#enum(numbering: "a.", [$forall i in {1, dots, k} quad alpha_i in Gamma^* Q Gamma^* "configurazione di" M$], [$alpha_1 = q_0 w bar.v w in Sigma^* "configurazione iniziale di" M$], [$alpha_k = Gamma^* F Gamma^* "configurazione finale di" M$], [$forall i in {2, dots, k} quad alpha_(i-1) tack.long alpha_i$])]} . $
 
 In poche parole abbiamo "esteso" i due linguaggi precedenti, formando una *catena di configurazioni* ove la prima è una configurazione iniziale, l'ultima è una configurazione finale e in ogni coppia di configurazioni consecutive la seconda segue la prima. Questa catena di configurazioni le alterna dritte, in *posizione dispari*, e rovesciate, in *posizione pari*.
 
@@ -62,14 +62,14 @@ Come possiamo riconoscere questo linguaggio? Vediamo le singole condizioni:
 Quindi sicuramente serve almeno un *LBA* per riconoscere questo linguaggio.
 
 Come possiamo fare? Proviamo a *scomporre* l'ultima condizione in due parti
-- condizione $d'$ che definisce la consecutività di due configurazioni ove la seconda ha un *indice pari* nella sequenza, ovvero $ forall i "pari" quad alpha_(i-1) tack alpha_i ; $
-- condizione $d''$ che fa lo stesso ma lo fa per tutti gli *indici dispari*, ovvero $ forall i "dispari" quad alpha_(i-1) tack alpha_i . $
+- condizione $d'$ che definisce la consecutività di due configurazioni ove la seconda ha un *indice pari* nella sequenza, ovvero $ forall i "pari" quad alpha_(i-1) tack.long alpha_i ; $
+- condizione $d''$ che fa lo stesso ma lo fa per tutti gli *indici dispari*, ovvero $ forall i "dispari" quad alpha_(i-1) tack.long alpha_i . $
 
 Queste singole condizioni possono essere verificate con i *DPDA* che abbiamo costruito in maniera *algoritmica* prima per i linguaggi successore. Definiamo i linguaggi $ L' = {(a) and (b) and (c) and (d')} \ L'' = {(a) and (b) and (c) and (d'')} $ che *rispettano le condizioni* indicate. Abbiamo detto prima che questi due linguaggi sono *DCFL*. Se imponiamo che entrambe le condizioni siano verificate otteniamo il linguaggio delle computazioni valide, ovvero $ valid(M) = L' inter L'' . $
 
 Per le proprietà di (non) chiusura dei DCFL, questa intersezione *non è DCFL*.
 
-Prendiamo ora il *complemento* di questo linguaggio, ovvero $ (valid(M))^C = Delta^* slash valid(M) . $
+Prendiamo ora il *complemento* di questo linguaggio, ovvero $ (valid(M))^C = Delta^* backslash valid(M) . $
 
 Una stringa, per appartenere a questo linguaggio, deve far cadere almeno una delle *quattro condizioni*, ovvero:
 #enum(
@@ -77,7 +77,7 @@ Una stringa, per appartenere a questo linguaggio, deve far cadere almeno una del
   [tra due $hash$ consecutivi o nella prima o nell'ultima configurazione abbiamo $0$ o $2+$ stati, così da non avere una configurazione. Questo controllo lo possiamo fare con una *FSM* che fa da contatore;],
   [nella configurazione iniziale lo stato deve essere diverso da $q_0$, oppure non abbiamo una stringa possibile di input oppure ancora lo stato si trova in posizione diversa, ma comunque utilizziamo un *FSM* di nuovo;],
   [nella configurazione finale lo stato non deve essere finale, quindi ancora una *FSM*;],
-  [dobbiamo verificare se $ exists i in {2, dots, k} bar.v not(alpha_(i-1) tack alpha_i) . $ Per verificare questa condizione possiamo usare il *non determinismo* e scommettere quale sia la coppia di configurazioni non valide. Qua è facile usare il non determinismo perché abbiamo un $exists$, quindi è possibile fare delle scommesse.La macchina risultante legge la configurazione scelta e la carica sulla pila, e poi controlla che quella dopo non sia una configurazioni tra le possibili successive. Ci serve allora un *PDA*.],
+  [dobbiamo verificare se $ exists i in {2, dots, k} bar.v not(alpha_(i-1) tack.long alpha_i) . $ Per verificare questa condizione possiamo usare il *non determinismo* e scommettere quale sia la coppia di configurazioni non valide. Qua è facile usare il non determinismo perché abbiamo un $exists$, quindi è possibile fare delle scommesse.La macchina risultante legge la configurazione scelta e la carica sulla pila, e poi controlla che quella dopo non sia una configurazioni tra le possibili successive. Ci serve allora un *PDA*.],
 )
 
 Abbiamo appena mostrato che $ (valid(M))^C in CFL . $
@@ -122,11 +122,9 @@ Per riconoscere questo linguaggio potremmo costruire un riconoscitore $A$ non de
 
 I due linguaggi $L'$ e $L''$ sono *DCFL*, quindi hanno una sola computazione accettante, ma con $A$ potremmo invece avere *ambiguità* perché abbiamo inserito due $epsilon$-mosse e quindi riconoscere la stringa in due modi diversi.
 
-Esistono delle *stringhe ambigue* nel linguaggio $Xi$, o in altri termini, il linguaggio $Xi$ è *ambiguo*?
+Esistono delle *stringhe ambigue* nel linguaggio $Xi$, o in altri termini, il linguaggio $Xi$ è *ambiguo*? Vediamo la catena di implicazioni: $ Xi "ambiguo" &sse exists x bar.v x "ha due computazioni accettanti in" A sse \ &sse x in L' inter L'' sse x in valid(M) sse valid(M) eq.not emptyset.rev . $
 
-Vediamo la catena di implicazioni: $ Xi "ambiguo" &sse exists x bar.v x "ha due computazioni accettanti in" A sse \ &sse x in L' inter L'' sse x in valid(M) sse valid(M) eq.not emptyset.rev . $
-
-Ma siamo al punto di prima: non potendo decidere la vuotezza, e quindi anche la non vuotezza, non è possibile decidere se un linguaggio CFL è ambiguo o no. Questa proprietà si trasporta quindi di conseguenza anche sui DCFL.
+Ma siamo al punto di prima: non potendo decidere la vuotezza, e quindi anche la non vuotezza, non è possibile decidere se automa a pila $A$ è ambiguo o no. Questa proprietà si trasporta quindi di conseguenza anche sui DCFL.
 
 === Universalità
 
@@ -146,74 +144,27 @@ Addirittura non siamo possiamo rispondere all'*equivalenza con un regolare*, vis
 
 === Contenimento
 
-Dati due linguaggi $L_1$ e $L_2$ CFL, ci chiediamo se $L_1 subset.eq L_2$.
-
-Non ho ben capito perché, ma non si può decidere.
+Dati due linguaggi $L_1$ e $L_2$ CFL, ci chiediamo se $L_1 subset.eq L_2$. Questo problema lo possiamo ricondurre facilmente a quello precedente di equivalenza: infatti, vale che $ L_1 = L_2 sse L_1 subset.eq L_2 and L_2 subset.eq L_1 $ ma visto che non si può decidere l'equivalenza non si può fare nemmeno il *contenimento*.
 
 === Regolarità
 
-Dato $L$ un CFL, ci chiediamo se il linguaggio $L$ è regolare. Questa domanda è "lecita", visto che i regolari sono un sottoinsieme dei CFL. Il problema sembra molto simile al precedente, ma qua la situazione è leggermente diversa da prima perché in quel caso il linguaggio regolare ci veniva dato.
+Dato linguaggio CFL ci chiediamo se esso sia *regolare*. Questa domanda è "lecita", visto che i regolari sono un sottoinsieme dei CFL. Il problema sembra molto simile al precedente, ma qua la situazione è leggermente diversa perché prima il linguaggio regolare ci veniva dato.
 
-// Spostare nelle operazioni dei regolari
-Per risolvere questo problema ci serve l'operazione di *quoziente tra linguaggi*.
+Per risolvere questo problema dobbiamo riprendere l'operazione di *quoziente tra linguaggi* che avevamo analizzato nel @paragrafo-quoziente[Paragrafo] del @capitolo08-tipo3[Capitolo]. Di questa operazione ricordiamo solo la sua *chiusura nei linguaggi regolari*: in poche parole, se $L_1 in Reg$ allora anche $L_1 slash L_2$ regolare, a prescindere dalla natura del linguaggio $L_2$.
 
-Dati due linguaggi $L_1$ e $L_2$ definiamo l'operazione $ L_1 slash L_2 = {x in Sigma^* bar.v exists y in L_2 bar.v x y in L_1} . $ In poche parole, prendiamo tutte le stringhe nella forma $x y$ di $L_1$ e andiamo a togliere il suffisso $y$ che però dobbiamo trovare in $L_2$.
-
-#example()[
-  Ci vengono dati i seguenti linguaggi.
-
-  #grid(
-    columns: (33%, 33%, 33%),
-    align: center + horizon,
-    inset: 10pt,
-    [$L_1 = a^+ b c^+$], [$L_2 = b c^+$], [$L_3 = c^+$],
-  )
-
-  Calcoliamo i possibili quozienti di questi linguaggi.
-
-  #table(
-    columns: (33%, 33%, 33%),
-    align: center + horizon,
-    inset: 10pt,
-    [$L_1 slash L_2$], [$L_1 slash L_3$], [$L_2 slash L_3$],
-    [$a^+$], [$a^+ b c^*$], [$b c^*$],
-  )
-]
-
-Dato un automa $M = (Q, Sigma, delta, q_0, F)$ che riconosce il linguaggio regolare $L_1$, possiamo costruire un automa $M' = (Q, Sigma, delta, q_0, F')$ tale che $ F' = {q in Q bar.v exists y in L_2 bar.v delta(q, y) in F} . $
-
-In poche parole, rendiamo finali tutti gli stati dai quali, leggendo una stringa di $L_2$, riusciamo a finire in uno stato finale del primo automa.
-
-#grid(
-  columns: (50%, 50%),
-  align: center + horizon,
-  inset: 10pt,
-  [#figure(image("assets/02/pre.svg"))], [#figure(image("assets/02/post.svg"))],
-)
-
-Questo automa $M'$ che abbiamo appena definito calcola il quoziente, ovvero $ L(M') = L_1 slash L_2 . $
-
-Se il linguaggio $L_1$ è *regolare* anche $L_1 slash L_2$ è *regolare* per ogni $L_2$ possibile. Quindi, dato un linguaggio $L_2$ a caso, per testare se va bene dobbiamo provare qualche stringa di $L_2$.
-
-// Se $L_2$ regolare allora dati automi per $L_1$ e $L_2$ ho un algoritmo per fare un automa per il quoziente
-
-Torniamo al problema di *regolarità*. Abbiamo in input un CFL e vogliamo sapere se è regolare. Se sapessimo rispondere a questa domanda riusciremmo a risolvere il problema di universalità.
-
-Infatti, sia $G = (V, Sigma, P, S)$ una grammatica per $L$. Prendiamo un linguaggio CFL ma non regolare, ovvero $L_0 in CFL slash Reg$ definito da una grammatica $G_0$.
+Torniamo al problema di *regolarità*. Sia $G = (V, Sigma, P, S)$ una grammatica per $L$ del quale vogliamo decidere l'universalità. Prendiamo un linguaggio CFL ma non regolare, ovvero $L_0 in CFL backslash Reg$ definito da una grammatica $G_0$.
 
 Costruiamo il linguaggio $ L_1 = L_0 hash Sigma^* union Sigma^* hash L $ per il quale possiamo costruire una grammatica $G_1$ che è CF.
 
 Vediamo due casi:
 - se $L = Sigma^*$ allora il linguaggio $L_1$ è nella forma $ L_1 = Sigma^* hash Sigma^* $ perché la seconda parte è uguale in entrambe le parti, mentre la prima, dovendo prendere un'unione, la scegliamo come quella che ha più stringhe, quindi proprio $Sigma^*$;
-- se invece $L eq.not Sigma^*$ allora esiste una stringa che non sta in $L$, ovvero scegliamo $w in Sigma^* slash L$. In questo caso definiamo il linguaggio $ L_2 = L_1 slash hash w . $ Questo linguaggio è esattamente $L_0$ perché la seconda parte dell'unione non dà contributi. Il linguaggio $L_0$ non è regolare, per ipotesi, quindi non lo è nemmeno $L_1$.
+- se invece $L eq.not Sigma^*$ allora esiste una stringa che non sta in $L$, ovvero scegliamo $w in Sigma^* backslash L$. In questo caso definiamo il linguaggio $ L_0 = L_1 slash hash w . $ Questo linguaggio è esattamente $L_0$ perché la seconda parte dell'unione non dà contributi. Il linguaggio $L_0$ non è regolare, per ipotesi, quindi non lo è nemmeno $L_1$.
 
 Cosa abbiamo ottenuto: se $L = Sigma^*$ abbiamo mostrato che $L_1$ è regolare, mentre se $L eq.not Sigma^*$ abbiamo ottenuto un non regolare, quindi la discriminante per dire se un linguaggio è regolare è dimostrare l'universalità, ovvero $ L = Sigma^* sse L_1 in Reg . $
 
 Abbiamo detto che il primo problema non è decidibile, quindi non lo è nemmeno questo.
 
 === Regolarità ma peggio
-
-// DA CHIEDERE ASSOLUTAMENTE A PIGHIZZINI
 
 Se il punto precedente vi è sembrato il male, possiamo andare ancora peggio.
 
@@ -223,15 +174,17 @@ La risposta è *NO*: non esiste un algoritmo che, dato un PDA per un linguaggio 
 
 Ci viene data una MdT $M$ per un linguaggio non ricorsivo, ovvero una macchina che risponde *SI*, *NO* oppure va in loop su una stringa data in input.
 
-Ci viene data anche $w in Sigma^*$ e una grammatica $G_w$ per il linguaggio $ (valid(M, w: w))^C . $ Questo linguaggio è esattamente $valid(M)$ dove però l'input viene fissato a $w$, ovvero la configurazione iniziale è $q_0 w$. Ovviamente, prendiamo il *complemento* di questo linguaggio.
+Ci viene data anche $w in Sigma^*$ e una grammatica $G_w$ (CFL) per il linguaggio $ (valid(M, w: w))^C . $ Questo linguaggio è esattamente $valid(M)$ dove però l'input viene fissato a $w$, ovvero la configurazione iniziale è $q_0 w$. Ovviamente, prendiamo il *complemento* di questo linguaggio.
 
-Se $w$ viene accettata da $M$ allora abbiamo (almeno) una computazione valida, ovvero $ (valid(M, w: w))^C = Delta^* slash {"computazione valida su" w} . $
+Se $w$ viene accettata da $M$ allora abbiamo una computazione valida, ovvero $ (valid(M, w: w))^C = Delta^* backslash {"computazione valida su" w} . $
 
-Se invece $w$ non viene accettata da $M$ allora $valid(M, w: w)$ è vuoto, ovvero $ (valid(M, w: w))^C = Delta^* $ che è un linguaggio regolare, visto che dobbiamo accettare tutto.
+Se invece $w$ non viene accettata da $M$ allora $valid(M, w: w)$ è vuoto, ovvero $ (valid(M, w: w))^C = Delta^* . $
 
-Sappiamo che i linguaggi regolari sono *chiusi* rispetto al complemento, quindi il suo complemento è regolare, ovvero $ (valid(M, w: w))^C in Reg sse valid(M, w: w) in Reg . $
+Entrambi i linguaggi che abbiamo ottenuto sono *regolari*.
 
-Nei regolari possiamo decidere l'universalità, ma noi sappiamo che $ (valid(M, w: w))^C = Delta^* sse w "accettata da" M $ ma questo non è possibile perché i linguaggi non ricorsivi sono semi-decidibili.
+Noi abbiamo sotto mano un automa a pila, generato in maniera algoritmica, per $(valid(M, w: w))^C$.
+
+Vorremmo costruire un automa a stati finiti per esso, visto che quel'automa a pila riconosce un linguaggio regolare. Per sapere però quale automa costruire dobbiamo sapere come è fatto $(valid(M, w: w))^C$, ma questo non si può fare perché così renderemmo *ricorsivi* i linguaggi *non ricorsivi*, visto che stiamo decidendo facilmente se $w in L(M)$ oppure no.
 
 === Regolarità ma ancora peggio
 
@@ -240,7 +193,7 @@ Come *corollario* del punto precedente abbiamo il fatto che, sapendo che un CFL 
 == Riassunto
 
 #table(
-  columns: (25%, 25%, 25%, 25%),
+  columns: (22%, 26%, 26%, 26%),
   align: center + horizon,
   [*Problema*], [*Regolari*], [*DCFL*], [*CFL*],
   [$L = emptyset.rev$], [#emoji.checkmark.box], [#emoji.checkmark.box], [#emoji.checkmark.box],

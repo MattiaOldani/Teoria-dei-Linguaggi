@@ -40,9 +40,9 @@ La prima forma normale che vediamo è quella di Greibach.
 
 Nella *forma normale di Greibach*, spesso abbreviata con *FNG*, le produzioni sono nella forma $ A arrow.long sigma A_1 A_2 dots A_k quad bar.v quad sigma in Sigma and A_1, A_2, dots, A_k in V and k gt.eq 0 . $
 
-Data una grammatica $G$ qualunque, si può sempre scrivere una grammatica in FN di Greibach per lo stesso linguaggio a meno della parola vuota: infatti, se in $G$ abbiamo la parola vuota, nella sua trasformata non ce l'abbiamo e la dobbiamo aggiungere a mano. In poche parole vale $ L(FNG) = L(G) slash {epsilon} . $
+Data una grammatica $G$ qualunque, si può sempre scrivere una grammatica in FN di Greibach per lo stesso linguaggio a meno della parola vuota: infatti, se in $G$ abbiamo la parola vuota, nella sua trasformata non ce l'abbiamo e la dobbiamo aggiungere a mano. In poche parole vale $ L(FNG) = L(G) backslash {epsilon} . $
 
-La trasformazione da Greibach ad automa a pila in alcuni casi *elimina il non determinismo*, però da fare è abbastanza pesante e non vedremo come fare. Inoltre, con la FN di Greibach possiamo costruire un PDA leggermente più semplice.
+La trasformazione da FN di Greibach ad automa a pila in alcuni casi *elimina il non determinismo*, però da fare è abbastanza pesante e non vedremo come fare. Inoltre, con la FN di Greibach possiamo costruire un PDA leggermente più semplice.
 
 Data la grammatica $G$ in FN di Greibach, vogliamo costruire un PDA $ M = (Q, Sigma, Gamma, delta, q_0, Z_0, emptyset.rev) $ che *accetta per pila vuota* definito da:
 - *insieme degli stati* $Q$ formato da un solo stato, ovvero $ Q = {q} ; $
@@ -125,7 +125,7 @@ Questa rappresentazione è molto comoda perché riesce a generare degli alberi d
 
 Come nella FN di Greibach, anche qui non possiamo generare la parola vuota.
 
-Infatti, se $G$ è una grammatica di tipo $2$, allora $exists G'$ in FN di Chomsky quasi equivalente, ovvero $ L(G') = L(G) slash {epsilon} $ ma solo se prima ce l'avevamo, sennò sono *totalmente equivalenti*.
+Infatti, se $G$ è una grammatica di tipo $2$, allora $exists G'$ in FN di Chomsky quasi equivalente, ovvero $ L(G') = L(G) backslash {epsilon} $ ma solo se prima ce l'avevamo, sennò sono *totalmente equivalenti*.
 
 === Costruzione
 
@@ -175,7 +175,7 @@ Se però non abbiamo questa produzione, ma abbiamo delle regole $ A arrow.long X
   )
 ]
 
-Se invece non tutte sono cancellabili dobbiamo cercarle con un algoritmo simile a quello che abbiamo usato per dimostrare la decidibilità dei linguaggi di tipo $1$. Definiamo l'insieme $ cal(C)_0 = {A in V bar.v A arrow.long epsilon} $ insieme di tutte le variabili banalmente cancellabili. Definiamo per induzione l'insieme $ cal(C)_i = {A in V bar.v exists (A arrow.long X_1 dots X_k) in P bar.v X_1, dots, X_k in cal(C)_(i-1)} union cal(C)_(i-1) $ formato da tutte le variabili che potremmo cancellare usando variabili già cancellabili.
+Se invece non tutte sono cancellabili dobbiamo cercarle con un algoritmo simile a quello che abbiamo usato per dimostrare la *decidibilità* dei linguaggi di tipo $1$. Definiamo l'insieme $ cal(C)_0 = {A in V bar.v A arrow.long epsilon} $ insieme di tutte le variabili banalmente cancellabili. Definiamo per induzione l'insieme $ cal(C)_i = {A in V bar.v exists (A arrow.long X_1 dots X_k) in P bar.v X_1, dots, X_k in cal(C)_(i-1)} union cal(C)_(i-1) $ formato da tutte le variabili che potremmo cancellare usando variabili già cancellabili.
 
 Vale ovviamente la catena $ C_0 subset.eq C_1 subset.eq dots subset.eq V $ che è bloccata da un insieme finito, quindi prima o poi non posso più aggiungere degli elementi all'insieme e mi devo fermare, ovvero $ exists i bar.v C_(i-1) = C_i . $
 
@@ -234,12 +234,12 @@ Come convenzione possiamo dire che i terminali $sigma in Sigma$ vengono sostitui
 #example()[
   Date le regole di produzione $ A arrow.long A a a b C bar.v b C bar.v b b $ cerchiamo di applicare l'eliminazione dei terminali.
 
-  Usiamo due variabili ausiliarie $X_a$ e $X_b$, una per ogni terminale, ottenendo $ A arrow.long A X_a X_a X_b C bar.v X_b C bar.v X_b X_b \ X_a arrow.long a \ X_b arrow.long b . $
+  Usiamo due variabili ausiliarie $X_a$ e $X_b$, una per ogni terminale, ottenendo $ A &arrow.long A X_a X_a X_b C bar.v X_b C bar.v X_b X_b \ X_a &arrow.long a \ X_b &arrow.long b . $
 
   Se avessi avuto anche la regola $ C arrow.long b $ non avrei applicato il cambio in $X_b$ perché avremmo ottenuto un cammino unitario, che però non possiamo avere in questo momento.
 ]
 
-In questo penultimo passo ora abbiamo solo produzioni che derivano terminali oppure delle liste di variabili. L'ultimo passo sarà manipolare queste per raggiungere, finalmente, la FN di Chomsky.
+In questo penultimo passo ora abbiamo solo produzioni che derivano terminali oppure delle liste di variabili. L'ultimo passo sarà manipolare queste per raggiungere la FN di Chomsky.
 
 ==== Smontaggio delle produzioni
 
@@ -269,5 +269,3 @@ Applichiamo questa costruzione ad un esempio.
 
   Infine, smontiamo le catene di variabili che abbiamo ottenuto: $ S &arrow.long X_a B bar.v X_b A \ A &arrow.long a bar.v X_a S bar.v X_b Y_1 \ Y_1 &arrow.long A A \ B &arrow.long b bar.v X_b S bar.v X_a Y_2 \ Y_2 &arrow.long B B \ X_a &arrow.long a \ X_b &arrow.long b . $
 ]
-
-*AGGIUNGI CAPITOLO + ESE + CAPITOLO*

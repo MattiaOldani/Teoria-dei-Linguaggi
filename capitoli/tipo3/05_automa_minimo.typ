@@ -10,7 +10,7 @@
 
 = Automa minimo
 
-Nel capitolo @capitolo03-tipo3 abbiamo visto dei metodi che limitavano il numero di stati di DFA e NFA per un certo linguaggio. In questo capitolo vediamo invece un criterio che lavora direttamente sugli automi e non sui linguaggi.
+Nel capitolo @capitolo03-tipo3[Capitolo] abbiamo visto dei metodi che limitavano il numero di stati di DFA e NFA per un certo linguaggio. In questo capitolo vediamo invece un criterio che lavora direttamente sugli *automi* e non sui linguaggi.
 
 == Introduzione matematica
 
@@ -20,7 +20,7 @@ Nel capitolo @capitolo03-tipo3 abbiamo visto dei metodi che limitavano il numero
 
 Come notazione useremo $ rel(x, R, y) $ oppure $(x,y) in R$, ma molto di più la prima della seconda.
 
-Ci interessiamo ad un tipo molto particolare di relazioni.
+Ci interessiamo ad un *tipo* molto particolare di relazioni.
 
 #definition([Relazione di equivalenza])[
   La relazione $R$ è una *relazione di equivalenza* se e solo se $R$ è:
@@ -65,7 +65,7 @@ Ora vediamo una definizione che va contro la *semantica italiana*.
   + ogni classe di equivalenza di $R_1$ è contenuta in una classe di equivalenza di $R_2$ *OPPURE*
   + ogni classe di $R_2$ è l'unione di alcune classi di $R_1$ *OPPURE*
   + vale $ forall x,y in S quad (x,y) in R_1 arrow.long.double (x,y) in R_2 . $
-]
+]<raffinamento>
 
 Il primo punto è la definizione, gli altri due punti sono solo conseguenze.
 
@@ -129,7 +129,7 @@ In poche parole, $R_M$ è una relazione di equivalenza, invariante a destra e di
 
 Notiamo inoltre che se $(rel(x, R_M, y))$ allora $x$ e $y$ sono due stringhe non distinguibili per $L(M)$: infatti, esse vanno nello stato e, aggiungendo qualsiasi stringa $z in Sigma^*$ per l'invariante a destra, finisco sempre nello stesso stato. In particolare, se finiamo in uno stato finale accettiamo sia $x$ che $y$, altrimenti entrambe non sono accettate da $M$.
 
-Abbiamo appena dimostrato che $L(M)$ è l'*unione* di alcune classi di equivalenza di $R_M$, ovvero tutte le classi di equivalenza che contengono stringhe che mandano in stati finali.
+Abbiamo appena dimostrato che $L(M)$ è l'*unione* di alcune classi di equivalenza di $R_M$, ovvero tutte le classi di equivalenza che contengono stringhe che mandano $M$ in stati finali.
 
 #example()[
   Dato il seguente automa deterministico, determinare le classi di equivalenza della relazione $R_M$ appena studiata.
@@ -176,7 +176,7 @@ In poche parole, due stringhe $x$ e $y$ sono in relazione se, attaccando una qua
 
   Se $(rel(x, R_L, y))$ allora $ forall w in Sigma^* quad (x w in L sse y w in L) . $
 
-  Prendiamo ora una qualsiasi stringa $z in Sigma^*$ e aggiungiamola alle due stringhe, ottenendo $x w z$ e $y w z$. Se chiamiamo $z' = w z$, con un semplice renaming quello che otteniamo è comunque una stringa di $Sigma^*$ che mantiene la relazione $R_L$, ma effettivamente abbiamo aggiunto qualcosa, la stringa $z$, quindi abbiamo dimostrato che $R_L$ è invariante a destra.
+  Prendiamo ora una qualsiasi stringa $z in Sigma^*$ e aggiungiamola alle due stringhe, ottenendo $x w z$ e $y w z$. Se chiamiamo $ z' = w z $ con un semplice renaming quello che otteniamo è comunque una stringa di $Sigma^*$ che mantiene la relazione $R_L$, ma effettivamente abbiamo aggiunto qualcosa, la stringa $z$, quindi abbiamo dimostrato che $R_L$ è invariante a destra.
 ]
 
 Se prendiamo la stringa $z = epsilon$, le stringhe $x$ e $y$ che sono nella relazione $R_L$ sono o entrambe dentro o entrambe fuori da $L$. Ma allora $L$ è l'*unione* di alcune classi di equivalenza di $R_L$.
@@ -187,7 +187,7 @@ Se prendiamo la stringa $z = epsilon$, le stringhe $x$ e $y$ che sono nella rela
   Per questo linguaggio abbiamo due classi di equivalenza rispetto alla relazione $R_L$: una per le $a$ pari e una per le $a$ dispari.
 ]<relazione-Rl>
 
-Non abbiamo ancora parlato di *indice* per $R_L$. Ci sono linguaggi che hanno un numero di classi di equivalenza infinito: ad esempio il linguaggio $ L = {a^n b^n bar.v n gt.eq 0} $ ha un numero di classi di equivalenza infinito perché non è un linguaggio regolare.
+Non abbiamo ancora parlato di *indice* per $R_L$. Ci sono linguaggi che hanno un *numero di classi di equivalenza infinito*: ad esempio il linguaggio $ L = {a^n b^n bar.v n gt.eq 0} $ ha un numero di classi di equivalenza infinito perché non è un linguaggio regolare.
 
 Se confrontiamo il linguaggio dell'@relazione-Rm con il linguaggio dell'@relazione-Rl, notiamo che essi descrivono lo stesso linguaggio, ovvero quello delle stringhe con un numero di $a$ dispari, ma abbiamo due situazioni diverse:
 - nel primo esempio la relazione $R_M$ ha $4$ classi di equivalenza e il DFA ha $4$ stati;
@@ -206,7 +206,7 @@ Ma allora $R_M$ è un *raffinamento* di $R_L$. Questa cosa vale solo per questo 
   + la relazione $R_L$ associata a $L$ ha indice finito.
 ]
 
-Queste relazioni che abbiamo visto fin'ora sono dette *relazioni di Nerode*.
+Queste relazioni che abbiamo visto fin'ora sono dette *relazioni di Myhill-Nerode*.
 
 #theorem-proof()[
   Facciamo vedere $1 arrow.long.double 2 arrow.long.double 3 arrow.long.double 1$.
@@ -222,13 +222,11 @@ Queste relazioni che abbiamo visto fin'ora sono dette *relazioni di Nerode*.
 
   [*$2 arrow.long.double 3$*]
 
-  Supponiamo di avere una relazione $ E subset.eq Sigma^* times Sigma^* $ di equivalenza, invariante a destra, di indice finito e che $L$ è l'unione di alcune classi di $E$.
+  Supponiamo di avere una relazione $ E subset.eq Sigma^* times Sigma^* $ di equivalenza, invariante a destra, di indice finito e che $L$ è l'unione di alcune classi di $E$. Sia $(rel(x, E, y))$ una coppia di elementi in relazione. Sappiamo che $E$ è invariante a destra, ovvero vale che $ forall z in Sigma^* quad rel((x z), E, (y z)) . $
 
-  Sia $(rel(x, E, y))$. Sappiamo che $E$ è invariante a destra, ovvero vale che $ forall z in Sigma^* quad rel((x z), E, (y z)) . $
+  Inoltre, vale che $ forall z in Sigma^* quad (x z in L sse y z in L) $ perché $L$ è unione di alcune classi di equivalenza di $E$. Ma allora $ rel(x, R_L, y) $ per tutta la catena che abbiamo costruito.
 
-  Inoltre, vale che $ forall z in Sigma^* quad (x z in L sse y z in L) $ perché L è unione di alcune classi di equivalenza di $E$. Ma allora $ rel(x, R_L, y) $ per tutta la catena che abbiamo costruito.
-
-  Inoltre, $E$ è un raffinamento di $R_L$, quindi vuol dire che l'indice di $E$ è maggiore di $R_L$, ovvero $ indice(R_L) lt.eq indice(E) . $
+  Inoltre, $E$ è un raffinamento di $R_L$ per il terzo punto della @raffinamento, quindi vuol dire che l'indice di $E$ è maggiore di $R_L$, ovvero $ indice(R_L) lt.eq indice(E) . $
 
   Visto che $E$ ha indice finito, anche $R_L$ ha indice finito.
 
@@ -277,6 +275,6 @@ Cosa succede se applichiamo tutte questi concetti sugli NFA?
 
 Ovviamente non possiamo andare sotto i $2$ stati perché almeno un carattere lo dobbiamo leggere, quindi tutti questi sono *automi minimi* ma *non sono unici*.
 
-Inoltre, per i DFA abbiamo algoritmi polinomiali ben studiati negli anni $'60$, per gli NFA non abbiamo algoritmi efficienti perché esso è un problema difficile, estremamente difficile, che è ben oltre gli _NP_-completi, ovvero è un problema _PSPACE_-completo
+Inoltre, per i DFA abbiamo algoritmi polinomiali ben studiati negli anni $'60$, per gli NFA non abbiamo algoritmi efficienti perché esso è un problema difficile, estremamente difficile, che è ben oltre gli NP-completi, ovvero è un problema *PSPACE-completo*
 
 Per fare un confronto, un problema NP-completo è CNF-SAT, un problema PSPACE-completo è CNF-SAT con una serie arbitraria di $forall$ e $exists$ posti davanti alla formula CNF.

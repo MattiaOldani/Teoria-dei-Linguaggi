@@ -8,10 +8,10 @@
 #import "@preview/syntree:0.2.1": syntree
 
 
-
 // Capitolo
 
 = Risultati particolari
+<capitolo09-tipo2>
 
 In questo capitolo vediamo due risultati molto *particolari*.
 
@@ -113,7 +113,7 @@ Questo è un *teorema di rappresentazione* ed è fuori di testa: scegliamo un in
 #example()[
   Definiamo infine il linguaggio PAL delle stringhe palindrome di lunghezza anche dispari. Qua dobbiamo modificare leggermente la soluzione precedente
 
-  Scegliamo $k = 4$ usando le parentesi definite prima, alle quali aggiungiamo due parentesi, che usiamo per codificare l'eventuale simbolo centrale, che può essere una $a$ o una $b$, quindi:
+  Scegliamo $k = 4$ usando le parentesi definite prima alle quali aggiungiamo due parentesi, che usiamo per codificare l'eventuale simbolo centrale, quindi:
 
   #grid(
     columns: (25%, 25%, 25%, 25%),

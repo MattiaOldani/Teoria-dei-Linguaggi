@@ -2,36 +2,15 @@
 
 #import "../alias.typ": *
 
-#import "@preview/lovelace:0.3.0": pseudocode-list
-
-#let settings = (
-  line-numbering: "1:",
-  stroke: 1pt + blue,
-  hooks: 0.2em,
-  booktabs: true,
-  booktabs-stroke: 2pt + blue,
-)
-
-#let pseudocode-list = pseudocode-list.with(..settings)
-
 #import "@local/typst-theorems:1.0.0": *
 #show: thmrules.with(qed-symbol: $square.filled$)
-
-#import "@preview/cetz:0.3.4"
-
-#import "@preview/syntree:0.2.1": syntree
-
-#import "@preview/lilaq:0.1.0" as lq
-#import "@preview/tiptoe:0.3.0" as tp
-
-#import "@preview/fletcher:0.5.5": diagram, node, edge
 
 
 // Capitolo
 
 = Automi a pila
 
-Chiusa la (grande) parte dei linguaggi regolari e degli automi a stati finiti è ora di passare ad una nuova classe di riconoscitori: gli *automi a pila*. Sono praticamente degli automi a stati finiti con testina di lettura one-way ai quali viene aggiunta una *memoria infinita con restrizioni di accesso*, ovvero l'accesso avviene solo sulla cima della memoria, con politica *LIFO*.
+Chiusa la (grande) parte dei linguaggi regolari e delle *FSM* è ora di passare ad una nuova classe di riconoscitori: gli *automi a pila*. Sono praticamente degli automi a stati finiti con testina di lettura one-way ai quali viene aggiunta una *memoria infinita con restrizioni di accesso*, ovvero l'accesso avviene solo sulla cima della memoria con politica *LIFO*.
 
 #figure(image("assets/01/pda.svg", width: 50%))<automa-a-pila>
 
@@ -41,14 +20,16 @@ Come vediamo, la parte degli automi a stati finiti ce l'abbiamo ancora, ma ora a
 
 Vediamo subito la definizione formale *non deterministica* dei PDA.
 
-Sia $M$ un PDA definito dalla tupla $ (Q, Sigma, Gamma, delta, q_0, Z_0, F) $ tale che:
-- $Q$ è un *insieme finito non vuoto di stati*, che rappresenta il controllo a stati finiti;
-- $Sigma$ è un *alfabeto finito non vuoto di input*;
-- $Gamma$ è un *alfabeto finito non vuoto di simboli della pila*;
-- $delta$ è la *funzione di transizione*;
-- $q_0 in Q$ è lo *stato iniziale*;
-- $Z_0 in Gamma$ è il *simbolo iniziale sulla pila*;
-- $F subset.eq Q$ è un *insieme di stati finali*.
+#definition([PDA])[
+  Sia $M$ un PDA definito dalla *tupla* $ (Q, Sigma, Gamma, delta, q_0, Z_0, F) $ tale che:
+  - $Q$ è un *insieme finito non vuoto di stati*;
+  - $Sigma$ è un *alfabeto finito non vuoto di input*;
+  - $Gamma$ è un *alfabeto finito non vuoto di simboli della pila*;
+  - $delta$ è la *funzione di transizione*;
+  - $q_0 in Q$ è lo *stato iniziale*;
+  - $Z_0 in Gamma$ è il *simbolo iniziale sulla pila*;
+  - $F subset.eq Q$ è un *insieme di stati finali*.
+]
 
 La *funzione di transizione* è definita come segue: $ delta : Q times (Sigma union {epsilon}) times Gamma arrow.long 2^(Q times Gamma^*) . $ In poche parole, consideriamo lo *stato corrente*, il *simbolo sulla testina* o una $epsilon$-mossa e il *simbolo sulla cima della pila* per capire in che stato dobbiamo muoverci e che stringa andare ad inserire sulla pila. La lettura del carattere in cima alla pila lo va a *distruggere*.
 
@@ -59,24 +40,21 @@ Facciamo qualche esempio. Come convenzione useremo le *maiuscole* per i simboli 
 #example()[
   Facciamo che la funzione di transizione sia definita in questo modo: $ delta(q, a, A) = {(q_1, epsilon), (q_2, B C C)} . $
 
-  #figure(image("assets/01/primo_esempio.svg", width: 50%))<esempio-pila>
+  #figure(image("assets/01/primo_esempio.svg", width: 45%))<esempio-pila>
 
   Con $alpha$ nell'@esempio-pila[Immagine] si intende una stringa generica in $Gamma^*$ che potremmo eventualmente avere sotto al carattere $A$ in cima.
 
   Cosa vuol dire quella regola della funzione di transizione? Ci sta dicendo che se ci troviamo nello stato $q$, leggiamo $a$ sul nastro leggiamo $A$ sulla cima della pila, possiamo:
-  - andare in $q_1$ e non mettere altro sulla pila, praticamente consumando un simbolo in input;
+  - andare in $q_1$ e non mettere altro sulla pila, consumando un simbolo in input;
   - andare in $q_2$ e mettere sulla pila la stringa $B C C$.
-
-  Vediamo la rappresentazione dei due casi nei quali possiamo finire.
 
   #grid(
     columns: (50%, 50%),
     align: center + horizon,
-    inset: 10pt,
     [#figure(image("assets/01/primo_esempio_r1.svg"))], [#figure(image("assets/01/primo_esempio_r2.svg"))],
   )
 
-  Per convenzione, quando inseriamo una stringa sulla pila, l'inserimento avviene da destra verso sinistra. In poche parole, se inseriamo la stringa $X in Gamma^*$ nella pila, se la togliessimo noi leggeremmo, in ordine, esattamente $X$. In altre parole ancora, quando leggiamo una stringa da inserire è come se la stessimo leggendo dall'alto verso il basso.
+  Per convenzione, quando inseriamo una stringa sulla pila, l'inserimento avviene *da destra verso sinistra*. In poche parole, se inseriamo la stringa $X = x_1 dots x_n$ nella pila, in cima alla pila ritroviamo il primo carattere $x_1$ di $X$.
 
   Abbiamo la possibilità anche di fare delle $epsilon$-mosse: supponiamo di aggiungere la regola $ delta(q, epsilon, A) = {(r, B A A)} . $
 
@@ -96,7 +74,14 @@ Una *mossa* è l'applicazione della funzione di transizione, ovvero un passaggio
 
 Una *computazione* è una serie di mosse che partono da una configurazione iniziale e mi portano in una configurazione finale. Di queste ultime parleremo tra poco. Torniamo sulle computazioni.
 
-Come con i passi di derivazione, una computazione che usa una sola mossa si indica con $ C' tack.long C'' . $ Se invece una computazione impiega $k$ passi, si indica con $ C' tack.long^k C'' . $ Infine, per indicare una computazione con un numero generico di passi, maggiori o uguali a zero, si usa $ C' tack.long^* C'' . $
+Come con i passi di derivazione, abbiamo *computazioni* che impiegano *un solo passo*, *$k$ passi* oppure un *numero generico di passi*.
+
+#grid(
+  columns: (33%, 33%, 33%),
+  align: center + horizon,
+  inset: 10pt,
+  [$C' tack.long C''$], [$C' tack.long^k C''$], [$C' tack.long^* C''$],
+)
 
 == Accettazione
 
@@ -112,7 +97,7 @@ L'*accettazione per pila vuota* invece è una nozione più naturale: tutto ciò 
 
 Se svuotiamo la pila prima di finire l'input allora quella computazione si blocca perché noi dobbiamo sempre leggere qualcosa dalla pila.
 
-Le due accettazioni sono *equivalenti*, o meglio, possiamo passare da una accettazione all'altra ma i linguaggi che accettano sono differenti. A parità di automa $M$, gli insiemi $L(M)$ e $N(M)$ in generale sono diversi, ma possiamo passare da un modello all'altro mantenendo il linguaggio accettato con facilità. Una ulteriore nozione di accettazione unisce stati finali e pila vuota, ma rimane comunque equivalente. Avere due nozioni è comodo: se una versione ci esce estremamente comoda allora la andiamo ad utilizzare, altrimenti andremo ad utilizzare l'altra.
+Le due accettazioni sono *equivalenti*, o meglio, possiamo passare da una accettazione all'altra ma i linguaggi che accettano sono differenti. A parità di automa $M$, gli insiemi $L(M)$ e $N(M)$ in generale sono *diversi*, ma possiamo passare da un modello all'altro mantenendo il linguaggio accettato con facilità. Una ulteriore nozione di accettazione unisce stati finali e pila vuota, ma rimane comunque equivalente. Avere due nozioni è comodo: se una versione ci esce estremamente comoda allora la andiamo ad utilizzare, altrimenti andremo ad utilizzare l'altra.
 
 Vediamo ora qualche esempio.
 
@@ -121,9 +106,7 @@ Vediamo ora qualche esempio.
 
   Lo possiamo riconoscere con un PDA, visto che abbiamo visto che non è regolare? Bhe sì: con i DFA non riuscivamo a ricordare il numero di $a$ e poi confrontare questo numero con le $b$, mentre ora riusciamo a farlo, le pile sanno contare.
 
-  Possiamo pensare ad un automa che ogni volta che legge una $a$ butta una $A$ dentro la pila, e quando legge una $b$ toglie una $A$ dalla pila. Accettiamo se abbiamo messo $n$ caratteri $A$ dentro la pila e poi ne abbiamo tolti $n$, quindi qua viene comoda l'*accettazione per pila vuota*.
-
-  Andiamo a definire la funzione di transizione.
+  Possiamo pensare ad un automa che ogni volta che legge una $a$ butta una $A$ dentro la pila, e quando legge una $b$ toglie una $A$ dalla pila. Accettiamo se abbiamo messo $n$ caratteri $A$ dentro la pila e poi ne abbiamo tolti $n$, quindi qua viene comoda l'*accettazione per pila vuota*. Andiamo a definire la funzione di transizione.
 
   Iniziamo a togliere $Z_0$ dalla prima e inseriamo la prima $A$ in segno di aver letto la prima $a$ della stringa, che abbiamo per forza per definizione, quindi $ delta(q_0, a, Z_0) = {(q_0, A)} . $
 
@@ -151,7 +134,7 @@ Vediamo ora qualche esempio.
 
   Con l'*accettazione per pila vuota*, nello stato iniziale possiamo aggiungere una regola che svuota subito la pila, ovvero aggiungiamo la regola $ delta(q_0, epsilon, Z_0) = {(q_0, epsilon)} . $
 
-  Stiamo scommettendo che l'input è già finito, ovvero abbiamo solo $epsilon$ sul nastro, ma questo ha appena aggiunto il *non determinismo* al nostro automa a pila.
+  Stiamo scommettendo che l'input sia già finito, ovvero abbiamo solo $epsilon$ sul nastro, ma questo ha appena aggiunto il *non determinismo* al nostro automa a pila.
 
   Con l'*accettazione per stati finali* invece ci spostiamo direttamente nello stato $q_f$ a partire da $q_0$, ovvero aggiungiamo la regola $ delta(q_0, epsilon, Z_0) = {(q_f, epsilon)} . $
 
@@ -162,7 +145,7 @@ Vediamo ora qualche esempio.
 
 == Determinismo VS non determinismo
 
-Con il termine *non determinismo* non intendiamo le $epsilon$-mosse da sole, quelle le possiamo avere, ma intendiamo un mix tra mosse che leggono e mosse che non leggono.
+Con il termine *non determinismo* non intendiamo le $epsilon$-mosse da sole, quelle le possiamo avere, ma intendiamo un *mix* tra mosse che leggono e mosse che non leggono.
 
 #definition([Determinismo])[
   Sia $M$ un PDA. Allora $M$ è *deterministico* se:
@@ -176,23 +159,29 @@ A differenza del caso classico, il determinismo e il non determinismo *non sono 
 
 Avevamo parlato dell'*equivalenza* dell'accettazione per stati finali e per pila vuota: infatti, esistono due trasformazioni che permettono di passare da un automa all'altro, mantenendo il linguaggio di partenza riconosciuto inalterato. L'equivalenza infatti ci diceva che, partendo da un automa $M$ che riconosce per stati finali, abbiamo una trasformazione che ci dà $M'$ che riconosce per pila vuota che riconosce lo stesso linguaggio di $M$, e viceversa.
 
-/ Stati finali $arrow.long$ pila vuota:
-  Dobbiamo trasformare un automa che accetta per stati finali in un automa che accetta per pila vuota. Con quest'ultimo simuliamo il primo, e ogni volta che vado in uno stato finale mi sposto in uno *stato di svuotamento*, che se raggiunto in mezzo blocca la pila, ma se raggiunto alla fine mi fa accettare. \ \ Abbiamo quindi $M = (Q, Sigma, Gamma, delta, q_0, Z_0, F)$ un PDA con $L = L(M)$. Definiamo ora $ M' = (Q union {q_e, q'_0}, Sigma, Gamma union {X}, delta', q'_0, X, emptyset.rev) $ un PDA tale che:
-  - per metterci in una situazione piacevole per la fine usiamo un *truccaccio* definito dalla regola $ delta(q'_0, epsilon, X) = {(q_0, Z_0 X)} , $ ovvero prima di far partire la computazione dell'automa $M$ andiamo ad inserire un carattere $X$ in fondo alla pila, vedremo dopo perché;
-  - l'automa deve eseguire *tutte le mosse* di $M$, ovvero $ forall q in Q quad forall sigma in Sigma union {epsilon} quad forall Z in Gamma quad delta(q, sigma, Z) subset.eq delta'(q, sigma, Z) , $ che scritto così significa che tutte le mosse che trovavamo nell'applicazione di delta ad una certa tripla le abbiamo anche nella nuova funzione di transizione, che però conterrà anche altro, che vedremo tra poco;
-  - aggiungiamo uno *stato di svuotamento* per pulire la pila, definito dalle regole $ forall q in F quad forall Z in Gamma union {X} quad (q_e, epsilon) in delta'(q, epsilon, Z) \ forall Z in Gamma union {X} quad delta'(q_e, epsilon, Z) = {(q_e, epsilon)} , $ ovvero con la prima regola, ogni volta che mi trovo in uno stato finale *non deterministicamente* mi posso spostare nello stato di svuotamento, mentre con la seconda regola effettivamente svuoto.
+=== Da stati finali a pila vuota
 
-  A cosa ci serve il *carattere* $X$? Facciamo finta di non mettere il carattere $X$. Se $M$ accetta una stringa $x$ arrivando con la pila vuota nessun problema, non ci spostiamo nello stato di svuotamento ma abbiamo la pila vuota quindi ottimo. Se invece $M$ non accetta una stringa $x$ ma arriva alla fine con la pila vuota, il simbolo $X$ messo all'inizio ci copre da una eventuale accettazione errata, perché non riusciremo ad andare nello stato di svuotamento per avere la pila vuota, anche se $M$ ci finisce in quel modo. Diciamo che abbiamo messo $X$ come se fosse una guardia, che ci copre questo preciso caso.
+/*
+Se M rifiuta ma arriva a pila vuota accetterei senza la X
+*/
 
-  Purtroppo, con questa costruzione abbiamo buttato dentro del *non determinismo* quando facciamo i passaggi in $q_e$ da uno stato finale.
+Dobbiamo trasformare un automa che accetta per stati finali in un automa che accetta per pila vuota. Con quest'ultimo simuliamo il primo, e ogni volta che vado in uno stato finale mi sposto in uno *stato di svuotamento*, che se raggiunto in mezzo blocca la pila, ma se raggiunto alla fine mi fa accettare. \ \ Abbiamo quindi $M = (Q, Sigma, Gamma, delta, q_0, Z_0, F)$ un PDA con $L = L(M)$. Definiamo ora $ M' = (Q union {q_e, q'_0}, Sigma, Gamma union {X}, delta', q'_0, X, emptyset.rev) $ un PDA tale che:
+- per metterci in una situazione piacevole per la fine usiamo un *truccaccio matto* definito dalla regola $ delta(q'_0, epsilon, X) = {(q_0, Z_0 X)} , $ ovvero prima di far partire la computazione dell'automa $M$ andiamo ad inserire un carattere $X$ in fondo alla pila, vedremo dopo perché;
+- l'automa deve eseguire *tutte le mosse* di $M$, ovvero $ forall q in Q quad forall sigma in Sigma union {epsilon} quad forall Z in Gamma quad delta(q, sigma, Z) subset.eq delta'(q, sigma, Z) , $ che scritto così significa che tutte le mosse che trovavamo nell'applicazione di $delta$ ad una certa tripla le abbiamo anche nella nuova funzione di transizione, che però conterrà anche altro, che vedremo tra poco;
+- aggiungiamo uno *stato di svuotamento* per pulire la pila, definito dalle regole $ forall q in F quad forall Z in Gamma union {X} quad (q_e, epsilon) in delta'(q, epsilon, Z) \ forall Z in Gamma union {X} quad delta'(q_e, epsilon, Z) = {(q_e, epsilon)} , $ ovvero con la prima regola, ogni volta che mi trovo in uno stato finale *non deterministicamente* mi posso spostare nello stato di svuotamento, mentre con la seconda regola effettivamente svuoto.
 
-/ Pila vuota $arrow.long$ stati finali:
-  Il percorso opposto invece parte da un PDA $ M = (Q, Sigma, Gamma, delta, q_0, Z_0, F) $ tale che $L = N(M)$. Definiamo il PDA $ M' = (Q union {q'_0, q_f}, Sigma, Gamma union {X}, delta', q'_0, X, {q_f}) $ che come idea ha quella di simulare $M$ e, ogni volta che arriva con pila vuota, ci spostiamo nello stato finale. Vediamo i vari passi:
-  - come prima, usiamo un *truccaccio* per infilare $X$ sotto la pila, quindi abbiamo la regola $ delta'(q'_0, epsilon, Z_0) = {(q_0, Z_0 X)} $ che usiamo per inserire $X$ come trigger per andare in uno stato finale;
-  - simuliamo l'automa $M$ senza aggiungere niente, quindi $ forall q in Q quad forall sigma in Sigma union {epsilon} quad forall Z in Gamma quad delta'(q, sigma, Z) = delta(q, sigma, Z) ; $
-  - ogni volta che leggiamo $X$ sulla cima della pila vuol dire che $M$ ha svuotato la pila, quindi devo andare nello stato finale, ovvero $ forall q in Q quad delta'(q, epsilon, X) = {(q_f, epsilon)} ; $ ovviamente, se andiamo in questo stato a metà stringa ci blocchiamo, altrimenti se ci andiamo alla fine è tutto ok.
+A cosa ci serve il *carattere* $X$? Facciamo finta di non mettere il carattere $X$. Se $M$ accetta una stringa $x$ arrivando con la pila vuota nessun problema, ci spostiamo nello stato di svuotamento e accettiamo. Se invece $M$ non accetta una stringa $x$ ma arriva alla fine con la pila vuota, il simbolo $X$ messo all'inizio ci copre da una eventuale accettazione errata, perché non riusciremo ad andare nello stato di svuotamento per avere la pila vuota, anche se $M$ ci finisce in quel modo. Diciamo che abbiamo messo $X$ come se fosse una guardia, che ci copre questo preciso caso.
 
-  A differenza di prima, se partiamo da un automa *deterministico*, quello che otteniamo è ancora un automa *deterministico*.
+Purtroppo, con questa costruzione abbiamo buttato dentro del *non determinismo* quando facciamo i passaggi in $q_e$ da uno stato finale.
+
+=== Da pila vuota a stati finali
+
+Il percorso opposto invece parte da un PDA $ M = (Q, Sigma, Gamma, delta, q_0, Z_0, F) $ tale che $L = N(M)$. Definiamo il PDA $ M' = (Q union {q'_0, q_f}, Sigma, Gamma union {X}, delta', q'_0, X, {q_f}) $ che come idea ha quella di simulare $M$ e, ogni volta che arriva con pila vuota, ci spostiamo nello stato finale. Vediamo i vari passi:
+- come prima, usiamo un *truccaccio* per infilare $X$ sotto la pila, quindi abbiamo la regola $ delta'(q'_0, epsilon, Z_0) = {(q_0, Z_0 X)} $ che usiamo per inserire $X$ come trigger per andare in uno stato finale;
+- simuliamo l'automa $M$ senza aggiungere niente, quindi $ forall q in Q quad forall sigma in Sigma union {epsilon} quad forall Z in Gamma quad delta'(q, sigma, Z) = delta(q, sigma, Z) ; $
+- ogni volta che leggiamo $X$ sulla cima della pila vuol dire che $M$ ha svuotato la pila, quindi devo andare nello stato finale, ovvero $ forall q in Q quad delta'(q, epsilon, X) = {(q_f, epsilon)} ; $ ovviamente, se andiamo in questo stato a metà stringa ci blocchiamo, altrimenti se ci andiamo alla fine è tutto ok.
+
+A differenza di prima, se partiamo da un automa *deterministico*, quello che otteniamo è ancora un automa *deterministico*.
 
 == Esempi
 
@@ -215,7 +204,7 @@ Un linguaggio riconosciuto da automi a pila deterministici DPDA fa parte dell'in
 #example()[
   Definiamo ora il linguaggio $ L' = {w w^R bar.v w in {a,b}^*} $ insieme delle stringhe palindrome di lunghezza pari.
 
-  In questo caso non riusciamo a farlo con un DPDA (difficile da dimostrare, lo faremo avanti) perché dobbiamo scommettere di essere arrivati a metà della stringa da riconoscere, quindi dobbiamo usare del *non determinismo*.
+  In questo caso non riusciamo a farlo con un DPDA (difficile da dimostrare, lo faremo più avanti) perché dobbiamo scommettere di essere arrivati a metà della stringa da riconoscere, quindi dobbiamo usare del *non determinismo*.
 ]
 
 Analogamente, un linguaggio riconosciuto da automi a pila non deterministici, detti anche *NPDA* o solo *PDA*, da parte dell'insieme dei *linguaggi context-free*, detti anche *CFL*.

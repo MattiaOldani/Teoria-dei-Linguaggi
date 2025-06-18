@@ -1,0 +1,8 @@
+// Titolo e indice
+
+#import "template.typ": *
+
+#show: project.with(title: "Optimal simulation of self-verifying automata by deterministic automata")
+
+
+// Seminario

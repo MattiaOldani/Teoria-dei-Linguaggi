@@ -8,3 +8,4 @@
 // Seminario
 
 #include "seminario/01_introduzione.typ"
+#include "seminario/02_definizione.typ"

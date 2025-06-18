@@ -6,3 +6,5 @@
 
 
 // Seminario
+
+#include "seminario/01_introduzione.typ"

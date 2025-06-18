@@ -10,3 +10,4 @@
 #include "seminario/01_introduzione.typ"
 #include "seminario/02_definizione.typ"
 #include "seminario/03_conversione.typ"
+#include "seminario/04_ottimalita.typ"
